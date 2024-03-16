@@ -11,5 +11,6 @@ services:
     ports:
       - "4949:4949"
       - "80:80"
+      - "4000:4000"
     environment:
       ENVIROMENT: pro
