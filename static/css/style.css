@@ -1,0 +1,41 @@
+:root {
+    --theme-color: #a37cf0;
+}
+
+
+body {
+    font-family: "Source Sans 3", sans-serif !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1 {
+    font-weight: 1000 !important;
+    word-break: break-word !important;
+    font-size: 3rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+h5 {
+    font-weight: 600 !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: var(--theme-color) !important;
+    font-weight: bold !important;
+}
+
+
+.home-container {
+    margin-top: 320px;
+    position: relative;
+}
+
+@media (min-width: 992px) {
+    .home-container {
+        margin-top: 120px;
+        position: relative;
+    }
+}

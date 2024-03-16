@@ -1,0 +1,15 @@
+version: '3.8'   
+name: cv
+services:
+  cv:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/code
+    env_file:
+      - .env
+    ports:
+      - "4949:4949"
+      - "80:80"
+    environment:
+      ENVIROMENT: dev

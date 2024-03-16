@@ -1,0 +1,9 @@
+.avatar-bg {
+    position: absolute;
+    background-color: var(--theme-color);
+    border-radius: 50%;
+    width: 230px;
+    height: 230px;
+    margin-left: 80px;
+    z-index: -1;
+}

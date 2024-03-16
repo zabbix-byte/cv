@@ -1,0 +1,9 @@
+Django==5.0.1
+debugpy==1.8.0
+requests==2.31.0
+beautifulsoup4==4.12.3
+selenium==4.17.2
+lxml==5.1.0
+django-allauth
+django-sslserver
+python-dotenv

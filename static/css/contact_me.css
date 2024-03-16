@@ -1,0 +1,50 @@
+.button-contant {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: var(--theme-color);
+    border-radius: 9999px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 0;
+}
+
+@media (min-width: 992px) {
+    .button-contant {
+        width: auto;
+        height: auto;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 600;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        line-height: 1.25;
+        cursor: pointer;
+        outline: 0;
+        -webkit-transition: opacity .2s ease-out;
+        transition: opacity .2s ease-out;
+        will-change: opacity;
+        padding: 0.5rem 1.5rem;
+        border-radius: 1rem;
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+        background-color: var(--theme-color);
+    }
+
+    .button-contact-content:before {
+        display: flex;
+        content: 'Contact me';
+    }
+
+    .button-contact-content-icon {
+        display: none;
+    }
+}

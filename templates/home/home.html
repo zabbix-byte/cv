@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}
+  Vasile Ovidiu Ichim
+{% endblock %}
+{% block content %}
+  <div class="container mt-2">
+    {% include 'home/navbar.html' %}
+    <div class="row">
+      <div class="col-sm-4">
+        {% include 'home/me.html' %}
+      </div>
+      <div class="col-sm-8">
+        {% include 'home/content.html' %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
