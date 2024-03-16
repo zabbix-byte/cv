@@ -3,7 +3,7 @@ app-start-debug
 
 app-start:
 	@echo "starting app..."
-	python /code/manage.py runserver 0.0.0.0:80;
+	python /code/manage.py runserver 0.0.0.0:4000;
 
 app-start-debug:
 	@echo "starting app in debug mode..."
