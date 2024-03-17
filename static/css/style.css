@@ -1,9 +1,12 @@
 :root {
     --theme-color: #a37cf0;
+    --link-cursor: url('/static/img/pointer.png'), auto;
+    --cursor: url('/static/img/cursor.png'), auto;
 }
 
 
 body {
+    cursor: var(--cursor);
     font-family: "Source Sans 3", sans-serif !important;
     font-optical-sizing: auto;
     font-style: normal;
@@ -25,6 +28,11 @@ a {
     text-decoration: none !important;
     color: var(--theme-color) !important;
     font-weight: bold !important;
+    cursor: var(--link-cursor) !important;
+}
+
+button {
+    cursor: var(--link-cursor) !important;
 }
 
 
@@ -38,4 +46,71 @@ a {
         margin-top: 120px;
         position: relative;
     }
+}
+
+.flag-counter {
+    height: 150px;
+    width: 90%;
+}
+
+@media (min-width: 992px) {
+    .flag-counter {
+        height: 300px;
+        width: 90%;
+    }
+}
+
+
+body {
+    --sb-track-color: transparent;
+    --sb-thumb-color: var(--theme-color);
+    --sb-size: 14px;
+}
+
+body::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 3px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    body {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+@keyframes ckw {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-infinite {
+    animation-name: ckw;
+    animation-duration: 120s;
+}
+
+
+.padding_l_list {
+    padding-left: 0rem!important;
+}
+
+
+@media (min-width: 992px) {
+    .padding_l_list {
+        padding-left: 1rem!important;
+    }
+    
 }

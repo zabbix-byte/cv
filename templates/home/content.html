@@ -12,14 +12,14 @@
     <h4 style="font-weight: bold">TOP SKILLS</h4>
 
     <div class="container text-center" >
-      <ul class="list-inline" style="padding: 1rem;">
-        <li class="list-inline-item" style="padding: 1rem;">
+      <ul class="list-inline">
+        <li class="list-inline-item" style="padding-top: 1rem;">
           {% include 'home/skill.html' with skill="Python" color="green" %}
         </li>
-        <li class="list-inline-item" style="padding: 1rem;">
+        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
           {% include 'home/skill.html' with skill="Linux" color="red" %}
         </li>
-        <li class="list-inline-item" style="padding: 1rem;">
+        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
           {% include 'home/skill.html' with skill="AWS" color="orange" %}
         </li>
       </ul>
@@ -32,18 +32,20 @@
   <div class="container">
     <h4 style="font-weight: bold">SOME PROJECTS</h4>
     <div class="container text-center" >
-      <ul class="list-inline" style="padding: 1rem;">
-        <li class="list-inline-item" style="padding: 1rem;">
+      <ul class="list-inline">
+        <li class="list-inline-item" style="padding-top: 1rem;">
           {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" %}
         </li>
-        <li class="list-inline-item" style="padding: 1rem;">
+        <li class="list-inline-item" style="padding-top: 1rem;">
           {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." %}
         </li>
-        <li class="list-inline-item" style="padding: 1rem;">
+        <li class="list-inline-item" style="padding-top: 1rem;">
           {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" %}
         </li>
-        <li class="list-inline-item" style="padding: 1rem;">
+        <li class="list-inline-item" style="padding-top: 1rem;">
           {% include 'home/project.html' with name="powerbi embedded" url="https://github.com/zabbix-byte/powerbi-embedded-credentials-validator" description="Powerbi Embedded Credentials Validator (CUSTOMERS)" %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
         </li>
       </ul>
     </div>
@@ -53,7 +55,7 @@
   <div class="container">
     <h4 style="font-weight: bold">FLAG COUNTER</h4>
     <div class="container text-center" >
-      <a href="https://info.flagcounter.com/7Wy1"><img src="https://s11.flagcounter.com/map/7Wy1/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+      <a href="https://info.flagcounter.com/7Wy1"><img class="flag-counter" src="https://s11.flagcounter.com/map/7Wy1/size_m/txt_000000/border_CCCCCC/pageviews_1/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
     </div>
   </div>
 </section>
