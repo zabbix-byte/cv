@@ -98,8 +98,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .rotate-infinite {
-    animation-name: ckw;
-    animation-duration: 120s;
+    animation: ckw 120s infinite;
 }
 
 
