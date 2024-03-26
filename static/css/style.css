@@ -1,11 +1,10 @@
 :root {
-    --theme-color: #a37cf0;
-    --link-cursor: url('/static/img/pointer.png'), auto;
+    --theme-color: #009a22;
     --cursor: url('/static/img/cursor.png'), auto;
 }
 
-
 body {
+    background-color: #0a0c10!important;
     cursor: var(--cursor);
     font-family: "Source Sans 3", sans-serif !important;
     font-optical-sizing: auto;
