@@ -1,6 +1,7 @@
 :root {
     --theme-color: linear-gradient(135deg, #548cf5, #a16ae8);
     --cursor: url('/static/img/cursor.png'), auto;
+    --link-cursor: url('/static/img/pointer.png'), auto;
 }
 
 body {
