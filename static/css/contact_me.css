@@ -6,7 +6,7 @@
     height: 3.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    background-color: var(--theme-color);
+    background: var(--theme-color);
     border-radius: 9999px;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -36,7 +36,7 @@
         border-radius: 1rem;
         -ms-flex-item-align: start;
         align-self: flex-start;
-        background-color: var(--theme-color);
+        background: var(--theme-color);
     }
 
     .button-contact-content:before {
