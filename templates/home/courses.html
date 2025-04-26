@@ -1,0 +1,30 @@
+{% load static %}
+<div class="course-card"
+  style="padding:1rem;width: 290px; height: 90px;border-radius: 2px!important; background: linear-gradient(135deg, var(--theme-color), #2d2d2d); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+  <div style="display: flex; align-items: center;">
+    <img src="{% static 'img/pp.png' %}" title="platzi" alt="platzi"
+      style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%; margin-right: 10px;">
+    <a href="{{url}}" title="Course {{course}}">
+      <h4 style="
+      font-weight: 900;
+      font-size: 1rem;
+      background: var(--theme-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    ">
+        {{course}}
+      </h4>
+    </a>
+  </div>
+</div>
+<style>
+  .course-card:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35); /* Aumenta la sombra */
+  }
+</style>

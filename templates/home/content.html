@@ -1,6 +1,6 @@
 <section class="container home-container">
   <div class="container">
-    <h4 style="font-weight: bold">👋 ABOUT ME</h4>
+    <h3 style="font-weight: bold">👋 ABOUT ME</h3>
     <div class="container" >
       <p style="font-weight: 500;font-size: 1.2rem;">
 
@@ -24,7 +24,7 @@
 
 <section class="container mt-4">
   <div class="container">
-    <h4 style="font-weight: bold">💡TOP SKILLS</h4>
+    <h3 style="font-weight: bold">💡TOP SKILLS</h3>
 
     <div class="container text-center" >
       <ul class="list-inline">
@@ -54,26 +54,107 @@
 
 <section class="container mt-4">
   <div class="container">
-    <h4 style="font-weight: bold"> 📂SOME PROJECTS</h4>
+    <h3 style="font-weight: bold"> 📂SOME PROJECTS</h3>
     <div class="container text-center" >
       <ul class="list-inline">
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" %}
+          {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" c=False cpp=False python=True django=False html=False css=False javascript=False %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." %}
+          {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." c=True cpp=True python=False django=False html=False css=False javascript=False %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" %}
+          {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" c=True cpp=True python=False django=False html=False css=False javascript=False %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." %}
+          {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." c=False cpp=True python=False django=False html=False css=False javascript=False %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="App that simplifies the process of duplicating Discord servers." %}
+          {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="App that simplifies the process of duplicating Discord servers." c=False cpp=False python=True django=False html=True css=True javascript=True %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" %}
+          {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" c=False cpp=False python=True django=False html=False css=False javascript=False %}
+        </li>        
+        <li class="list-inline-item" style="padding-top: 1rem;">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="container mt-4">
+  <div class="container">
+    <h3 style="font-weight: bold">🎓 Courses</h3>
+    <div class="container text-center" >
+      <ul class="list-inline">
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="C++ Básico" url="https://platzi.com/p/zabbix/curso/2372-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Programación Orientada a Objetos con C++" url="https://platzi.com/p/zabbix/curso/2373-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Práctico de AWS Cloud" url="https://platzi.com/p/zabbix/curso/1323-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="FastAPI: Introducción, Operaciones, Validaciones y Autenticación" url="https://platzi.com/p/zabbix/curso/5354-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Fundamentos de Python" url="https://platzi.com/p/zabbix/curso/4227-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Python: Comprehensions, Funciones y Manejo de Errores" url="https://platzi.com/p/zabbix/curso/4260-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Python: PIP y Entornos Virtuales" url="https://platzi.com/p/zabbix/curso/4261-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Introducción a C" url="https://platzi.com/p/zabbix/curso/1936-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Django v2" url="https://platzi.com/p/zabbix/curso/1318-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Python: Creación de un CRUD" url="https://platzi.com/p/zabbix/curso/1378-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Complejidad Algorítmica con Python" url="https://platzi.com/p/zabbix/curso/1775-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Flask" url="https://platzi.com/p/zabbix/curso/1540-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Programación Orientada a Objetos: POO" url="https://platzi.com/p/zabbix/curso/1474-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="SQL y MySQL 2018" url="https://platzi.com/p/zabbix/curso/1272-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Jenkins" url="https://platzi.com/p/zabbix/curso/1436-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Fundamentos de Bases de Datos 2019" url="https://platzi.com/p/zabbix/curso/1566-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Profesional de Git y GitHub" url="https://platzi.com/p/zabbix/curso/1557-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Python" url="https://platzi.com/p/zabbix/curso/1937-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Administración de Servidores Linux" url="https://platzi.com/p/zabbix/curso/1667-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Azure IaaS" url="https://platzi.com/p/zabbix/curso/1704-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Introducción a la Terminal y Línea de Comandos 2019" url="https://platzi.com/p/zabbix/curso/1748-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Python 2019" url="https://platzi.com/p/zabbix/curso/1104-course/diploma/detalle/"  %}
+        </li>
+        <li class="list-inline-item" style="padding-top: 1rem;">
+          {% include 'home/courses.html' with course="Google Cloud Platform 2018" url="https://platzi.com/p/zabbix/curso/1284-course/diploma/detalle/"  %}
         </li>
         <li class="list-inline-item" style="padding-top: 1rem;">
         </li>
@@ -81,5 +162,6 @@
     </div>
   </div>
 </section>
+
 <section class="container text-center mt-4">
 </section>
