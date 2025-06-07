@@ -1,167 +1,212 @@
-<section class="container home-container">
-  <div class="container">
-    <h3 style="font-weight: bold">👋 ABOUT ME</h3>
-    <div class="container" >
-      <p style="font-weight: 500;font-size: 1.2rem;">
-
-        With over 6 years of experience in the tech industry, I have held diverse roles ranging from Sysadmin to
-        Software Engineer, culminating in my current position as a Technical Lead. My professional journey includes
-        tenures at renowned companies such as IBM and Inditex, where I contributed to large-scale enterprise solutions.
-        As a co-founder of Valerdat, I spearheaded the development of innovative data-driven applications, showcasing my
-        entrepreneurial spirit and technical acumen.
-
-
+<div class="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 pr-1 sm:pr-2 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full">
+  <!-- About Me Section -->
+  <section class="bg-white/80 backdrop-blur-md shadow-soft rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-5 border border-white/20 w-full">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-2 sm:mb-3 md:mb-4">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-0 sm:mr-3 mb-2 sm:mb-0 self-center sm:self-start">
+        <i class="fas fa-user text-white text-sm sm:text-base"></i>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-800 text-center sm:text-left w-full sm:w-auto">About Me</h2>
+    </div>
+    
+    <div class="prose prose-sm sm:prose-base text-slate-600 max-w-none w-full">
+      <p class="text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 break-words">
+        With over <span class="font-semibold text-primary-600">6 years of experience</span> in the tech industry, I have held diverse roles ranging from Sysadmin to Software Engineer, culminating in my current position as a <span class="font-semibold text-primary-600">Technical Lead</span>. My professional journey includes tenures at renowned companies such as <span class="font-semibold">IBM</span> and <span class="font-semibold">Inditex</span>, where I contributed to large-scale enterprise solutions.
       </p>
 
-      <p style="font-weight: 500;font-size: 1.2rem;">
-        Currently, I am pursuing a part-time degree in Computer Science, further solidifying my foundational knowledge
-        and staying abreast of emerging technologies. My commitment to continuous learning and adaptability has been
-        pivotal in navigating complex projects and leading cross-functional teams to success.
+      <p class="text-sm sm:text-base leading-relaxed break-words">
+        As a <span class="font-semibold text-primary-600">co-founder of Valerdat</span>, I spearheaded the development of innovative data-driven applications, showcasing my entrepreneurial spirit and technical acumen. Currently, I am pursuing a part-time degree in Computer Science, further solidifying my foundational knowledge and staying abreast of emerging technologies.
       </p>
     </div>
-  </div>
-</section>
-
-<section class="container mt-4">
-  <div class="container">
-    <h3 style="font-weight: bold">💡TOP SKILLS</h3>
-
-    <div class="container text-center" >
-      <ul class="list-inline">
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="Software Architecture & Leadership" color="RoyalBlue" %}
-        </li>
-        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="Entrepreneurship & Product Thinking " color="DarkSlateGray" %}
-        </li>
-        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="Backend Development (Python & Django)" color="GoldenRod" %}
-        </li>
-        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="System Administration & DevOps" color="Teal" %}
-        </li>
-        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="Cloud" color="MediumPurple" %}
-        </li>
-        <li class="list-inline-item padding_l_list" style="padding-top: 1rem;">
-          {% include 'home/skill.html' with skill="Data Engineering & AI Integration" color="Tomato" %}
-        </li>
-      </ul>
+  </section>
+  <!-- Experience Section -->
+  <section class="bg-white/80 backdrop-blur-md shadow-soft rounded-xl p-3 sm:p-4 lg:p-5 border border-white/20 w-full">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-5">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-0 sm:mr-3 mb-2 sm:mb-0 self-center sm:self-start">
+        <i class="fas fa-briefcase text-white text-sm sm:text-base"></i>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-800 text-center sm:text-left w-full sm:w-auto">Professional Experience</h2>
     </div>
-  </div>
-</section>
 
+    <div class="space-y-4 sm:space-y-5 w-full">
+      <!-- Valerdat Experience -->
+      <div class="border-l-2 sm:border-l-3 border-primary-500 pl-3 sm:pl-4 relative w-full">
+        <div class="absolute w-2.5 h-2.5 sm:w-3 sm:h-3 bg-primary-500 rounded-full -left-1.5 sm:-left-1.5 top-1.5"></div>
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 sm:mb-3 w-full">
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-800 break-words">Tech Lead & Co-founder</h3>
+            <p class="text-primary-600 font-semibold text-sm break-words">Valerdat</p>
+            <p class="text-slate-600 text-xs break-words">Full-time • May 2020 - Present • 5 yrs 2 mos</p>
+            <p class="text-slate-500 text-xs flex flex-wrap items-center mt-1 break-words">
+              <i class="fas fa-map-marker-alt mr-1"></i>
+              <span>Barcelona, Catalonia, Spain • Hybrid</span>
+            </p>
+          </div>
+          <div class="mt-2 lg:mt-0 flex-shrink-0">
+            <span class="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-medium">Current</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1 w-full">
+          <span class="bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded text-xs">Technical Leadership</span>
+          <span class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded text-xs">Team Management</span>
+          <span class="bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded text-xs">Product Strategy</span>
+          <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">Software Architecture</span>
+          <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded text-xs">Entrepreneurship</span>
+          <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded text-xs">Data-Driven Solutions</span>
+          <span class="bg-rose-100 text-rose-800 px-1.5 py-0.5 rounded text-xs">Business Development</span>
+        </div>
+      </div>
 
-<section class="container mt-4">
-  <div class="container">
-    <h3 style="font-weight: bold"> 📂SOME PROJECTS</h3>
-    <div class="container text-center" >
-      <ul class="list-inline">
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" c=False cpp=False python=True django=False html=False css=False javascript=False %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." c=True cpp=True python=False django=False html=False css=False javascript=False %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" c=True cpp=True python=False django=False html=False css=False javascript=False %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." c=False cpp=True python=False django=False html=False css=False javascript=False %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="App that simplifies the process of duplicating Discord servers." c=False cpp=False python=True django=False html=True css=True javascript=True %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" c=False cpp=False python=True django=False html=False css=False javascript=False %}
-        </li>        
-        <li class="list-inline-item" style="padding-top: 1rem;">
-        </li>
-      </ul>
+      <!-- Knowmad Mood Experience -->
+      <div class="border-l-2 sm:border-l-3 border-slate-300 pl-3 sm:pl-4 relative">
+        <div class="absolute w-2.5 h-2.5 sm:w-3 sm:h-3 bg-slate-400 rounded-full -left-1.5 sm:-left-1.5 top-1.5"></div>
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 sm:mb-3">
+          <div class="flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-800">Python Software Engineer</h3>
+            <p class="text-slate-700 font-semibold text-sm">knowmad mood</p>
+            <p class="text-slate-600 text-xs">Full-time • Oct 2023 - Sep 2024 • 1 yr</p>
+            <p class="text-slate-500 text-xs flex flex-wrap items-center mt-1">
+              <i class="fas fa-map-marker-alt mr-1"></i>
+              <span>Barcelona, Catalonia, Spain • Remote</span>
+            </p>
+          </div>
+        </div>
+        <p class="text-slate-600 mb-2 text-xs sm:text-sm">
+          Leading the technical development of a software as a service for the security department of <strong>Inditex</strong> that helps in managing finances, plannings, licenses and more.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">Python Development</span>
+          <span class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded text-xs">AWS Cloud</span>
+          <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-xs">SaaS Architecture</span>
+          <span class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded text-xs">Financial Systems</span>
+          <span class="bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded text-xs">Technical Leadership</span>
+          <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded text-xs">Security Solutions</span>
+          <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded text-xs">Enterprise Solutions</span>
+        </div>
+      </div>
+
+      <!-- IBM Experience -->
+      <div class="border-l-2 sm:border-l-3 border-slate-300 pl-3 sm:pl-4 relative">
+        <div class="absolute w-2.5 h-2.5 sm:w-3 sm:h-3 bg-slate-400 rounded-full -left-1.5 sm:-left-1.5 top-1.5"></div>
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 sm:mb-3">
+          <div class="flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-800">Sysadmin</h3>
+            <p class="text-slate-700 font-semibold text-sm">IBM</p>
+            <p class="text-slate-600 text-xs">Full-time • Feb 2021 - Mar 2022 • 1 yr 2 mos</p>
+            <p class="text-slate-500 text-xs flex flex-wrap items-center mt-1">
+              <i class="fas fa-map-marker-alt mr-1"></i>
+              <span>Barcelona, Catalonia, Spain • Remote</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1">
+          <span class="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-xs">Linux Administration</span>
+          <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">Python Scripting</span>
+          <span class="bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded text-xs">System Architecture</span>
+          <span class="bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded text-xs">Enterprise Infrastructure</span>
+          <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-xs">Automation</span>
+          <span class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded text-xs">Problem Solving</span>
+          <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded text-xs">Process Optimization</span>
+        </div>
+      </div>
+
+      <!-- DATAXIP Experience -->
+      <div class="border-l-2 sm:border-l-3 border-slate-300 pl-3 sm:pl-4 relative">
+        <div class="absolute w-2.5 h-2.5 sm:w-3 sm:h-3 bg-slate-400 rounded-full -left-1.5 sm:-left-1.5 top-1.5"></div>
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 sm:mb-3">
+          <div class="flex-1">
+            <h3 class="text-base sm:text-lg font-bold text-slate-800">Developer and Sysadmin</h3>
+            <p class="text-slate-700 font-semibold text-sm">DATAXIP SL</p>
+            <p class="text-slate-600 text-xs">Full-time • Feb 2018 - Feb 2021 • 3 yrs 1 mo</p>
+            <p class="text-slate-500 text-xs flex flex-wrap items-center mt-1">
+              <i class="fas fa-map-marker-alt mr-1"></i>
+              <span>Torelló, Catalonia, Spain • On-site</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-1">
+          <span class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded text-xs">AWS Cloud Services</span>
+          <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">Full Stack Development</span>
+          <span class="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-xs">DevOps Practices</span>
+          <span class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded text-xs">Web Technologies</span>
+          <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-xs">Database Management</span>
+          <span class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded text-xs">Project Management</span>
+          <span class="bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded text-xs">Client Relations</span>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="container mt-4">
-  <div class="container">
-    <h3 style="font-weight: bold">🎓 Courses</h3>
-    <div class="container text-center" >
-      <ul class="list-inline">
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="C++ Básico" url="https://platzi.com/p/zabbix/curso/2372-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Programación Orientada a Objetos con C++" url="https://platzi.com/p/zabbix/curso/2373-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Práctico de AWS Cloud" url="https://platzi.com/p/zabbix/curso/1323-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="FastAPI: Introducción, Operaciones, Validaciones y Autenticación" url="https://platzi.com/p/zabbix/curso/5354-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Fundamentos de Python" url="https://platzi.com/p/zabbix/curso/4227-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Python: Comprehensions, Funciones y Manejo de Errores" url="https://platzi.com/p/zabbix/curso/4260-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Python: PIP y Entornos Virtuales" url="https://platzi.com/p/zabbix/curso/4261-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Introducción a C" url="https://platzi.com/p/zabbix/curso/1936-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Django v2" url="https://platzi.com/p/zabbix/curso/1318-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Python: Creación de un CRUD" url="https://platzi.com/p/zabbix/curso/1378-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Complejidad Algorítmica con Python" url="https://platzi.com/p/zabbix/curso/1775-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Flask" url="https://platzi.com/p/zabbix/curso/1540-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Programación Orientada a Objetos: POO" url="https://platzi.com/p/zabbix/curso/1474-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="SQL y MySQL 2018" url="https://platzi.com/p/zabbix/curso/1272-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Jenkins" url="https://platzi.com/p/zabbix/curso/1436-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Fundamentos de Bases de Datos 2019" url="https://platzi.com/p/zabbix/curso/1566-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Profesional de Git y GitHub" url="https://platzi.com/p/zabbix/curso/1557-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Python" url="https://platzi.com/p/zabbix/curso/1937-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Administración de Servidores Linux" url="https://platzi.com/p/zabbix/curso/1667-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Azure IaaS" url="https://platzi.com/p/zabbix/curso/1704-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Introducción a la Terminal y Línea de Comandos 2019" url="https://platzi.com/p/zabbix/curso/1748-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Python 2019" url="https://platzi.com/p/zabbix/curso/1104-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-          {% include 'home/courses.html' with course="Google Cloud Platform 2018" url="https://platzi.com/p/zabbix/curso/1284-course/diploma/detalle/"  %}
-        </li>
-        <li class="list-inline-item" style="padding-top: 1rem;">
-        </li>
-      </ul>
+  <!-- Top Skills Section -->
+  <section class="bg-white/80 backdrop-blur-md shadow-soft rounded-xl p-3 sm:p-4 lg:p-5 border border-white/20">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-5">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-0 sm:mr-3 mb-2 sm:mb-0 self-center sm:self-start">
+        <i class="fas fa-star text-white text-sm sm:text-base"></i>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-800 text-center sm:text-left w-full sm:w-auto">Top Skills</h2>
     </div>
-  </div>
-</section>
 
-<section class="container text-center mt-4">
-</section>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+      {% include 'home/skill.html' with skill="Software Architecture & Leadership" %}
+      {% include 'home/skill.html' with skill="Entrepreneurship & Product Thinking" %}
+      {% include 'home/skill.html' with skill="Backend Development (Python & Django)" %}
+      {% include 'home/skill.html' with skill="System Administration & DevOps" %}
+      {% include 'home/skill.html' with skill="Cloud Technologies" %}
+      {% include 'home/skill.html' with skill="Data Engineering & AI Integration" %}
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="bg-white/80 backdrop-blur-md shadow-soft rounded-xl p-3 sm:p-4 lg:p-5 border border-white/20">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-5">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-0 sm:mr-3 mb-2 sm:mb-0 self-center sm:self-start">
+        <i class="fas fa-folder-open text-white text-sm sm:text-base"></i>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-800 text-center sm:text-left w-full sm:w-auto">Featured Projects</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+      {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" c=False cpp=False python=True django=False html=False css=False javascript=False %}
+      {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." c=True cpp=True python=False django=False html=False css=False javascript=False %}
+      {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" c=True cpp=True python=False django=False html=False css=False javascript=False %}
+      {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." c=False cpp=True python=False django=False html=False css=False javascript=False %}
+      {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="App that simplifies the process of duplicating Discord servers." c=False cpp=False python=True django=False html=True css=True javascript=True %}
+      {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" c=False cpp=False python=True django=False html=False css=False javascript=False %}
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="bg-white/80 backdrop-blur-md shadow-soft rounded-xl p-3 sm:p-4 lg:p-5 border border-white/20">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-5">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-0 sm:mr-3 mb-2 sm:mb-0 self-center sm:self-start">
+        <i class="fas fa-graduation-cap text-white text-sm sm:text-base"></i>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-800 text-center sm:text-left w-full sm:w-auto">Certifications & Courses</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
+      {% include 'home/courses.html' with course="C++ Básico" url="https://platzi.com/p/zabbix/curso/2372-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Programación Orientada a Objetos con C++" url="https://platzi.com/p/zabbix/curso/2373-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Práctico de AWS Cloud" url="https://platzi.com/p/zabbix/curso/1323-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="FastAPI: Introducción, Operaciones, Validaciones y Autenticación" url="https://platzi.com/p/zabbix/curso/5354-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Fundamentos de Python" url="https://platzi.com/p/zabbix/curso/4227-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Python: Comprehensions, Funciones y Manejo de Errores" url="https://platzi.com/p/zabbix/curso/4260-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Python: PIP y Entornos Virtuales" url="https://platzi.com/p/zabbix/curso/4261-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Introducción a C" url="https://platzi.com/p/zabbix/curso/1936-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Django v2" url="https://platzi.com/p/zabbix/curso/1318-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Python: Creación de un CRUD" url="https://platzi.com/p/zabbix/curso/1378-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Complejidad Algorítmica con Python" url="https://platzi.com/p/zabbix/curso/1775-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Flask" url="https://platzi.com/p/zabbix/curso/1540-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Programación Orientada a Objetos: POO" url="https://platzi.com/p/zabbix/curso/1474-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="SQL y MySQL 2018" url="https://platzi.com/p/zabbix/curso/1272-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Jenkins" url="https://platzi.com/p/zabbix/curso/1436-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Fundamentos de Bases de Datos 2019" url="https://platzi.com/p/zabbix/curso/1566-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Profesional de Git y GitHub" url="https://platzi.com/p/zabbix/curso/1557-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Python" url="https://platzi.com/p/zabbix/curso/1937-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Administración de Servidores Linux" url="https://platzi.com/p/zabbix/curso/1667-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Azure IaaS" url="https://platzi.com/p/zabbix/curso/1704-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Introducción a la Terminal y Línea de Comandos 2019" url="https://platzi.com/p/zabbix/curso/1748-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Python 2019" url="https://platzi.com/p/zabbix/curso/1104-course/diploma/detalle/" %}
+      {% include 'home/courses.html' with course="Google Cloud Platform 2018" url="https://platzi.com/p/zabbix/curso/1284-course/diploma/detalle/" %}
+    </div>
+  </section>
+</div>

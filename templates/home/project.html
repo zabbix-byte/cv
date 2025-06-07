@@ -1,60 +1,69 @@
-<div style="width: 300px;height: 120px;border: 3px solid black;border-radius: 2px!important;text-align: left;padding: 10px;">
-  <h5>
-    <a title="Project {{ name }}" href="{{ url }}" style="font-weight: 800;
-    font-size: 1rem;
-    background: var(--theme-color);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 1px;">
-      <svg aria-hidden="true" height="22" viewBox="0 0 16 16" version="1.1" width="22" data-view-component="true"
-        style="color: var(--theme-color);" class="octicon octicon-repo mr-1 color-fg-muted">
-        <path fill="currentColor"
-          d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z">
-        </path>
-      </svg>
-      {{ name }}
-    </a>
-  </h5>
-  <p style="font-size: 0.8rem;">{{ description }}</p>
+<div class="bg-white border border-slate-200 rounded-xl p-4 sm:p-6 hover:shadow-medium transition-all duration-300 hover:scale-105 group h-full">
+  <div class="flex items-start justify-between mb-3 sm:mb-4">
+    <div class="flex items-center">
+      <div class="bg-gradient-primary p-1.5 sm:p-2 rounded-lg mr-2 sm:mr-3 group-hover:shadow-glow transition-all duration-300">
+        <i class="fab fa-github text-white text-sm sm:text-lg"></i>
+      </div>
+      <a 
+        href="{{ url }}" 
+        title="Project {{ name }}"
+        class="font-bold text-slate-800 hover:text-primary-600 transition-colors duration-300 text-sm sm:text-lg"
+      >
+        {{ name }}
+      </a>
+    </div>
+  </div>
+  
+  <p class="text-slate-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-3">{{ description }}</p>
 
-  <!-- Agregar logos debajo de los lenguajes -->
-  <div style="display: flex; gap: 10px; margin-top: -10px;">
-    {% if c == True %}
-      <!-- C Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" alt="C Logo" title="C Logo" style="width: 20px; height: 20px;"/>
+  <!-- Tech Stack -->
+  <div class="flex flex-wrap gap-1 sm:gap-2">
+    {% if c %}
+      <span class="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" alt="C" class="w-3 h-3 mr-1"/>
+        C
+      </span>
     {% endif %}
 
-    {% if cpp == True %}
-      <!-- C++ Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png" alt="C++ Logo" title="C++ Logo" style="width: 20px; height: 20px;"/>
+    {% if cpp %}
+      <span class="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png" alt="C++" class="w-3 h-3 mr-1"/>
+        C++
+      </span>
     {% endif %}
 
-    {% if python == True %}
-      <!-- Python Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python Logo" title="Python Logo" style="width: 20px; height: 20px;"/>
+    {% if python %}
+      <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="w-3 h-3 mr-1"/>
+        Python
+      </span>
     {% endif %}
 
-    {% if django == True %}
-      <!-- Django Logo -->
-      <img src="https://static.djangoproject.com/img/favicon.6dbf28c0650e.ico" alt="Django Logo" title="Django Logo" style="width: 20px; height: 20px;"/>
+    {% if django %}
+      <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        Django
+      </span>
     {% endif %}
 
-    {% if html == True %}
-      <!-- HTML Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML Logo" title="HTML Logo" style="width: 20px; height: 20px;"/>
+    {% if html %}
+      <span class="inline-flex items-center bg-orange-100 text-orange-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML" class="w-3 h-3 mr-1"/>
+        HTML
+      </span>
     {% endif %}
 
-    {% if css == True %}
-      <!-- CSS Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS Logo" title="CSS Logo" style="width: 20px; height: 20px;"/>
+    {% if css %}
+      <span class="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS" class="w-3 h-3 mr-1"/>
+        CSS
+      </span>
     {% endif %}
 
-    {% if javascript == True %}
-      <!-- JavaScript Logo -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Logo" title="JavaScript Logo" style="width: 20px; height: 20px;"/>
+    {% if javascript %}
+      <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2 sm:px-2.5 py-0.5 rounded-full">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" class="w-3 h-3 mr-1"/>
+        JS
+      </span>
     {% endif %}
   </div>
 </div>

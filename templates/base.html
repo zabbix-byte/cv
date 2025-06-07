@@ -1,41 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Made by @zabbix https://github.com/zabbix-byte | Vasile Ovidiu Ichim -->
+    <!-- Made by @zabbix https://github.c  <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen font-sans md:overflow-hidden overflow-x-hidden overflow-y-auto">m/zabbix-byte | Vasile Ovidiu Ichim -->
     <title>Vasile Ovidiu Ichim 🦖 Tech Lead | Software Engineer | Co-Founder</title>
     <meta name="description" content="With over 6 years of experience in the tech industry, I have held diverse roles from Sysadmin to Software Engineer, currently serving as a Technical Lead. My career includes contributions at companies like IBM and Inditex, and as a co-founder of Valerdat, where I led the development of innovative data-driven applications.">
     <link rel="canonical" href="https://ztrunk.space/" />
 
     {% load static %}
     <link rel="shortcut icon" style="border-radius: 50%;" type="image/x-icon" href="{% static 'img/profile-picture.jpg' %}">
+    
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
+              'mono': ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular'],
+            },
+            colors: {
+              'primary': {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                200: '#bfdbfe',
+                300: '#93c5fd',
+                400: '#60a5fa',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                800: '#1e40af',
+                900: '#1e3a8a',
+              },
+              'purple': {
+                50: '#faf5ff',
+                100: '#f3e8ff',
+                200: '#e9d5ff',
+                300: '#d8b4fe',
+                400: '#c084fc',
+                500: '#a855f7',
+                600: '#9333ea',
+                700: '#7c3aed',
+                800: '#6b21a8',
+                900: '#581c87',
+              }
+            },
+            backgroundImage: {
+              'gradient-primary': 'linear-gradient(135deg, #3b82f6 0%, #a855f7 100%)',
+              'gradient-dark': 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+            },
+            boxShadow: {
+              'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              'medium': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+              'large': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+              'glow': '0 0 20px rgba(59, 130, 246, 0.15)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/contact_me.css' %}" />
     <link rel="stylesheet" href="{% static 'css/avatar.css' %}" />
 
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   </head>
 
-  <body>
+  <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen font-sans md:overflow-hidden">
     {% block content %}
 
     {% endblock %}
 
-    <!-- ✅ load jQuery ✅ -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    <!-- ✅ load jQuery UI ✅ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- ✅ Load Botstrap ✅ -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
+    <!-- Custom animations -->
+    <script>
+      // Add smooth scrolling and entrance animations
+      document.addEventListener('DOMContentLoaded', function() {
+        // Intersection observer for animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fade-in-up');
+            }
+          });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+          observer.observe(section);
+        });
+      });
+    </script>
+    
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #3b82f6, #a855f7);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 640px) {
+        /* Enable scrolling on mobile */
+        html, body {
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+          max-width: 100vw;
+          height: auto;
+        }
+        
+        /* Enable smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        /* Reduce animations on mobile for better performance */
+        .hover\:scale-105:hover {
+          transform: scale(1.02);
+        }
+        
+        /* Better touch targets */
+        a, button {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        
+        /* Force all elements to respect viewport on mobile */
+        * {
+          max-width: 100vw !important;
+          box-sizing: border-box;
+        }
+        
+        /* Ensure containers don't overflow */
+        .container, .max-w-7xl, .w-full {
+          max-width: 100vw !important;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+        
+        /* Optimize font rendering on mobile */
+        body {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+      
+      /* Safe area support for modern mobile devices */
+      @supports (padding: max(0px)) {
+        .safe-area-inset {
+          padding-left: max(1rem, env(safe-area-inset-left));
+          padding-right: max(1rem, env(safe-area-inset-right));
+        }
+      }
+      
+      /* Text selection styling */
+      ::selection {
+        background: rgba(59, 130, 246, 0.3);
+        color: #1e40af;
+      }
+      
+      ::-moz-selection {
+        background: rgba(59, 130, 246, 0.3);
+        color: #1e40af;
+      }
+    </style>
   </body>
   <!-- Made by @zabbix https://github.com/zabbix-byte | Vasile Ovidiu Ichim -->
 </html>

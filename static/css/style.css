@@ -1,33 +1,163 @@
+/* Modern CV Styles - Enhanced with Tailwind CSS */
 :root {
-    --theme-color: linear-gradient(135deg, #548cf5, #a16ae8);
+    --theme-color: linear-gradient(135deg, #3b82f6, #a855f7);
     --cursor: url('/static/img/cursor.png'), auto;
     --link-cursor: url('/static/img/pointer.png'), auto;
 }
 
+/* Prevent horizontal overflow globally */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+}
+
 body {
-    background-color: #eff0f3!important;
     cursor: var(--cursor);
-    font-family: "Source Sans 3", sans-serif !important;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
     font-optical-sizing: auto;
     font-style: normal;
+    line-height: 1.6;
 }
 
-h1 {
-    font-weight: 1000 !important;
-    word-break: break-word !important;
-    font-size: 3rem !important;
-    line-height: 1 !important;
-    margin: 0 !important;
+/* Ensure all containers respect viewport width */
+* {
+    box-sizing: border-box;
 }
 
-h5 {
-    font-weight: 600 !important;
+/* Force all elements to respect viewport boundaries */
+*, *::before, *::after {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
+.container, .max-w-7xl {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Prevent any flex items from growing beyond viewport */
+.flex, .inline-flex {
+    min-width: 0;
+}
+
+/* Ensure grid items don't overflow */
+[class*="grid-cols"], [class*="col-span"] {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* Prevent text and elements from overflowing */
+p, span, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Custom utility classes for Tailwind */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Glass morphism effects */
+.backdrop-blur-md {
+    backdrop-filter: blur(12px);
+}
+
+/* Enhanced hover states */
+.hover\:scale-105:hover {
+    transform: scale(1.05);
+}
+
+.hover\:scale-110:hover {
+    transform: scale(1.1);
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Hide default scrollbar on body for desktop only */
+@media (min-width: 768px) {
+    html, body {
+        overflow: hidden !important;
+    }
+    
+    body::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    body {
+        -ms-overflow-style: none !important;  /* IE and Edge */
+        scrollbar-width: none !important;  /* Firefox */
+    }
+    
+    /* Prevent any accidental scrolling on main containers on desktop */
+    .min-h-screen, .h-screen {
+        overflow: hidden !important;
+    }
+}
+
+/* Mobile: Allow normal scrolling */
+@media (max-width: 767px) {
+    html, body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+    
+    /* Enable smooth scrolling on mobile */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Remove height restrictions on mobile */
+    .min-h-screen, .h-screen {
+        overflow: visible !important;
+    }
+}
+
+/* Custom scrollbar for content area only */
+.content-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.6) transparent;
+}
+
+.content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(168, 85, 247, 0.6));
+    border-radius: 3px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(147, 51, 234, 0.8));
+}
+
+/* Links */
 a {
     text-decoration: none !important;
-    color: var(--theme-color) !important;
-    font-weight: bold !important;
     cursor: var(--link-cursor) !important;
 }
 
@@ -35,81 +165,85 @@ button {
     cursor: var(--link-cursor) !important;
 }
 
-
-.home-container {
-    margin-top: 320px;
-    position: relative;
+/* Remove any conflicting Bootstrap styles */
+.container {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-@media (min-width: 992px) {
-    .home-container {
-        margin-top: 120px;
-        position: relative;
+/* Ensure proper responsive behavior */
+@media (max-width: 768px) {
+    .sticky {
+        position: relative !important;
+        top: auto !important;
     }
 }
-
-.flag-counter {
-    height: 150px;
-    width: 90%;
-}
-
-@media (min-width: 992px) {
-    .flag-counter {
-        height: 300px;
-        width: 90%;
-    }
-}
-
-
-body {
-    --sb-track-color: transparent;
-    --sb-thumb-color: var(--theme-color);
-    --sb-size: 14px;
-}
-
-body::-webkit-scrollbar {
-    width: var(--sb-size);
-}
-
-body::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 0px;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 0px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    body {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-}
-
-@keyframes ckw {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.rotate-infinite {
-    animation: ckw 120s infinite;
-}
-
 
 .padding_l_list {
     padding-left: 0rem!important;
 }
 
-
 @media (min-width: 992px) {
     .padding_l_list {
         padding-left: 1rem!important;
     }
+}
+
+/* Additional overflow prevention for edge cases */
+.space-x-1, .space-x-1\.5, .space-x-2, .space-x-3, .space-x-4 {
+    min-width: 0;
+}
+
+.space-x-1 > * + *, .space-x-1\.5 > * + *, .space-x-2 > * + *, .space-x-3 > * + *, .space-x-4 > * + * {
+    flex-shrink: 1;
+}
+
+/* Ensure text truncation works properly */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+/* Prevent images from overflowing */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Make sure all flex containers handle overflow properly */
+.flex-wrap {
+    min-width: 0;
+}
+
+.flex-nowrap {
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* Ensure responsive padding doesn't cause overflow */
+.px-1, .px-2, .px-3, .px-4, .px-5, .px-6, .px-8 {
+    padding-left: min(var(--tw-space-x-reverse, 0) * 1rem, 5vw);
+    padding-right: min(var(--tw-space-x-reverse, 0) * 1rem, 5vw);
+}
+
+/* Additional mobile safety */
+@media (max-width: 640px) {
+    .container, .max-w-7xl, .w-full {
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
+    }
     
+    /* Ensure no element can exceed viewport width on mobile */
+    * {
+        max-width: 100vw !important;
+    }
+    
+    /* Force text to wrap on mobile */
+    p, span, div, a {
+        word-break: break-word;
+        hyphens: auto;
+    }
 }

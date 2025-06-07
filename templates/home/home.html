@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container mt-2">
-    {% include 'home/navbar.html' %}
-    <div class="row">
-      <div class="col-sm-4">
+  <!-- Mobile: Stack layout with scroll, Desktop: Grid layout with fixed height -->
+  <div class="min-h-screen md:h-screen flex flex-col w-full md:overflow-hidden max-w-full overflow-visible">
+    <!-- Container with proper responsive padding -->
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 w-full max-w-full flex-shrink-0">
+      {% include 'home/navbar.html' %}
+    </div>
+      
+    <!-- Responsive grid layout - mobile stack (scrollable), desktop side-by-side (fixed) -->
+    <div class="flex flex-col md:grid md:grid-cols-1 xl:grid-cols-12 gap-2 sm:gap-3 md:gap-4 lg:gap-6 px-3 sm:px-4 md:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 max-w-7xl mx-auto flex-1 md:min-h-0 w-full max-w-full md:overflow-hidden overflow-visible">
+      <!-- Profile sidebar - full width on mobile, sidebar on desktop -->
+      <div class="xl:col-span-3 order-1 min-w-0 max-w-full md:overflow-y-auto overflow-x-hidden md:max-h-full">
         {% include 'home/me.html' %}
       </div>
-      <div class="col-sm-8">
+      
+      <!-- Main content with scroll -->
+      <div class="xl:col-span-9 order-2 md:overflow-y-auto overflow-x-hidden content-scroll min-w-0 max-w-full flex-1 md:max-h-full">
         {% include 'home/content.html' %}
       </div>
     </div>

@@ -1,23 +1,8 @@
-<div class="skill-card"
-  style="padding:1rem;width: 220px; height: 80px;border-radius: 2px!important; background: linear-gradient(135deg, var(--theme-color), #2d2d2d); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-  <h4 style="
-    font-weight: 900;
-    font-size: 1rem;
-    background: var(--theme-color);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-  ">
-    {{skill}}
-  </h4>
+<div class="bg-gradient-to-br from-white to-slate-50 hover:from-primary-50 hover:to-purple-50 border border-slate-200 hover:border-primary-200 rounded-xl p-3 sm:p-4 transition-all duration-300 hover:shadow-medium hover:scale-105 group">
+  <div class="flex items-center justify-center h-12 sm:h-16">
+    <h4 class="font-semibold text-slate-700 group-hover:text-primary-700 text-center text-xs sm:text-sm leading-tight transition-colors duration-300">
+      {{ skill }}
+    </h4>
+  </div>
+  <div class="mt-2 h-1 bg-gradient-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 </div>
-<style>
-  .skill-card:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35); /* Aumenta la sombra */
-  }
-</style>

@@ -1,52 +1,83 @@
 {% load static %}
 
-<section class="container mt-5" style="line-height:1">
-  <h1 class="text-secondary" style="font-size: 1.7rem!important">Technical Lead | Software Engineer | Co-founder</h1>
-  <h2 style="font-size: 2rem;font-weight: 800;">Vasile Ovidiu Ichim</h2>
-  <div class="container mt-3">
-    <img title="Profile Picture" style="z-index: 1;position:absolute;" class="rounded-circle" alt="avatar1" src="{% static 'img/profile-picture.jpg' %}" width="235" height="235" />
-    <div class="avatar-bg bg-lead"></div>
+<div class="bg-white/80 backdrop-blur-md shadow-soft rounded-lg p-4 sm:p-5 md:p-4 lg:p-5 border border-white/20 mb-3 md:mb-0 w-full h-auto md:h-full md:max-h-full md:overflow-y-auto flex flex-col">
+  <!-- Header Section -->
+  <div class="text-center mb-3 sm:mb-4 md:mb-6 w-full flex-shrink-0">
+    <div class="relative inline-block mb-2 sm:mb-3 md:mb-4">
+      <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 mx-auto relative">
+        <img 
+          src="{% static 'img/profile-picture.jpg' %}" 
+          alt="Vasile Ovidiu Ichim"
+          class="w-full h-full rounded-full object-cover shadow-medium ring-2 ring-white/50"
+        />
+        <div class="absolute inset-0 bg-gradient-primary opacity-15 rounded-full"></div>
+      </div>
+    </div>
+    
+    <h1 class="text-base sm:text-lg md:text-base lg:text-lg xl:text-xl font-bold text-slate-800 mb-1 sm:mb-2 leading-tight break-words">Vasile Ovidiu Ichim</h1>
+    <p class="text-primary-600 font-semibold text-sm sm:text-base md:text-sm lg:text-base mb-2 sm:mb-3 md:mb-4 leading-tight break-words">Technical Lead | Software Engineer | Co-founder</p>
+    
+    <!-- Location & Status - Better spaced for mobile -->
+    <div class="flex flex-col sm:flex-row sm:justify-center items-center gap-2 sm:gap-3 w-full">
+      <div class="inline-flex items-center bg-slate-100 rounded-full px-3 py-1 text-xs sm:text-sm max-w-full">
+        <i class="fas fa-map-marker-alt text-primary-500 mr-1.5 text-xs flex-shrink-0"></i>
+        <span class="text-slate-700 font-medium truncate">Barcelona, Spain</span>
+      </div>
+      
+      <div class="bg-gradient-primary text-white px-3 py-1 rounded-lg flex-shrink-0">
+        <span class="font-semibold text-xs sm:text-sm">✈️ AVAILABLE</span>
+      </div>
+    </div>
   </div>
 
-  <div class="container mt-1" style="position: relative;top:260px;width: 330px;left: 0;float: left;">
-    <div class="bg-dark text-center" style="height: 45px;width: 45px;float: left;border-radius: 2px;">
-      <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 0.5rem;" width="28" height="28" fill="white" class="bi bi-geo-alt" viewBox="0 0 16 16">
-        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
-        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-      </svg>
+  <!-- Connect & Focus Sections - Better adapted with more space -->
+  <div class="flex-1 flex flex-col justify-start space-y-6 sm:space-y-8 md:space-y-6 w-full min-h-0">
+    <!-- Connect Section -->
+    <div class="w-full">
+      <div class="text-center mb-4">
+        <h3 class="text-sm font-bold text-slate-800 flex items-center justify-center">
+          <i class="fas fa-link text-primary-500 mr-2 text-sm"></i>
+          CONNECT
+        </h3>
+      </div>
+      <div class="flex justify-center space-x-6">
+        <a 
+          href="https://github.com/zabbix-byte" 
+          title="GitHub Profile"
+          class="bg-slate-800 hover:bg-slate-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-glow flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+        >
+          <i class="fab fa-github text-lg sm:text-xl"></i>
+        </a>
+        <a 
+          href="https://www.linkedin.com/in/zabbix-byte/" 
+          title="LinkedIn Profile"
+          class="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-glow flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+        >
+          <i class="fab fa-linkedin-in text-lg sm:text-xl"></i>
+        </a>
+      </div>
     </div>
-    <div class="bg-dark text-center" style="border-radius: 2px;height: 45px;width: 258px;float: right;color: white;">
-      <h4 style="padding: 0.52rem;">Barcelona, Spain</h4>
-    </div>
-    <div class="container mt-5">
-      <h4 class="text-secondary" style="font-size: 1.4rem;">AVAILABLE FOR RELOCATION</h4>
-    </div>
-  </div>
 
-  <div class="container mt-1" style="position: relative;top:280px;width: 330px;left: 0;float: left;">
-    <h4 style="font-size: 1.2rem;font-weight: bold;">CONNNECT</h4>
-    <div class="container mt-1">
-      <a title="GitHub" style="margin-right: 10px;" class="navbar-brand" href="https://github.com/zabbix-byte"><img title="Github" alt="Github" src="{% static 'img/github-mark.png' %}" width="48" height="48" alt="" /></a>
-      <a title="Linkedin" class="navbar-brand" href="https://www.linkedin.com/in/zabbix-byte/"><img title="Github"alt="Github" src="{% static 'img/linkedin.png' %}" width="50" height="50" alt="" /></a>
+    <!-- Current Focus Section -->
+    <div class="w-full">
+      <div class="text-center mb-4">
+        <h3 class="text-sm font-bold text-slate-800 flex items-center justify-center">
+          <i class="fas fa-compass text-primary-500 mr-2 text-sm"></i>
+          FOCUSED ON
+        </h3>
+      </div>
+      <div class="bg-gradient-to-r from-primary-50 to-purple-50 rounded-xl p-4 sm:p-5 border border-primary-100 w-full shadow-sm">
+        <p class="font-semibold text-slate-800 text-sm sm:text-base text-center leading-relaxed break-words">
+          Tech Lead at 
+          <a 
+            href="https://www.valerdat.com" 
+            title="Valerdat"
+            class="bg-gradient-primary bg-clip-text text-transparent font-bold hover:underline transition-all duration-300"
+          >
+            VALERDAT
+          </a>
+        </p>
+      </div>
     </div>
   </div>
-
-  <div class="container mt-1" style="position: relative;top:310px;width: 330px;left: 0;float: left;">
-    <h4 style="font-size: 1.2rem;font-weight: bold;">FOCUSED ON</h4>
-    <h4 style="font-size: 1.4rem">
-      <svg style="margin-right: 5px;margin-bottom: 3px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
-        <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0" />
-        <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
-      </svg>Tech Lead at <a  title="Valerdat" href="https://www.valerdat.com">
-        <a title="Valerdat" style="font-weight: 400;
-        background: var(--theme-color);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-        text-transform: uppercase;
-        letter-spacing: 1px;">Valerdat</a>
-      </a>
-    </h4>
-  </div>
-</section>
+</div>
