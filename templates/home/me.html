@@ -1,89 +1,151 @@
 {% load static %}
 
-<div class="bg-github-bg-secondary backdrop-blur-md shadow-lg rounded-lg p-4 sm:p-5 md:p-4 lg:p-5 border border-github-border mb-3 md:mb-0 w-full h-auto md:h-full md:max-h-full md:overflow-y-auto flex flex-col" style="background-color: #161b22; border: 1px solid #30363d;">
-  <!-- Header Section -->
-  <div class="text-center mb-3 sm:mb-4 md:mb-6 w-full flex-shrink-0">
-    <div class="relative inline-block mb-2 sm:mb-3 md:mb-4">
-      <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 mx-auto relative">
+<!-- GitHub Profile Card Style -->
+<div class="bg-github-bg-secondary border border-github-border rounded-lg p-3 mb-3 md:mb-0 w-full h-auto md:h-full md:max-h-full md:overflow-y-auto flex flex-col" style="background-color: #161b22; border-color: #30363d;">
+  
+  <!-- Profile Header -->
+  <div class="text-center mb-3 w-full flex-shrink-0">
+    <!-- Avatar with Status -->
+    <div class="relative inline-block mb-2">
+      <div class="mx-auto relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
         <img 
           src="{% static 'img/profile-picture.jpg' %}" 
           alt="Vasile Ovidiu Ichim"
-          class="w-full h-full rounded-full object-cover shadow-lg ring-2 ring-github-border"
-          style="box-shadow: 0 0 0 2px #30363d;"
+          class="w-full h-full rounded-full object-cover border-2 border-github-border"
+          style="border-color: #30363d;"
         />
-        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-github-green rounded-full border-2 border-github-bg-secondary flex items-center justify-center" style="background-color: #238636; border-color: #161b22;">
-          <i class="fas fa-check text-white text-xs"></i>
+        <!-- Online Status -->
+        <div class="absolute -bottom-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-github-green rounded-full border-2 border-github-bg-secondary flex items-center justify-center" style="background-color: #238636; border-color: #161b22;">
+          <div class="w-1 h-1 bg-white rounded-full"></div>
         </div>
       </div>
     </div>
     
-    <h1 class="text-base sm:text-lg md:text-base lg:text-lg xl:text-xl font-bold text-github-text mb-1 sm:mb-2 leading-tight break-words" style="color: #f0f6fc;">Vasile Ovidiu Ichim</h1>
-    <p class="text-github-text-secondary font-medium text-sm sm:text-base md:text-sm lg:text-base mb-2 sm:mb-3 md:mb-4 leading-tight break-words" style="color: #7d8590;">Technical Lead | Software Engineer | Co-founder</p>
+    <!-- Name and Handle -->
+    <h1 class="text-base font-semibold text-github-text mb-1" style="color: #f0f6fc;">
+      Vasile Ovidiu Ichim
+    </h1>
+    <p class="text-github-text-secondary text-xs mb-1" style="color: #7d8590;">
+      zabbix-byte
+    </p>
     
-    <!-- Location & Status - GitHub style -->
-    <div class="flex flex-col sm:flex-row sm:justify-center items-center gap-2 sm:gap-3 w-full">
-      <div class="inline-flex items-center bg-github-bg rounded-full px-3 py-1 text-xs sm:text-sm max-w-full" style="background-color: #0d1117;">
-        <i class="fas fa-map-marker-alt text-github-text-secondary mr-1.5 text-xs flex-shrink-0" style="color: #7d8590;"></i>
-        <span class="text-github-text-secondary font-medium truncate" style="color: #7d8590;">Barcelona, Spain</span>
+    <!-- Bio -->
+    <p class="text-github-text-secondary text-xs mb-2 px-1" style="color: #7d8590;">
+      Tech Lead & Co-founder building innovative solutions 🚀
+    </p>
+    
+    <!-- Location & Status -->
+    <div class="flex flex-col items-center gap-1 mb-2">
+      <div class="flex items-center text-xs text-github-text-secondary" style="color: #7d8590;">
+        <i class="fas fa-map-marker-alt mr-1 text-xs"></i>
+        <span>Barcelona, Spain</span>
       </div>
       
-      <div class="bg-github-green text-white px-3 py-1 rounded-full flex-shrink-0" style="background-color: #238636;">
-        <span class="font-semibold text-xs sm:text-sm">✈️ AVAILABLE</span>
+      <div class="flex items-center bg-github-green/10 text-github-green px-2 py-1 rounded-full text-xs border border-github-green/20" style="background-color: rgba(35, 134, 54, 0.1); color: #2ea043; border-color: rgba(35, 134, 54, 0.2);">
+        <div class="w-1.5 h-1.5 bg-github-green rounded-full mr-1 animate-pulse" style="background-color: #2ea043;"></div>
+        <span class="font-medium text-xs">Available for opportunities</span>
       </div>
     </div>
   </div>
 
-  <!-- Connect & Focus Sections - Better adapted with more space -->
-  <div class="flex-1 flex flex-col justify-start space-y-6 sm:space-y-8 md:space-y-6 w-full min-h-0">
-    <!-- Connect Section -->
-    <div class="w-full">
-      <div class="text-center mb-4">
-        <h3 class="text-sm font-bold text-github-text flex items-center justify-center" style="color: #f0f6fc;">
-          <i class="fas fa-link text-github-blue mr-2 text-sm" style="color: #1f6feb;"></i>
-          CONNECT
+  <!-- GitHub Stats Widget -->
+  <div class="mb-3">
+    <div class="bg-github-bg rounded-lg p-2 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-xs font-medium text-github-text flex items-center" style="color: #f0f6fc;">
+          <i class="fab fa-github mr-1 text-xs"></i>
+          GitHub Stats
         </h3>
+        <div class="w-1.5 h-1.5 bg-github-green rounded-full" style="background-color: #2ea043;"></div>
       </div>
-      <div class="flex justify-center space-x-6">
-        <a 
-          href="https://github.com/zabbix-byte" 
-          title="GitHub Profile"
-          class="bg-github-bg hover:bg-github-border text-github-text p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 border border-github-border flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
-          style="background-color: #0d1117; border-color: #30363d; color: #f0f6fc;"
-          onmouseover="this.style.backgroundColor='#30363d'"
-          onmouseout="this.style.backgroundColor='#0d1117'"
-        >
-          <i class="fab fa-github text-lg sm:text-xl"></i>
-        </a>
-        <a 
-          href="https://www.linkedin.com/in/zabbix-byte/" 
-          title="LinkedIn Profile"
-          class="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
-        >
-          <i class="fab fa-linkedin-in text-lg sm:text-xl"></i>
+      
+      <div class="grid grid-cols-2 gap-2 text-center">
+        <div>
+          <div class="text-sm font-bold text-github-text" style="color: #f0f6fc;">{{ github_profile.public_repos|default:"-" }}</div>
+          <div class="text-xs text-github-text-secondary" style="color: #7d8590;">Repos</div>
+        </div>
+        <div>
+          <div class="text-sm font-bold text-github-text" style="color: #f0f6fc;">{{ github_profile.followers|default:"-" }}</div>
+          <div class="text-xs text-github-text-secondary" style="color: #7d8590;">Followers</div>
+        </div>
+      </div>
+      
+      <!-- GitHub Profile Link -->
+      <div class="mt-2 pt-2 border-t border-github-border" style="border-color: #30363d;">
+        <a href="https://github.com/zabbix-byte" class="flex items-center justify-center text-xs text-github-blue hover:underline transition-colors duration-300" style="color: #1f6feb;">
+          <i class="fab fa-github mr-1 text-xs"></i>
+          <span>View on GitHub</span>
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Current Focus Section -->
-    <div class="w-full">
-      <div class="text-center mb-4">
-        <h3 class="text-sm font-bold text-github-text flex items-center justify-center" style="color: #f0f6fc;">
-          <i class="fas fa-compass text-github-blue mr-2 text-sm" style="color: #1f6feb;"></i>
-          FOCUSED ON
-        </h3>
-      </div>
-      <div class="bg-github-bg rounded-xl p-4 sm:p-5 border border-github-border w-full" style="background-color: #0d1117; border-color: #30363d;">
-        <p class="font-semibold text-github-text text-sm sm:text-base text-center leading-relaxed break-words" style="color: #f0f6fc;">
-          Tech Lead at 
-          <a 
-            href="https://www.valerdat.com" 
-            title="Valerdat"
-            class="text-github-blue font-bold hover:underline transition-all duration-300"
-            style="color: #1f6feb;"
-          >
-            VALERDAT
-          </a>
-        </p>
+  <!-- Connect Section -->
+  <div class="mb-4">
+    <h3 class="text-sm font-medium text-github-text mb-2 flex items-center" style="color: #f0f6fc;">
+      <i class="fas fa-link mr-2 text-github-blue" style="color: #1f6feb;"></i>
+      Connect
+    </h3>
+    
+    <div class="grid grid-cols-2 gap-2">
+      <!-- GitHub Link -->
+      <a 
+        href="https://github.com/zabbix-byte" 
+        title="GitHub Profile"
+        class="group bg-github-bg hover:bg-github-border border border-github-border rounded-lg p-2 transition-all duration-300 flex flex-col items-center text-center"
+        style="background-color: #0d1117; border-color: #30363d;"
+        onmouseover="this.style.backgroundColor='#21262d'"
+        onmouseout="this.style.backgroundColor='#0d1117'"
+      >
+        <div class="w-6 h-6 bg-github-bg-secondary rounded-lg flex items-center justify-center mb-1 group-hover:bg-github-border transition-colors duration-300" style="background-color: #161b22;">
+          <i class="fab fa-github text-github-text text-sm" style="color: #f0f6fc;"></i>
+        </div>
+        <span class="text-xs text-github-text-secondary group-hover:text-github-text transition-colors duration-300" style="color: #7d8590;">GitHub</span>
+      </a>
+      
+      <!-- LinkedIn Link -->
+      <a 
+        href="https://www.linkedin.com/in/zabbix-byte/" 
+        title="LinkedIn Profile"
+        class="group bg-blue-600/10 hover:bg-blue-600/20 border border-blue-600/30 rounded-lg p-2 transition-all duration-300 flex flex-col items-center text-center"
+        style="background-color: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.3);"
+      >
+        <div class="w-6 h-6 bg-blue-600/20 rounded-lg flex items-center justify-center mb-1 group-hover:bg-blue-600/30 transition-colors duration-300">
+          <i class="fab fa-linkedin-in text-blue-400 text-sm"></i>
+        </div>
+        <span class="text-xs text-blue-400 group-hover:text-blue-300 transition-colors duration-300">LinkedIn</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Current Focus -->
+  <div class="flex-1">
+    <h3 class="text-sm font-medium text-github-text mb-2 flex items-center" style="color: #f0f6fc;">
+      <i class="fas fa-briefcase mr-2 text-github-green" style="color: #2ea043;"></i>
+      Currently working on
+    </h3>
+    
+    <div class="bg-github-bg rounded-lg p-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
+      <div class="flex items-center">
+        <div class="w-8 h-8 bg-github-green/20 rounded-lg flex items-center justify-center mr-3 border border-github-green/30" style="background-color: rgba(35, 134, 54, 0.2); border-color: rgba(35, 134, 54, 0.3);">
+          <i class="fas fa-building text-github-green text-sm" style="color: #2ea043;"></i>
+        </div>
+        <div class="flex-1">
+          <div class="text-sm font-medium text-github-text" style="color: #f0f6fc;">
+            Tech Lead at 
+            <a 
+              href="https://www.valerdat.com" 
+              title="Valerdat"
+              class="text-github-blue hover:underline transition-all duration-300"
+              style="color: #1f6feb;"
+            >
+              Valerdat
+            </a>
+          </div>
+          <div class="text-xs text-github-text-secondary" style="color: #7d8590;">
+            Building data-driven solutions
+          </div>
+        </div>
       </div>
     </div>
   </div>

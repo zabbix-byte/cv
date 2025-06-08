@@ -120,3 +120,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# GitHub API Configuration
+GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', None)  # Optional: for higher rate limits
+
+# Cache Configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 3600,  # 1 hour
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        }
+    }
+}
