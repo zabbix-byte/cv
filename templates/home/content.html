@@ -2,11 +2,7 @@
   <!-- README Section - GitHub Profile Style -->
   <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
     <div class="flex items-center mb-4">
-      <div class="bg-github-bg p-2 rounded-md mr-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
-        <i class="fas fa-file-alt text-github-text-secondary" style="color: #7d8590;"></i>
-      </div>
       <div class="flex items-center">
-        <h2 class="text-lg font-semibold text-github-text mr-2" style="color: #f0f6fc;">README.md</h2>
         <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
           📄 Profile
         </span>
@@ -60,12 +56,9 @@
   <!-- Experience Section - GitHub style -->
   <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
     <div class="flex items-center mb-4">
-      <div class="bg-github-bg p-2 rounded-md mr-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
-        <i class="fas fa-briefcase text-github-text-secondary" style="color: #7d8590;"></i>
-      </div>
-      <h2 class="text-lg font-semibold text-github-text flex items-center" style="color: #f0f6fc;">
-        <span class="mr-2">💼</span>Work Experience
-      </h2>
+      <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
+          💼 Work Experience
+        </span>
     </div>
 
     <div class="space-y-4 sm:space-y-5 w-full">
@@ -177,38 +170,57 @@
     </div>
   </section>
 
-  <!-- Top Languages - GitHub style -->
+  <!-- Skills & Expertise - GitHub style -->
   <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
     <div class="flex items-center mb-4">
-      <div class="bg-github-bg p-2 rounded-md mr-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
-        <i class="fas fa-chart-bar text-github-text-secondary" style="color: #7d8590;"></i>
-      </div>
       <div class="flex items-center">
-        <h2 class="text-lg font-semibold text-github-text mr-2" style="color: #f0f6fc;">Most used languages</h2>
         <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
-          📊 Skills & Expertise
+          📊 Core competencies
         </span>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
-      {% include 'home/skill.html' with skill="Software Architecture & Leadership" %}
-      {% include 'home/skill.html' with skill="Entrepreneurship & Product Thinking" %}
-      {% include 'home/skill.html' with skill="Backend Development (Python & Django)" %}
-      {% include 'home/skill.html' with skill="System Administration & DevOps" %}
-      {% include 'home/skill.html' with skill="Cloud Technologies" %}
-      {% include 'home/skill.html' with skill="Data Engineering & AI Integration" %}
+    <!-- Leadership & Strategy -->
+    <div class="mb-6">
+      <h3 class="text-sm font-medium text-github-text mb-3 flex items-center" style="color: #f0f6fc;">
+        <i class="fas fa-crown text-github-green mr-2 text-xs" style="color: #2ea043;"></i>
+        Leadership & Strategy
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+        {% include 'home/skill.html' with skill="Software Architecture & Leadership" category="leadership" %}
+        {% include 'home/skill.html' with skill="Entrepreneurship & Product Thinking" category="leadership" %}
+      </div>
+    </div>
+
+    <!-- Technical Development -->
+    <div class="mb-6">
+      <h3 class="text-sm font-medium text-github-text mb-3 flex items-center" style="color: #f0f6fc;">
+        <i class="fas fa-code text-github-blue mr-2 text-xs" style="color: #1f6feb;"></i>
+        Development & Engineering
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+        {% include 'home/skill.html' with skill="Backend Development (Python & Django)" category="development" %}
+        {% include 'home/skill.html' with skill="Data Engineering & AI Integration" category="development" %}
+      </div>
+    </div>
+
+    <!-- Infrastructure & Operations -->
+    <div>
+      <h3 class="text-sm font-medium text-github-text mb-3 flex items-center" style="color: #f0f6fc;">
+        <i class="fas fa-server text-purple-400 mr-2 text-xs"></i>
+        Infrastructure & Operations
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+        {% include 'home/skill.html' with skill="System Administration & DevOps" category="infrastructure" %}
+        {% include 'home/skill.html' with skill="Cloud Technologies" category="infrastructure" %}
+      </div>
     </div>
   </section>
 
   <!-- Repositories - GitHub style -->
   <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
     <div class="flex items-center mb-4">
-      <div class="bg-github-bg p-2 rounded-md mr-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
-        <i class="fas fa-folder text-github-text-secondary" style="color: #7d8590;"></i>
-      </div>
       <div class="flex items-center">
-        <h2 class="text-lg font-semibold text-github-text mr-2" style="color: #f0f6fc;">Popular repositories</h2>
         <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
           🚀 Featured work
         </span>
@@ -237,11 +249,7 @@
   <!-- Achievements - GitHub style -->
   <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
     <div class="flex items-center mb-4">
-      <div class="bg-github-bg p-2 rounded-md mr-3 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
-        <i class="fas fa-trophy text-github-text-secondary" style="color: #7d8590;"></i>
-      </div>
       <div class="flex items-center">
-        <h2 class="text-lg font-semibold text-github-text mr-2" style="color: #f0f6fc;">Achievements</h2>
         <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
           🏆 Certifications & Learning
         </span>
