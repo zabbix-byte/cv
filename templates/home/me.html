@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="bg-white/80 backdrop-blur-md shadow-soft rounded-lg p-4 sm:p-5 md:p-4 lg:p-5 border border-white/20 mb-3 md:mb-0 w-full h-auto md:h-full md:max-h-full md:overflow-y-auto flex flex-col">
+<div class="bg-github-bg-secondary backdrop-blur-md shadow-lg rounded-lg p-4 sm:p-5 md:p-4 lg:p-5 border border-github-border mb-3 md:mb-0 w-full h-auto md:h-full md:max-h-full md:overflow-y-auto flex flex-col" style="background-color: #161b22; border: 1px solid #30363d;">
   <!-- Header Section -->
   <div class="text-center mb-3 sm:mb-4 md:mb-6 w-full flex-shrink-0">
     <div class="relative inline-block mb-2 sm:mb-3 md:mb-4">
@@ -8,23 +8,26 @@
         <img 
           src="{% static 'img/profile-picture.jpg' %}" 
           alt="Vasile Ovidiu Ichim"
-          class="w-full h-full rounded-full object-cover shadow-medium ring-2 ring-white/50"
+          class="w-full h-full rounded-full object-cover shadow-lg ring-2 ring-github-border"
+          style="box-shadow: 0 0 0 2px #30363d;"
         />
-        <div class="absolute inset-0 bg-gradient-primary opacity-15 rounded-full"></div>
+        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-github-green rounded-full border-2 border-github-bg-secondary flex items-center justify-center" style="background-color: #238636; border-color: #161b22;">
+          <i class="fas fa-check text-white text-xs"></i>
+        </div>
       </div>
     </div>
     
-    <h1 class="text-base sm:text-lg md:text-base lg:text-lg xl:text-xl font-bold text-slate-800 mb-1 sm:mb-2 leading-tight break-words">Vasile Ovidiu Ichim</h1>
-    <p class="text-primary-600 font-semibold text-sm sm:text-base md:text-sm lg:text-base mb-2 sm:mb-3 md:mb-4 leading-tight break-words">Technical Lead | Software Engineer | Co-founder</p>
+    <h1 class="text-base sm:text-lg md:text-base lg:text-lg xl:text-xl font-bold text-github-text mb-1 sm:mb-2 leading-tight break-words" style="color: #f0f6fc;">Vasile Ovidiu Ichim</h1>
+    <p class="text-github-text-secondary font-medium text-sm sm:text-base md:text-sm lg:text-base mb-2 sm:mb-3 md:mb-4 leading-tight break-words" style="color: #7d8590;">Technical Lead | Software Engineer | Co-founder</p>
     
-    <!-- Location & Status - Better spaced for mobile -->
+    <!-- Location & Status - GitHub style -->
     <div class="flex flex-col sm:flex-row sm:justify-center items-center gap-2 sm:gap-3 w-full">
-      <div class="inline-flex items-center bg-slate-100 rounded-full px-3 py-1 text-xs sm:text-sm max-w-full">
-        <i class="fas fa-map-marker-alt text-primary-500 mr-1.5 text-xs flex-shrink-0"></i>
-        <span class="text-slate-700 font-medium truncate">Barcelona, Spain</span>
+      <div class="inline-flex items-center bg-github-bg rounded-full px-3 py-1 text-xs sm:text-sm max-w-full" style="background-color: #0d1117;">
+        <i class="fas fa-map-marker-alt text-github-text-secondary mr-1.5 text-xs flex-shrink-0" style="color: #7d8590;"></i>
+        <span class="text-github-text-secondary font-medium truncate" style="color: #7d8590;">Barcelona, Spain</span>
       </div>
       
-      <div class="bg-gradient-primary text-white px-3 py-1 rounded-lg flex-shrink-0">
+      <div class="bg-github-green text-white px-3 py-1 rounded-full flex-shrink-0" style="background-color: #238636;">
         <span class="font-semibold text-xs sm:text-sm">✈️ AVAILABLE</span>
       </div>
     </div>
@@ -35,8 +38,8 @@
     <!-- Connect Section -->
     <div class="w-full">
       <div class="text-center mb-4">
-        <h3 class="text-sm font-bold text-slate-800 flex items-center justify-center">
-          <i class="fas fa-link text-primary-500 mr-2 text-sm"></i>
+        <h3 class="text-sm font-bold text-github-text flex items-center justify-center" style="color: #f0f6fc;">
+          <i class="fas fa-link text-github-blue mr-2 text-sm" style="color: #1f6feb;"></i>
           CONNECT
         </h3>
       </div>
@@ -44,14 +47,17 @@
         <a 
           href="https://github.com/zabbix-byte" 
           title="GitHub Profile"
-          class="bg-slate-800 hover:bg-slate-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-glow flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+          class="bg-github-bg hover:bg-github-border text-github-text p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 border border-github-border flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+          style="background-color: #0d1117; border-color: #30363d; color: #f0f6fc;"
+          onmouseover="this.style.backgroundColor='#30363d'"
+          onmouseout="this.style.backgroundColor='#0d1117'"
         >
           <i class="fab fa-github text-lg sm:text-xl"></i>
         </a>
         <a 
           href="https://www.linkedin.com/in/zabbix-byte/" 
           title="LinkedIn Profile"
-          class="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-glow flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+          class="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
         >
           <i class="fab fa-linkedin-in text-lg sm:text-xl"></i>
         </a>
@@ -61,18 +67,19 @@
     <!-- Current Focus Section -->
     <div class="w-full">
       <div class="text-center mb-4">
-        <h3 class="text-sm font-bold text-slate-800 flex items-center justify-center">
-          <i class="fas fa-compass text-primary-500 mr-2 text-sm"></i>
+        <h3 class="text-sm font-bold text-github-text flex items-center justify-center" style="color: #f0f6fc;">
+          <i class="fas fa-compass text-github-blue mr-2 text-sm" style="color: #1f6feb;"></i>
           FOCUSED ON
         </h3>
       </div>
-      <div class="bg-gradient-to-r from-primary-50 to-purple-50 rounded-xl p-4 sm:p-5 border border-primary-100 w-full shadow-sm">
-        <p class="font-semibold text-slate-800 text-sm sm:text-base text-center leading-relaxed break-words">
+      <div class="bg-github-bg rounded-xl p-4 sm:p-5 border border-github-border w-full" style="background-color: #0d1117; border-color: #30363d;">
+        <p class="font-semibold text-github-text text-sm sm:text-base text-center leading-relaxed break-words" style="color: #f0f6fc;">
           Tech Lead at 
           <a 
             href="https://www.valerdat.com" 
             title="Valerdat"
-            class="bg-gradient-primary bg-clip-text text-transparent font-bold hover:underline transition-all duration-300"
+            class="text-github-blue font-bold hover:underline transition-all duration-300"
+            style="color: #1f6feb;"
           >
             VALERDAT
           </a>

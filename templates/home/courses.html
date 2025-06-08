@@ -1,21 +1,21 @@
 {% load static %}
-<div class="bg-white border border-slate-200 rounded-xl p-3 sm:p-4 hover:shadow-medium transition-all duration-300 hover:scale-105 group">
+<div class="bg-github-bg-secondary border border-github-border rounded-xl p-3 sm:p-4 hover:shadow-lg hover:border-github-blue transition-all duration-300 hover:scale-105 group" style="background-color: #161b22; border-color: #30363d;" onmouseover="this.style.borderColor='#1f6feb';" onmouseout="this.style.borderColor='#30363d';">
   <div class="flex items-center space-x-2 sm:space-x-3">
     <div class="flex-shrink-0">
-      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center group-hover:shadow-glow transition-all duration-300">
+      <div class="w-8 h-8 sm:w-10 sm:h-10 bg-github-green rounded-full flex items-center justify-center border border-github-border transition-all duration-300" style="background-color: #238636; border-color: #30363d;">
         <img src="{% static 'img/pp.png' %}" alt="Platzi" class="w-4 h-4 sm:w-6 sm:h-6 rounded-full object-cover"/>
       </div>
     </div>
     <div class="flex-1 min-w-0">
       <a href="{{ url }}" title="Course {{ course }}" class="block">
-        <h4 class="font-semibold text-slate-800 group-hover:text-primary-600 transition-colors duration-300 text-xs sm:text-sm leading-tight">
+        <h4 class="font-semibold text-github-text group-hover:text-github-blue transition-colors duration-300 text-xs sm:text-sm leading-tight" style="color: #f0f6fc;" onmouseover="this.style.color='#1f6feb';" onmouseout="this.style.color='#f0f6fc';">
           {{ course }}
         </h4>
-        <p class="text-xs text-slate-500 mt-1">Platzi Certificate</p>
+        <p class="text-xs text-github-text-secondary mt-1" style="color: #7d8590;">Platzi Certificate</p>
       </a>
     </div>
     <div class="flex-shrink-0">
-      <i class="fas fa-external-link-alt text-slate-400 group-hover:text-primary-500 transition-colors duration-300 text-xs sm:text-sm"></i>
+      <i class="fas fa-external-link-alt text-github-text-secondary group-hover:text-github-blue transition-colors duration-300 text-xs sm:text-sm" style="color: #7d8590;"></i>
     </div>
   </div>
 </div>

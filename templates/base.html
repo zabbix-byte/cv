@@ -26,16 +26,27 @@
             },
             colors: {
               'primary': {
-                50: '#eff6ff',
-                100: '#dbeafe',
-                200: '#bfdbfe',
-                300: '#93c5fd',
-                400: '#60a5fa',
-                500: '#3b82f6',
-                600: '#2563eb',
-                700: '#1d4ed8',
-                800: '#1e40af',
-                900: '#1e3a8a',
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              'github': {
+                'bg': '#0d1117',
+                'bg-secondary': '#161b22',
+                'border': '#30363d',
+                'text': '#f0f6fc',
+                'text-secondary': '#7d8590',
+                'green': '#238636',
+                'green-light': '#2ea043',
+                'blue': '#1f6feb',
+                'purple': '#8b5cf6',
               },
               'purple': {
                 50: '#faf5ff',
@@ -81,7 +92,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   </head>
 
-  <body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen font-sans md:overflow-hidden">
+  <body class="bg-slate-900 min-h-screen font-sans md:overflow-hidden" style="background-color: #0d1117; background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,0.03) 2px, transparent 0); background-size: 50px 50px;">
     {% block content %}
 
     {% endblock %}
@@ -130,22 +141,22 @@
         animation: fadeInUp 0.6s ease-out forwards;
       }
       
-      /* Custom scrollbar */
+      /* Custom scrollbar - GitHub style */
       ::-webkit-scrollbar {
         width: 8px;
       }
       
       ::-webkit-scrollbar-track {
-        background: #f1f5f9;
+        background: #161b22;
       }
       
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #3b82f6, #a855f7);
+        background: #30363d;
         border-radius: 4px;
       }
       
       ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #2563eb, #9333ea);
+        background: #484f58;
       }
       
       /* Mobile optimizations */
@@ -202,15 +213,15 @@
         }
       }
       
-      /* Text selection styling */
+      /* Text selection styling - GitHub style */
       ::selection {
-        background: rgba(59, 130, 246, 0.3);
-        color: #1e40af;
+        background: rgba(31, 111, 235, 0.3);
+        color: #f0f6fc;
       }
       
       ::-moz-selection {
-        background: rgba(59, 130, 246, 0.3);
-        color: #1e40af;
+        background: rgba(31, 111, 235, 0.3);
+        color: #f0f6fc;
       }
     </style>
   </body>
