@@ -1,35 +1,38 @@
-<div class="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 pr-1 sm:pr-2 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full">
+<div class="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 pr-1 sm:pr-2 pb-4 sm:pb-6 md:pb-8 lg:pb-12 w-full" itemscope itemtype="http://schema.org/ProfilePage">
   <!-- README Section - GitHub Profile Style -->
-  <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
+  <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;" id="profile" aria-label="Professional Profile">
     <div class="flex items-center mb-4">
       <div class="flex items-center">
         <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
-          📄 Profile
+          📄 <span class="sr-only">Section:</span> Profile
         </span>
       </div>
     </div>
     
     <div class="bg-github-bg rounded-lg p-4 border border-github-border" style="background-color: #0d1117; border-color: #30363d;">
       <div class="mb-4">
-        <h3 class="text-github-text font-semibold mb-2 flex items-center" style="color: #f0f6fc;">
-          <span class="mr-2">👋</span> Hi there, I'm a Tech Lead & Software Engineer
-        </h3>
+        <h1 class="text-github-text font-semibold mb-2 flex items-center text-xl" style="color: #f0f6fc;" itemprop="headline">
+          <span class="mr-2" aria-hidden="true">👋</span> Hi there, I'm a Tech Lead &amp; Software Engineer
+        </h1>
+        
+        <!-- Professional Summary -->
+        <div class="bg-github-bg-secondary rounded-lg p-3 mt-3" style="background-color: #161b22;" itemprop="description">
+          <p class="text-github-text-secondary text-sm leading-relaxed mb-3" style="color: #7d8590;">
+            With over <strong class="text-github-text" style="color: #f0f6fc;">6 years of experience</strong> in the tech industry, I've evolved through diverse roles from <strong class="text-github-blue" style="color: #1f6feb;">System Administrator to Software Engineer</strong>, now leading as a <strong class="text-github-green" style="color: #2ea043;">Technical Lead</strong>.
+          </p>
+          <p class="text-github-text-secondary text-sm leading-relaxed mb-3" style="color: #7d8590;">
+            My journey spans prestigious companies like <strong class="text-github-text" style="color: #f0f6fc;">IBM and Inditex</strong>, where I contributed to large-scale enterprise solutions. As co-founder of <strong class="text-github-green" style="color: #2ea043;">Valerdat</strong>, I've spearheaded innovative data-driven applications, blending entrepreneurial vision with deep technical expertise.
+          </p>
+          <p class="text-github-text-secondary text-sm leading-relaxed" style="color: #7d8590;">
+            Currently pursuing a <strong class="text-github-blue" style="color: #1f6feb;">part-time Computer Science degree</strong> to strengthen my foundations while staying current with emerging technologies. My commitment to continuous learning and adaptability drives successful navigation of complex projects and effective cross-functional team leadership.
+          </p>
+        </div>
       </div>
       
       <div class="space-y-3 text-github-text-secondary" style="color: #7d8590;">
         <div class="flex items-start">
           <span class="mr-2">🔭</span>
           <span>Currently working as <strong class="text-github-text" style="color: #f0f6fc;">Tech Lead & Co-founder</strong> at <strong class="text-github-green" style="color: #2ea043;">Valerdat</strong></span>
-        </div>
-        
-        <div class="flex items-start">
-          <span class="mr-2">🌱</span>
-          <span>Currently pursuing a <strong class="text-github-text" style="color: #f0f6fc;">Computer Science degree</strong> while working full-time</span>
-        </div>
-        
-        <div class="flex items-start">
-          <span class="mr-2">💼</span>
-          <span>6+ years of experience at companies like <strong class="text-github-text" style="color: #f0f6fc;">IBM</strong> and <strong class="text-github-text" style="color: #f0f6fc;">Inditex</strong></span>
         </div>
         
         <div class="flex items-start">
@@ -228,6 +231,7 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4">
+      <!-- Always show top repositories from GitHub -->
       {% if github_repositories and github_repositories|length > 0 %}
         {% for repo in github_repositories %}
           {% if forloop.counter <= 6 %}
@@ -235,13 +239,13 @@
           {% endif %}
         {% endfor %}
       {% else %}
-        <!-- Fallback repositories when GitHub API fails -->
-        {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" stars=0 forks=0 language="Python" %}
-        {% include 'home/project.html' with name="csgo-skin-changer" url="https://github.com/zabbix-byte/csgo-skin-changer" description="⚔️ ZT SkinChanger V2 for Guns and Knives, very simple to use." stars=0 forks=0 language="C++" %}
-        {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" stars=0 forks=0 language="C" %}
-        {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." stars=0 forks=0 language="C++" %}
-        {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="App that simplifies the process of duplicating Discord servers." stars=0 forks=0 language="Python" %}
-        {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" stars=0 forks=0 language="Python" %}
+        <!-- Fallback repositories with updated stats when GitHub API fails -->
+        {% include 'home/project.html' with name="NFT-Generator" url="https://github.com/zabbix-byte/NFT-Generator" description=":zap: This is an open source project that allows you to generate NFT from a base (Layer)" stars=24 forks=3 language="Python" %}
+        {% include 'home/project.html' with name="ztdriver" url="https://github.com/zabbix-byte/ztdriver" description="Kernel driver with associated user mode functionality" stars=10 forks=1 language="C++" %}
+        {% include 'home/project.html' with name="ztui" url="https://github.com/zabbix-byte/ztui" description="Base Overlay Cheat with Kernel Driver and Usermode Integration." stars=8 forks=0 language="C++" %}
+        {% include 'home/project.html' with name="zt_cs_cheat" url="https://github.com/zabbix-byte/zt_cs_cheat" description="💀 ZT CS GO CHEAT | ESP, AIM , BHOP, RAGE, DLL LOADER" stars=8 forks=0 language="Python" %}
+        {% include 'home/project.html' with name="PyPulse" url="https://github.com/zabbix-byte/PyPulse" description="Open-source project that simplifies the creation of desktop applications based on Chromium" stars=7 forks=1 language="Python" %}
+        {% include 'home/project.html' with name="DiscordEasyCloner" url="https://github.com/zabbix-byte/DiscordEasyCloner" description="DiscordEasyCloner, App that simplifies the process of duplicating Discord servers" stars=7 forks=13 language="Python" %}
       {% endif %}
     </div>
   </section>
@@ -282,4 +286,44 @@
       {% include 'home/courses.html' with course="Google Cloud Platform 2018" url="https://platzi.com/p/zabbix/curso/1284-course/diploma/detalle/" %}
     </div>
   </section>
-</div>
+
+  <!-- Education - GitHub style -->
+  <section class="bg-github-bg-secondary border border-github-border rounded-lg p-4 sm:p-6" style="background-color: #161b22; border-color: #30363d;">
+    <div class="flex items-center mb-4">
+      <div class="flex items-center">
+        <span class="bg-github-bg border border-github-border text-github-text-secondary text-xs px-2 py-1 rounded-md" style="background-color: #0d1117; border-color: #30363d; color: #7d8590;">
+          🎓 Education
+        </span>
+      </div>
+    </div>
+
+    <div class="border-l-2 sm:border-l-3 border-github-blue pl-3 sm:pl-4 relative" style="border-color: #1f6feb;">
+      <div class="absolute w-2.5 h-2.5 sm:w-3 sm:h-3 bg-github-blue rounded-full -left-1.5 sm:-left-1.5 top-1.5" style="background-color: #1f6feb;"></div>
+      <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-2 sm:mb-3">
+        <div class="flex-1">
+          <h3 class="text-base sm:text-lg font-bold text-github-text" style="color: #f0f6fc;">Bachelor's Degree, Computer Science</h3>
+          <p class="text-github-blue font-semibold text-sm" style="color: #1f6feb;">The Open University</p>
+          <p class="text-github-text-secondary text-xs" style="color: #7d8590;">Part-time • Sep 2023 - Sep 2027 • In Progress</p>
+          <p class="text-github-text-secondary text-xs flex items-center mt-1" style="color: #7d8590;">
+            <i class="fas fa-graduation-cap mr-1"></i>
+            <span>Distance Learning Program</span>
+          </p>
+        </div>
+        <div class="mt-2 lg:mt-0">
+          <span class="bg-github-blue/20 text-github-blue px-2 py-0.5 rounded-full text-xs font-medium border border-github-blue/30" style="background-color: rgba(31, 111, 235, 0.2); color: #1f6feb; border-color: rgba(31, 111, 235, 0.3);">In Progress</span>
+        </div>
+      </div>
+      <p class="text-github-text-secondary mb-2 text-xs sm:text-sm" style="color: #7d8590;">
+        Currently pursuing a Bachelor's degree in Computer Science through The Open University while maintaining full-time professional responsibilities. Focus on advanced computer science fundamentals, software engineering principles, and emerging technologies.
+      </p>
+      <div class="flex flex-wrap gap-1">
+        <span class="bg-github-blue/20 text-github-blue px-1.5 py-0.5 rounded text-xs border border-github-blue/30" style="background-color: rgba(31, 111, 235, 0.2); color: #1f6feb; border-color: rgba(31, 111, 235, 0.3);">Computer Science Fundamentals</span>
+        <span class="bg-purple-500/20 text-purple-400 px-1.5 py-0.5 rounded text-xs border border-purple-500/30" style="background-color: rgba(139, 92, 246, 0.2); color: #c084fc; border-color: rgba(139, 92, 246, 0.3);">Software Engineering</span>
+        <span class="bg-github-green/20 text-github-green px-1.5 py-0.5 rounded text-xs border border-github-green/30" style="background-color: rgba(35, 134, 54, 0.2); color: #2ea043; border-color: rgba(35, 134, 54, 0.3);">Algorithms & Data Structures</span>
+        <span class="bg-yellow-500/20 text-yellow-400 px-1.5 py-0.5 rounded text-xs border border-yellow-500/30" style="background-color: rgba(234, 179, 8, 0.2); color: #facc15; border-color: rgba(234, 179, 8, 0.3);">Mathematics for Computing</span>
+        <span class="bg-teal-500/20 text-teal-400 px-1.5 py-0.5 rounded text-xs border border-teal-500/30" style="background-color: rgba(20, 184, 166, 0.2); color: #5eead4; border-color: rgba(20, 184, 166, 0.3);">Systems Architecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements - GitHub style --

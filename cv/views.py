@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from services.github_service import GitHubService
+from services.pdf_service import generate_cv_pdf_response
 import logging
 
 logger = logging.getLogger(__name__)
@@ -73,3 +74,33 @@ def github_data_api(request):
             }, status=500)
     
     return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+def download_cv_pdf(request):
+    """Generate and download CV as PDF"""
+    try:
+        # Get the same context data as home view for consistency
+        github_service = GitHubService(username="zabbix-byte")
+        github_data = github_service.get_comprehensive_stats()
+        
+        context = {
+            'github_profile': github_data.get('profile', {}),
+            'github_repositories': github_data.get('repositories', []),
+            'github_languages': github_data.get('languages', []),
+            'github_stats': github_data.get('stats', {}),
+            'name': 'Vasile Ovidiu Ichim',
+            'title': 'Tech Lead & Software Engineer',
+            'location': 'Barcelona, Spain',
+            'email': 'contact@ztrunk.space',
+            'github_url': 'https://github.com/zabbix-byte',
+            'linkedin_url': 'https://linkedin.com/in/zabbix-byte',
+        }
+        
+        logger.info("Generating CV PDF for download")
+        return generate_cv_pdf_response(context)
+        
+    except Exception as e:
+        logger.error(f"Error generating CV PDF: {str(e)}")
+        return JsonResponse({
+            'error': 'Failed to generate PDF',
+            'message': str(e)
+        }, status=500)
