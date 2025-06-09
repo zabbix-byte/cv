@@ -7,12 +7,12 @@
   <div class="text-center mb-3 w-full flex-shrink-0">
     <!-- Avatar with Status -->
     <div class="relative inline-block mb-2">
-      <div class="mx-auto relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28">
+      <div class="profile-avatar mx-auto relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 overflow-hidden rounded-full border-2 border-github-border" style="border-color: #30363d;">
         <img 
           src="{% static 'img/profile-picture.jpg' %}" 
           alt="Vasile Ovidiu Ichim"
-          class="w-full h-full rounded-full object-cover border-2 border-github-border"
-          style="border-color: #30363d;"
+          class="w-full h-full object-cover"
+          style="border-radius: 50%;"
         />
         <!-- Online Status -->
         <div class="absolute -bottom-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-github-green rounded-full border-2 border-github-bg-secondary flex items-center justify-center" style="background-color: #238636; border-color: #161b22;">

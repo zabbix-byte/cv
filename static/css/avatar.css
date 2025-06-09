@@ -7,3 +7,40 @@
     margin-left: 80px;
     z-index: -1;
 }
+
+/* Enhanced avatar styles for all devices */
+.profile-avatar {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50% !important;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50% !important;
+}
+
+/* Media queries for better mobile display */
+@media (max-width: 640px) {
+    .profile-avatar {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+        border-radius: 50% !important;
+        overflow: hidden;
+    }
+    
+    .profile-avatar img {
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+        border-radius: 50% !important;
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
