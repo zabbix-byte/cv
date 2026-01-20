@@ -1,23 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-  <!-- Mobile: Stack layout with scroll, Desktop: Grid layout with fixed height -->
-  <div class="min-h-screen md:h-screen flex flex-col w-full md:overflow-hidden max-w-full overflow-visible">
-    <!-- Container with proper responsive padding -->
-    <div class="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 w-full max-w-full flex-shrink-0">
-      {% include 'home/navbar.html' %}
+  
+  <!-- Apple Store Style Bento Grid Layout -->
+  <div class="grid grid-cols-12 gap-8 lg:gap-10 w-full pb-20">
+    
+    <!-- Row 1: Navbar (Full Width) -->
+    <div class="col-span-12 mb-2 reveal-on-scroll z-50">
+       {% include 'home/navbar.html' %}
     </div>
-      
-    <!-- Responsive grid layout - mobile stack (scrollable), desktop side-by-side (fixed) -->
-    <div class="flex flex-col md:grid md:grid-cols-1 xl:grid-cols-12 gap-2 sm:gap-3 md:gap-4 lg:gap-6 px-3 sm:px-4 md:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 max-w-7xl mx-auto flex-1 md:min-h-0 w-full max-w-full md:overflow-hidden overflow-visible">
-      <!-- Profile sidebar - full width on mobile, sidebar on desktop -->
-      <div class="xl:col-span-3 order-1 min-w-0 max-w-full md:overflow-y-auto overflow-x-hidden md:max-h-full">
+
+    <!-- Row 2: Hero Profile Card (Full Width) -->
+    <div class="col-span-12 reveal-on-scroll delay-100">
         {% include 'home/me.html' %}
-      </div>
-      
-      <!-- Main content with scroll -->
-      <div class="xl:col-span-9 order-2 md:overflow-y-auto overflow-x-hidden content-scroll min-w-0 max-w-full flex-1 md:max-h-full">
-        {% include 'home/content.html' %}
-      </div>
     </div>
+    
+    <!-- Row 3: Experience Carousel (Full Width) -->
+    <div class="col-span-12 reveal-on-scroll delay-200">
+        {% include 'home/experience_carousel.html' %}
+    </div>
+
+    <!-- Row 4: Projects Carousel (Full Width) -->
+    <div class="col-span-12 reveal-on-scroll delay-200">
+        {% include 'home/projects_carousel.html' %}
+    </div>
+
+    <!-- Row 5: Skills & Education Bento Grid -->
+    <div class="col-span-12 h-auto reveal-on-scroll delay-200">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 h-full">
+            {% include 'home/skills_bento.html' %}
+            {% include 'home/education_bento.html' %}
+        </div>
+    </div>
+
+    <!-- Row 6: Certifications Carousel (New) -->
+    <div class="col-span-12 reveal-on-scroll delay-200">
+        {% include 'home/certifications_carousel.html' %}
+    </div>
+    
   </div>
+
 {% endblock %}

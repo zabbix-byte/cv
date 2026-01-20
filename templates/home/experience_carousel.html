@@ -1,0 +1,94 @@
+{% load static %}
+<div class="col-span-12 space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Experience</h2>
+    <div class="flex gap-2">
+      <button onclick="document.getElementById('exp-scroll').scrollBy({left: -320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-[#1c1c1e] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-white/10">
+        <i class="fas fa-chevron-left text-sm"></i>
+      </button>
+      <button onclick="document.getElementById('exp-scroll').scrollBy({left: 320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-[#1c1c1e] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-white/10">
+        <i class="fas fa-chevron-right text-sm"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="exp-scroll" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide px-4 md:px-0"
+       style="mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);">
+    
+    <!-- Experience Card 1 -->
+    <div class="min-w-[320px] md:min-w-[360px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-[320px] border border-white/10 group relative overflow-hidden">
+       <!-- Gradient Glow -->
+       <div class="absolute -right-10 -top-10 w-40 h-40 bg-green-500/10 blur-[50px] rounded-full pointer-events-none group-hover:bg-green-500/20 transition-all duration-500"></div>
+       
+       <div>
+         <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-[#2c2c2e] p-2 flex items-center justify-center text-green-400 shadow-inner border border-white/5 overflow-hidden">
+               <img src="https://www.google.com/s2/favicons?domain=valerdat.com&sz=256" class="w-full h-full object-contain rounded-lg" alt="Valerdat" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-building text-xl\'></i>'">
+            </div>
+            <span class="px-3 py-1.5 rounded-full bg-[#2c2c2e] text-xs font-bold text-gray-300 uppercase tracking-wider border border-white/5">Present</span>
+         </div>
+         <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">
+            <a href="https://valerdat.com" target="_blank" class="hover:text-green-400 transition-colors">Valerdat</a>
+         </h3>
+         <p class="text-xs font-bold text-green-400 uppercase tracking-widest mb-4">CTO & Co-founder</p>
+         <p class="text-base text-gray-400 leading-relaxed font-medium">Leading technical strategy, team management, and software architecture for data-driven products.</p>
+       </div>
+    </div>
+
+    <!-- Inditex -->
+    <div class="min-w-[320px] md:min-w-[360px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-[320px] border border-white/10 group relative overflow-hidden">
+       <!-- Gradient Glow -->
+       <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 blur-[50px] rounded-full pointer-events-none group-hover:bg-blue-500/20 transition-all duration-500"></div>
+
+       <div>
+         <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center text-blue-400 shadow-inner border border-white/5 overflow-hidden">
+               <!-- White bg for Inditex logo visibility -->
+               <img src="{% static 'img/logos/inditex_new.png' %}?v=1" class="w-full h-full object-contain" alt="Inditex" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-briefcase text-xl\'></i>'">
+            </div>
+            <span class="px-3 py-1.5 rounded-full bg-[#2c2c2e] text-xs font-bold text-gray-300 uppercase tracking-wider border border-white/5">2023 - 2024</span>
+         </div>
+         <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">
+            <a href="https://www.inditex.com" target="_blank" class="hover:text-blue-400 transition-colors">Inditex</a>
+         </h3>
+         <p class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Python Engineer</p>
+         <p class="text-base text-gray-400 leading-relaxed font-medium">Developed SaaS solutions for security finance management using Django & AWS.</p>
+       </div>
+    </div>
+
+    <!-- IBM -->
+    <div class="min-w-[320px] md:min-w-[360px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-[320px] border border-white/10 group relative overflow-hidden">
+       <div>
+         <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center text-gray-400 shadow-inner border border-white/5 overflow-hidden">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/512px-IBM_logo.svg.png" class="w-full h-full object-contain" alt="IBM" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-server text-xl\'></i>'">
+            </div>
+            <span class="px-3 py-1.5 rounded-full bg-[#2c2c2e] text-xs font-bold text-gray-300 uppercase tracking-wider border border-white/5">2021 - 2022</span>
+         </div>
+         <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">
+             <a href="https://www.ibm.com" target="_blank" class="hover:text-gray-300 transition-colors">IBM</a>
+         </h3>
+         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Sysadmin</p>
+         <p class="text-base text-gray-400 leading-relaxed font-medium">Managed Linux infrastructure, automation scripts, and system architecture.</p>
+       </div>
+    </div>
+
+    <!-- Dataxip -->
+    <div class="min-w-[320px] md:min-w-[360px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between h-[320px] border border-white/10 group relative overflow-hidden">
+       <div>
+         <div class="flex items-center justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-[#2c2c2e] p-2 flex items-center justify-center text-orange-400 shadow-inner border border-white/5 overflow-hidden">
+               <img src="https://www.google.com/s2/favicons?domain=dataxip.com&sz=256" class="w-full h-full object-contain rounded-lg" alt="Dataxip" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-code text-xl\'></i>'">
+            </div>
+            <span class="px-3 py-1.5 rounded-full bg-[#2c2c2e] text-xs font-bold text-gray-300 uppercase tracking-wider border border-white/5">2018 - 2021</span>
+         </div>
+         <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">
+            <a href="https://dataxip.com" target="_blank" class="hover:text-orange-400 transition-colors">Dataxip SL</a>
+         </h3>
+         <p class="text-xs font-bold text-orange-400 uppercase tracking-widest mb-4">Full Stack Dev</p>
+         <p class="text-base text-gray-400 leading-relaxed font-medium">Full stack web development, cloud services management, and client relations.</p>
+       </div>
+    </div>
+
+  </div>
+</div>

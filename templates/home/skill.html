@@ -1,15 +1,15 @@
-<!-- GitHub Language Statistics Style -->
-<div class="group hover:bg-github-bg-secondary border border-github-border hover:border-github-blue rounded-lg p-3 transition-all duration-300" style="border-color: #30363d;" onmouseover="this.style.backgroundColor='#161b22'; this.style.borderColor='#1f6feb';" onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='#30363d';">
+<!-- Skill Card Style (Dark Mode) -->
+<div class="group bg-[#2c2c2e] rounded-xl p-4 border border-white/5 shadow-sm hover:bg-[#3a3a3c] transition-all duration-300">
   <div class="flex items-center justify-between mb-2">
-    <h4 class="font-medium text-github-text text-sm leading-tight" style="color: #f0f6fc;">
+    <h4 class="font-bold text-gray-100 text-sm leading-tight">
       {{ skill }}
     </h4>
   </div>
   
   <!-- Skill Description -->
-  <div class="flex items-center text-github-text-secondary group-hover:text-github-text transition-colors duration-300" style="color: #7d8590;">
+  <div class="flex items-center text-gray-400 group-hover:text-blue-400 transition-colors duration-300">
     <i class="{% if skill == 'Software Architecture & Leadership' %}fas fa-sitemap{% elif skill == 'Entrepreneurship & Product Thinking' %}fas fa-lightbulb{% elif skill == 'Backend Development (Python & Django)' %}fab fa-python{% elif skill == 'System Administration & DevOps' %}fas fa-server{% elif skill == 'Cloud Technologies' %}fas fa-cloud{% elif skill == 'Data Engineering & AI Integration' %}fas fa-brain{% endif %} text-xs mr-2"></i>
-    <span class="text-xs">
+    <span class="text-xs font-medium">
       {% if skill == "Software Architecture & Leadership" %}Core expertise in system design{% endif %}
       {% if skill == "Entrepreneurship & Product Thinking" %}Innovation and product strategy{% endif %}
       {% if skill == "Backend Development (Python & Django)" %}Primary development stack{% endif %}

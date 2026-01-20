@@ -1,0 +1,60 @@
+<div class="col-span-12 space-y-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Selected Work</h2>
+    <a href="https://github.com/zabbix-byte" class="text-sm text-apple-blue hover:underline font-medium">View All on GitHub</a>
+  </div>
+
+  <div id="proj-scroll" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide px-4 md:px-0"
+       style="mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);">
+    
+    {% if github_repositories and github_repositories|length > 0 %}
+      {% for repo in github_repositories %}
+        {% if forloop.counter <= 6 %}
+        <a href="{{ repo.html_url }}" target="_blank" class="min-w-[300px] md:min-w-[340px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 border border-white/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98] active:shadow-md flex flex-col justify-between h-[280px] group relative overflow-hidden cubic-bezier-apple">
+           
+           <!-- Subtle Gradient Overlay on Hover -->
+           <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+           <div>
+             <div class="flex items-center justify-between mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-[#2c2c2e] flex items-center justify-center text-gray-400 group-hover:text-white transition-all duration-300 shadow-inner border border-white/5">
+                   <i class="fab fa-github text-xl"></i>
+                </div>
+                <div class="flex items-center px-3 py-1 bg-[#2c2c2e] rounded-full border border-white/5">
+                   <i class="fas fa-star text-yellow-500 mr-1.5 text-xs"></i> 
+                   <span class="text-xs font-bold text-gray-300">{{ repo.stargazers_count }}</span>
+                </div>
+             </div>
+             <h3 class="text-xl font-bold text-white mb-2 truncate group-hover:text-blue-400 transition-colors">{{ repo.name }}</h3>
+             <p class="text-sm text-gray-400 line-clamp-2 leading-relaxed font-medium">{{ repo.description|default:"No description available." }}</p>
+           </div>
+           
+           <div class="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+              <span class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full 
+                    {% if repo.language == 'Python' %}bg-blue-500
+                    {% elif repo.language == 'JavaScript' %}bg-yellow-400
+                    {% elif repo.language == 'C++' %}bg-pink-500
+                    {% else %}bg-gray-500{% endif %} shadow-[0_0_10px_rgba(0,0,0,0.3)]">
+                  </span>
+                  <span class="text-xs font-bold text-gray-500 uppercase tracking-widest">{{ repo.language|default:"-" }}</span>
+              </span>
+              <i class="fas fa-arrow-right text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all"></i>
+           </div>
+        </a>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+        <!-- Fallback static content for dark theme -->
+        <a href="https://github.com/zabbix-byte/NFT-Generator" class="min-w-[300px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 border border-white/10 shadow-2xl h-[280px] flex flex-col justify-between group">
+           <div><h3 class="font-bold text-white text-lg group-hover:text-blue-400 transition-colors">NFT-Generator</h3><p class="text-sm text-gray-400 mt-2 font-medium">Generate NFTs from base layers.</p></div>
+           <div class="text-xs font-bold text-gray-500 border-t border-white/10 pt-4 mt-4">PYTHON</div>
+        </a>
+        <a href="https://github.com/zabbix-byte/ztdriver" class="min-w-[300px] snap-center bg-[#1c1c1e] rounded-[2rem] p-8 border border-white/10 shadow-2xl h-[280px] flex flex-col justify-between group">
+            <div><h3 class="font-bold text-white text-lg group-hover:text-blue-400 transition-colors">ztdriver</h3><p class="text-sm text-gray-400 mt-2 font-medium">Kernel driver user mode functionality.</p></div>
+            <div class="text-xs font-bold text-gray-500 border-t border-white/10 pt-4 mt-4">C++</div>
+         </a>
+    {% endif %}
+
+  </div>
+</div>

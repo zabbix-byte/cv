@@ -1,38 +1,33 @@
 {% load static %}
 
-<nav class="bg-github-bg-secondary backdrop-blur-md shadow-lg rounded-xl p-2 sm:p-3 mb-2 sm:mb-3 lg:mb-4 border border-github-border w-full" style="background-color: #161b22; border: 1px solid #30363d;">
-  <div class="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-0 w-full">
-    <!-- Logo/Repository Link - GitHub style -->
+<nav class="sticky top-4 z-50 rounded-[2rem] px-6 py-4 mb-8 bg-[#1c1c1e] border border-white/10 shadow-2xl backdrop-blur-md transition-all duration-300 mx-1">
+  <div class="flex items-center justify-between w-full">
+    <!-- Logo/Name -->
     <a href="https://github.com/zabbix-byte/cv" 
-       title="Github Repository"
-       class="flex items-center space-x-1.5 sm:space-x-2 text-github-text hover:text-github-blue transition-colors duration-300 group min-w-0 flex-shrink"
-       style="color: #f0f6fc;"
-       onmouseover="this.style.color='#1f6feb';"
-       onmouseout="this.style.color='#f0f6fc';">
-      <div class="bg-github-bg p-1.5 rounded-lg border border-github-border group-hover:border-github-blue transition-all duration-300 flex-shrink-0" style="background-color: #0d1117; border-color: #30363d;">
-        <svg class="w-3 h-3 sm:w-4 sm:h-4 text-github-text" fill="currentColor" viewBox="0 0 16 16" style="color: #f0f6fc;">
-          <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
-        </svg>
+       title="View Source"
+       class="flex items-center space-x-3 group">
+      <div class="bg-white/10 p-2 rounded-xl group-hover:bg-white/20 transition-colors border border-white/5">
+        <i class="ri-github-fill text-xl text-white"></i>
       </div>
-      <span class="font-mono font-semibold text-sm sm:text-base truncate">zabbix-byte/cv</span>
+      <span class="font-bold text-sm text-gray-200 tracking-tight group-hover:text-white transition-colors">zabbix-byte / cv</span>
     </a>
     
-    <!-- PDF Download Button - GitHub style -->
-    <a href="{% url 'download_cv_pdf' %}" 
-       title="Download CV as PDF"
-       class="bg-github-green hover:bg-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center space-x-1.5 text-xs sm:text-sm flex-shrink-0"
-       style="background-color: #238636;">
-      <i class="fas fa-download text-xs sm:text-sm"></i>
-      <span>Download CV</span>
-    </a>
-    
-    <!-- LinkedIn Connect Button - GitHub style -->
-    <a href="https://www.linkedin.com/in/zabbix-byte/" 
-       title="LinkedIn Profile"
-       class="bg-github-blue hover:bg-blue-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center space-x-1.5 text-xs sm:text-sm flex-shrink-0"
-       style="background-color: #1f6feb;">
-      <i class="fab fa-linkedin-in text-xs sm:text-sm"></i>
-      <span>Connect</span>
-    </a>
+    <div class="flex items-center gap-3">
+      <!-- PDF Download -->
+      <a href="{% url 'download_cv_pdf' %}" 
+         title="Download PDF"
+         class="px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 flex items-center gap-2 border border-transparent hover:border-white/10">
+         <i class="ri-download-line text-lg"></i>
+         <span class="hidden sm:inline">Resume</span>
+      </a>
+      
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/zabbix-byte/" 
+         title="LinkedIn"
+         class="px-5 py-2.5 bg-white text-black rounded-xl text-xs font-bold hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 transform hover:-translate-y-0.5">
+        <i class="ri-linkedin-fill text-lg"></i>
+        <span class="hidden sm:inline">Connect</span>
+      </a>
+    </div>
   </div>
 </nav>

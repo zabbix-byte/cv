@@ -1,35 +1,30 @@
 {% load static %}
-<!-- GitHub Achievement Badge Style -->
-<div class="bg-github-bg border border-github-border rounded-lg p-3 hover:border-github-blue transition-all duration-300 group" style="background-color: #0d1117; border-color: #30363d;" onmouseover="this.style.borderColor='#1f6feb';" onmouseout="this.style.borderColor='#30363d';">
+<!-- Course Card Style -->
+<!-- Course Card Style (Dark Mode) -->
+<div class="group bg-[#2c2c2e] rounded-xl p-4 border border-white/5 shadow-sm hover:bg-[#3a3a3c] transition-all duration-300">
   <a href="{{ url }}" title="Achievement: {{ course }}" class="block" target="_blank" rel="noopener noreferrer">
     <div class="flex items-center space-x-3">
       <!-- Achievement Icon -->
       <div class="flex-shrink-0">
-        <div class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center border border-yellow-500/30 group-hover:shadow-lg transition-all duration-300" style="background: linear-gradient(135deg, #facc15, #f59e0b);">
-          <i class="fas fa-award text-white text-sm"></i>
+        <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 border border-amber-500/20">
+          <i class="fas fa-award text-sm"></i>
         </div>
       </div>
       
       <!-- Achievement Content -->
       <div class="flex-1 min-w-0">
-        <h4 class="font-medium text-github-text group-hover:text-github-blue transition-colors duration-300 text-sm leading-tight truncate" style="color: #f0f6fc;">
+        <h4 class="font-bold text-gray-100 text-sm leading-tight truncate group-hover:text-amber-400 transition-colors duration-300">
           {{ course }}
         </h4>
         <div class="flex items-center mt-1">
-          <img src="{% static 'img/pp.png' %}" alt="Platzi" class="w-4 h-4 rounded-full mr-2"/>
-          <span class="text-xs text-github-text-secondary" style="color: #7d8590;">Platzi • Certified</span>
+          <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Platzi • Certified</span>
         </div>
       </div>
       
       <!-- External Link Indicator -->
-      <div class="flex-shrink-0">
-        <i class="fas fa-external-link-alt text-github-text-secondary group-hover:text-github-blue transition-colors duration-300 text-xs" style="color: #7d8590;"></i>
+      <div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <i class="fas fa-external-link-alt text-gray-500 text-xs"></i>
       </div>
-    </div>
-    
-    <!-- Achievement Progress Bar -->
-    <div class="mt-2 w-full bg-github-border rounded-full h-1 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background-color: #21262d;">
-      <div class="h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full" style="width: 100%; background: linear-gradient(90deg, #facc15, #f59e0b);"></div>
     </div>
   </a>
 </div>
