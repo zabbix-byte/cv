@@ -190,7 +190,6 @@ class CVPDFGenerator:
             link(f"mailto:{email}", email),
             link("https://github.com/zabbix-byte", "github.com/zabbix-byte"),
             link("https://www.linkedin.com/in/zabbix-byte/", "linkedin.com/in/zabbix-byte"),
-            link("https://www.codewars.com/users/zabbix-byte", "codewars · Top 15%"),
         ])
 
         inner = [
@@ -214,8 +213,8 @@ class CVPDFGenerator:
         stats = [
             ("7+ yrs", "Engineering"),
             ("IBM · Inditex", "Enterprise track record"),
-            ("120K+", "Product references"),
-            ("Top 15%", "Codewars · Python 5 kyu"),
+            ("10TB+ / day", "Data processed (Spark)"),
+            ("Team Lead", "Cross-functional eng"),
         ]
         # Each stat becomes its own mini-table to stack number over label
         col = self.content_width / 4.0
@@ -261,8 +260,17 @@ class CVPDFGenerator:
             "that build them. Enterprise background across <b>IBM</b> and <b>Inditex</b>. Hands-on with "
             "Python, Django, AWS, Databricks and Kubernetes."
         )
+        press = (
+            'Featured in <a href="https://www.viaempresa.cat/es/empresa/'
+            'como-inteligencia-artificial-redefine-cadena-suministro-caso-valerdat_2202088_102.html" '
+            'color="#0071e3"><b>VIA Empresa</b></a>'
+            ' · Customer case studies: <a href="https://valerdat.com/casosdeexito" '
+            'color="#0071e3">valerdat.com/casosdeexito</a>'
+        )
         return self._section_header("Profile") + [
             Paragraph(text, self.styles["Summary"]),
+            Spacer(1, 3),
+            Paragraph(press, self.styles["Tech"]),
             Spacer(1, 7),
         ]
 
@@ -290,10 +298,10 @@ class CVPDFGenerator:
             self._exp_entry(
                 "CTO &amp; Co-founder", "Valerdat", "May 2020 – Present",
                 [
-                    "Designed and lead the architecture of an AI procurement platform processing 120K+ product references across demand, stock and supplier data.",
-                    "Built distributed ETL pipelines on Databricks/Spark and a multi-tenant Django core serving enterprise customers.",
-                    "Scaled and lead a cross-functional engineering team; established code review, automated testing and CI/CD.",
-                    "Own AWS cloud infrastructure, observability and security for production procurement workloads.",
+                    "Designed and lead the architecture of an AI procurement platform processing 10TB+ of data daily with Spark.",
+                    "Built distributed ETL pipelines (Databricks/Spark) and a multi-tenant Django core serving enterprise customers.",
+                    "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
+                    "Scaled and lead a cross-functional engineering team (code review, testing, CI/CD) and own AWS infra, observability and security.",
                 ],
             ),
             self._exp_entry(
@@ -328,7 +336,7 @@ class CVPDFGenerator:
             ("Languages", "Python (expert), C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
             ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
-            ("AI &amp; Architecture", "LLM integration, distributed systems, multi-tenant SaaS, system design"),
+            ("AI &amp; Architecture", "LLM integration, distributed systems, multi-tenant SaaS, ERP integrations, system design"),
             ("Leadership", "Technical leadership, team management, mentoring, Agile/Scrum"),
         ]
         data = []
@@ -371,16 +379,16 @@ class CVPDFGenerator:
                 "Python · Django · LLM · AWS"),
             self._project_cell(
                 "Distributed ETL Engine",
-                "Databricks/Spark pipelines over millions of procurement records.",
+                "Databricks/Spark pipelines processing 10TB+ of data daily.",
                 "Databricks · Spark · ETL"),
+            self._project_cell(
+                "Multi-ERP Connector Layer",
+                "Integrations with Sage 200, Dynamics 365 Business Central and others (API/SFTP).",
+                "Sage Marketplace · API · SFTP"),
             self._project_cell(
                 "Multi-Tenant SaaS Core",
                 "Isolated data, RBAC and per-tenant scaling for enterprise.",
                 "Django · PostgreSQL"),
-            self._project_cell(
-                "PyPulse — Open Source",
-                "Native-feel Chromium desktop apps with a Python backend.",
-                "Python · github.com/zabbix-byte/PyPulse"),
         ]
         gutter = 10 * mm
         col_w = (self.content_width - gutter) / 2.0

@@ -1,0 +1,32 @@
+{% load static %}
+<div class="glass-card rounded-2xl px-6 py-5 md:px-8">
+  <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-10">
+    <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-gray-400 whitespace-nowrap shrink-0">
+      Experience &amp; Education
+    </span>
+
+    <div class="flex flex-1 items-center justify-between sm:justify-start gap-8 sm:gap-12 flex-wrap">
+
+      <!-- IBM -->
+      <a href="https://www.ibm.com" target="_blank" rel="noopener" title="IBM" class="group flex items-center h-8">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/512px-IBM_logo.svg.png"
+             alt="IBM" class="h-6 md:h-7 object-contain opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=&quot;text-lg font-extrabold tracking-tight text-gray-400 group-hover:text-gray-900 transition-colors&quot;>IBM</span>');">
+      </a>
+
+      <!-- Inditex -->
+      <a href="https://www.inditex.com" target="_blank" rel="noopener" title="Inditex (via Knowmad Mood)" class="group flex items-center h-8">
+        <img src="{% static 'img/logos/inditex_new.png' %}?v=1"
+             alt="Inditex" class="h-5 md:h-6 object-contain opacity-50 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span class=&quot;text-lg font-semibold tracking-tight text-gray-400 group-hover:text-gray-900 transition-colors&quot;>INDITEX</span>');">
+      </a>
+
+      <!-- The Open University -->
+      <a href="https://www.open.ac.uk" target="_blank" rel="noopener" title="The Open University" class="group flex items-center h-8 gap-2">
+        <i class="fas fa-graduation-cap text-gray-400 group-hover:text-purple-500 transition-colors"></i>
+        <span class="text-sm md:text-[15px] font-semibold tracking-tight text-gray-400 group-hover:text-gray-900 transition-colors whitespace-nowrap">The Open University</span>
+      </a>
+
+    </div>
+  </div>
+</div>
