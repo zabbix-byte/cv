@@ -8,7 +8,7 @@
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
       <!-- Leadership -->
       <div>
         <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
@@ -16,21 +16,42 @@
         </h3>
         <div class="space-y-2">
           {% include 'home/skill.html' with skill="Software Architecture" category="leadership" %}
-          {% include 'home/skill.html' with skill="Product Thinking" category="leadership" %}
           {% include 'home/skill.html' with skill="Team Management" category="leadership" %}
+          {% include 'home/skill.html' with skill="Product Thinking" category="leadership" %}
         </div>
       </div>
 
-      <!-- Dev -->
+      <!-- Engineering -->
       <div>
         <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> Development
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> Engineering
         </h3>
         <div class="space-y-2">
-          {% include 'home/skill.html' with skill="Python & Django" category="development" %}
-          {% include 'home/skill.html' with skill="Data Engineering" category="development" %}
-          {% include 'home/skill.html' with skill="AWS Cloud" category="infrastructure" %}
+          {% include 'home/skill.html' with skill="Backend & Distributed Systems" category="development" %}
+          {% include 'home/skill.html' with skill="Data Engineering & AI" category="development" %}
+          {% include 'home/skill.html' with skill="Cloud & DevOps" category="infrastructure" %}
         </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div>
+      <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-2"></span> Tech Stack
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors"><i class="fab fa-python text-blue-400 mr-1.5"></i>Python</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Django</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors"><i class="fab fa-aws text-orange-400 mr-1.5"></i>AWS</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors"><i class="fab fa-docker text-blue-300 mr-1.5"></i>Docker</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Kubernetes</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Databricks</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Spark / ETL</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">PostgreSQL</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Redis</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">Multi-tenant</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors">LLM / AI</span>
+        <span class="px-3 py-1.5 rounded-lg bg-[#2c2c2e] text-xs font-semibold text-gray-200 border border-white/5 hover:bg-[#3a3a3c] transition-colors"><i class="fas fa-shield-halved text-green-400 mr-1.5"></i>Security</span>
       </div>
     </div>
 </div>
