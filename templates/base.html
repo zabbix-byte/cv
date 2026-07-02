@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/Person">
+<html lang="en" class="scroll-smooth" itemscope itemtype="http://schema.org/Person">
   <head>
     <!-- Made by @zabbix https://github.com/zabbix-byte | Vasile Ovidiu Ichim -->
     
     <!-- Primary Meta Tags -->
-    <title>Vasile Ovidiu Ichim - CTO & Co-founder de Valerdat</title>
-    <meta name="title" content="Vasile Ovidiu Ichim - CTO & Co-founder de Valerdat">
-    <meta name="description" content="CTO & Co-founder at Valerdat. Building AI-powered intelligent purchasing assistant for supply chain optimization. Specializing in Python, Django, Machine Learning, and Data Engineering.">
-    <meta name="keywords" content="Vasile Ovidiu Ichim, CTO, Co-founder, Valerdat, AI, Machine Learning, Python, Django, Data Engineering, Supply Chain">
+    <title>Vasile Ovidiu Ichim - Staff Engineer & Technical Lead</title>
+    <meta name="title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
+    <meta name="description" content="Staff Engineer, Technical Lead &amp; Software Architect building AI &amp; supply-chain platforms — ML forecasting, distributed systems &amp; LLMs. Ex-IBM, ex-Inditex.">
+    <meta name="keywords" content="Vasile Ovidiu Ichim, Staff Engineer, Technical Lead, Principal Engineer, Software Architect, Backend, Distributed Systems, AI, Machine Learning, Python, Django, Data Engineering, Supply Chain">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="author" content="Vasile Ovidiu Ichim">
@@ -18,14 +18,51 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://ztrunk.space/">
-    <meta property="og:title" content="Vasile Ovidiu Ichim - CTO & Co-founder de Valerdat">
-    <meta property="og:description" content="CTO & Co-founder at Valerdat. Building AI-powered intelligent purchasing assistant for supply chain optimization.">
+    <meta property="og:title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
+    <meta property="og:description" content="Staff Engineer, Technical Lead and Software Architect. Building data-intensive AI and supply-chain platforms — distributed systems, ML forecasting and LLMs.">
     <meta property="og:image" content="https://ztrunk.space/static/img/profile-picture.jpeg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Vasile Ovidiu Ichim - CTO & Co-founder de Valerdat">
-    <meta property="twitter:description" content="CTO & Co-founder at Valerdat. Building AI-powered intelligent purchasing assistant for supply chain optimization.">
+    <meta property="twitter:title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
+    <meta property="twitter:description" content="Staff Engineer, Technical Lead and Software Architect. Building data-intensive AI and supply-chain platforms — distributed systems, ML forecasting and LLMs.">
+
+    <!-- Structured Data (Schema.org Person) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Vasile Ovidiu Ichim",
+      "alternateName": "zabbix-byte",
+      "url": "https://ztrunk.space/",
+      "image": "https://ztrunk.space/static/img/profile-picture.jpeg",
+      "jobTitle": "Staff Engineer & Technical Lead",
+      "description": "Staff Engineer, Technical Lead and Software Architect building data-intensive AI and supply-chain platforms.",
+      "email": "mailto:zabbix@ztrunk.space",
+      "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
+      "worksFor": { "@type": "Organization", "name": "Valerdat", "url": "https://valerdat.com" },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "The Open University" },
+      "knowsAbout": ["Software Architecture", "Distributed Systems", "Machine Learning", "Time-series Forecasting", "Large Language Models", "Python", "Django", "AWS", "Data Engineering", "Supply Chain"],
+      "sameAs": [
+        "https://github.com/zabbix-byte",
+        "https://www.linkedin.com/in/zabbix-byte/"
+      ]
+    }
+    </script>
+
+    <!-- Site navigation (helps Google surface section / jump links) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        { "@type": "SiteNavigationElement", "position": 1, "name": "Experience", "url": "https://ztrunk.space/#experience" },
+        { "@type": "SiteNavigationElement", "position": 2, "name": "Projects", "url": "https://ztrunk.space/#projects" },
+        { "@type": "SiteNavigationElement", "position": 3, "name": "Skills", "url": "https://ztrunk.space/#skills" },
+        { "@type": "SiteNavigationElement", "position": 4, "name": "Certifications", "url": "https://ztrunk.space/#certifications" }
+      ]
+    }
+    </script>
     
     <!-- Additional Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5" />
@@ -34,7 +71,12 @@
     {% load static %}
     
     <!-- Favicon -->
-    <link rel="shortcut icon" style="border-radius: 50%;" type="image/x-icon" href="{% static 'img/profile-picture.jpeg' %}">
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'img/favicon-48.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16.png' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-180.png' %}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

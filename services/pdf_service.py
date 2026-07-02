@@ -72,7 +72,7 @@ class CVPDFGenerator:
         ))
         add(ParagraphStyle(
             name="Section", fontName="Helvetica-Bold", fontSize=10.5,
-            textColor=ACCENT, leading=12, spaceBefore=0, spaceAfter=3,
+            textColor=ACCENT, leading=12, spaceBefore=0, spaceAfter=2,
         ))
         add(ParagraphStyle(
             name="Summary", fontName="Helvetica", fontSize=9.4,
@@ -92,16 +92,16 @@ class CVPDFGenerator:
         ))
         add(ParagraphStyle(
             name="ExpBullet", fontName="Helvetica", fontSize=8.9,
-            textColor=HexColor("#33373d"), leading=11.8,
+            textColor=HexColor("#33373d"), leading=11.3,
             leftIndent=10, bulletIndent=0, spaceAfter=0.5,
         ))
         add(ParagraphStyle(
             name="SkillCat", fontName="Helvetica-Bold", fontSize=8.8,
-            textColor=INK, leading=13,
+            textColor=INK, leading=12,
         ))
         add(ParagraphStyle(
             name="SkillVal", fontName="Helvetica", fontSize=8.8,
-            textColor=HexColor("#33373d"), leading=13,
+            textColor=HexColor("#33373d"), leading=12,
         ))
         add(ParagraphStyle(
             name="Project", fontName="Helvetica-Bold", fontSize=9,
@@ -148,9 +148,9 @@ class CVPDFGenerator:
 
         elements = []
         elements += self._header(context_data)
-        elements.append(Spacer(1, 7))
+        elements.append(Spacer(1, 6))
         elements += self._highlights()
-        elements.append(Spacer(1, 8))
+        elements.append(Spacer(1, 6))
         elements += self._summary()
         elements += self._experience()
         elements += self._bottom()
@@ -167,7 +167,7 @@ class CVPDFGenerator:
         canvas.setFillColor(MUTED)
         canvas.drawString(
             self.MARGIN, 7 * mm,
-            "Vasile Ovidiu Ichim · CTO & Co-founder",
+            "Vasile Ovidiu Ichim · Staff Engineer & Technical Lead",
         )
         canvas.drawRightString(
             self.PAGE_SIZE[0] - self.MARGIN, 7 * mm,
@@ -178,18 +178,22 @@ class CVPDFGenerator:
     # ---- Sections --------------------------------------------------------
     def _header(self, ctx):
         name = ctx.get("name", "Vasile Ovidiu Ichim")
-        title = ctx.get("title", "CTO &amp; Co-founder · Software Architect")
+        title = ctx.get("title", "Staff Engineer &amp; Technical Lead · Software Architect")
         location = ctx.get("location", "Barcelona, Spain")
-        email = ctx.get("email", "contact@ztrunk.space")
+        email = ctx.get("email", "zabbix@ztrunk.space")
 
         def link(url, label):
             return f'<a href="{url}" color="#7db8ff">{label}</a>'
 
+        linkedin = (
+            link("https://www.linkedin.com/in/zabbix-byte/", "linkedin.com/in/zabbix-byte")
+            + ' <font color="#9aa0a6">(preferred)</font>'
+        )
         contact = "&nbsp;&nbsp;·&nbsp;&nbsp;".join([
             location,
+            linkedin,
             link(f"mailto:{email}", email),
             link("https://github.com/zabbix-byte", "github.com/zabbix-byte"),
-            link("https://www.linkedin.com/in/zabbix-byte/", "linkedin.com/in/zabbix-byte"),
         ])
 
         inner = [
@@ -202,8 +206,8 @@ class CVPDFGenerator:
             ("BACKGROUND", (0, 0), (-1, -1), DARK),
             ("LEFTPADDING", (0, 0), (-1, -1), 16),
             ("RIGHTPADDING", (0, 0), (-1, -1), 16),
-            ("TOPPADDING", (0, 0), (-1, -1), 11),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 11),
+            ("TOPPADDING", (0, 0), (-1, -1), 9),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
             ("ROUNDEDCORNERS", [8, 8, 8, 8]),
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ]))
@@ -249,16 +253,16 @@ class CVPDFGenerator:
         return [
             Paragraph(text.upper(), self.styles["Section"]),
             HRFlowable(width="100%", thickness=1.2, color=ACCENT,
-                       spaceBefore=0, spaceAfter=4, lineCap="round"),
+                       spaceBefore=0, spaceAfter=3, lineCap="round"),
         ]
 
     def _summary(self):
         text = (
-            "CTO &amp; co-founder and software architect with 7+ years building data-intensive "
-            "platforms. I design and lead the architecture of AI and supply-chain systems — "
-            "distributed data pipelines, multi-tenant SaaS and LLM-powered products — and the teams "
-            "that build them. Enterprise background across <b>IBM</b> and <b>Inditex</b>. Hands-on with "
-            "Python, Django, AWS, Databricks and Kubernetes."
+            "Staff-level engineer, technical lead and software architect with 7+ years building "
+            "data-intensive platforms — distributed pipelines, ML forecasting, multi-tenant SaaS and "
+            "LLM-powered products — and the teams that build them. Co-founder &amp; CTO of an AI "
+            "procurement startup; enterprise background across <b>IBM</b> and <b>Inditex</b>. "
+            "Hands-on with Python, Django, AWS, Databricks and Kubernetes."
         )
         press = (
             'Featured in <a href="https://www.viaempresa.cat/es/empresa/'
@@ -271,7 +275,7 @@ class CVPDFGenerator:
             Paragraph(text, self.styles["Summary"]),
             Spacer(1, 3),
             Paragraph(press, self.styles["Tech"]),
-            Spacer(1, 7),
+            Spacer(1, 2),
         ]
 
     def _exp_entry(self, role, company, dates, bullets):
@@ -290,7 +294,7 @@ class CVPDFGenerator:
         flow = [head]
         for b in bullets:
             flow.append(Paragraph(b, self.styles["ExpBullet"], bulletText="•"))
-        flow.append(Spacer(1, 4))
+        flow.append(Spacer(1, 3))
         return KeepTogether(flow)
 
     def _experience(self):
@@ -298,7 +302,7 @@ class CVPDFGenerator:
             self._exp_entry(
                 "CTO &amp; Co-founder", "Valerdat", "May 2020 – Present",
                 [
-                    "Designed and lead the architecture of an AI procurement platform processing 10TB+ of data daily with Spark.",
+                    "Designed and lead the architecture of an AI procurement platform — demand forecasting at &lt;5% MAPE — processing 10TB+ of data daily with Spark.",
                     "Built distributed ETL pipelines (Databricks/Spark) and a multi-tenant Django core serving enterprise customers.",
                     "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
                     "Scaled and lead a cross-functional engineering team (code review, testing, CI/CD) and own AWS infra, observability and security.",
@@ -313,11 +317,11 @@ class CVPDFGenerator:
                 ],
             ),
             self._exp_entry(
-                "System Administrator", "IBM", "Feb 2021 – Mar 2022",
+                "Middleware &amp; Application Operations", "IBM", "Feb 2021 – Mar 2022",
                 [
-                    "Managed 200+ Linux servers at 99.95% availability for Fortune 500 clients.",
-                    "Automated operations with Python and Ansible, cutting manual effort by ~60%.",
-                    "Implemented Prometheus/Grafana monitoring, improving incident response by ~40%.",
+                    "Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services — tax, agriculture and others.",
+                    "Administered application and web servers: IBM WebSphere, Oracle WebLogic, Apache Tomcat, Apache HTTP Server and Nginx.",
+                    "Operated across RedHat Linux and Windows Server environments, ensuring reliable release rollouts.",
                 ],
             ),
             self._exp_entry(
@@ -336,7 +340,7 @@ class CVPDFGenerator:
             ("Languages", "Python (expert), C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
             ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
-            ("AI &amp; Architecture", "LLM integration, distributed systems, multi-tenant SaaS, ERP integrations, system design"),
+            ("AI, ML &amp; Architecture", "Forecasting (Prophet, ARIMA, XGBoost, NHITS, TFT), LLM integration, distributed systems, multi-tenant SaaS, ERP integrations"),
             ("Leadership", "Technical leadership, team management, mentoring, Agile/Scrum"),
         ]
         data = []
@@ -351,7 +355,7 @@ class CVPDFGenerator:
             ("LEFTPADDING", (0, 0), (-1, -1), 0),
             ("RIGHTPADDING", (0, 0), (-1, -1), 0),
             ("TOPPADDING", (0, 0), (-1, -1), 1),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
         ]))
         return self._section_header("Skills") + [t]
 
@@ -375,8 +379,8 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Procurement Platform",
-                "LLM-powered purchasing assistant automating supply-chain decisions.",
-                "Python · Django · LLM · AWS"),
+                "AI-powered MRP: demand forecasting (Prophet, XGBoost, TFT) at &lt;5% MAPE, optimization and LLMs.",
+                "Forecasting · Optimization · LLM · Python"),
             self._project_cell(
                 "Distributed ETL Engine",
                 "Databricks/Spark pipelines processing 10TB+ of data daily.",
@@ -403,7 +407,7 @@ class CVPDFGenerator:
             ("LEFTPADDING", (1, 0), (1, -1), gutter),
             ("RIGHTPADDING", (1, 0), (-1, -1), 0),
             ("TOPPADDING", (0, 0), (-1, 0), 0),
-            ("TOPPADDING", (0, 1), (-1, 1), 7),
+            ("TOPPADDING", (0, 1), (-1, 1), 5),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ]))
         return self._section_header("Featured Projects") + [grid]
@@ -424,18 +428,18 @@ class CVPDFGenerator:
         ]))
         flow = self._section_header("Education &amp; Certifications")
         flow.append(edu)
-        flow.append(Spacer(1, 3))
+        flow.append(Spacer(1, 2))
         flow.append(Paragraph(
             "<b>Certifications:</b> AWS Cloud (Practical) · FastAPI — Backend APIs",
             self.styles["EduMeta"]))
         return flow
 
     def _bottom(self):
-        flow = [Spacer(1, 2)]
+        flow = [Spacer(1, 1)]
         flow += self._skills_block()
-        flow.append(Spacer(1, 6))
+        flow.append(Spacer(1, 4))
         flow += self._projects_block()
-        flow.append(Spacer(1, 6))
+        flow.append(Spacer(1, 3))
         flow.append(KeepTogether(self._edu_block()))
         return flow
 

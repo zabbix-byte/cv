@@ -20,7 +20,8 @@
         </div>
     </div>
     
-    <button class="w-full py-4 rounded-xl bg-white text-black text-sm font-bold hover:bg-gray-200 transition-all hover:scale-[1.02] shadow-lg">
-        Download CV
-    </button>
+    <a href="{% url 'download_cv_pdf' %}"
+       class="w-full py-4 rounded-xl bg-white text-black text-sm font-bold hover:bg-gray-200 transition-all hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
+        <i class="fas fa-download"></i> Download CV
+    </a>
 </div>

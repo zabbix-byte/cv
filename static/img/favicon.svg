@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#1c1c1e"/>
+  <text x="32" y="42" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="1">VI</text>
+  <rect x="20" y="48" width="24" height="3.5" rx="1.75" fill="#0071e3"/>
+</svg>

@@ -285,7 +285,7 @@ class GitHubService:
         return {
             "login": self.username,
             "name": "Vasile Ovidiu Ichim",
-            "bio": "CTO & Co-founder at Valerdat building AI-powered purchasing assistant",
+            "bio": "Staff Engineer & Technical Lead · Software Architect building AI-powered supply-chain platforms",
             "location": "Barcelona, Spain",
             "public_repos": 0,
             "followers": 0,

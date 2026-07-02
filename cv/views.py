@@ -39,7 +39,7 @@ def home(request):
             "github_profile": {
                 "login": "zabbix-byte",
                 "name": "Vasile Ovidiu Ichim",
-                "bio": "CTO & Co-founder at Valerdat building AI-powered purchasing assistant",
+                "bio": "Staff Engineer & Technical Lead · Software Architect building AI-powered supply-chain platforms",
                 "location": "Barcelona, Spain",
                 "public_repos": 0,
                 "followers": 0,
@@ -89,9 +89,9 @@ def download_cv_pdf(request):
             "github_languages": github_data.get("languages", []),
             "github_stats": github_data.get("stats", {}),
             "name": "Vasile Ovidiu Ichim",
-            "title": "CTO & Co-founder de Valerdat",
+            "title": "Staff Engineer &amp; Technical Lead · Software Architect",
             "location": "Barcelona, Spain",
-            "email": "contact@ztrunk.space",
+            "email": "zabbix@ztrunk.space",
             "github_url": "https://github.com/zabbix-byte",
             "linkedin_url": "https://linkedin.com/in/zabbix-byte",
         }
