@@ -89,17 +89,27 @@
     <!-- Spotlight Effect & Scroll Reveal Script -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Spotlight Effect
-        const cards = document.querySelectorAll('.group, .rounded-\\[2rem\\]');
-        document.addEventListener('mousemove', e => {
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
+        // Spotlight Effect — only update the hovered card, throttled to one frame.
+        const SPOTLIGHT_SELECTOR = '.group, .rounded-\\[2rem\\]';
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        if (finePointer) {
+            let lastEvent = null, ticking = false;
+            document.addEventListener('mousemove', e => {
+                lastEvent = e;
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    ticking = false;
+                    const card = lastEvent.target.closest
+                        ? lastEvent.target.closest(SPOTLIGHT_SELECTOR)
+                        : null;
+                    if (!card) return;
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--mouse-x', (lastEvent.clientX - rect.left) + 'px');
+                    card.style.setProperty('--mouse-y', (lastEvent.clientY - rect.top) + 'px');
+                });
+            }, { passive: true });
+        }
 
         // Scroll Reveal
         const observerOptions = {
