@@ -121,7 +121,7 @@ class CVPDFGenerator:
         ))
         add(ParagraphStyle(
             name="EduMeta", fontName="Helvetica", fontSize=8.6,
-            textColor=MUTED, leading=12,
+            textColor=MUTED, leading=10.5,
         ))
 
     # ---- Document --------------------------------------------------------
@@ -148,9 +148,9 @@ class CVPDFGenerator:
 
         elements = []
         elements += self._header(context_data)
-        elements.append(Spacer(1, 6))
+        elements.append(Spacer(1, 5))
         elements += self._highlights()
-        elements.append(Spacer(1, 6))
+        elements.append(Spacer(1, 5))
         elements += self._summary()
         elements += self._experience()
         elements += self._bottom()
@@ -218,7 +218,7 @@ class CVPDFGenerator:
             ("7+ yrs", "Engineering"),
             ("IBM · Inditex", "Enterprise track record"),
             ("10TB+ / day", "Data processed (Spark)"),
-            ("Team Lead", "Cross-functional eng"),
+            ("0 → 1", "Platform built hands-on"),
         ]
         # Each stat becomes its own mini-table to stack number over label
         col = self.content_width / 4.0
@@ -258,10 +258,10 @@ class CVPDFGenerator:
 
     def _summary(self):
         text = (
-            "Staff-level engineer, technical lead and software architect with 7+ years building "
-            "data-intensive platforms — distributed pipelines, ML forecasting, multi-tenant SaaS and "
-            "LLM-powered products — and the teams that build them. Co-founder &amp; CTO of an AI "
-            "procurement startup; enterprise background across <b>IBM</b> and <b>Inditex</b>. "
+            "Staff-level engineer and software architect with 7+ years building data-intensive "
+            "platforms — distributed pipelines, ML forecasting, multi-tenant SaaS and LLM-powered "
+            "products. Co-founder and CTO of an AI procurement startup, where I re-architected the "
+            "platform for 10TB+/day; enterprise background across <b>IBM</b> and <b>Inditex</b>. "
             "Hands-on with Python, Django, AWS, Databricks and Kubernetes."
         )
         press = (
@@ -273,9 +273,9 @@ class CVPDFGenerator:
         )
         return self._section_header("Profile") + [
             Paragraph(text, self.styles["Summary"]),
-            Spacer(1, 3),
-            Paragraph(press, self.styles["Tech"]),
             Spacer(1, 2),
+            Paragraph(press, self.styles["Tech"]),
+            Spacer(1, 1),
         ]
 
     def _exp_entry(self, role, company, dates, bullets):
@@ -294,22 +294,22 @@ class CVPDFGenerator:
         flow = [head]
         for b in bullets:
             flow.append(Paragraph(b, self.styles["ExpBullet"], bulletText="•"))
-        flow.append(Spacer(1, 3))
+        flow.append(Spacer(1, 2))
         return KeepTogether(flow)
 
     def _experience(self):
         entries = [
             self._exp_entry(
-                "CTO &amp; Co-founder", "Valerdat", "May 2020 – Present",
+                "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
-                    "Designed and lead the architecture of an AI procurement platform — demand forecasting at &lt;5% MAPE — processing 10TB+ of data daily with Spark.",
-                    "Built distributed ETL pipelines (Databricks/Spark) and a multi-tenant Django core serving enterprise customers.",
+                    "Re-architected the platform end to end to process 10TB+/day with Spark and serve near-instant responses; demand forecasting at &lt;5% MAPE.",
+                    "Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infra, observability &amp; security.",
                     "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
-                    "Scaled and lead a cross-functional engineering team (code review, testing, CI/CD) and own AWS infra, observability and security.",
+                    "Founding engineer turned CTO by team decision — sole engineer transversal across the stack, still hands-on and setting direction.",
                 ],
             ),
             self._exp_entry(
-                "Python Software Engineer", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
+                "Python Software Engineer (concurrent)", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
                 [
                     "Built the strategic planning platform for Inditex's Security Department (Django, React, AWS).",
                     "Designed REST APIs and microservices, improving scalability of internal supply-chain operations.",
@@ -325,11 +325,10 @@ class CVPDFGenerator:
                 ],
             ),
             self._exp_entry(
-                "Full Stack Developer", "Dataxip SL", "Feb 2018 – Feb 2021",
+                "Software &amp; Systems Engineer", "Dataxip SL", "Feb 2018 – Feb 2021",
                 [
-                    "Delivered full-stack products end to end (Django, Vue.js) on AWS.",
-                    "Designed and optimized SQL databases (100K+ records) and third-party integrations.",
-                    "Set up automated deployments and staging environments.",
+                    "First role and best school — hands-on with everything: physical servers, networking &amp; security (MikroTik), Linux services (Apache/Nginx) and Python web apps.",
+                    "Developed Sage 50 ERP extensions and custom reports — the early roots of the ERP integration work I lead today.",
                 ],
             ),
         ]
@@ -341,7 +340,7 @@ class CVPDFGenerator:
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
             ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
             ("AI, ML &amp; Architecture", "Forecasting (Prophet, ARIMA, XGBoost, NHITS, TFT), LLM integration, distributed systems, multi-tenant SaaS, ERP integrations"),
-            ("Leadership", "Technical leadership, team management, mentoring, Agile/Scrum"),
+            ("Technical Leadership", "Architecture &amp; design reviews, technical direction, mentoring"),
         ]
         data = []
         for cat, val in rows:
@@ -432,14 +431,17 @@ class CVPDFGenerator:
         flow.append(Paragraph(
             "<b>Certifications:</b> AWS Cloud (Practical) · FastAPI — Backend APIs",
             self.styles["EduMeta"]))
+        flow.append(Paragraph(
+            "<b>Languages:</b> Romanian (native) · Spanish (fluent, C2) · English (professional, C1)",
+            self.styles["EduMeta"]))
         return flow
 
     def _bottom(self):
         flow = [Spacer(1, 1)]
         flow += self._skills_block()
-        flow.append(Spacer(1, 4))
-        flow += self._projects_block()
         flow.append(Spacer(1, 3))
+        flow += self._projects_block()
+        flow.append(Spacer(1, 2))
         flow.append(KeepTogether(self._edu_block()))
         return flow
 
