@@ -1,13 +1,13 @@
-<!-- Skill Card Style (Dark Mode) -->
-<div class="group bg-[#2c2c2e] rounded-xl p-4 border border-white/5 shadow-sm hover:bg-[#3a3a3c] transition-all duration-300">
+<!-- Skill Card Style (PostHog light) -->
+<div class="group bg-[#f3f4ef] rounded-xl p-4 border border-black/5 shadow-sm hover:bg-[#e6e7df] transition-all duration-300">
   <div class="flex items-center justify-between mb-2">
-    <h4 class="font-bold text-gray-100 text-sm leading-tight">
+    <h4 class="font-bold text-[#151515] text-sm leading-tight">
       {{ skill }}
     </h4>
   </div>
   
   <!-- Skill Description -->
-  <div class="flex items-center text-gray-400 group-hover:text-blue-400 transition-colors duration-300">
+  <div class="flex items-center text-gray-600 group-hover:text-ph-blue transition-colors duration-300">
     <i class="{% if skill == 'Software Architecture' %}fas fa-sitemap{% elif skill == 'Product Thinking' %}fas fa-lightbulb{% elif skill == 'Technical Mentoring' %}fas fa-user-graduate{% elif skill == 'Backend & Distributed Systems' %}fas fa-network-wired{% elif skill == 'Cloud & DevOps' %}fas fa-cloud{% elif skill == 'Data Engineering & AI' %}fas fa-chart-line{% endif %} text-xs mr-2"></i>
     <span class="text-xs font-medium">
       {% if skill == "Software Architecture" %}System design at scale{% endif %}

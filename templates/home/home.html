@@ -1,52 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-  
-  <!-- Apple Store Style Bento Grid Layout -->
-  <div class="grid grid-cols-12 gap-8 lg:gap-10 w-full pb-20">
-    
-    <!-- Row 1: Navbar (Full Width) -->
-    <div class="col-span-12 mb-2 reveal-on-scroll z-50">
-       {% include 'home/navbar.html' %}
-    </div>
 
-    <!-- Row 2: Hero Profile Card (Full Width) -->
-    <div class="col-span-12 reveal-on-scroll delay-100">
-        {% include 'home/me.html' %}
-    </div>
-
-    <!-- Row 2b: Credibility / Logos Strip -->
-    <div class="col-span-12 -mt-2 reveal-on-scroll delay-200">
-        {% include 'home/logos.html' %}
-    </div>
-    
-    <!-- Row 3: Experience Carousel (Full Width) -->
-    <div id="experience" class="col-span-12 scroll-mt-24 reveal-on-scroll delay-200">
-        {% include 'home/experience_carousel.html' %}
-    </div>
-
-    <!-- Row 4: Projects Carousel (Full Width) -->
-    <div id="projects" class="col-span-12 scroll-mt-24 reveal-on-scroll delay-200">
-        {% include 'home/projects_carousel.html' %}
-    </div>
-
-    <!-- Row 4b: Systems & Security Research (lateral detail) -->
-    <div id="research" class="col-span-12 scroll-mt-24 reveal-on-scroll delay-200">
-        {% include 'home/research.html' %}
-    </div>
-
-    <!-- Row 5: Skills & Education Bento Grid -->
-    <div id="skills" class="col-span-12 h-auto scroll-mt-24 reveal-on-scroll delay-200">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 h-full">
-            {% include 'home/skills_bento.html' %}
-            {% include 'home/education_bento.html' %}
-        </div>
-    </div>
-
-    <!-- Row 6: Certifications Carousel (New) -->
-    <div id="certifications" class="col-span-12 scroll-mt-24 reveal-on-scroll delay-200">
-        {% include 'home/certifications_carousel.html' %}
-    </div>
-    
+  <!-- Desktop file icons -->
+  <div class="ph-desktop-icons" aria-label="Desktop files">
+    <button class="ph-icon" data-open="about" title="Open about.md">
+      <span class="ph-icon-glyph ph-a-blue"><i class="fas fa-user"></i></span>
+      <span class="ph-icon-label">about.md</span>
+    </button>
+    <button class="ph-icon" data-open="experience" title="Open experience.sh">
+      <span class="ph-icon-glyph ph-a-red"><i class="fas fa-briefcase"></i></span>
+      <span class="ph-icon-label">experience.sh</span>
+    </button>
+    <button class="ph-icon" data-open="projects" title="Open projects/">
+      <span class="ph-icon-glyph ph-a-blue"><i class="fas fa-diagram-project"></i></span>
+      <span class="ph-icon-label">projects/</span>
+    </button>
+    <button class="ph-icon" data-open="skills" title="Open skills.json">
+      <span class="ph-icon-glyph ph-a-green"><i class="fas fa-layer-group"></i></span>
+      <span class="ph-icon-label">skills.json</span>
+    </button>
+    <button class="ph-icon" data-open="education" title="Open education.md">
+      <span class="ph-icon-glyph ph-a-purple"><i class="fas fa-graduation-cap"></i></span>
+      <span class="ph-icon-label">education.md</span>
+    </button>
+    <button class="ph-icon" data-open="research" title="Open research.md">
+      <span class="ph-icon-glyph ph-a-yellow"><i class="fas fa-microchip"></i></span>
+      <span class="ph-icon-label">research.md</span>
+    </button>
+    <button class="ph-icon" data-open="certifications" title="Open certs.log">
+      <span class="ph-icon-glyph ph-a-orange"><i class="fas fa-award"></i></span>
+      <span class="ph-icon-label">certs.log</span>
+    </button>
+    <button class="ph-icon" data-trash title="Trash">
+      <span class="ph-icon-glyph ph-a-ink"><i class="fas fa-trash"></i></span>
+      <span class="ph-icon-label">Trash</span>
+    </button>
   </div>
+
+  <!-- Windows -->
+  {% include 'home/window.html' with win_id='about' title='about.md' body_template='home/about_window.html' win_accent='ph-a-blue' win_open=True win_w='780' win_x='320' win_y='58' %}
+  {% include 'home/window.html' with win_id='experience' title='experience.sh' body_template='home/experience_carousel.html' win_accent='ph-a-red' win_w='860' win_x='250' win_y='120' %}
+  {% include 'home/window.html' with win_id='projects' title='projects/' body_template='home/projects_carousel.html' win_accent='ph-a-blue' win_w='880' win_x='300' win_y='96' %}
+  {% include 'home/window.html' with win_id='skills' title='skills.json' body_template='home/skills_bento.html' win_accent='ph-a-green' win_w='760' win_x='330' win_y='130' %}
+  {% include 'home/window.html' with win_id='education' title='education.md' body_template='home/education_bento.html' win_accent='ph-a-purple' win_w='520' win_x='620' win_y='150' %}
+  {% include 'home/window.html' with win_id='research' title='research.md' body_template='home/research.html' win_accent='ph-a-yellow' win_w='820' win_x='340' win_y='170' %}
+  {% include 'home/window.html' with win_id='certifications' title='certs.log' body_template='home/certifications_carousel.html' win_accent='ph-a-orange' win_w='800' win_x='360' win_y='150' %}
 
 {% endblock %}

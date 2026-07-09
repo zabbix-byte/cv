@@ -66,7 +66,7 @@
     
     <!-- Additional Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5" />
-    <meta name="theme-color" content="#f5f5f7" />
+    <meta name="theme-color" content="#EEEFE9" />
     
     {% load static %}
     
@@ -81,7 +81,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -173,6 +173,7 @@
           extend: {
             fontFamily: {
               'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+              'mono': ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
             },
             colors: {
               'apple-gray': {
@@ -186,6 +187,13 @@
               },
               'apple-blue': '#0071e3',
               'apple-blue-hover': '#0077ed',
+              'ph-cream': '#EEEFE9',
+              'ph-cream2': '#F3F4EF',
+              'ph-red': '#F54E00',
+              'ph-blue': '#1D4AFF',
+              'ph-yellow': '#F9BD2B',
+              'ph-ink': '#151515',
+              'ph-border': '#DBDBD1',
             },
             boxShadow: {
               'soft': '0 4px 24px rgba(0,0,0,0.04)',
@@ -200,26 +208,26 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
 
-  <body class="bg-[#f2f2f7] min-h-screen relative font-sans antialiased text-gray-900 selection:bg-black selection:text-white overflow-x-hidden">
+  <body class="ph-desktop min-h-screen relative font-sans antialiased text-ph-ink selection:bg-ph-red selection:text-white overflow-x-hidden">
 
-    <!-- Apple-style Mesh Gradient Background -->
-    <div class="fixed inset-0 -z-10 bg-[#f5f5f7] overflow-hidden">
-        <div class="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-purple-300/30 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 animate-blob"></div>
-        <div class="absolute top-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-blue-300/30 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-[20%] left-[20%] w-[70vw] h-[70vw] bg-cyan-300/30 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 animate-blob animation-delay-4000"></div>
-        <div class="absolute -bottom-[10%] -right-[10%] w-[60vw] h-[60vw] bg-pink-300/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-50 animate-blob animation-delay-6000"></div>
-        <!-- Grain overlay for texture -->
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
-    </div>
+    <!-- Desktop wallpaper -->
+    <div class="ph-wallpaper"></div>
 
-    <!-- Main Content -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- OS Menu bar -->
+    {% include 'home/menubar.html' %}
+
+    <!-- Desktop screen (icons + windows) -->
+    <main class="ph-screen">
       {% block content %}
       {% endblock %}
-    </div>
+    </main>
+
+    <!-- Dock -->
+    {% include 'home/dock.html' %}
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/desktop.js' %}"></script>
     
     <!-- Simple fade in animation -->
     <script>

@@ -1,0 +1,17 @@
+{% load static %}
+<section id="win-{{ win_id }}"
+         class="ph-window{% if not win_open %} is-hidden{% endif %}"
+         data-window="{{ win_id }}"
+         style="width:{{ win_w|default:'720' }}px; left:{{ win_x|default:'120' }}px; top:{{ win_y|default:'70' }}px;">
+  <header class="ph-titlebar" data-drag-handle>
+    <div class="ph-traffic">
+      <button type="button" class="ph-dot red" data-action="close" aria-label="Close window"><i class="fas fa-xmark"></i></button>
+      <button type="button" class="ph-dot yellow" data-action="minimize" aria-label="Minimize window"><i class="fas fa-minus"></i></button>
+      <button type="button" class="ph-dot green" data-action="maximize" aria-label="Maximize window"><i class="fas fa-plus"></i></button>
+    </div>
+    <span class="ph-title"><span class="ph-title-dot {{ win_accent|default:'ph-a-ink' }}"></span>{{ title }}</span>
+  </header>
+  <div class="ph-window-body">
+    {% include body_template %}
+  </div>
+</section>
