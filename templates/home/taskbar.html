@@ -1,0 +1,43 @@
+{% load static %}
+<div class="ph-taskbar" aria-label="Taskbar">
+  <button class="ph-start" id="ph-start" aria-haspopup="true" aria-expanded="false">
+    <span class="ph-start-hog"><i class="fas fa-terminal"></i></span>
+    <span class="ph-start-txt">Start</span>
+  </button>
+
+  <span class="ph-taskbar-sep"></span>
+
+  <div class="ph-tasks" aria-label="Open windows">
+    <button class="ph-task" data-dock="about"><span class="ph-task-dot ph-a-blue"></span><span class="ph-task-label">about.md</span></button>
+    <button class="ph-task" data-dock="experience"><span class="ph-task-dot ph-a-red"></span><span class="ph-task-label">experience.sh</span></button>
+    <button class="ph-task" data-dock="projects"><span class="ph-task-dot ph-a-blue"></span><span class="ph-task-label">projects/</span></button>
+    <button class="ph-task" data-dock="skills"><span class="ph-task-dot ph-a-green"></span><span class="ph-task-label">skills.json</span></button>
+    <button class="ph-task" data-dock="education"><span class="ph-task-dot ph-a-purple"></span><span class="ph-task-label">education.md</span></button>
+    <button class="ph-task" data-dock="research"><span class="ph-task-dot ph-a-yellow"></span><span class="ph-task-label">research.md</span></button>
+    <button class="ph-task" data-dock="certifications"><span class="ph-task-dot ph-a-orange"></span><span class="ph-task-label">certs.log</span></button>
+  </div>
+
+  <div class="ph-tray">
+    <a class="ph-tray-btn" href="https://github.com/zabbix-byte" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+    <a class="ph-tray-btn" href="https://www.linkedin.com/in/zabbix-byte/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a class="ph-tray-btn" href="{% url 'download_cv_pdf' %}" title="Download Resume PDF"><i class="fas fa-file-arrow-down"></i></a>
+    <span class="ph-clock-box" id="ph-clock" aria-hidden="true">--:--</span>
+  </div>
+</div>
+
+<div class="ph-startmenu is-hidden" id="ph-startmenu" role="menu" aria-label="Launcher">
+  <div class="ph-startmenu-head"><i class="fas fa-terminal"></i> ztrunkOS &mdash; launcher</div>
+  <div class="ph-startmenu-list">
+    <button class="ph-startmenu-item" data-open="about" role="menuitem"><span class="ph-startmenu-glyph ph-a-blue"><i class="fas fa-user"></i></span>about.md</button>
+    <button class="ph-startmenu-item" data-open="experience" role="menuitem"><span class="ph-startmenu-glyph ph-a-red"><i class="fas fa-briefcase"></i></span>experience.sh</button>
+    <button class="ph-startmenu-item" data-open="projects" role="menuitem"><span class="ph-startmenu-glyph ph-a-blue"><i class="fas fa-diagram-project"></i></span>projects/</button>
+    <button class="ph-startmenu-item" data-open="skills" role="menuitem"><span class="ph-startmenu-glyph ph-a-green"><i class="fas fa-layer-group"></i></span>skills.json</button>
+    <button class="ph-startmenu-item" data-open="education" role="menuitem"><span class="ph-startmenu-glyph ph-a-purple"><i class="fas fa-graduation-cap"></i></span>education.md</button>
+    <button class="ph-startmenu-item" data-open="research" role="menuitem"><span class="ph-startmenu-glyph ph-a-yellow"><i class="fas fa-microchip"></i></span>research.md</button>
+    <button class="ph-startmenu-item" data-open="certifications" role="menuitem"><span class="ph-startmenu-glyph ph-a-orange"><i class="fas fa-award"></i></span>certs.log</button>
+    <div class="ph-startmenu-sep"></div>
+    <a class="ph-startmenu-item" href="https://github.com/zabbix-byte" target="_blank" rel="noopener" role="menuitem"><span class="ph-startmenu-glyph ph-a-ink"><i class="fab fa-github"></i></span>GitHub</a>
+    <a class="ph-startmenu-item" href="https://www.linkedin.com/in/zabbix-byte/" target="_blank" rel="noopener" role="menuitem"><span class="ph-startmenu-glyph ph-a-blue"><i class="fab fa-linkedin-in"></i></span>LinkedIn</a>
+    <a class="ph-startmenu-item" href="{% url 'download_cv_pdf' %}" role="menuitem"><span class="ph-startmenu-glyph ph-a-red"><i class="fas fa-file-arrow-down"></i></span>resume.pdf</a>
+  </div>
+</div>

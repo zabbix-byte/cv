@@ -1,18 +1,11 @@
-<div class="bg-transparent p-0 h-full">
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-[#151515] tracking-tight flex items-center gap-3">
-        <span class="w-10 h-10 rounded-xl bg-[#f3f4ef] flex items-center justify-center text-ph-blue shadow-inner border border-black/5">
-             <i class="fas fa-layer-group text-sm"></i>
-        </span>
-        Core Competencies
-      </h2>
-    </div>
+<div class="space-y-5">
+    <h2>Core Competencies</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="grid grid-cols-1 gap-5">
       <!-- Leadership -->
       <div>
-        <h3 class="text-xs font-bold text-gray-600 uppercase tracking-widest mb-3 flex items-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2"></span> Leadership
+        <h3 class="text-xs font-bold text-[#6b6b64] uppercase tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-sm bg-ph-yellow border border-[#151515]"></span> Leadership
         </h3>
         <div class="space-y-2">
           {% include 'home/skill.html' with skill="Software Architecture" category="leadership" %}
@@ -23,8 +16,8 @@
 
       <!-- Engineering -->
       <div>
-        <h3 class="text-xs font-bold text-gray-600 uppercase tracking-widest mb-3 flex items-center">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2"></span> Engineering
+        <h3 class="text-xs font-bold text-[#6b6b64] uppercase tracking-wide mb-2 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-sm bg-ph-blue border border-[#151515]"></span> Engineering
         </h3>
         <div class="space-y-2">
           {% include 'home/skill.html' with skill="Backend & Distributed Systems" category="development" %}
@@ -36,26 +29,25 @@
 
     <!-- Tech Stack -->
     <div>
-      <h3 class="text-xs font-bold text-gray-600 uppercase tracking-widest mb-3 flex items-center">
-          <span class="w-1.5 h-1.5 rounded-full bg-green-400 mr-2"></span> Tech Stack
+      <h3 class="text-xs font-bold text-[#6b6b64] uppercase tracking-wide mb-2 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-sm bg-green-600 border border-[#151515]"></span> Tech Stack
       </h3>
-      <div class="flex flex-wrap gap-2">
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors"><i class="fab fa-python text-blue-400 mr-1.5"></i>Python</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Django</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors"><i class="fab fa-aws text-orange-400 mr-1.5"></i>AWS</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors"><i class="fab fa-docker text-blue-300 mr-1.5"></i>Docker</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Kubernetes</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Databricks</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Spark / ETL</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors"><i class="fas fa-chart-line text-purple-400 mr-1.5"></i>Time-series Forecasting</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">XGBoost</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">PyTorch Forecasting</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">PostgreSQL</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Redis</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">Multi-tenant</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">ERP Integrations</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors">LLM / AI</span>
-        <span class="px-3 py-1.5 rounded-lg bg-[#f3f4ef] text-xs font-semibold text-[#151515] border border-black/5 hover:bg-[#e6e7df] transition-colors"><i class="fas fa-shield-halved text-green-400 mr-1.5"></i>Security</span>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="ph-tag"><i class="fab fa-python mr-1"></i>Python</span>
+        <span class="ph-tag">Django</span>
+        <span class="ph-tag"><i class="fab fa-aws mr-1"></i>AWS</span>
+        <span class="ph-tag"><i class="fab fa-docker mr-1"></i>Docker</span>
+        <span class="ph-tag">Kubernetes</span>
+        <span class="ph-tag">Databricks</span>
+        <span class="ph-tag">Spark / ETL</span>
+        <span class="ph-tag">Forecasting</span>
+        <span class="ph-tag">XGBoost</span>
+        <span class="ph-tag">PyTorch</span>
+        <span class="ph-tag">PostgreSQL</span>
+        <span class="ph-tag">Redis</span>
+        <span class="ph-tag">Multi-tenant</span>
+        <span class="ph-tag">ERP Integrations</span>
+        <span class="ph-tag">LLM / AI</span>
       </div>
     </div>
 </div>

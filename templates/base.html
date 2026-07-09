@@ -210,11 +210,23 @@
 
   <body class="ph-desktop min-h-screen relative font-sans antialiased text-ph-ink selection:bg-ph-red selection:text-white overflow-x-hidden">
 
+    <!-- Power-on / boot screen -->
+    <div id="ph-boot" class="ph-boot" role="status" aria-label="Booting">
+      <div class="ph-boot-inner">
+        <div class="ph-boot-brand">
+          <span class="ph-boot-hog"><i class="fas fa-terminal"></i></span>
+          <span class="ph-boot-title">ztrunkOS <span style="color:#9a9a90;font-weight:500;">v1.0</span></span>
+        </div>
+        <pre id="ph-boot-log" class="ph-boot-log"></pre>
+        <div class="ph-boot-bar"><span id="ph-boot-bar"></span></div>
+        <div class="ph-boot-hint">click anywhere to skip &rarr;</div>
+      </div>
+    </div>
+
     <!-- Desktop wallpaper -->
     <div class="ph-wallpaper"></div>
-
-    <!-- OS Menu bar -->
-    {% include 'home/menubar.html' %}
+    <div class="ph-aurora" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    <div class="ph-cursor-glow" id="ph-cursor-glow" aria-hidden="true"></div>
 
     <!-- Desktop screen (icons + windows) -->
     <main class="ph-screen">
@@ -222,8 +234,11 @@
       {% endblock %}
     </main>
 
-    <!-- Dock -->
-    {% include 'home/dock.html' %}
+    <!-- Taskbar + Start launcher -->
+    {% include 'home/taskbar.html' %}
+
+    <!-- TARS desktop pet -->
+    {% include 'home/tars.html' %}
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

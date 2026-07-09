@@ -1,0 +1,166 @@
+{% load static %}
+
+<!-- TARS desktop pet: patrols along the bottom of the screen, above the dock -->
+<div id="tars-patrol" class="hidden md:block fixed left-0 right-0 bottom-[68px] h-[44px] z-[40] pointer-events-none overflow-visible">
+
+    <!-- Entry portal (left) -->
+    <div id="bh-entry" class="absolute top-1/2 left-[8%] -translate-x-1/2 -translate-y-1/2 w-12 h-12 z-0">
+         <div class="relative w-full h-full flex items-center justify-center">
+             <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-orange-600 via-yellow-100 to-orange-600 opacity-60 blur-[4px]"></div>
+             <div class="absolute w-[70%] h-[70%] bg-black rounded-full z-10 shadow-[inset_0_0_12px_#ea580c]"></div>
+             <div class="absolute w-[220%] h-[220%] rounded-full z-20 opacity-80 mix-blend-screen"
+                  style="background: radial-gradient(transparent 45%, rgba(253, 224, 71, 0.8) 50%, rgba(234, 88, 12, 0.6) 60%, transparent 70%); transform: rotateX(76deg);"></div>
+         </div>
+    </div>
+
+    <!-- Exit portal (right) -->
+    <div id="bh-exit" class="absolute top-1/2 left-[92%] -translate-x-1/2 -translate-y-1/2 w-12 h-12 z-0">
+         <div class="relative w-full h-full flex items-center justify-center">
+             <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-orange-600 via-yellow-100 to-orange-600 opacity-60 blur-[4px]"></div>
+             <div class="absolute w-[70%] h-[70%] bg-black rounded-full z-10 shadow-[inset_0_0_12px_#ea580c]"></div>
+             <div class="absolute w-[220%] h-[220%] rounded-full z-20 opacity-80 mix-blend-screen"
+                  style="background: radial-gradient(transparent 45%, rgba(253, 224, 71, 0.8) 50%, rgba(234, 88, 12, 0.6) 60%, transparent 70%); transform: rotateX(76deg);"></div>
+         </div>
+    </div>
+
+    <!-- TARS unit -->
+    <div id="tars-unit" class="absolute bottom-0 left-0 w-7 h-11 will-change-transform origin-center pointer-events-auto cursor-crosshair transition-[filter] duration-200 hover:brightness-110 z-10"
+         title="Click me"
+         style="animation: tars-teleport-loop 26s infinite linear;">
+
+        <div id="tars-body" class="w-full h-full flex gap-[1px] shadow-2xl origin-bottom" style="animation: tars-mechanic-walk 2.5s infinite ease-in-out;">
+
+            <div class="slab-outer w-1/4 h-full bg-gradient-to-b from-slate-300 via-slate-400 to-slate-500 rounded-[1px] border-[0.5px] border-slate-500/50 flex flex-col items-center justify-between py-1"
+                 style="animation: piston-outer 2.5s infinite ease-in-out;">
+                <div class="w-full h-full border-r border-slate-400/30 bg-[linear-gradient(90deg,transparent_50%,rgba(0,0,0,0.05)_50%)] bg-[length:4px_4px]"></div>
+            </div>
+
+            <div class="slab-inner w-1/4 h-full bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 rounded-[1px] border-[0.5px] border-slate-500/50 relative overflow-hidden"
+                 style="animation: piston-inner 2.5s infinite ease-in-out;">
+                 <div class="absolute top-2 left-[10%] w-[80%] h-3 bg-black rounded-[1px] border border-slate-500 overflow-hidden">
+                     <div class="w-full h-full bg-green-900/50 flex flex-col gap-[1px] p-[1px]">
+                         <div class="w-[80%] h-[1px] bg-green-400 opacity-80"></div>
+                         <div class="w-[60%] h-[1px] bg-green-400 opacity-80"></div>
+                         <div class="w-[90%] h-[1px] bg-green-400 opacity-80"></div>
+                     </div>
+                 </div>
+                 <div class="absolute top-6 left-[20%] text-[4px] font-bold text-slate-600 tracking-tighter rotate-90 origin-left opacity-80">TARS</div>
+            </div>
+
+            <div class="slab-inner w-1/4 h-full bg-gradient-to-b from-slate-200 via-slate-300 to-slate-400 rounded-[1px] border-[0.5px] border-slate-500/50 relative overflow-hidden"
+                 style="animation: piston-inner 2.5s infinite ease-in-out;">
+                 <div class="absolute top-2 left-[10%] w-[80%] h-3 bg-black rounded-[1px] border border-slate-500 overflow-hidden">
+                     <div class="w-full h-full bg-green-900/50 flex flex-col gap-[1px] p-[1px]">
+                         <div class="w-[90%] h-[1px] bg-green-400 opacity-80"></div>
+                         <div class="w-[50%] h-[1px] bg-green-400 opacity-80"></div>
+                         <div class="w-[70%] h-[1px] bg-green-400 opacity-80"></div>
+                     </div>
+                 </div>
+                 <div id="tars-eye" class="absolute top-[22px] left-1/2 -translate-x-1/2 w-0.5 h-0.5 bg-red-600 rounded-full shadow-[0_0_2px_red]"></div>
+            </div>
+
+            <div class="slab-outer w-1/4 h-full bg-gradient-to-b from-slate-300 via-slate-400 to-slate-500 rounded-[1px] border-[0.5px] border-slate-500/50"
+                 style="animation: piston-outer 2.5s infinite ease-in-out;">
+                 <div class="w-full h-full border-r border-slate-400/30 bg-[linear-gradient(90deg,transparent_50%,rgba(0,0,0,0.05)_50%)] bg-[length:4px_4px]"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes tars-teleport-loop {
+        0%   { left: 8%; transform: scale(0) rotate(360deg); opacity: 0; }
+        4%   { left: 8%; transform: scale(1) rotate(0deg); opacity: 1; }
+        10%  { left: 8%; transform: scale(1) rotate(0deg); opacity: 1; }
+        80%  { left: 92%; transform: scale(1) rotate(0deg); opacity: 1; }
+        85%  { left: 92%; transform: scale(0) rotate(-360deg); opacity: 0; }
+        90%  { left: 92%; transform: scale(0); opacity: 0; }
+        100% { left: 8%; transform: scale(0); opacity: 0; }
+    }
+    #bh-entry { animation: bh-entry-anim 26s infinite linear !important; }
+    #bh-exit  { animation: bh-exit-anim 26s infinite linear !important; }
+    @keyframes bh-entry-anim {
+        0%  { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+        2%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        10% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+        100%{ opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    }
+    @keyframes bh-exit-anim {
+        0%, 78% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+        80% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        90% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+        100%{ opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    }
+    @keyframes tars-mechanic-walk {
+        0%   { transform: rotate(0deg) translateY(0); }
+        12%  { transform: rotate(-7deg) translateY(-2px); }
+        25%  { transform: rotate(-5deg) translateY(0); }
+        37%  { transform: rotate(0deg) translateY(0); }
+        50%  { transform: rotate(7deg) translateY(-2px); }
+        62%  { transform: rotate(5deg) translateY(0); }
+        75%  { transform: rotate(0deg) translateY(0); }
+        87%  { transform: rotate(-7deg) translateY(-2px); }
+        100% { transform: rotate(0deg) translateY(0); }
+    }
+    @keyframes piston-outer {
+        0%  { transform: translateY(0); }
+        10% { transform: translateY(-5px); }
+        20% { transform: translateY(-4px); }
+        30% { transform: translateY(0); }
+        100%{ transform: translateY(0); }
+    }
+    @keyframes piston-inner {
+        0%  { transform: translateY(0); }
+        40% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+        60% { transform: translateY(-4px); }
+        70% { transform: translateY(0); }
+        100%{ transform: translateY(0); }
+    }
+    .laser-beam {
+        position: fixed;
+        height: 2px;
+        background-color: #ff0000;
+        box-shadow: 0 0 8px #ff0000, 0 0 12px #ff4444;
+        z-index: 2000;
+        transform-origin: left center;
+        pointer-events: none;
+        animation: laser-shot 0.4s ease-out forwards;
+    }
+    @keyframes laser-shot {
+        0%   { width: 0; opacity: 1; }
+        20%  { width: 100vw; opacity: 1; }
+        100% { width: 100vw; opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        #tars-unit, #tars-body, #bh-entry, #bh-exit { animation: none !important; }
+        #tars-patrol { display: none; }
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      const tarsUnit = document.getElementById('tars-unit');
+      if (!tarsUnit) return;
+      tarsUnit.addEventListener('click', () => {
+          tarsUnit.style.transition = 'transform 0.1s';
+          tarsUnit.style.transform = 'translateY(-5px) scale(0.9)';
+          setTimeout(() => { tarsUnit.style.transform = ''; }, 100);
+
+          const eye = document.getElementById('tars-eye');
+          const rect = eye.getBoundingClientRect();
+          const laser = document.createElement('div');
+          laser.classList.add('laser-beam');
+          document.body.appendChild(laser);
+          const startX = rect.left + rect.width / 2;
+          const startY = rect.top + rect.height / 2;
+          laser.style.top = startY + 'px';
+          laser.style.left = startX + 'px';
+          const isRightSide = startX > window.innerWidth / 2;
+          const rotation = isRightSide ? 175 + Math.random() * 10 : -5 + Math.random() * 10;
+          laser.style.transform = `rotate(${rotation}deg)`;
+          setTimeout(() => { laser.remove(); }, 500);
+      });
+  });
+</script>

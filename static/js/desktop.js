@@ -6,6 +6,7 @@
   const isMobile = () => mobileMQ.matches;
 
   let zCounter = 20;
+  let focused = null;
 
   const windows = () => Array.from(document.querySelectorAll('.ph-window'));
   const getWin = (id) => document.getElementById('win-' + id);
@@ -23,6 +24,7 @@
     if (zCounter > 800) renormalizeZ();
     zCounter += 1;
     win.style.zIndex = String(zCounter);
+    focused = win;
     syncDock();
   }
 
@@ -51,34 +53,63 @@
   }
 
   function syncDock() {
-    document.querySelectorAll('.ph-dock-item[data-dock]').forEach((item) => {
+    document.querySelectorAll('.ph-task[data-dock]').forEach((item) => {
       const win = getWin(item.getAttribute('data-dock'));
       const visible = win && !win.classList.contains('is-hidden');
       item.classList.toggle('is-active', !!visible);
     });
   }
 
-  /* ---- Open triggers (icons, menu items, dock) ---- */
+  /* ---- Open triggers (icons, start menu items) ---- */
   document.querySelectorAll('[data-open]').forEach((el) => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
+      closeStartMenu();
       openWin(el.getAttribute('data-open'));
     });
   });
 
-  document.querySelectorAll('.ph-dock-item[data-dock]').forEach((item) => {
+  /* ---- Taskbar buttons: toggle window (minimize if active) ---- */
+  document.querySelectorAll('.ph-task[data-dock]').forEach((item) => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       const id = item.getAttribute('data-dock');
       const win = getWin(id);
-      if (win && !win.classList.contains('is-hidden') && !isMobile()) {
-        // already open -> just bring to front
-        focusWin(win);
+      const visible = win && !win.classList.contains('is-hidden');
+      if (visible && !isMobile()) {
+        if (win === focused) closeWin(win);   // active -> minimize
+        else focusWin(win);                    // open but behind -> bring to front
       } else {
         openWin(id);
       }
     });
   });
+
+  /* ---- Start menu ---- */
+  const startBtn = document.getElementById('ph-start');
+  const startMenu = document.getElementById('ph-startmenu');
+
+  function closeStartMenu() {
+    if (!startMenu) return;
+    startMenu.classList.add('is-hidden');
+    if (startBtn) { startBtn.classList.remove('is-open'); startBtn.setAttribute('aria-expanded', 'false'); }
+  }
+
+  function toggleStartMenu() {
+    if (!startMenu) return;
+    const willOpen = startMenu.classList.contains('is-hidden');
+    startMenu.classList.toggle('is-hidden', !willOpen);
+    if (startBtn) { startBtn.classList.toggle('is-open', willOpen); startBtn.setAttribute('aria-expanded', String(willOpen)); }
+  }
+
+  if (startBtn) {
+    startBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleStartMenu(); });
+    document.addEventListener('click', (e) => {
+      if (!startMenu || startMenu.classList.contains('is-hidden')) return;
+      if (e.target.closest('#ph-startmenu') || e.target.closest('#ph-start')) return;
+      closeStartMenu();
+    });
+  }
 
   /* ---- Trash easter egg ---- */
   document.querySelectorAll('[data-trash]').forEach((el) => {
@@ -110,7 +141,19 @@
     });
 
     const handle = win.querySelector('[data-drag-handle]');
-    if (handle) makeDraggable(win, handle);
+    if (handle) {
+      makeDraggable(win, handle);
+      handle.addEventListener('dblclick', (e) => {
+        if (e.target.closest('[data-action]')) return;
+        toggleMax(win);
+      });
+    }
+  });
+
+  /* Escape closes the focused window */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || isMobile()) return;
+    if (focused && !focused.classList.contains('is-hidden')) closeWin(focused);
   });
 
   function makeDraggable(win, handle) {
@@ -150,6 +193,86 @@
     handle.addEventListener('pointerup', end);
     handle.addEventListener('pointercancel', end);
   }
+
+  /* ---- Boot / power-on sequence ---- */
+  (function boot() {
+    const boot = document.getElementById('ph-boot');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ready = () => document.body.classList.add('ph-ready');
+
+    if (!boot) { ready(); return; }
+
+    if (reduce || sessionStorage.getItem('phBooted')) {
+      boot.classList.add('is-done');
+      setTimeout(() => boot.remove(), 400);
+      ready();
+      return;
+    }
+
+    const logEl = document.getElementById('ph-boot-log');
+    const barEl = document.getElementById('ph-boot-bar');
+    const lines = [
+      'booting ztrunkOS...',
+      '<span class="ok">[ ok ]</span> mounting /home/vasile',
+      '<span class="ok">[ ok ]</span> loading experience.sh',
+      '<span class="ok">[ ok ]</span> indexing projects/ (6 found)',
+      '<span class="ok">[ ok ]</span> compiling skills.json',
+      '<span class="ok">[ ok ]</span> starting window-manager',
+      '<span class="ok">[ ok ]</span> welcome, Vasile Ovidiu Ichim <span class="cur">_</span>'
+    ];
+    let i = 0, done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+      sessionStorage.setItem('phBooted', '1');
+      if (barEl) barEl.style.width = '100%';
+      boot.classList.add('is-done');
+      setTimeout(() => boot.remove(), 650);
+      ready();
+    }
+
+    function step() {
+      if (done) return;
+      if (i < lines.length) {
+        logEl.innerHTML += (i ? '\n' : '') + lines[i];
+        i += 1;
+        if (barEl) barEl.style.width = Math.round((i / lines.length) * 100) + '%';
+        setTimeout(step, 220 + Math.random() * 130);
+      } else {
+        setTimeout(finish, 420);
+      }
+    }
+    setTimeout(step, 260);
+    boot.addEventListener('click', finish);
+    document.addEventListener('keydown', function onKey(e) {
+      if (!done) { finish(); }
+      document.removeEventListener('keydown', onKey);
+    });
+  })();
+
+  /* ---- Cursor-following glow ---- */
+  (function cursorGlow() {
+    const glow = document.getElementById('ph-cursor-glow');
+    if (!glow || !window.matchMedia('(pointer: fine)').matches) return;
+    let x = 0, y = 0, ticking = false;
+    document.addEventListener('mousemove', (e) => {
+      x = e.clientX; y = e.clientY;
+      glow.style.opacity = '1';
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        glow.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      });
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+  })();
+
+  /* ---- Escape also closes the start menu ---- */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeStartMenu();
+  });
 
   /* ---- Live clock ---- */
   const clock = document.getElementById('ph-clock');

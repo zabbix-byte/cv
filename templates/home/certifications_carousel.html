@@ -1,60 +1,42 @@
-<div class="col-span-12 space-y-6 mt-8">
-  <div class="flex items-center justify-between">
-    <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Certifications</h2>
+<div class="space-y-4">
+  <div class="ph-section-head">
+    <h2>Certifications</h2>
     <div class="flex gap-2">
-      <button onclick="document.getElementById('cert-scroll').scrollBy({left: -320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-[#151515] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-black/10">
-        <i class="fas fa-chevron-left text-sm"></i>
-      </button>
-      <button onclick="document.getElementById('cert-scroll').scrollBy({left: 320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-[#151515] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-black/10">
-        <i class="fas fa-chevron-right text-sm"></i>
-      </button>
+      <button onclick="document.getElementById('cert-scroll').scrollBy({left: -260, behavior: 'smooth'})" class="ph-scroll-btn" aria-label="Previous"><i class="fas fa-chevron-left text-xs"></i></button>
+      <button onclick="document.getElementById('cert-scroll').scrollBy({left: 260, behavior: 'smooth'})" class="ph-scroll-btn" aria-label="Next"><i class="fas fa-chevron-right text-xs"></i></button>
     </div>
   </div>
 
-  <div id="cert-scroll" class="flex items-stretch overflow-x-auto gap-4 pb-8 snap-x snap-mandatory scrollbar-hide px-1 pt-1" 
-       style="mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);">
+  <div id="cert-scroll" class="flex items-stretch overflow-x-auto gap-3 pb-1 snap-x snap-mandatory scrollbar-hide">
 
-    <!-- 1. AWS Cloud -->
-    <a href="https://platzi.com/p/zabbix/curso/1323-aws-cloud-practico/diploma/detalle/" target="_blank" class="min-w-[280px] snap-center bg-white rounded-[1.5rem] p-6 border border-black/10 shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden flex flex-col justify-between min-h-[180px]">
-        <div>
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-[#f3f4ef] p-1 flex items-center justify-center border border-black/5 shadow-inner overflow-hidden">
-                    <img src="https://static.platzi.com/media/achievements/1323-b1cdbbea-6d17-4d0d-a3d1-ec8b5700dae6.png" class="w-full h-full object-contain" alt="Badge">
-                </div>
-                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-[#f3f4ef] px-2 py-1 rounded-lg border border-black/5">AWS</span>
+    <a href="https://platzi.com/p/zabbix/curso/1323-aws-cloud-practico/diploma/detalle/" target="_blank" class="min-w-[220px] snap-start ph-card p-4 flex flex-col gap-3 hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform group">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] p-1 overflow-hidden">
+                <img src="https://static.platzi.com/media/achievements/1323-b1cdbbea-6d17-4d0d-a3d1-ec8b5700dae6.png" class="w-full h-full object-contain" alt="AWS badge">
             </div>
-            <h3 class="text-lg font-bold text-[#151515] leading-tight group-hover:text-orange-400 transition-colors">Practical AWS Cloud</h3>
+            <span class="ph-tag">AWS</span>
         </div>
-        <div class="flex items-center justify-between pt-4 border-t border-black/5">
-             <span class="text-xs text-gray-500 font-medium">Certified</span>
-             <i class="fas fa-external-link-alt text-gray-600 group-hover:text-[#151515] transition-colors text-xs"></i>
-        </div>
+        <h3 class="text-sm leading-snug group-hover:text-ph-red">Practical AWS Cloud</h3>
+        <p class="text-xs text-[#6b6b64] mt-auto">Platzi · Certified</p>
     </a>
 
-    <!-- 2. FastAPI -->
-    <a href="https://platzi.com/p/zabbix/curso/5354-fastapi-introduccion/diploma/detalle/" target="_blank" class="min-w-[280px] snap-center bg-white rounded-[1.5rem] p-6 border border-black/10 shadow-xl hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden flex flex-col justify-between min-h-[180px]">
-        <div>
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-[#f3f4ef] p-1 flex items-center justify-center border border-black/5 shadow-inner overflow-hidden">
-                    <img src="https://static.platzi.com/media/achievements/badge-fastapi-e9cb00d3-288a-4f28-bde9-84711b5c7d9a.png" class="w-full h-full object-contain" alt="Badge">
-                </div>
-                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-[#f3f4ef] px-2 py-1 rounded-lg border border-black/5">Platzi</span>
+    <a href="https://platzi.com/p/zabbix/curso/5354-fastapi-introduccion/diploma/detalle/" target="_blank" class="min-w-[220px] snap-start ph-card p-4 flex flex-col gap-3 hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform group">
+        <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] p-1 overflow-hidden">
+                <img src="https://static.platzi.com/media/achievements/badge-fastapi-e9cb00d3-288a-4f28-bde9-84711b5c7d9a.png" class="w-full h-full object-contain" alt="FastAPI badge">
             </div>
-            <h3 class="text-lg font-bold text-[#151515] leading-tight group-hover:text-green-400 transition-colors">FastAPI: Backend APIs</h3>
+            <span class="ph-tag">Platzi</span>
         </div>
-        <div class="flex items-center justify-between pt-4 border-t border-black/5">
-             <span class="text-xs text-gray-500 font-medium">Certified</span>
-             <i class="fas fa-external-link-alt text-gray-600 group-hover:text-[#151515] transition-colors text-xs"></i>
-        </div>
+        <h3 class="text-sm leading-snug group-hover:text-green-700">FastAPI: Backend APIs</h3>
+        <p class="text-xs text-[#6b6b64] mt-auto">Platzi · Certified</p>
     </a>
 
-    <!-- View all -->
-    <a href="https://platzi.com/p/zabbix/" target="_blank" class="min-w-[280px] snap-center bg-white rounded-[1.5rem] p-6 border border-black/10 shadow-xl flex flex-col justify-center items-center text-center min-h-[180px] group cursor-pointer hover:bg-[#f3f4ef] transition-all">
-        <div class="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <i class="fas fa-arrow-right text-gray-600 group-hover:text-[#151515]"></i>
+    <a href="https://platzi.com/p/zabbix/" target="_blank" class="min-w-[180px] snap-start ph-card p-4 flex flex-col items-center justify-center text-center gap-2 hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform group">
+        <div class="w-9 h-9 rounded-full border-2 border-[#151515] flex items-center justify-center">
+            <i class="fas fa-arrow-right text-xs text-[#6b6b64] group-hover:text-[#151515]"></i>
         </div>
-        <h3 class="text-sm font-bold text-gray-700 group-hover:text-[#151515]">View all certifications</h3>
-        <p class="text-xs text-gray-500 mt-1">Full learning profile on Platzi</p>
+        <h3 class="text-sm">View all</h3>
+        <p class="text-xs text-[#6b6b64]">Full profile on Platzi</p>
     </a>
 
   </div>

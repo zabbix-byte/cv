@@ -186,8 +186,10 @@ html {
     --ph-yellow: #F9BD2B;
     --ph-ink: #151515;
     --ph-border: #DBDBD1;
-    --ph-menubar-h: 44px;
-    --ph-dock-h: 88px;
+    --ph-menubar-h: 0px;
+    --ph-dock-h: 58px;
+    --ph-shadow: 5px 5px 0 #151515;
+    --ph-shadow-lg: 8px 8px 0 #151515;
 }
 
 body.ph-desktop {
@@ -296,19 +298,19 @@ body.ph-desktop {
 .ph-screen {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - var(--ph-menubar-h) - var(--ph-dock-h));
-    padding-top: calc(var(--ph-menubar-h) + 8px);
+    min-height: calc(100vh - var(--ph-dock-h));
+    padding-top: 22px;
     padding-bottom: var(--ph-dock-h);
 }
 
 /* ----- Desktop icons ----- */
 .ph-desktop-icons {
     position: absolute;
-    top: calc(var(--ph-menubar-h) + 20px);
-    left: 18px;
+    top: 22px;
+    left: 20px;
     display: grid;
-    grid-template-columns: repeat(2, 88px);
-    gap: 10px 12px;
+    grid-template-columns: repeat(2, 92px);
+    gap: 14px 16px;
     z-index: 4;
 }
 
@@ -316,66 +318,67 @@ body.ph-desktop {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    width: 88px;
+    gap: 7px;
+    width: 92px;
     padding: 8px 4px 6px;
-    border-radius: 12px;
+    border-radius: 8px;
     background: transparent;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     cursor: pointer;
     text-align: center;
-    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    transition: transform 0.1s;
     -webkit-tap-highlight-color: transparent;
 }
 
 .ph-icon:hover {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: rgba(0, 0, 0, 0.06);
+    transform: translate(-1px, -1px);
 }
 
 .ph-icon:active {
-    transform: scale(0.96);
+    transform: translate(1px, 1px);
 }
 
 .ph-icon-glyph {
-    width: 52px;
-    height: 46px;
+    width: 54px;
+    height: 50px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 22px;
     color: #fff;
     position: relative;
-    box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    /* folder-ish tab */
+    border: 2px solid #151515;
+    box-shadow: 3px 3px 0 #151515;
+    transition: box-shadow 0.1s, transform 0.1s;
 }
 
-.ph-icon-glyph::before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: 8px;
-    width: 20px;
-    height: 7px;
-    border-radius: 3px 3px 0 0;
-    background: inherit;
-    filter: brightness(0.92);
+.ph-icon:hover .ph-icon-glyph {
+    box-shadow: 5px 5px 0 #151515;
+}
+
+.ph-icon:active .ph-icon-glyph {
+    box-shadow: 1px 1px 0 #151515;
 }
 
 .ph-icon-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 11px;
-    font-weight: 600;
-    color: #33332e;
-    line-height: 1.15;
-    padding: 1px 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #151515;
+    line-height: 1.2;
+    padding: 2px 6px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.55);
+    background: #fff;
+    border: 1.5px solid #151515;
     max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.ph-icon:hover .ph-icon-label {
+    background: var(--ph-yellow);
 }
 
 /* accent helpers (shared by icons + dock + windows) */
@@ -387,30 +390,30 @@ body.ph-desktop {
 .ph-a-ink { background: #151515; }
 .ph-a-orange { background: #eb7d0b; }
 
-/* ----- Window ----- */
+/* ----- Window (neo-brutalist) ----- */
 .ph-window {
     position: absolute;
     display: flex;
     flex-direction: column;
     background: #fff;
-    border: 1px solid var(--ph-border);
-    border-radius: 13px;
-    box-shadow: 0 28px 64px -22px rgba(0, 0, 0, 0.38), 0 8px 20px -10px rgba(0, 0, 0, 0.22);
+    border: 2px solid #151515;
+    border-radius: 10px;
+    box-shadow: var(--ph-shadow-lg);
     max-width: calc(100vw - 28px);
-    max-height: calc(100vh - var(--ph-menubar-h) - var(--ph-dock-h) - 16px);
+    max-height: calc(100vh - var(--ph-dock-h) - 20px);
     overflow: hidden;
-    animation: ph-window-open 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+    animation: ph-window-open 0.34s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes ph-window-open {
-    from { opacity: 0; transform: scale(0.97) translateY(6px); }
+    from { opacity: 0; transform: scale(0.9) translateY(18px); }
     to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .ph-window.is-hidden { display: none; }
 
 .ph-window.is-max {
-    inset: calc(var(--ph-menubar-h) + 8px) 10px calc(var(--ph-dock-h) - 4px) 10px !important;
+    inset: 12px 12px calc(var(--ph-dock-h) + 6px) 12px !important;
     width: auto !important;
     height: auto !important;
     max-width: none !important;
@@ -421,136 +424,366 @@ body.ph-desktop {
     display: flex;
     align-items: center;
     gap: 10px;
-    height: 40px;
-    padding: 0 12px;
-    background: linear-gradient(#fbfbf8, #f0f0e9);
-    border-bottom: 1px solid var(--ph-border);
+    height: 42px;
+    padding: 0 8px 0 14px;
+    background: var(--ph-cream-2);
+    border-bottom: 2px solid #151515;
     cursor: grab;
     user-select: none;
     flex: 0 0 auto;
 }
 
+/* colored titlebar per window accent */
+.ph-titlebar.tb-ink { background: #151515; }
+.ph-titlebar.tb-red { background: var(--ph-red); }
+.ph-titlebar.tb-blue { background: var(--ph-blue); }
+.ph-titlebar.tb-green { background: #2f9e44; }
+.ph-titlebar.tb-purple { background: #7c3aed; }
+.ph-titlebar.tb-orange { background: #eb7d0b; }
+.ph-titlebar.tb-yellow { background: var(--ph-yellow); }
+
 .ph-titlebar:active { cursor: grabbing; }
-
-.ph-traffic { display: flex; gap: 8px; align-items: center; flex: 0 0 auto; }
-
-.ph-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.14);
-    padding: 0;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8px;
-    color: rgba(0, 0, 0, 0.45);
-    line-height: 1;
-}
-
-.ph-dot.red { background: #ff5f57; }
-.ph-dot.yellow { background: #febc2e; }
-.ph-dot.green { background: #28c840; }
-.ph-dot i { opacity: 0; transition: opacity 0.12s; }
-.ph-traffic:hover .ph-dot i { opacity: 1; }
 
 .ph-title {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #4b4b45;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
     letter-spacing: -0.01em;
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 auto;
-    padding-right: 46px;
-    /* balance the traffic lights on the left */
+    margin-right: auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
 }
 
-.ph-title .ph-title-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    flex: 0 0 auto;
+.ph-titlebar.tb-yellow .ph-title { color: #151515; text-shadow: none; }
+
+.ph-title i { opacity: 0.9; }
+
+/* window control buttons (right side, square) */
+.ph-controls { display: flex; gap: 6px; align-items: center; flex: 0 0 auto; }
+
+.ph-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border: 2px solid #151515;
+    background: #fff;
+    color: #151515;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: transform 0.08s, background 0.12s;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
 }
+
+.ph-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55); }
+.ph-btn:active { transform: translate(1px, 1px); box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+.ph-btn.min:hover { background: var(--ph-yellow); }
+.ph-btn.max:hover { background: #2f9e44; color: #fff; }
+.ph-btn.close:hover { background: var(--ph-red); color: #fff; }
 
 .ph-window-body {
     overflow: auto;
-    padding: 26px 26px 28px;
+    padding: 20px 22px 22px;
     flex: 1 1 auto;
     background: #fff;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #3a3a36;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ----- Dock ----- */
-.ph-dock {
+/* Readable typography inside windows */
+.ph-window-body h1 { font-size: 1.75rem; line-height: 1.2; font-weight: 700; color: #151515; }
+.ph-window-body h2 { font-size: 1.3rem; line-height: 1.25; font-weight: 700; color: #151515; letter-spacing: -0.02em; }
+.ph-window-body h3 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; color: #151515; }
+.ph-window-body h4 { font-size: 0.95rem; line-height: 1.35; font-weight: 700; color: #151515; }
+.ph-window-body p  { font-size: 0.95rem; line-height: 1.65; color: #4a4a44; }
+.ph-window-body a  { color: #151515; }
+.ph-window-body a:hover { color: var(--ph-blue); }
+
+/* Lighter cards inside windows — less visual noise */
+.ph-window-body .ph-card {
+    background: #f8f8f4;
+    border: 1.5px solid #151515;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #151515;
+}
+
+.ph-window-body .ph-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1.5px solid #151515;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #151515;
+}
+
+.ph-window-body .ph-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.ph-window-body .ph-scroll-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    border: 2px solid #151515;
+    background: #fff;
+    color: #151515;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #151515;
+    transition: transform 0.08s;
+    flex-shrink: 0;
+}
+.ph-window-body .ph-scroll-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 #151515; }
+
+/* ----- Taskbar (neo-brutalist) ----- */
+.ph-taskbar {
     position: fixed;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--ph-dock-h);
     z-index: 990;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 8px;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.55);
-    border: 1px solid rgba(0, 0, 0, 0.09);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.35);
-    max-width: calc(100vw - 24px);
+    padding: 0 10px;
+    background: var(--ph-cream-2);
+    border-top: 3px solid #151515;
+}
+
+.ph-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 14px 0 10px;
+    border: 2px solid #151515;
+    border-radius: 8px;
+    background: var(--ph-red);
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #151515;
+    transition: transform 0.08s, box-shadow 0.08s;
+    flex: 0 0 auto;
+}
+
+.ph-start:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #151515; }
+.ph-start.is-open,
+.ph-start:active { transform: translate(2px, 2px); box-shadow: 0 0 0 #151515; }
+
+.ph-start-hog {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ph-red);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: 2px solid #151515;
+}
+
+.ph-taskbar-sep {
+    width: 3px;
+    align-self: stretch;
+    margin: 8px 4px;
+    background: #151515;
+    flex: 0 0 auto;
+}
+
+.ph-tasks {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 auto;
     overflow-x: auto;
     scrollbar-width: none;
 }
 
-.ph-dock::-webkit-scrollbar { display: none; }
+.ph-tasks::-webkit-scrollbar { display: none; }
 
-.ph-dock-item {
-    position: relative;
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
+.ph-task {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 36px;
+    padding: 0 12px;
+    border: 2px solid #151515;
+    border-radius: 7px;
+    background: #fff;
+    color: #151515;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 2px 2px 0 #151515;
+    transition: transform 0.08s, box-shadow 0.08s;
+    flex: 0 0 auto;
+}
+
+.ph-task .ph-task-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1.5px solid #151515;
+    flex: 0 0 auto;
+}
+
+.ph-task:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 #151515; }
+
+.ph-task.is-active {
+    background: var(--ph-yellow);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 #151515;
+}
+
+.ph-task-label { display: inline; }
+
+.ph-tray {
     display: flex;
     align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.ph-tray-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid #151515;
+    border-radius: 7px;
+    background: #fff;
+    color: #151515;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    font-size: 19px;
-    color: #fff;
+    font-size: 15px;
     cursor: pointer;
-    border: none;
-    box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transition: transform 0.14s cubic-bezier(0.2, 0.8, 0.3, 1);
+    box-shadow: 2px 2px 0 #151515;
+    transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.ph-tray-btn:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 #151515; }
+.ph-tray-btn:active { transform: translate(1px, 1px); box-shadow: 0 0 0; }
+
+.ph-clock-box {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #151515;
+    padding: 0 12px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #151515;
+    border-radius: 7px;
+    background: #fff;
+    box-shadow: 2px 2px 0 #151515;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ----- Start menu ----- */
+.ph-startmenu {
+    position: fixed;
+    bottom: calc(var(--ph-dock-h) + 8px);
+    left: 10px;
+    width: 280px;
+    z-index: 995;
+    background: #fff;
+    border: 2px solid #151515;
+    border-radius: 10px;
+    box-shadow: var(--ph-shadow-lg);
+    overflow: hidden;
+    transform-origin: bottom left;
+    animation: ph-menu-pop 0.16s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.ph-startmenu.is-hidden { display: none; }
+
+@keyframes ph-menu-pop {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ph-startmenu-head {
+    background: #151515;
+    color: #fff;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 12.5px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ph-startmenu-list { padding: 6px; }
+
+.ph-startmenu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: #151515;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+}
+
+.ph-startmenu-item:hover {
+    background: var(--ph-cream);
+    border-color: #151515;
+}
+
+.ph-startmenu-glyph {
+    width: 26px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid #151515;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
     flex: 0 0 auto;
 }
 
-.ph-dock-item:hover { transform: translateY(-8px) scale(1.08); }
-
-.ph-dock-item::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.45);
-    opacity: 0;
-    transition: opacity 0.15s;
-}
-
-.ph-dock-item.is-active::after { opacity: 1; }
-
-.ph-dock-sep {
-    width: 1px;
-    align-self: stretch;
-    margin: 4px 2px;
-    background: rgba(0, 0, 0, 0.12);
-    flex: 0 0 auto;
+.ph-startmenu-sep {
+    height: 2px;
+    background: #151515;
+    margin: 6px 8px;
 }
 
 /* ----- Mobile fallback: stack windows ----- */
@@ -558,7 +791,7 @@ body.ph-desktop {
     .ph-desktop-icons { display: none; }
 
     .ph-screen {
-        padding: calc(var(--ph-menubar-h) + 14px) 12px 30px;
+        padding: 14px 12px 30px;
         min-height: auto;
     }
 
@@ -574,11 +807,208 @@ body.ph-desktop {
         margin: 0 auto 20px;
         inset: auto !important;
         animation: none;
+        box-shadow: 4px 4px 0 #151515;
     }
 
     .ph-titlebar { cursor: default; }
-    .ph-window-body { padding: 18px; }
-    .ph-dock { display: none; }
-    .ph-menu-hide-sm { display: none; }
-    .ph-menu-brand { font-size: 12.5px; }
+    .ph-window-body { padding: 16px; font-size: 15px; }
+    .ph-taskbar { padding: 0 8px; }
+    .ph-tasks { display: none; }
+    .ph-start span.ph-start-txt { display: none; }
+    .ph-tray-btn { width: 34px; height: 34px; }
+}
+
+/* =========================================================
+   "Wow" layer: boot screen, living wallpaper, dock magnify
+   ========================================================= */
+
+/* ----- Living wallpaper: floating auroras ----- */
+.ph-aurora {
+    position: fixed;
+    inset: 0;
+    z-index: -9;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ph-aurora span {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    mix-blend-mode: multiply;
+    will-change: transform;
+}
+
+.ph-aurora .b1 { width: 46vw; height: 46vw; left: -8vw; top: -12vw; background: #F54E00; opacity: 0.30; animation: ph-float1 20s ease-in-out infinite; }
+.ph-aurora .b2 { width: 44vw; height: 44vw; right: -10vw; top: -8vw; background: #1D4AFF; opacity: 0.24; animation: ph-float2 26s ease-in-out infinite; }
+.ph-aurora .b3 { width: 42vw; height: 42vw; left: 28vw; bottom: -16vw; background: #F9BD2B; opacity: 0.34; animation: ph-float3 23s ease-in-out infinite; }
+
+@keyframes ph-float1 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(7vw, 5vw) scale(1.14); } }
+@keyframes ph-float2 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-6vw, 6vw) scale(1.1); } }
+@keyframes ph-float3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-5vw, -5vw) scale(1.08); } }
+
+/* ----- Cursor-following glow ----- */
+.ph-cursor-glow {
+    position: fixed;
+    z-index: -8;
+    width: 440px;
+    height: 440px;
+    left: 0;
+    top: 0;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 9999px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background: radial-gradient(circle, rgba(29, 74, 255, 0.16), rgba(245, 78, 0, 0.10) 42%, transparent 70%);
+    will-change: transform;
+}
+
+/* ----- Boot / power-on screen ----- */
+.ph-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: #EEEFE9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.ph-boot.is-done {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.ph-boot-inner {
+    width: min(540px, 86vw);
+    background: #fff;
+    border: 3px solid #151515;
+    border-radius: 12px;
+    box-shadow: 10px 10px 0 #151515;
+    padding: 22px 24px;
+}
+
+.ph-boot-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #151515;
+}
+
+.ph-boot-hog {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #F54E00;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    border: 2px solid #151515;
+    box-shadow: 3px 3px 0 #151515;
+    animation: ph-hog-pop 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.ph-boot-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 18px;
+    color: #151515;
+    letter-spacing: -0.02em;
+}
+
+.ph-boot-log {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #4b4b45;
+    min-height: 130px;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+.ph-boot-log .ok { color: #2f9e44; font-weight: 700; }
+.ph-boot-log .cur { color: #F54E00; }
+
+.ph-boot-bar {
+    height: 12px;
+    border-radius: 4px;
+    background: #fff;
+    border: 2px solid #151515;
+    overflow: hidden;
+    margin-top: 16px;
+}
+
+.ph-boot-bar > span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #F54E00, #F9BD2B, #1D4AFF);
+    transition: width 0.2s linear;
+}
+
+.ph-boot-hint {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #a2a299;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@keyframes ph-hog-pop { from { transform: scale(0) rotate(-25deg); } to { transform: scale(1) rotate(0); } }
+
+/* ----- Hero gradient shimmer ----- */
+.ph-shimmer {
+    background-size: 220% 100% !important;
+    animation: ph-shimmer 6s ease-in-out infinite;
+}
+
+@keyframes ph-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ----- Entrance choreography after boot ----- */
+body.ph-ready .ph-icon {
+    animation: ph-pop-in 0.5s both cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(1) { animation-delay: 0.02s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(2) { animation-delay: 0.06s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(3) { animation-delay: 0.10s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(4) { animation-delay: 0.14s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(5) { animation-delay: 0.18s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(6) { animation-delay: 0.22s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(7) { animation-delay: 0.26s; }
+body.ph-ready .ph-desktop-icons .ph-icon:nth-child(8) { animation-delay: 0.30s; }
+
+body.ph-ready .ph-taskbar { animation: ph-taskbar-in 0.5s 0.05s both cubic-bezier(0.2, 0.9, 0.3, 1); }
+
+@keyframes ph-pop-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.85); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes ph-taskbar-in {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* More pronounced window open animation */
+.ph-window {
+    animation: ph-window-open 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ph-window-open {
+    from { opacity: 0; transform: scale(0.9) translateY(18px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ph-aurora span, .ph-shimmer, .ph-window { animation: none !important; }
+    .ph-cursor-glow { display: none; }
 }

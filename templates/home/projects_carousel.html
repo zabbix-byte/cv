@@ -1,165 +1,100 @@
-<div class="col-span-12 space-y-6">
-  <div class="flex items-end justify-between gap-4">
+<div class="space-y-4">
+  <div class="ph-section-head">
     <div>
-      <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Selected Work</h2>
-      <p class="text-sm text-gray-500 mt-1 font-medium">Platform, data &amp; infrastructure systems built at scale.</p>
+      <h2>Selected Work</h2>
+      <p class="text-sm text-[#6b6b64] mt-0.5">Platform, data &amp; infrastructure at scale.</p>
     </div>
     <div class="flex gap-2 shrink-0">
-      <button onclick="document.getElementById('proj-scroll').scrollBy({left: -340, behavior: 'smooth'})" aria-label="Scroll left" class="w-10 h-10 rounded-full bg-[#151515] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-black/10">
-        <i class="fas fa-chevron-left text-sm"></i>
-      </button>
-      <button onclick="document.getElementById('proj-scroll').scrollBy({left: 340, behavior: 'smooth'})" aria-label="Scroll right" class="w-10 h-10 rounded-full bg-[#151515] text-white shadow-lg flex items-center justify-center hover:bg-black hover:scale-110 transition-all cursor-pointer border border-black/10">
-        <i class="fas fa-chevron-right text-sm"></i>
-      </button>
+      <button onclick="document.getElementById('proj-scroll').scrollBy({left: -300, behavior: 'smooth'})" class="ph-scroll-btn" aria-label="Previous"><i class="fas fa-chevron-left text-xs"></i></button>
+      <button onclick="document.getElementById('proj-scroll').scrollBy({left: 300, behavior: 'smooth'})" class="ph-scroll-btn" aria-label="Next"><i class="fas fa-chevron-right text-xs"></i></button>
     </div>
   </div>
 
-  <div id="proj-scroll" class="flex items-stretch overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide px-4 md:px-0"
-       style="mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 0%, black 90%, transparent 100%);">
+  <div id="proj-scroll" class="flex items-stretch overflow-x-auto gap-4 pb-2 snap-x snap-mandatory scrollbar-hide">
 
-    <!-- 1. AI Procurement Platform -->
-    <div class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-cart-shopping text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Valerdat</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">AI Procurement Platform</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">A next-gen MRP powered by AI: forecasting models (Prophet, ARIMA, XGBoost, NHITS, TFT) predict demand at &lt;5% MAPE, an optimization layer sets dynamic stock policies, and LLMs assist purchasing &mdash; generating ready-to-validate purchase orders.</p>
+    <div class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center text-[#151515]"><i class="fas fa-cart-shopping"></i></div>
+          <span class="ph-tag">Valerdat</span>
        </div>
-       <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/10">
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Python</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">ML Forecasting</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Optimization</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">LLM</span>
+       <h3>AI Procurement Platform</h3>
+       <p>MRP powered by ML forecasting (&lt;5% MAPE) and LLMs that generate ready-to-validate purchase orders.</p>
+       <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Python</span><span class="ph-tag">ML</span><span class="ph-tag">LLM</span>
        </div>
     </div>
 
-    <!-- 2. Distributed ETL Engine -->
-    <div class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-diagram-project text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Data</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">Distributed ETL Engine</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">High-throughput pipelines on Databricks &amp; Spark processing 10TB+ of procurement and supply-chain data daily into analytics-ready datasets.</p>
+    <div class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fas fa-diagram-project"></i></div>
+          <span class="ph-tag">Data</span>
        </div>
-       <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/10">
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Databricks</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Spark</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">ETL</span>
+       <h3>Distributed ETL Engine</h3>
+       <p>Databricks &amp; Spark pipelines processing 10TB+ of supply-chain data daily into analytics-ready datasets.</p>
+       <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Databricks</span><span class="ph-tag">Spark</span>
        </div>
     </div>
 
-    <!-- 3. Multi-ERP Connector Layer -->
-    <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener" class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98] flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-plug text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Integrations</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">Multi-ERP Connector Layer</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">Bidirectional connectors integrating with Sage 200, Microsoft Dynamics 365 Business Central and other ERPs via API &amp; SFTP. Listed on the Sage Marketplace.</p>
+    <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener" class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3 hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fas fa-plug"></i></div>
+          <span class="ph-tag">Integrations</span>
        </div>
-       <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/10">
-          <div class="flex flex-wrap gap-2">
-             <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Sage 200</span><span class="text-gray-300">·</span>
-             <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Business Central</span><span class="text-gray-300">·</span>
-             <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">API / SFTP</span>
-          </div>
-          <i class="fas fa-arrow-right text-gray-600 group-hover:text-[#151515] group-hover:translate-x-1 transition-all"></i>
+       <h3>Multi-ERP Connector Layer</h3>
+       <p>Bidirectional connectors for Sage 200, Dynamics 365 BC and other ERPs. Listed on the Sage Marketplace.</p>
+       <div class="flex items-center justify-between mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Sage 200</span>
+          <i class="fas fa-arrow-right text-[#6b6b64] text-xs"></i>
        </div>
     </a>
 
-    <!-- 4. Multi-Tenant SaaS Core -->
-    <div class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-layer-group text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Architecture</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">Multi-Tenant SaaS Core</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">Django multi-tenant architecture with isolated data, role-based access control and per-tenant scaling for enterprise customers.</p>
+    <div class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fas fa-layer-group"></i></div>
+          <span class="ph-tag">Architecture</span>
        </div>
-       <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/10">
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Django</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">PostgreSQL</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Multi-tenant</span>
+       <h3>Multi-Tenant SaaS Core</h3>
+       <p>Django multi-tenant architecture with isolated data, RBAC and per-tenant scaling for enterprise customers.</p>
+       <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Django</span><span class="ph-tag">PostgreSQL</span>
        </div>
     </div>
 
-    <!-- 4. Distributed Task Scheduler -->
-    <div class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-clock-rotate-left text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Backend</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">Distributed Task Scheduler</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">Fault-tolerant orchestration for forecasting and data-sync workloads, with retries, observability and horizontal scaling.</p>
+    <div class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fas fa-clock-rotate-left"></i></div>
+          <span class="ph-tag">Backend</span>
        </div>
-       <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/10">
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Celery</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Redis</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Python</span>
+       <h3>Distributed Task Scheduler</h3>
+       <p>Fault-tolerant orchestration for forecasting and data-sync workloads with retries and horizontal scaling.</p>
+       <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Celery</span><span class="ph-tag">Redis</span>
        </div>
     </div>
 
-    <!-- 5. LLM Orchestration Framework -->
-    <div class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fas fa-sitemap text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Internal</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">LLM Orchestration Framework</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">Internal framework for prompt routing, evaluation and tool-calling that powers the AI features across Valerdat's product.</p>
+    <div class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fas fa-sitemap"></i></div>
+          <span class="ph-tag">Internal</span>
        </div>
-       <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-black/10">
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Python</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">LLM</span><span class="text-gray-300">·</span>
-          <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">AI</span>
+       <h3>LLM Orchestration Framework</h3>
+       <p>Internal framework for prompt routing, evaluation and tool-calling across Valerdat's AI features.</p>
+       <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Python</span><span class="ph-tag">LLM</span>
        </div>
     </div>
 
-    <!-- 6. PyPulse (Open Source) -->
-    <a href="https://github.com/zabbix-byte/PyPulse" target="_blank" class="min-w-[300px] md:min-w-[340px] snap-center bg-white rounded-[2rem] p-8 border border-black/10 shadow-2xl hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98] flex flex-col justify-between min-h-[300px] group relative overflow-hidden">
-       <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/[0.04] blur-[50px] rounded-full pointer-events-none group-hover:bg-white/[0.07] transition-all duration-500"></div>
-       <div>
-         <div class="flex items-center justify-between mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#f3f4ef] flex items-center justify-center text-gray-700 group-hover:text-[#151515] transition-all duration-300 shadow-inner border border-black/5">
-               <i class="fab fa-github text-xl"></i>
-            </div>
-            <span class="px-3 py-1.5 rounded-full bg-[#f3f4ef] text-[10px] font-bold text-gray-300 uppercase tracking-wider border border-black/5">Open Source</span>
-         </div>
-         <h3 class="text-xl font-bold text-[#151515] mb-2 group-hover:text-gray-300 transition-colors">PyPulse</h3>
-         <p class="text-sm text-gray-600 leading-relaxed font-medium">Open-source framework to build native-feel desktop applications on Chromium with a pure Python backend.</p>
+    <a href="https://github.com/zabbix-byte/PyPulse" target="_blank" class="min-w-[270px] snap-start ph-card p-5 flex flex-col gap-3 hover:translate-x-[-1px] hover:translate-y-[-1px] transition-transform">
+       <div class="flex items-center justify-between">
+          <div class="w-10 h-10 rounded-lg bg-white border-2 border-[#151515] flex items-center justify-center"><i class="fab fa-github"></i></div>
+          <span class="ph-tag">Open Source</span>
        </div>
-       <div class="flex items-center justify-between mt-4 pt-4 border-t border-black/10">
-          <div class="flex flex-wrap gap-2">
-             <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Python</span><span class="text-gray-300">·</span>
-             <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Chromium</span>
-          </div>
-          <i class="fas fa-arrow-right text-gray-600 group-hover:text-[#151515] group-hover:translate-x-1 transition-all"></i>
+       <h3>PyPulse</h3>
+       <p>Framework to build native-feel desktop apps on Chromium with a pure Python backend.</p>
+       <div class="flex items-center justify-between mt-auto pt-3 border-t-2 border-[#151515]/10">
+          <span class="ph-tag">Python</span>
+          <i class="fas fa-arrow-right text-[#6b6b64] text-xs"></i>
        </div>
     </a>
 

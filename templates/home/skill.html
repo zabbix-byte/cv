@@ -1,21 +1,14 @@
-<!-- Skill Card Style (PostHog light) -->
-<div class="group bg-[#f3f4ef] rounded-xl p-4 border border-black/5 shadow-sm hover:bg-[#e6e7df] transition-all duration-300">
-  <div class="flex items-center justify-between mb-2">
-    <h4 class="font-bold text-[#151515] text-sm leading-tight">
-      {{ skill }}
-    </h4>
-  </div>
-  
-  <!-- Skill Description -->
-  <div class="flex items-center text-gray-600 group-hover:text-ph-blue transition-colors duration-300">
-    <i class="{% if skill == 'Software Architecture' %}fas fa-sitemap{% elif skill == 'Product Thinking' %}fas fa-lightbulb{% elif skill == 'Technical Mentoring' %}fas fa-user-graduate{% elif skill == 'Backend & Distributed Systems' %}fas fa-network-wired{% elif skill == 'Cloud & DevOps' %}fas fa-cloud{% elif skill == 'Data Engineering & AI' %}fas fa-chart-line{% endif %} text-xs mr-2"></i>
-    <span class="text-xs font-medium">
+<div class="ph-card p-3.5 flex items-start gap-3">
+  <i class="{% if skill == 'Software Architecture' %}fas fa-sitemap{% elif skill == 'Product Thinking' %}fas fa-lightbulb{% elif skill == 'Technical Mentoring' %}fas fa-user-graduate{% elif skill == 'Backend & Distributed Systems' %}fas fa-network-wired{% elif skill == 'Cloud & DevOps' %}fas fa-cloud{% elif skill == 'Data Engineering & AI' %}fas fa-chart-line{% endif %} text-sm text-ph-blue mt-0.5 shrink-0"></i>
+  <div class="min-w-0">
+    <h4 class="font-bold text-[#151515] text-[15px] leading-snug">{{ skill }}</h4>
+    <p class="text-sm text-[#6b6b64] mt-0.5 leading-snug">
       {% if skill == "Software Architecture" %}System design at scale{% endif %}
       {% if skill == "Product Thinking" %}Innovation and product strategy{% endif %}
       {% if skill == "Technical Mentoring" %}Growing engineers, raising the bar{% endif %}
       {% if skill == "Backend & Distributed Systems" %}Python, Django, distributed services{% endif %}
       {% if skill == "Cloud & DevOps" %}AWS, Docker, Kubernetes{% endif %}
-      {% if skill == "Data Engineering & AI" %}Demand forecasting, ML & ETL pipelines{% endif %}
-    </span>
+      {% if skill == "Data Engineering & AI" %}Demand forecasting, ML &amp; ETL pipelines{% endif %}
+    </p>
   </div>
 </div>
