@@ -32,8 +32,8 @@
   --surface: #fafafa;
   --ring: #a1a1a1;
   --code-bg: #1a1b26;
-  --measure: 65ch;
-  --page-pad: clamp(1.25rem, 4vw, 2rem);
+  --measure: 36rem;
+  --page-pad: clamp(1.25rem, 5vw, 2.5rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
@@ -77,13 +77,14 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--fg) 35%, transparent);
 }
 
 a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg);
 }
 
 a:focus-visible {
@@ -137,9 +138,12 @@ a:focus-visible {
 
 /* —— Page —— */
 .page {
+  width: 100%;
   max-width: var(--measure);
-  margin: 0 auto;
-  padding: 3.5rem var(--page-pad) 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4.5rem var(--page-pad) 5rem;
+  box-sizing: border-box;
 }
 
 .page h1 {
@@ -178,13 +182,15 @@ a:focus-visible {
 
 .byline a {
   color: var(--muted);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--muted) 50%, transparent);
 }
 
 .byline a:hover {
   color: var(--fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--fg);
 }
 
 .page p {
@@ -233,16 +239,18 @@ a:focus-visible {
 }
 
 .section-list li {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.45rem;
 }
 
 .section-list a {
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--fg) 35%, transparent);
 }
 
 .section-list a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-color: var(--fg);
 }
 
 /* —— Experience / roles —— */
