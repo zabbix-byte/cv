@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/projects/{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Projects</h1>
+  <p class="meta">Selected systems shipped at Valerdat and in open source.</p>
+
+  <section class="role">
+    <h2 class="role-title">AI Procurement Platform</h2>
+    <p>MRP powered by ML forecasting (Prophet, XGBoost, TFT) at &lt;5% MAPE, optimization, and LLMs that generate purchase orders ready to validate.</p>
+  </section>
+
+  <section class="role">
+    <h2 class="role-title">Distributed ETL Engine</h2>
+    <p>Databricks and Spark pipelines processing 10TB+ of supply-chain data daily into analytics-ready datasets.</p>
+  </section>
+
+  <section class="role">
+    <h2 class="role-title"><a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Multi-ERP Connector Layer</a></h2>
+    <p>Bidirectional connectors for Sage 200, Dynamics 365 Business Central, and other ERPs via API/SFTP. Listed on the Sage Marketplace.</p>
+  </section>
+
+  <section class="role">
+    <h2 class="role-title">Multi-Tenant SaaS Core</h2>
+    <p>Django multi-tenant architecture with isolated data, RBAC, and per-tenant scaling for enterprise customers.</p>
+  </section>
+
+  <p class="footnote">
+    Also:
+    <a href="https://github.com/zabbix-byte/PyPulse" target="_blank" rel="noopener">PyPulse</a>
+    — a framework for native-feel desktop apps on Chromium with a Python backend.
+  </p>
+</article>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Research — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/research/{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Research</h1>
+  <p class="meta">Personal work on OS internals and low-level systems — the other side of how I think about reliability.</p>
+
+  <p>
+    Outside product work I spend time on Windows kernel and user-mode internals: drivers, memory access, and how privileged code talks to the rest of the system. That curiosity feeds how I reason about boundaries, failure modes, and performance in production platforms.
+  </p>
+
+  <section class="role">
+    <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztdriver" target="_blank" rel="noopener">Windows Kernel Drivers</a></h2>
+    <p>Kernel-mode driver experiments in C++ exploring user/kernel communication and IOCTL paths.</p>
+  </section>
+
+  <section class="role">
+    <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztui" target="_blank" rel="noopener">Injection &amp; Overlays</a></h2>
+    <p>Memory access, DLL loading, and real-time overlay rendering — mapping process space and drawing without owning the host UI.</p>
+  </section>
+
+  <section class="role">
+    <h2 class="role-title"><a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">Game Security Internals</a></h2>
+    <p>Reverse-engineering game memory layouts and detection techniques to understand how anti-cheat systems observe process state.</p>
+  </section>
+
+  <pre class="code-block" aria-label="Illustrative driver IOCTL sketch"><span class="cm">// illustrative — user ↔ kernel boundary</span>
+<span class="kw">NTSTATUS</span> DeviceControl(
+  PDEVICE_OBJECT DeviceObject,
+  PIRP Irp
+) {
+  <span class="cm">/* validate buffer, dispatch IOCTL */</span>
+  <span class="kw">return</span> STATUS_SUCCESS;
+}</pre>
+</article>
+{% endblock %}

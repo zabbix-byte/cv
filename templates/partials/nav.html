@@ -1,0 +1,11 @@
+<header class="site-nav">
+  <nav class="site-nav-inner" aria-label="Primary">
+    <a href="{% url 'home' %}" class="site-nav-name{% if request.resolver_match.url_name == 'home' %} is-active{% endif %}">Vasile Ovidiu Ichim</a>
+    <div class="site-nav-links">
+      <a href="{% url 'experience' %}"{% if request.resolver_match.url_name == 'experience' %} class="is-active" aria-current="page"{% endif %}>Experience</a>
+      <a href="{% url 'projects' %}"{% if request.resolver_match.url_name == 'projects' %} class="is-active" aria-current="page"{% endif %}>Projects</a>
+      <a href="{% url 'research' %}"{% if request.resolver_match.url_name == 'research' %} class="is-active" aria-current="page"{% endif %}>Research</a>
+      <a href="{% url 'download_cv_pdf' %}">CV</a>
+    </div>
+  </nav>
+</header>

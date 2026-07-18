@@ -1,33 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" itemscope itemtype="http://schema.org/Person">
+<html lang="en" itemscope itemtype="http://schema.org/Person">
   <head>
     <!-- Made by @zabbix https://github.com/zabbix-byte | Vasile Ovidiu Ichim -->
-    
-    <!-- Primary Meta Tags -->
-    <title>Vasile Ovidiu Ichim - Staff Engineer & Technical Lead</title>
-    <meta name="title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
-    <meta name="description" content="Staff Engineer, Technical Lead &amp; Software Architect building AI &amp; supply-chain platforms — ML forecasting, distributed systems &amp; LLMs. Ex-IBM, ex-Inditex.">
-    <meta name="keywords" content="Vasile Ovidiu Ichim, Staff Engineer, Technical Lead, Principal Engineer, Software Architect, Backend, Distributed Systems, AI, Machine Learning, Python, Django, Data Engineering, Supply Chain">
+
+    <title>{% block title %}Vasile Ovidiu Ichim{% endblock %}</title>
+    <meta name="title" content="Vasile Ovidiu Ichim — Staff Engineer & Technical Lead">
+    <meta name="description" content="Staff Engineer and CTO. Designing and scaling data-intensive systems — distributed pipelines, multi-tenant AI platforms, supply chain.">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
     <meta name="author" content="Vasile Ovidiu Ichim">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://ztrunk.space/">
-    
-    <!-- Open Graph / Facebook -->
+    <link rel="canonical" href="{% block canonical %}https://ztrunk.space/{% endblock %}">
+
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://ztrunk.space/">
-    <meta property="og:title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
-    <meta property="og:description" content="Staff Engineer, Technical Lead and Software Architect. Building data-intensive AI and supply-chain platforms — distributed systems, ML forecasting and LLMs.">
+    <meta property="og:title" content="Vasile Ovidiu Ichim — Staff Engineer & Technical Lead">
+    <meta property="og:description" content="Staff Engineer and CTO. Designing and scaling data-intensive systems — distributed pipelines, multi-tenant AI platforms, supply chain.">
     <meta property="og:image" content="https://ztrunk.space/static/img/profile-picture.jpeg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Vasile Ovidiu Ichim - Staff Engineer & Technical Lead">
-    <meta property="twitter:description" content="Staff Engineer, Technical Lead and Software Architect. Building data-intensive AI and supply-chain platforms — distributed systems, ML forecasting and LLMs.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vasile Ovidiu Ichim — Staff Engineer & Technical Lead">
+    <meta name="twitter:description" content="Staff Engineer and CTO. Designing and scaling data-intensive systems.">
 
-    <!-- Structured Data (Schema.org Person) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -37,7 +28,7 @@
       "url": "https://ztrunk.space/",
       "image": "https://ztrunk.space/static/img/profile-picture.jpeg",
       "jobTitle": "Staff Engineer & Technical Lead",
-      "description": "Staff Engineer, Technical Lead and Software Architect building data-intensive AI and supply-chain platforms.",
+      "description": "Staff Engineer and CTO designing and scaling data-intensive systems.",
       "email": "mailto:zabbix@ztrunk.space",
       "address": { "@type": "PostalAddress", "addressLocality": "Barcelona", "addressCountry": "ES" },
       "worksFor": { "@type": "Organization", "name": "Valerdat", "url": "https://valerdat.com" },
@@ -49,231 +40,46 @@
       ]
     }
     </script>
-
-    <!-- Site navigation (helps Google surface section / jump links) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
       "itemListElement": [
-        { "@type": "SiteNavigationElement", "position": 1, "name": "Experience", "url": "https://ztrunk.space/#experience" },
-        { "@type": "SiteNavigationElement", "position": 2, "name": "Projects", "url": "https://ztrunk.space/#projects" },
-        { "@type": "SiteNavigationElement", "position": 3, "name": "Skills", "url": "https://ztrunk.space/#skills" },
-        { "@type": "SiteNavigationElement", "position": 4, "name": "Certifications", "url": "https://ztrunk.space/#certifications" }
+        { "@type": "SiteNavigationElement", "position": 1, "name": "Experience", "url": "https://ztrunk.space/experience/" },
+        { "@type": "SiteNavigationElement", "position": 2, "name": "Projects", "url": "https://ztrunk.space/projects/" },
+        { "@type": "SiteNavigationElement", "position": 3, "name": "Research", "url": "https://ztrunk.space/research/" },
+        { "@type": "SiteNavigationElement", "position": 4, "name": "CV", "url": "https://ztrunk.space/download-cv/" }
       ]
     }
     </script>
-    
-    <!-- Additional Meta Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=5" />
-    <meta name="theme-color" content="#EEEFE9" />
-    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="view-transition" content="same-origin">
+
     {% load static %}
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
     <link rel="icon" type="image/png" sizes="48x48" href="{% static 'img/favicon-48.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16.png' %}">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-180.png' %}">
-    
-    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Spotlight Effect & Scroll Reveal Script -->
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Spotlight Effect — only update the hovered card, throttled to one frame.
-        const SPOTLIGHT_SELECTOR = '.group, .rounded-\\[2rem\\]';
-        const finePointer = window.matchMedia('(pointer: fine)').matches;
-        if (finePointer) {
-            let lastEvent = null, ticking = false;
-            document.addEventListener('mousemove', e => {
-                lastEvent = e;
-                if (ticking) return;
-                ticking = true;
-                requestAnimationFrame(() => {
-                    ticking = false;
-                    const card = lastEvent.target.closest
-                        ? lastEvent.target.closest(SPOTLIGHT_SELECTOR)
-                        : null;
-                    if (!card) return;
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mouse-x', (lastEvent.clientX - rect.left) + 'px');
-                    card.style.setProperty('--mouse-y', (lastEvent.clientY - rect.top) + 'px');
-                });
-            }, { passive: true });
-        }
-
-        // Scroll Reveal
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
-            observer.observe(element);
-        });
-    });
-    </script>
-    
-    <style>
-    /* Spotlight Effect Base */
-    .group, .rounded-\[2rem\] {
-        position: relative;
-    }
-    
-    /* The Glow Overlay */
-    .group::after, .rounded-\[2rem\]::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: inherit;
-        background: radial-gradient(
-            600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
-            rgba(255, 255, 255, 0.06),
-            transparent 40%
-        );
-        opacity: 0;
-        transition: opacity 0.5s;
-        pointer-events: none;
-        z-index: 2;
-    }
-    
-    .group:hover::after, .rounded-\[2rem\]:hover::after {
-        opacity: 1;
-    }
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-              'mono': ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-            },
-            colors: {
-              'apple-gray': {
-                50: '#f5f5f7',
-                100: '#e5e5e5',
-                200: '#d2d2d7',
-                300: '#86868b',
-                400: '#6e6e73',
-                500: '#424245',
-                900: '#1d1d1f',
-              },
-              'apple-blue': '#0071e3',
-              'apple-blue-hover': '#0077ed',
-              'ph-cream': '#EEEFE9',
-              'ph-cream2': '#F3F4EF',
-              'ph-red': '#F54E00',
-              'ph-blue': '#1D4AFF',
-              'ph-yellow': '#F9BD2B',
-              'ph-ink': '#151515',
-              'ph-border': '#DBDBD1',
-            },
-            boxShadow: {
-              'soft': '0 4px 24px rgba(0,0,0,0.04)',
-              'card': '0 10px 40px rgba(0,0,0,0.06)',
-            }
-          }
-        }
-      }
-    </script>
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block head %}{% endblock %}
   </head>
 
-  <body class="ph-desktop min-h-screen relative font-sans antialiased text-ph-ink selection:bg-ph-red selection:text-white overflow-x-hidden">
+  <body>
+    {% include 'partials/nav.html' %}
 
-    <!-- Power-on / boot screen -->
-    <div id="ph-boot" class="ph-boot" role="status" aria-label="Booting">
-      <div class="ph-boot-inner">
-        <div class="ph-boot-brand">
-          <span class="ph-boot-hog"><i class="fas fa-terminal"></i></span>
-          <span class="ph-boot-title">ztrunkOS <span style="color:#9a9a90;font-weight:500;">v1.0</span></span>
-        </div>
-        <pre id="ph-boot-log" class="ph-boot-log"></pre>
-        <div class="ph-boot-bar"><span id="ph-boot-bar"></span></div>
-        <div class="ph-boot-hint">click anywhere to skip &rarr;</div>
-      </div>
-    </div>
-
-    <!-- Desktop wallpaper -->
-    <div class="ph-wallpaper"></div>
-    <div class="ph-aurora" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
-    <div class="ph-cursor-glow" id="ph-cursor-glow" aria-hidden="true"></div>
-
-    <!-- Desktop screen (icons + windows) -->
-    <main class="ph-screen">
-      {% block content %}
-      {% endblock %}
+    <main class="page" id="main">
+      {% block content %}{% endblock %}
     </main>
 
-    <!-- Taskbar + Start launcher -->
-    {% include 'home/taskbar.html' %}
-
-    <!-- TARS desktop pet -->
-    {% include 'home/tars.html' %}
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{% static 'js/desktop.js' %}"></script>
-    
-    <!-- Simple fade in animation -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.classList.add('opacity-100');
-        document.body.classList.remove('opacity-0');
-      });
-    </script>
-    <style>
-      body {
-        transition: opacity 0.5s ease;
-      }
-      .opacity-0 { opacity: 0; }
-      .opacity-100 { opacity: 1; }
-      
-      @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(30px, -50px) scale(1.1); }
-        66% { transform: translate(-20px, 20px) scale(0.9); }
-        100% { transform: translate(0px, 0px) scale(1); }
-      }
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
-    </style>
+    {% block scripts %}{% endblock %}
   </body>
-</html>  <!-- Made by @zabbix https://github.com/zabbix-byte | Vasile Ovidiu Ichim -->
 </html>

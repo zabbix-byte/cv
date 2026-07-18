@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Experience — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/experience/{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Experience</h1>
+  <p class="meta">Roles where I owned systems end to end — from infrastructure to product architecture.</p>
+
+  <section class="role">
+    <div class="role-head">
+      <h2 class="role-title">Co-founder &amp; CTO · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
+      <span class="role-dates">2021 – Present</span>
+    </div>
+    <ul>
+      <li>Re-architected the platform end to end to process 10TB+/day with Spark and serve near-instant responses; demand forecasting at &lt;5% MAPE.</li>
+      <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
+      <li>Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.</li>
+      <li>Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on across the stack.</li>
+    </ul>
+  </section>
+
+  <section class="role">
+    <div class="role-head">
+      <h2 class="role-title">Python Software Engineer · Knowmad Mood (<a href="https://www.inditex.com" target="_blank" rel="noopener">Inditex</a>)</h2>
+      <span class="role-dates">Oct 2023 – Sep 2024</span>
+    </div>
+    <p class="muted role-note">Concurrent with Valerdat</p>
+    <ul>
+      <li>Built the strategic planning platform for Inditex’s Security Department (Django, React, AWS).</li>
+      <li>Designed REST APIs and microservices, improving scalability of internal supply-chain operations.</li>
+      <li>Optimized PostgreSQL analytics queries and shipped via Docker and CI/CD pipelines.</li>
+    </ul>
+  </section>
+
+  <section class="role">
+    <div class="role-head">
+      <h2 class="role-title">Middleware &amp; Application Operations · <a href="https://www.ibm.com" target="_blank" rel="noopener">IBM</a></h2>
+      <span class="role-dates">Feb 2021 – Mar 2022</span>
+    </div>
+    <ul>
+      <li>Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services — tax, agriculture, and others.</li>
+      <li>Administered application and web servers: IBM WebSphere, Oracle WebLogic, Apache Tomcat, Apache HTTP Server, and Nginx.</li>
+      <li>Operated across RedHat Linux and Windows Server environments, ensuring reliable release rollouts.</li>
+    </ul>
+  </section>
+
+  <section class="role">
+    <div class="role-head">
+      <h2 class="role-title">Software &amp; Systems Engineer · <a href="https://dataxip.com" target="_blank" rel="noopener">Dataxip SL</a></h2>
+      <span class="role-dates">Feb 2018 – Feb 2021</span>
+    </div>
+    <ul>
+      <li>Built and operated physical servers, networking and security (MikroTik), Linux services (Apache/Nginx), and Python web applications.</li>
+      <li>Developed Sage 50 ERP extensions and custom reports — early foundation for the ERP integration work I lead today.</li>
+    </ul>
+  </section>
+</article>
+{% endblock %}
