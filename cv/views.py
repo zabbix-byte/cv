@@ -49,6 +49,10 @@ def education(request):
     return render(request, "pages/education.html")
 
 
+def press(request):
+    return render(request, "pages/press.html")
+
+
 def github_data_api(request):
     """API endpoint to fetch fresh GitHub data (for AJAX updates)"""
     if request.method == "GET":

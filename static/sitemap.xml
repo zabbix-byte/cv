@@ -25,6 +25,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://ztrunk.space/press/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ztrunk.space/skills/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>

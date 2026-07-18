@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Press — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/press/{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Press</h1>
+  {% include 'partials/byline.html' %}
+
+  <p>
+    A few public pieces about the work we’ve done at Valerdat — AI in the supply chain, and how customers use the platform.
+  </p>
+
+  <ul class="section-list">
+    <li>
+      <a href="https://www.viaempresa.cat/es/empresa/como-inteligencia-artificial-redefine-cadena-suministro-caso-valerdat_2202088_102.html" target="_blank" rel="noopener">How AI is redefining the supply chain — VIA Empresa</a>
+    </li>
+    <li>
+      <a href="https://valerdat.com/casosdeexito" target="_blank" rel="noopener">Customer case studies at valerdat.com</a>
+    </li>
+  </ul>
+</article>
+{% endblock %}
