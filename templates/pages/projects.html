@@ -13,7 +13,7 @@
   <section class="role" id="valerdat">
     <h2 class="role-title">AI Procurement Platform · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
     <p>
-      The MRP product I designed and built: ERP supply-chain data in, demand forecasts and purchase proposals out — planners can trust, agents on top so people can work with the results in natural language.
+      The MRP product I designed and built: ERP supply-chain data in, demand forecasts and purchase proposals out — planners can trust. On top, agents don’t just chat: they automate work — querying demand, inspecting proposals, and taking actions in the platform.
     </p>
     <ul>
       <li>Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, near-instant responses, and demand forecasting at &lt;5% MAPE.</li>
@@ -23,7 +23,8 @@
 
     <h3 id="architecture">Architecture</h3>
     <p>
-      How demand prediction works in the product: ERP data in, purchase proposals out — and agents on top so people can work with the results in natural language.
+      How demand prediction works in the product: ERP data in, purchase proposals out — and agents on top that converse in natural language and run automations, not only answer questions.
+      The whole path is wrapped in each client’s business logic: their rules and constraints shape ingest, forecasting, purchase proposals, the product UI, and what agents are allowed to do.
     </p>
 
     <div
@@ -33,70 +34,77 @@
       aria-label="Valerdat demand prediction architecture"
     >
       <p class="diagram-label">From ERP data to purchase proposals</p>
+      <p class="diagram-sublabel">Wrapped in each client’s business logic</p>
 
-      <button
-        type="button"
-        class="diagram-node arch-agentic"
-        data-diagram-node
-        data-detail="On top of the pipeline, agents let users ask about demand, inspect proposals, and act without digging through every screen."
-        tabindex="0"
-      >
-        <span class="diagram-node-title">Agents</span>
-        <span class="diagram-node-desc">Ask the platform in plain language</span>
-      </button>
+      <div class="arch-business" role="group" aria-label="Client business logic">
+        <button
+          type="button"
+          class="diagram-node arch-agentic"
+          data-diagram-node
+          data-detail="On top of the pipeline — still inside the client’s business rules — agents talk in plain language and do the work: query demand, inspect proposals, trigger automations, and act in the product — not only answer questions."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">Agents</span>
+          <span class="diagram-node-desc">Talk, automate, and act</span>
+        </button>
 
-      <div class="arch-rail">
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply client rules, and prepare it for forecasting — roughly 1.5 hours per client, using cluster pools so we don’t pay for idle machines."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Ingest</span>
-          <span class="diagram-node-desc">Pull ERP data and prepare it</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="We evaluate 13 forecasting models and keep the one that works best for each SKU and warehouse — so a slow-moving item and a high-volume one are not forced into the same approach."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Forecast</span>
-          <span class="diagram-node-desc">Best model per SKU &amp; warehouse</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Forecasts alone are not enough. An optimizer turns them into purchase proposals that match each customer’s buying rules and constraints."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Purchase</span>
-          <span class="diagram-node-desc">Turn forecasts into buy proposals</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Results sync into PostgreSQL and show up in the Angular product so planners can review and confirm."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Product</span>
-          <span class="diagram-node-desc">Review and confirm in the app</span>
-        </button>
+        <div class="arch-rail">
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply that client’s business rules, and prepare it for forecasting — roughly 1.5 hours per client, using cluster pools so we don’t pay for idle machines."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Ingest</span>
+            <span class="diagram-node-desc">Pull ERP data and prepare it</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="We evaluate 13 forecasting models and keep the one that works best for each SKU and warehouse — so a slow-moving item and a high-volume one are not forced into the same approach — always under the client’s catalog and planning rules."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Forecast</span>
+            <span class="diagram-node-desc">Best model per SKU &amp; warehouse</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="Forecasts alone are not enough. An optimizer turns them into purchase proposals that match each customer’s buying rules and constraints — the business logic that defines how they actually purchase."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Purchase</span>
+            <span class="diagram-node-desc">Turn forecasts into buy proposals</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="Results sync into PostgreSQL and show up in the Angular product so planners can review and confirm — still reflecting that client’s rules and constraints."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Product</span>
+            <span class="diagram-node-desc">Review and confirm in the app</span>
+          </button>
+        </div>
       </div>
 
-      <p class="diagram-caption" data-diagram-caption data-default="Select a stage to follow the path from data to purchases.">
-        Select a stage to follow the path from data to purchases.
+      <p class="diagram-caption" data-diagram-caption data-default="Select a stage — every step runs inside the client’s business logic.">
+        Select a stage — every step runs inside the client’s business logic.
       </p>
     </div>
 
     <ol class="arch-list">
+      <li>
+        <strong>Business logic.</strong>
+        Every stage below is tenant-specific: each client’s rules and constraints wrap ingest, models, purchase optimization, the UI, and agent actions.
+      </li>
       <li>
         <strong>Ingest.</strong>
         Connectors pull from SAP, Dynamics 365 Business Central, and Sage into S3. Databricks jobs validate the data, apply each client’s rules, and prepare features for forecasting — about 1.5 hours per client.
@@ -115,7 +123,7 @@
       </li>
       <li>
         <strong>Agents.</strong>
-        A layer on top of the whole stack lets users query demand and proposals in natural language, not only through the classic UI.
+        A layer on top of the whole stack: natural-language conversation plus automations — query demand, inspect proposals, and take actions in the product, always within that client’s business logic.
       </li>
     </ol>
   </section>
