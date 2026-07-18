@@ -61,13 +61,18 @@
     <meta name="view-transition" content="same-origin">
 
     {% load static %}
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32.png' %}?v=6">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16.png' %}?v=6">
-    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'img/favicon-48.png' %}?v=6">
-    <link rel="icon" href="{% static 'img/favicon-32.png' %}?v=6" sizes="any">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-180.png' %}?v=6">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32.png' %}?v=7">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16.png' %}?v=7">
+    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'img/favicon-48.png' %}?v=7">
+    <link rel="icon" href="{% static 'img/favicon-32.png' %}?v=7" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon-180.png' %}?v=7">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="preload" href="{% static 'fonts/stix-var-latin.woff2' %}" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=8">
     {% block head %}{% endblock %}
   </head>
 
