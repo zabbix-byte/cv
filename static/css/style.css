@@ -423,19 +423,27 @@ a:focus-visible {
 /* —— Mobile (match leerob reading width) —— */
 @media (max-width: 720px) {
   :root {
-    --page-pad: 1rem;
-    --page-pad-top: 1.75rem;
+    --page-pad: 1.25rem;
+    --page-pad-top: 2.25rem;
     --measure: 100%;
   }
 
   body {
     font-size: 18px;
     line-height: 1.65;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   .page {
     max-width: none;
-    padding-bottom: 3.25rem;
+    width: 100%;
+    box-sizing: border-box;
+    /* Explicit — do not rely on shorthand + partial override */
+    padding-top: calc(2.25rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.25rem;
+    padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.25rem;
   }
 
   .page h1 {
@@ -518,9 +526,11 @@ a:focus-visible {
 }
 
 @media (max-width: 380px) {
-  :root {
-    --page-pad: 0.9rem;
-    --page-pad-top: 1.5rem;
+  .page {
+    padding-top: calc(1.75rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.1rem;
+    padding-bottom: calc(2.75rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.1rem;
   }
 }
 
