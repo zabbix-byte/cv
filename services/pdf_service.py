@@ -337,13 +337,7 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Procurement Platform · Valerdat",
-                "AI-powered MRP: demand forecasting (Prophet, XGBoost, TFT, and 13 other models) at &lt;5% MAPE, optimization and LLMs."),
-            self._project_cell(
-                "Distributed ETL Engine · Valerdat",
-                "Databricks/Spark pipelines across 500k+ SKUs and 10TB+ of supply-chain data."),
-            self._project_cell(
-                "Multi-ERP Connector Layer · Valerdat",
-                "Integrations with Sage 200, Dynamics 365 Business Central and others (API/SFTP). Sage Marketplace."),
+                "End-to-end MRP product: 500k+ SKUs / 10TB+ data, forecasting at &lt;5% MAPE (13+ models), purchase optimization, multi-tenant SaaS, ERP connectors (Sage/BC/SAP), Databricks/Spark ingest."),
             self._project_cell(
                 "Strategic Planning · Inditex",
                 "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
@@ -351,7 +345,7 @@ class CVPDFGenerator:
         gutter = 8 * mm
         col_w = (self.content_width - gutter) / 2.0
         grid = Table(
-            [[p[0], p[1]], [p[2], p[3]]],
+            [[p[0], p[1]]],
             colWidths=[col_w, col_w],
         )
         grid.setStyle(TableStyle([
@@ -360,8 +354,7 @@ class CVPDFGenerator:
             ("RIGHTPADDING", (0, 0), (0, -1), gutter),
             ("LEFTPADDING", (1, 0), (1, -1), gutter),
             ("RIGHTPADDING", (1, 0), (-1, -1), 0),
-            ("TOPPADDING", (0, 0), (-1, 0), 0),
-            ("TOPPADDING", (0, 1), (-1, 1), 6),
+            ("TOPPADDING", (0, 0), (-1, -1), 0),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ]))
         return self._section_header("Featured Projects") + [grid]

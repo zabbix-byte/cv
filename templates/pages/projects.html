@@ -7,26 +7,23 @@
 <article>
   <h1>Projects</h1>
   {% include 'partials/byline.html' %}
-  <p class="meta">Selected systems shipped at Valerdat, Inditex, and in open source.</p>
+  <p class="meta">Products I’ve built end to end — not a checklist of subsystems.</p>
 
   <section class="role">
     <h2 class="role-title">AI Procurement Platform · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
-    <p>MRP powered by ML forecasting (Prophet, XGBoost, TFT, and 13 other models) at &lt;5% MAPE, optimization, and LLMs that generate purchase orders ready to validate.</p>
-  </section>
-
-  <section class="role">
-    <h2 class="role-title">Distributed ETL Engine · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
-    <p>Databricks and Spark pipelines across 500k+ SKUs and 10TB+ of supply-chain data into analytics-ready datasets.</p>
-  </section>
-
-  <section class="role">
-    <h2 class="role-title"><a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Multi-ERP Connector Layer · Valerdat</a></h2>
-    <p>Bidirectional connectors for Sage 200, Dynamics 365 Business Central, and other ERPs via API/SFTP. Listed on the Sage Marketplace.</p>
-  </section>
-
-  <section class="role">
-    <h2 class="role-title">Multi-Tenant SaaS Core · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
-    <p>Django multi-tenant architecture with isolated data, RBAC, and per-tenant scaling for enterprise customers.</p>
+    <p>
+      The product I designed and built as founding engineer and CTO: an MRP platform that turns ERP supply-chain data into demand forecasts and purchase proposals planners can trust.
+    </p>
+    <p>
+      Scale is a property of the whole system, not one layer — today it runs across <strong>500k+ SKUs</strong> and <strong>10TB+</strong> of data, with forecasting below <strong>5% MAPE</strong> using Prophet, XGBoost, TFT, and thirteen other models (best fit per SKU and warehouse). An optimizer turns those forecasts into buy proposals; LLMs help produce orders ready to validate.
+    </p>
+    <p>
+      Underneath that product surface sits the platform that makes it possible: multi-tenant SaaS with isolated data and RBAC, bidirectional connectors into Sage 200, Dynamics 365 Business Central, SAP and others (API/SFTP — also on the <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Sage Marketplace</a>), and Databricks/Spark pipelines that ingest, clean, and prepare each client’s data before forecasting.
+    </p>
+    <p>
+      For how the pieces connect — ingest → forecast → purchase → product, plus the agent layer — see the
+      <a href="{% url 'experience' %}#architecture">architecture walkthrough under Experience</a>.
+    </p>
   </section>
 
   <section class="role">
