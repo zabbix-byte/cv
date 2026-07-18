@@ -215,12 +215,12 @@ class CVPDFGenerator:
 
     def _summary(self):
         text = (
-            "I specialize in designing and scaling data-intensive systems, from distributed "
-            "pipelines to multi-tenant AI platforms. Co-founded <b>Valerdat</b> as founding "
-            "engineer, built the core platform from the ground up, and transitioned into the "
-            "CTO role — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of supply-chain "
-            "data (Spark), with demand forecasting at &lt;5% MAPE. Previously at "
-            "<b>Inditex</b> and <b>IBM</b>."
+            "Software engineer and technical lead specializing in designing and scaling "
+            "data-intensive systems — from distributed pipelines to multi-tenant AI platforms. "
+            "Founding engineer at <b>Valerdat</b>, built the core platform from the ground up "
+            "before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
+            "supply-chain data, with demand forecasting at &lt;5% MAPE. Hands-on daily. "
+            "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
         press = (
             'Featured in <a href="https://www.viaempresa.cat/es/empresa/'
