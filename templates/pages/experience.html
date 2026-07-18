@@ -24,7 +24,7 @@
 
     <h3>Architecture</h3>
     <p>
-      The demand-prediction platform I designed and built at Valerdat — from ERP ingestion through model selection to serving.
+      How demand prediction works in the product: ERP data in, purchase proposals out — and agents on top so people can work with the results in natural language.
     </p>
 
     <div
@@ -33,79 +33,90 @@
       role="group"
       aria-label="Valerdat demand prediction architecture"
     >
-      <p class="diagram-label">Demand prediction · end to end</p>
+      <p class="diagram-label">From ERP data to purchase proposals</p>
+
+      <button
+        type="button"
+        class="diagram-node arch-agentic"
+        data-diagram-node
+        data-detail="On top of the pipeline, agents let users ask about demand, inspect proposals, and act without digging through every screen."
+        tabindex="0"
+      >
+        <span class="diagram-node-title">Agents</span>
+        <span class="diagram-node-desc">Ask the platform in plain language</span>
+      </button>
 
       <div class="arch-rail">
         <button
           type="button"
           class="diagram-node"
           data-diagram-node
-          data-detail="SAP, Dynamics 365 Business Central, and Sage connectors land raw data in S3 with ACL. A trigger starts pooled Databricks job clusters for cost and cold-start — about 1.5 hours per client through quality, personalization, and AI preprocessing."
+          data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply client rules, and prepare it for forecasting — roughly 1.5 hours per client, using cluster pools so we don’t pay for idle machines."
           tabindex="0"
         >
           <span class="diagram-node-title">Ingest</span>
-          <span class="diagram-node-desc">SAP · BC · Sage → S3</span>
-          <span class="diagram-node-meta">Databricks · quality · ACL</span>
+          <span class="diagram-node-desc">Pull ERP data and prepare it</span>
         </button>
         <span class="diagram-arrow" aria-hidden="true">→</span>
         <button
           type="button"
           class="diagram-node"
           data-diagram-node
-          data-detail="Grid search and hyperparameter tuning across 13 models. The optimal model is selected dynamically per SKU and warehouse, with every run tracked in MLflow."
+          data-detail="We evaluate 13 forecasting models and keep the one that works best for each SKU and warehouse — so a slow-moving item and a high-volume one are not forced into the same approach."
           tabindex="0"
         >
-          <span class="diagram-node-title">ML engine</span>
-          <span class="diagram-node-desc">13 models · per SKU</span>
-          <span class="diagram-node-meta">Grid search · MLflow</span>
+          <span class="diagram-node-title">Forecast</span>
+          <span class="diagram-node-desc">Best model per SKU &amp; warehouse</span>
         </button>
         <span class="diagram-arrow" aria-hidden="true">→</span>
         <button
           type="button"
           class="diagram-node"
           data-diagram-node
-          data-detail="KPI module and purchase optimizer aligned to each customer’s business objectives. Data and features governed in Unity Catalog."
+          data-detail="Forecasts alone are not enough. An optimizer turns them into purchase proposals that match each customer’s buying rules and constraints."
           tabindex="0"
         >
-          <span class="diagram-node-title">Optimize</span>
-          <span class="diagram-node-desc">KPIs · purchasing</span>
-          <span class="diagram-node-meta">Unity Catalog</span>
+          <span class="diagram-node-title">Purchase</span>
+          <span class="diagram-node-desc">Turn forecasts into buy proposals</span>
         </button>
         <span class="diagram-arrow" aria-hidden="true">→</span>
         <button
           type="button"
           class="diagram-node"
           data-diagram-node
-          data-detail="Messaging syncs predictions into load-balanced PostgreSQL, serving the Angular frontend. An agentic AI layer sits on top for real-time interaction."
+          data-detail="Results sync into PostgreSQL and show up in the Angular product so planners can review and confirm."
           tabindex="0"
         >
-          <span class="diagram-node-title">Serve</span>
-          <span class="diagram-node-desc">Postgres · Angular</span>
-          <span class="diagram-node-meta">Messaging · agents</span>
+          <span class="diagram-node-title">Product</span>
+          <span class="diagram-node-desc">Review and confirm in the app</span>
         </button>
       </div>
 
-      <p class="diagram-caption" data-diagram-caption data-default="Hover a stage to walk the pipeline.">
-        Hover a stage to walk the pipeline.
+      <p class="diagram-caption" data-diagram-caption data-default="Hover a stage to follow the path from data to purchases.">
+        Hover a stage to follow the path from data to purchases.
       </p>
     </div>
 
     <ol class="arch-list">
       <li>
-        <strong>Ingestion &amp; quality.</strong>
-        Connectors from SAP, Dynamics 365 Business Central, and Sage land in S3. A trigger starts a Databricks job cluster (pools for cost and cold-start), running ACL and data-quality layers before personalization and AI preprocessing — about 1.5 hours per client.
+        <strong>Ingest.</strong>
+        Connectors pull from SAP, Dynamics 365 Business Central, and Sage into S3. Databricks jobs validate the data, apply each client’s rules, and prepare features for forecasting — about 1.5 hours per client.
       </li>
       <li>
-        <strong>ML engine.</strong>
-        Preprocessing, then grid search and hyperparameter tuning across 13 models. We pick the best model dynamically per SKU and warehouse, with everything tracked in MLflow.
+        <strong>Forecast.</strong>
+        Thirteen models compete; we keep the best fit per SKU and warehouse instead of one global model for everything.
       </li>
       <li>
-        <strong>Optimization.</strong>
-        KPI module and a purchase optimizer driven by each customer’s business objectives, with data governed in Unity Catalog.
+        <strong>Purchase.</strong>
+        An optimizer turns those forecasts into purchase proposals under each customer’s business constraints.
       </li>
       <li>
-        <strong>Serving.</strong>
-        Messaging syncs into our transactional PostgreSQL (load-balanced), which powers the Angular frontend — plus an agentic AI layer for real-time interaction on top.
+        <strong>Product.</strong>
+        Results land in PostgreSQL and surface in the Angular app for review and confirmation.
+      </li>
+      <li>
+        <strong>Agents.</strong>
+        A layer on top of the whole stack lets users query demand and proposals in natural language, not only through the classic UI.
       </li>
     </ol>
   </section>
