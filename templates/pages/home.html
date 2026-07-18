@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/{% endblock %}
@@ -7,97 +6,30 @@
 {% block content %}
 <article>
   <h1>Vasile Ovidiu Ichim</h1>
-  <p class="meta">Staff Engineer &amp; Technical Lead · Barcelona</p>
 
   <p>
-    I specialize in designing and scaling data-intensive systems, from distributed pipelines to multi-tenant AI platforms.
-  </p>
-  <p>
-    My background in system administration and backend development gave me a strong foundation in infrastructure stability and performance. I co-founded <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a> as a founding engineer, built the core platform from the ground up, and transitioned into the CTO role.
-  </p>
-  <p>
-    Today, my work sits at the intersection of technology and product. I focus on translating complex Supply Chain challenges into scalable architectures, ensuring our tech stack not only scales seamlessly but also drives tangible business value.
-  </p>
-  <p>
-    I am always open to connecting with fellow engineers to talk about software architecture, performance optimization, or data scaling challenges. We are currently expanding our team and actively looking for solid ML Engineers and Full Stack Developers, so feel free to reach out.
-  </p>
-
-  <div
-    id="systems-diagram"
-    class="diagram"
-    role="group"
-    aria-label="Systems I've shipped"
-  >
-    <p class="diagram-label">Systems I’ve shipped</p>
-    <div class="diagram-flow">
-      <button
-        type="button"
-        class="diagram-node"
-        data-diagram-node
-        data-detail="Ingest and transform supply-chain data with Databricks and Spark — 10TB+ processed daily into analytics-ready datasets."
-        tabindex="0"
-      >
-        <span class="diagram-node-title">Ingest &amp; ETL</span>
-        <span class="diagram-node-desc">Spark · Databricks</span>
-      </button>
-      <span class="diagram-arrow" aria-hidden="true">→</span>
-      <button
-        type="button"
-        class="diagram-node"
-        data-diagram-node
-        data-detail="Demand forecasting below 5% MAPE, plus LLM-assisted purchasing that turns predictions into purchase orders ready to validate."
-        tabindex="0"
-      >
-        <span class="diagram-node-title">Forecast &amp; AI</span>
-        <span class="diagram-node-desc">ML · LLMs · MRP</span>
-      </button>
-      <span class="diagram-arrow" aria-hidden="true">→</span>
-      <button
-        type="button"
-        class="diagram-node"
-        data-diagram-node
-        data-detail="Multi-tenant Django SaaS with isolated data, RBAC, and connectors into Sage 200, Dynamics 365 Business Central, and the Sage Marketplace."
-        tabindex="0"
-      >
-        <span class="diagram-node-title">SaaS &amp; ERP</span>
-        <span class="diagram-node-desc">Django · Integrations</span>
-      </button>
-    </div>
-    <p class="diagram-caption" data-diagram-caption data-default="Hover a stage to see how the platform fits together.">
-      Hover a stage to see how the platform fits together.
-    </p>
-  </div>
-
-  <p>
-    You can read about my
-    <a href="{% url 'experience' %}">experience</a>,
-    <a href="{% url 'projects' %}">projects</a>, or
-    <a href="{% url 'research' %}">systems research</a>,
-    or download my
-    <a href="{% url 'download_cv_pdf' %}">CV</a>.
-    Also:
-    <a href="{% url 'skills' %}">skills</a>
-    and
-    <a href="{% url 'education' %}">education</a>.
+    I’m an engineer and technical lead. I specialize in designing and scaling data-intensive systems — from distributed pipelines to multi-tenant AI platforms. I co-founded <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a> as a founding engineer, built the core platform from the ground up, and transitioned into the CTO role. Previously at Inditex and IBM.
   </p>
 
   <p>
+    Today my work sits at the intersection of technology and product: translating supply-chain problems into architectures that scale. We’re hiring ML Engineers and Full Stack Developers — feel free to reach out.
+  </p>
+
+  <p>Some of my work includes:</p>
+  <ul class="section-list">
+    <li><a href="{% url 'experience' %}">Experience</a></li>
+    <li><a href="{% url 'projects' %}">Projects</a></li>
+    <li><a href="{% url 'research' %}">Research</a></li>
+    <li><a href="{% url 'skills' %}">Skills</a></li>
+    <li><a href="{% url 'education' %}">Education</a></li>
+    <li><a href="{% url 'download_cv_pdf' %}">CV</a></li>
+  </ul>
+
+  <p>
+    You can also find me on
     <a href="https://www.linkedin.com/in/zabbix-byte/" target="_blank" rel="noopener">LinkedIn</a>
-    ·
-    <a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">GitHub</a>
-    ·
-    <a href="mailto:zabbix@ztrunk.space">Email</a>
-  </p>
-
-  <p class="footnote">
-    Featured in
-    <a href="https://www.viaempresa.cat/es/empresa/como-inteligencia-artificial-redefine-cadena-suministro-caso-valerdat_2202088_102.html" target="_blank" rel="noopener">VIA Empresa</a>
-    · Customer case studies at
-    <a href="https://valerdat.com/casosdeexito" target="_blank" rel="noopener">valerdat.com/casosdeexito</a>
+    and
+    <a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">GitHub</a>.
   </p>
 </article>
-{% endblock %}
-
-{% block scripts %}
-<script src="{% static 'js/systems-diagram.js' %}"></script>
 {% endblock %}
