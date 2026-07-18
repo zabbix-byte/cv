@@ -336,13 +336,13 @@ class CVPDFGenerator:
     def _projects_block(self):
         p = [
             self._project_cell(
-                "AI Procurement Platform",
+                "AI Procurement Platform · Valerdat",
                 "AI-powered MRP: demand forecasting (Prophet, XGBoost, TFT, and 13 other models) at &lt;5% MAPE, optimization and LLMs."),
             self._project_cell(
-                "Distributed ETL Engine",
+                "Distributed ETL Engine · Valerdat",
                 "Databricks/Spark pipelines across 500k+ SKUs and 10TB+ of supply-chain data."),
             self._project_cell(
-                "Multi-ERP Connector Layer",
+                "Multi-ERP Connector Layer · Valerdat",
                 "Integrations with Sage 200, Dynamics 365 Business Central and others (API/SFTP). Sage Marketplace."),
             self._project_cell(
                 "Strategic Planning · Inditex",
