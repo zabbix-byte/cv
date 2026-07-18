@@ -340,7 +340,7 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Procurement Platform · Valerdat",
-                "MRP product end to end: 500k+ SKUs / 10TB+ data, &lt;5% MAPE forecasting (best of 13+ models), purchase optimization, multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agents that converse and automate — all wrapped in each client’s business logic. Path: ingest → forecast → purchase → product."),
+                "MRP platform end to end: 500k+ SKUs / 10TB+ data; model analysis as base for planning (&lt;5% MAPE, best of 13+ models), purchase optimizer, platform as the base system clients build on (S&amp;OP + review); multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agents that converse and automate — all wrapped in each client’s business logic. Path: ingest → forecast → purchase optimizer → platform."),
             self._project_cell(
                 "Strategic Planning · Inditex",
                 "Planning platform for Inditex’s Security Department — Django, React, and AWS."),

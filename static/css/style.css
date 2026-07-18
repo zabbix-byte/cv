@@ -333,14 +333,14 @@ a:focus-visible {
 }
 
 .arch-business {
-  padding: 1.1rem 1rem 1rem;
+  padding: 1.25rem 1.15rem 1.15rem;
   border: 1px dashed var(--border);
   border-radius: 8px;
 }
 
 .arch-agentic {
   width: 100%;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1.25rem;
   text-align: center;
   border-style: dashed;
 }
@@ -357,7 +357,7 @@ a:focus-visible {
 }
 
 .arch-diagram .arch-rail .diagram-node {
-  flex: 1 1 6.5rem;
+  flex: 1 1 5.75rem;
   min-width: 0;
 }
 
@@ -629,7 +629,7 @@ a:focus-visible {
   }
 
   .arch-business {
-    padding: 0.95rem 0.85rem 0.85rem;
+    padding: 1.1rem 1rem 1rem;
   }
 
   .diagram-caption {

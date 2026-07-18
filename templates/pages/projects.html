@@ -23,8 +23,8 @@
 
     <h3 id="architecture">Architecture</h3>
     <p>
-      How demand prediction works in the product: ERP data in, purchase proposals out — and agents on top that converse in natural language and run automations, not only answer questions.
-      The whole path is wrapped in each client’s business logic: their rules and constraints shape ingest, forecasting, purchase proposals, the product UI, and what agents are allowed to do.
+      How the platform goes from ERP data to purchase proposals: the system analyzes forecasting models as the base for planning, a purchase optimizer turns that into buy proposals, and the platform layer is where planners run S&amp;OP — and where each client builds their own system on top of our base. Agents on top converse and automate, not only answer questions.
+      The whole path is wrapped in each client’s business logic: their rules and constraints shape ingest, models, the purchase optimizer, the platform, and what agents are allowed to do.
     </p>
 
     <div
@@ -41,7 +41,7 @@
           type="button"
           class="diagram-node arch-agentic"
           data-diagram-node
-          data-detail="On top of the pipeline — still inside the client’s business rules — agents talk in plain language and do the work: query demand, inspect proposals, trigger automations, and act in the product — not only answer questions."
+          data-detail="On top of the pipeline — still inside the client’s business rules — agents talk in plain language and do the work: query demand, inspect proposals, trigger automations, and act in the platform — not only answer questions."
           tabindex="0"
         >
           <span class="diagram-node-title">Agents</span>
@@ -64,33 +64,33 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="We evaluate 13 forecasting models and keep the one that works best for each SKU and warehouse — so a slow-moving item and a high-volume one are not forced into the same approach — always under the client’s catalog and planning rules."
+            data-detail="The system evaluates 13 forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer and before S&OP in the platform."
             tabindex="0"
           >
             <span class="diagram-node-title">Forecast</span>
-            <span class="diagram-node-desc">Best model per SKU &amp; warehouse</span>
+            <span class="diagram-node-desc">Model analysis — base for planning</span>
           </button>
           <span class="diagram-arrow" aria-hidden="true">→</span>
           <button
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Forecasts alone are not enough. An optimizer turns them into purchase proposals that match each customer’s buying rules and constraints — the business logic that defines how they actually purchase."
+            data-detail="A purchase optimizer turns the forecast into purchase proposals under each customer’s buying rules and constraints — the technical step that encodes how they actually purchase."
             tabindex="0"
           >
-            <span class="diagram-node-title">Purchase</span>
-            <span class="diagram-node-desc">Turn forecasts into buy proposals</span>
+            <span class="diagram-node-title">Purchase optimizer</span>
+            <span class="diagram-node-desc">Constraints → buy proposals</span>
           </button>
           <span class="diagram-arrow" aria-hidden="true">→</span>
           <button
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Results sync into PostgreSQL and show up in the Angular product so planners can review and confirm — still reflecting that client’s rules and constraints."
+            data-detail="Results sync into PostgreSQL and surface in the Angular platform — where planners run S&OP, review proposals, and confirm. The platform is also the base system: each client can build their own system on top of ours — workflows, rules, and surfaces shaped to how they operate."
             tabindex="0"
           >
-            <span class="diagram-node-title">Product</span>
-            <span class="diagram-node-desc">Review and confirm in the app</span>
+            <span class="diagram-node-title">Platform</span>
+            <span class="diagram-node-desc">Base system you build on</span>
           </button>
         </div>
       </div>
@@ -103,7 +103,7 @@
     <ol class="arch-list">
       <li>
         <strong>Business logic.</strong>
-        Every stage below is tenant-specific: each client’s rules and constraints wrap ingest, models, purchase optimization, the UI, and agent actions.
+        Every stage below is tenant-specific: each client’s rules and constraints wrap ingest, models, the purchase optimizer, the platform, and agent actions.
       </li>
       <li>
         <strong>Ingest.</strong>
@@ -111,19 +111,19 @@
       </li>
       <li>
         <strong>Forecast.</strong>
-        Thirteen models compete; we keep the best fit per SKU and warehouse instead of one global model for everything.
+        The system analyzes the models — thirteen compete; we keep the best fit per SKU and warehouse. That signal is the base for planning.
       </li>
       <li>
-        <strong>Purchase.</strong>
-        An optimizer turns those forecasts into purchase proposals under each customer’s business constraints.
+        <strong>Purchase optimizer.</strong>
+        Turns the forecast into purchase proposals under each customer’s business constraints — the technical optimization step.
       </li>
       <li>
-        <strong>Product.</strong>
-        Results land in PostgreSQL and surface in the Angular app for review and confirmation.
+        <strong>Platform.</strong>
+        Results land in PostgreSQL and surface in the Angular app — S&amp;OP and planner review live here. It is also our base system: clients build their own system on top of it.
       </li>
       <li>
         <strong>Agents.</strong>
-        A layer on top of the whole stack: natural-language conversation plus automations — query demand, inspect proposals, and take actions in the product, always within that client’s business logic.
+        A layer on top of the whole stack: natural-language conversation plus automations — query demand, inspect proposals, and take actions in the platform, always within that client’s business logic.
       </li>
     </ol>
   </section>
