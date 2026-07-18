@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}Experience — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/experience/{% endblock %}
@@ -8,117 +7,22 @@
 <article>
   <h1>Experience</h1>
   {% include 'partials/byline.html' %}
-  <p class="meta">Roles where I owned systems end to end — from infrastructure to product architecture.</p>
+  <p class="meta">How the roles grew — and what I own day to day.</p>
 
   <section class="role">
     <div class="role-head">
       <h2 class="role-title">Co-founder &amp; CTO · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
       <span class="role-dates">2021 – Present</span>
     </div>
-    <ul>
-      <li>Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, near-instant responses, and demand forecasting at &lt;5% MAPE.</li>
-      <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
-      <li>Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.</li>
-      <li>Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on across the stack.</li>
-    </ul>
-
-    <h3 id="architecture">Architecture</h3>
     <p>
-      How demand prediction works in the product: ERP data in, purchase proposals out — and agents on top so people can work with the results in natural language.
+      I joined as founding engineer and grew into tech lead, then CTO — still hands-on on the systems that matter.
+      The path was continuous ownership: first shipping the platform, then raising the bar on architecture and delivery, then setting technical direction for the company.
     </p>
-
-    <div
-      class="diagram arch-diagram"
-      data-interactive-diagram
-      role="group"
-      aria-label="Valerdat demand prediction architecture"
-    >
-      <p class="diagram-label">From ERP data to purchase proposals</p>
-
-      <button
-        type="button"
-        class="diagram-node arch-agentic"
-        data-diagram-node
-        data-detail="On top of the pipeline, agents let users ask about demand, inspect proposals, and act without digging through every screen."
-        tabindex="0"
-      >
-        <span class="diagram-node-title">Agents</span>
-        <span class="diagram-node-desc">Ask the platform in plain language</span>
-      </button>
-
-      <div class="arch-rail">
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply client rules, and prepare it for forecasting — roughly 1.5 hours per client, using cluster pools so we don’t pay for idle machines."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Ingest</span>
-          <span class="diagram-node-desc">Pull ERP data and prepare it</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="We evaluate 13 forecasting models and keep the one that works best for each SKU and warehouse — so a slow-moving item and a high-volume one are not forced into the same approach."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Forecast</span>
-          <span class="diagram-node-desc">Best model per SKU &amp; warehouse</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Forecasts alone are not enough. An optimizer turns them into purchase proposals that match each customer’s buying rules and constraints."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Purchase</span>
-          <span class="diagram-node-desc">Turn forecasts into buy proposals</span>
-        </button>
-        <span class="diagram-arrow" aria-hidden="true">→</span>
-        <button
-          type="button"
-          class="diagram-node"
-          data-diagram-node
-          data-detail="Results sync into PostgreSQL and show up in the Angular product so planners can review and confirm."
-          tabindex="0"
-        >
-          <span class="diagram-node-title">Product</span>
-          <span class="diagram-node-desc">Review and confirm in the app</span>
-        </button>
-      </div>
-
-      <p class="diagram-caption" data-diagram-caption data-default="Select a stage to follow the path from data to purchases.">
-        Select a stage to follow the path from data to purchases.
-      </p>
-    </div>
-
-    <ol class="arch-list">
-      <li>
-        <strong>Ingest.</strong>
-        Connectors pull from SAP, Dynamics 365 Business Central, and Sage into S3. Databricks jobs validate the data, apply each client’s rules, and prepare features for forecasting — about 1.5 hours per client.
-      </li>
-      <li>
-        <strong>Forecast.</strong>
-        Thirteen models compete; we keep the best fit per SKU and warehouse instead of one global model for everything.
-      </li>
-      <li>
-        <strong>Purchase.</strong>
-        An optimizer turns those forecasts into purchase proposals under each customer’s business constraints.
-      </li>
-      <li>
-        <strong>Product.</strong>
-        Results land in PostgreSQL and surface in the Angular app for review and confirmation.
-      </li>
-      <li>
-        <strong>Agents.</strong>
-        A layer on top of the whole stack lets users query demand and proposals in natural language, not only through the classic UI.
-      </li>
-    </ol>
+    <p>
+      As CTO I own architecture, the data and application platform, cloud and security posture, and technical hiring — while staying close to the code on the hard paths.
+      Product detail and the demand-prediction architecture live under
+      <a href="{% url 'projects' %}#valerdat">Projects</a>.
+    </p>
   </section>
 
   <section class="role">
@@ -157,8 +61,4 @@
     </ul>
   </section>
 </article>
-{% endblock %}
-
-{% block scripts %}
-<script src="{% static 'js/systems-diagram.js' %}"></script>
 {% endblock %}

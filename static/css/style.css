@@ -240,30 +240,33 @@ a:focus-visible {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.2rem 1rem;
-  margin-bottom: 0.5rem;
+  gap: 0.15rem 1rem;
+  margin-bottom: 0.35rem;
 }
 
+.page h2.role-title,
 .role-title {
   font-weight: 500;
   margin: 0;
   flex: 1 1 12rem;
   min-width: 0;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .role-dates {
   color: var(--muted);
   font-size: 0.95rem;
   flex: 0 1 auto;
+  line-height: 1.3;
 }
 
 .role-note {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
+  margin-top: 0;
 }
 
 .role ul {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .arch-list {
@@ -514,13 +517,27 @@ a:focus-visible {
     font-size: 1.1rem;
   }
 
+  .page h2.role-title {
+    margin: 0;
+  }
+
   .role-head {
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.1rem;
+    margin-bottom: 0.25rem;
   }
 
   .role-dates {
     white-space: normal;
+  }
+
+  .role ul {
+    margin-top: 0.15rem;
+  }
+
+  .role {
+    margin-bottom: 1.5rem;
   }
 
   .skills-table,

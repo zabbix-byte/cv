@@ -260,11 +260,9 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
-                    "Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, near-instant responses, and demand forecasting at &lt;5% MAPE.",
-                    "Designed the demand-prediction path end to end: ERP data (SAP, Business Central, Sage) ingested and prepared on Databricks, best-of-13 forecasting per SKU/warehouse, optimization into purchase proposals, served in the product UI, with agents on top for natural-language interaction.",
-                    "Owned the full stack: distributed ETL (Databricks/Spark), multi-tenant backend, AWS infra, observability &amp; security.",
-                    "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
-                    "Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on.",
+                    "Joined as founding engineer, grew into tech lead, then CTO — continuous ownership from first platform layers to company technical direction.",
+                    "As CTO: architecture, data and application platform, cloud and security posture, and technical hiring — while staying hands-on on the hard paths.",
+                    "Day to day: design reviews, platform ownership, and close work with product so forecasting and procurement stay tied to real supply-chain workflows.",
                 ],
             ),
             self._exp_entry(
@@ -337,7 +335,7 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Procurement Platform · Valerdat",
-                "End-to-end MRP product: 500k+ SKUs / 10TB+ data, forecasting at &lt;5% MAPE (13+ models), purchase optimization, multi-tenant SaaS, ERP connectors (Sage/BC/SAP), Databricks/Spark ingest."),
+                "MRP product end to end: 500k+ SKUs / 10TB+ data, &lt;5% MAPE forecasting (best of 13+ models), purchase optimization, multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agent layer on top. Path: ingest → forecast → purchase → product."),
             self._project_cell(
                 "Strategic Planning · Inditex",
                 "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
