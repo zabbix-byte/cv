@@ -46,8 +46,9 @@
   --code-cm: #a3a3a3;
   --selection: #e5e5e5;
   --measure: 42rem;
-  --page-pad: clamp(1.25rem, 5vw, 3rem);
-  --page-pad-top: clamp(3rem, 10vh, 7.5rem);
+  --page-pad: clamp(1.5rem, 6vw, 3.25rem);
+  --page-pad-top: clamp(3.5rem, 12vh, 8rem);
+  --home-wash: #f3f3f3;
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
 }
@@ -55,19 +56,21 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --bg: #0a0a0a;
-    --fg: #ededed;
-    --muted: #a3a3a3;
-    --border: #2a2a2a;
-    --surface: #161616;
-    --ring: #737373;
-    --code-bg: #1c1c1e;
-    --code-fg: #f5f5f5;
-    --code-border: #525252;
+    /* Soft charcoal — not pure black */
+    --bg: #1a1a1a;
+    --fg: #e8e8e8;
+    --muted: #9a9a9a;
+    --border: #333333;
+    --surface: #242424;
+    --ring: #7a7a7a;
+    --code-bg: #121212;
+    --code-fg: #ececec;
+    --code-border: #3d3d3d;
     --code-kw: #c4b5fd;
     --code-str: #86efac;
     --code-cm: #8a8a8a;
-    --selection: #262626;
+    --selection: #2e2e2e;
+    --home-wash: #141414;
   }
 }
 
@@ -420,17 +423,60 @@ a:focus-visible {
 .code-block .str { color: var(--code-str); }
 .code-block .cm { color: var(--code-cm); }
 
+/* —— Home: carta de presentación —— */
+body.is-home {
+  background: var(--home-wash);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vh, 3rem) clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.page-home {
+  font-size: 15.5px;
+  line-height: 1.5;
+  max-width: 36rem;
+  width: 100%;
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--fg) 4%, transparent),
+    0 12px 40px color-mix(in srgb, var(--fg) 6%, transparent);
+  padding: clamp(2rem, 5vw, 2.75rem) clamp(1.75rem, 5vw, 2.75rem)
+    clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.page-home h1 {
+  font-size: 1.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.page-home p {
+  margin-bottom: 0.8rem;
+}
+
+.page-home .section-list {
+  margin: 0 0 0.85rem;
+}
+
+.page-home .section-list li {
+  margin-bottom: 0.28rem;
+}
+
 /* —— Mobile (match leerob reading width) —— */
 @media (max-width: 720px) {
   :root {
-    --page-pad: 1.25rem;
-    --page-pad-top: 2.25rem;
+    --page-pad: 1.5rem;
+    --page-pad-top: 2.75rem;
     --measure: 100%;
   }
 
   body {
-    font-size: 18px;
-    line-height: 1.65;
+    font-size: 16px;
+    line-height: 1.55;
     padding-left: env(safe-area-inset-left, 0px);
     padding-right: env(safe-area-inset-right, 0px);
   }
@@ -439,11 +485,40 @@ a:focus-visible {
     max-width: none;
     width: 100%;
     box-sizing: border-box;
-    /* Explicit — do not rely on shorthand + partial override */
-    padding-top: calc(2.25rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.25rem;
-    padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.25rem;
+    padding-top: calc(2.75rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.5rem;
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.5rem;
+  }
+
+  body.is-home {
+    align-items: flex-start;
+    padding: calc(1.5rem + env(safe-area-inset-top, 0px)) 1.15rem
+      calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .page-home {
+    font-size: 14.5px;
+    line-height: 1.45;
+    border-radius: 10px;
+    padding: 1.6rem 1.35rem 1.4rem;
+  }
+
+  .page-home h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .page-home p {
+    margin-bottom: 0.65rem;
+  }
+
+  .page-home .section-list {
+    margin-bottom: 0.7rem;
+  }
+
+  .page-home .section-list li {
+    margin-bottom: 0.22rem;
   }
 
   .page h1 {
@@ -527,10 +602,15 @@ a:focus-visible {
 
 @media (max-width: 380px) {
   .page {
-    padding-top: calc(1.75rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.1rem;
-    padding-bottom: calc(2.75rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.1rem;
+    padding-top: calc(2.25rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.35rem;
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.35rem;
+  }
+
+  .page-home {
+    padding: 1.35rem 1.15rem 1.25rem;
+    font-size: 14px;
   }
 }
 
