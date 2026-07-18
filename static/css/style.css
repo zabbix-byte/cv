@@ -45,9 +45,10 @@
   --code-str: #86efac;
   --code-cm: #a3a3a3;
   --selection: #e5e5e5;
-  --measure: 42rem;
-  --page-pad: clamp(1.5rem, 6vw, 3.25rem);
-  --page-pad-top: clamp(3.5rem, 12vh, 8rem);
+  /* leerob.com measure + type */
+  --measure: 65ch;
+  --page-pad: clamp(1.25rem, 5vw, 2.5rem);
+  --page-pad-top: clamp(3rem, 10vh, 6rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
 }
@@ -100,7 +101,7 @@ body {
   font-family: var(--font);
   font-size: 17px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -140,9 +141,9 @@ a:focus-visible {
 
 .page h1 {
   margin: 0 0 1.15rem;
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 24px;
   letter-spacing: -0.02em;
 }
 
@@ -421,25 +422,25 @@ a:focus-visible {
 .code-block .str { color: var(--code-str); }
 .code-block .cm { color: var(--code-cm); }
 
-/* —— Home: flat, more air (leerob-style) —— */
+/* —— Home desktop: leerob air —— */
 .page-home {
-  padding-top: clamp(4.5rem, 14vh, 9rem);
-  padding-right: clamp(1.75rem, 7vw, 3.5rem);
-  padding-bottom: 2.5rem;
-  padding-left: clamp(1.75rem, 7vw, 3.5rem);
+  padding-top: clamp(3.5rem, 12vh, 7rem);
+  padding-right: var(--page-pad);
+  padding-bottom: 3rem;
+  padding-left: var(--page-pad);
 }
 
-/* —— Mobile (match leerob reading width) —— */
+/* —— Mobile —— */
 @media (max-width: 720px) {
   :root {
-    --page-pad: 1.5rem;
-    --page-pad-top: 2.75rem;
+    --page-pad: 1.25rem;
+    --page-pad-top: 2rem;
     --measure: 100%;
   }
 
   body {
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.5;
     padding-left: env(safe-area-inset-left, 0px);
     padding-right: env(safe-area-inset-right, 0px);
   }
@@ -448,21 +449,62 @@ a:focus-visible {
     max-width: none;
     width: 100%;
     box-sizing: border-box;
-    padding-top: calc(2.75rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.5rem;
-    padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.5rem;
+    padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.25rem;
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.25rem;
+  }
+
+  /* Home: one viewport, no scroll, with margins */
+  body:has(.page-home) {
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
   }
 
   .page-home {
-    padding-top: calc(3.25rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.6rem;
-    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.6rem;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-top: max(1.5rem, env(safe-area-inset-top, 0px) + 1.25rem);
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px) + 1rem);
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px) + 1.25rem);
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px) + 1rem);
+    /* stay at Lee’s 17px when the screen allows; tighten only if needed */
+    font-size: clamp(15px, 2.15vh + 0.55rem, 17px);
+    line-height: 1.45;
+  }
+
+  .page-home article {
+    min-height: 0;
+  }
+
+  .page-home h1 {
+    font-size: clamp(20px, 3.2vh + 0.4rem, 24px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.7rem;
+  }
+
+  .page-home p {
+    margin-bottom: 0.65rem;
+  }
+
+  .page-home .section-list {
+    margin: 0 0 0.7rem;
+  }
+
+  .page-home .section-list li {
+    margin-bottom: 0.2rem;
   }
 
   .page h1 {
-    font-size: 1.4rem;
+    font-size: 24px;
+    line-height: 24px;
     margin-bottom: 1rem;
   }
 
@@ -542,16 +584,40 @@ a:focus-visible {
 
 @media (max-width: 380px) {
   .page {
-    padding-top: calc(2.25rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.35rem;
-    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
-    padding-left: 1.35rem;
+    padding-top: calc(1.75rem + env(safe-area-inset-top, 0px));
+    padding-right: 1.15rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+    padding-left: 1.15rem;
   }
 
   .page-home {
-    padding-top: calc(2.75rem + env(safe-area-inset-top, 0px));
-    padding-right: 1.4rem;
-    padding-left: 1.4rem;
+    padding-top: max(1.25rem, env(safe-area-inset-top, 0px) + 1rem);
+    padding-right: 1.15rem;
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px) + 1rem);
+    padding-left: 1.15rem;
+  }
+}
+
+/* Very short viewports: keep one screen */
+@media (max-width: 720px) and (max-height: 700px) {
+  .page-home {
+    font-size: clamp(14px, 2vh + 0.45rem, 16px);
+    line-height: 1.4;
+    justify-content: flex-start;
+    padding-top: max(1rem, env(safe-area-inset-top, 0px) + 0.85rem);
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px) + 0.85rem);
+  }
+
+  .page-home h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-home p {
+    margin-bottom: 0.5rem;
+  }
+
+  .page-home .section-list li {
+    margin-bottom: 0.12rem;
   }
 }
 
