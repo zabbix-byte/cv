@@ -345,8 +345,8 @@ class CVPDFGenerator:
                 "Multi-ERP Connector Layer",
                 "Integrations with Sage 200, Dynamics 365 Business Central and others (API/SFTP). Sage Marketplace."),
             self._project_cell(
-                "Multi-Tenant SaaS Core",
-                "Isolated data, RBAC and per-tenant scaling for enterprise."),
+                "Strategic Planning · Inditex",
+                "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
         ]
         gutter = 8 * mm
         col_w = (self.content_width - gutter) / 2.0

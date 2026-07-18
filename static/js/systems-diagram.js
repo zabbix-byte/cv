@@ -1,10 +1,12 @@
 (function () {
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
   document.querySelectorAll("[data-interactive-diagram]").forEach((root) => {
     const caption = root.querySelector("[data-diagram-caption]");
-    const nodes = root.querySelectorAll("[data-diagram-node]");
+    const nodes = [...root.querySelectorAll("[data-diagram-node]")];
     const defaultCaption =
       caption?.dataset.default ||
-      "Hover a stage to see how the platform fits together.";
+      "Select a stage to follow the path.";
 
     function setActive(node) {
       nodes.forEach((n) => n.classList.remove("is-active"));
@@ -17,12 +19,22 @@
     }
 
     nodes.forEach((node) => {
-      node.addEventListener("mouseenter", () => setActive(node));
-      node.addEventListener("focus", () => setActive(node));
-      node.addEventListener("mouseleave", () => setActive(null));
-      node.addEventListener("blur", () => setActive(null));
+      if (finePointer) {
+        node.addEventListener("mouseenter", () => setActive(node));
+        node.addEventListener("focus", () => setActive(node));
+        node.addEventListener("mouseleave", () => setActive(null));
+        node.addEventListener("blur", () => setActive(null));
+      } else {
+        node.addEventListener("click", (e) => {
+          e.preventDefault();
+          const already = node.classList.contains("is-active");
+          setActive(already ? null : node);
+        });
+      }
     });
 
-    root.addEventListener("mouseleave", () => setActive(null));
+    if (finePointer) {
+      root.addEventListener("mouseleave", () => setActive(null));
+    }
   });
 })();

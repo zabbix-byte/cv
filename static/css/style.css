@@ -25,6 +25,7 @@
 }
 
 :root {
+  color-scheme: light;
   --bg: #ffffff;
   --fg: #171717;
   --muted: #737373;
@@ -32,10 +33,28 @@
   --surface: #fafafa;
   --ring: #a1a1a1;
   --code-bg: #1a1b26;
+  --code-fg: #c0caf5;
+  --selection: #e5e5e5;
   --measure: 42rem;
-  --page-pad: clamp(1.5rem, 6vw, 3rem);
+  --page-pad: clamp(1.25rem, 5vw, 3rem);
+  --page-pad-top: clamp(3.5rem, 12vh, 8.5rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --fg: #ededed;
+    --muted: #a1a1a1;
+    --border: #262626;
+    --surface: #141414;
+    --ring: #737373;
+    --code-bg: #111318;
+    --code-fg: #c0caf5;
+    --selection: #262626;
+  }
 }
 
 *,
@@ -68,10 +87,11 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background: #e5e5e5;
+  background: var(--selection);
   color: var(--fg);
 }
 
@@ -93,69 +113,25 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-/* —— Nav —— */
-.site-nav {
-  padding: 1.5rem var(--page-pad) 0;
-}
-
-.site-nav-inner {
-  max-width: var(--measure);
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.65rem 1.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.site-nav-name {
-  font-weight: 400;
-  font-size: 17px;
-  letter-spacing: -0.01em;
-  color: var(--muted);
-}
-
-.site-nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem 1.1rem;
-  font-size: 15px;
-  color: var(--muted);
-}
-
-.site-nav-links a:hover,
-.site-nav-links a.is-active,
-.site-nav-name.is-active {
-  color: var(--fg);
-  text-decoration: none;
-}
-
-.site-nav-links a.is-active {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 /* —— Page —— */
 .page {
   width: 100%;
   max-width: var(--measure);
   margin-left: auto;
   margin-right: auto;
-  padding: clamp(5.5rem, 14vh, 8.5rem) var(--page-pad) 6rem;
-  box-sizing: border-box;
+  padding: var(--page-pad-top) var(--page-pad) 4.5rem;
 }
 
 .page h1 {
-  margin: 0 0 1.35rem;
+  margin: 0 0 1.25rem;
   font-size: 24px;
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .page h2 {
-  margin: 2.25rem 0 0.75rem;
+  margin: 2rem 0 0.7rem;
   font-size: 19px;
   font-weight: 500;
   line-height: 1.3;
@@ -163,21 +139,21 @@ a:focus-visible {
 }
 
 .page h3 {
-  margin: 1.5rem 0 0.35rem;
+  margin: 1.35rem 0 0.35rem;
   font-size: 17px;
   font-weight: 500;
   letter-spacing: -0.01em;
 }
 
 .meta {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.35rem;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.45;
 }
 
 .byline {
-  margin: -0.85rem 0 1.5rem;
+  margin: -0.7rem 0 1.35rem;
 }
 
 .byline a {
@@ -194,15 +170,16 @@ a:focus-visible {
 }
 
 .page p {
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.1rem;
 }
 
 .page p:last-child {
   margin-bottom: 0;
 }
 
-.page ul {
-  margin: 0 0 1.15rem;
+.page ul,
+.page ol {
+  margin: 0 0 1.1rem;
   padding-left: 1.2rem;
 }
 
@@ -219,38 +196,22 @@ a:focus-visible {
 }
 
 .footnote {
-  margin-top: 2.5rem;
-  padding-top: 1.25rem;
+  margin-top: 2.25rem;
+  padding-top: 1.15rem;
   border-top: 1px solid var(--border);
   font-size: 14px;
   color: var(--muted);
   line-height: 1.5;
 }
 
-.footnote a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 .section-list {
   list-style: disc;
   padding-left: 1.2rem;
-  margin: 0 0 1.35rem;
+  margin: 0 0 1.25rem;
 }
 
 .section-list li {
   margin: 0 0 0.45rem;
-}
-
-.section-list a {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: color-mix(in srgb, var(--fg) 35%, transparent);
-}
-
-.section-list a:hover {
-  text-decoration-color: var(--fg);
 }
 
 /* —— Experience / roles —— */
@@ -262,23 +223,31 @@ a:focus-visible {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.25rem 1rem;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
   margin-bottom: 0.5rem;
 }
 
 .role-title {
   font-weight: 500;
   margin: 0;
+  flex: 1 1 12rem;
+  min-width: 0;
+  line-height: 1.35;
 }
 
 .role-dates {
   color: var(--muted);
   font-size: 15px;
-  white-space: nowrap;
+  flex: 0 1 auto;
 }
 
 .role-note {
   margin-bottom: 0.5rem;
+}
+
+.role ul {
+  margin-top: 0.5rem;
 }
 
 .arch-list {
@@ -292,6 +261,50 @@ a:focus-visible {
 
 .arch-list strong {
   font-weight: 500;
+}
+
+/* —— Skills table —— */
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.skills-table th,
+.skills-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-table th {
+  font-weight: 500;
+  width: 9.5rem;
+  color: var(--fg);
+}
+
+.skills-table td {
+  color: var(--fg);
+  word-break: break-word;
+}
+
+/* —— Diagram —— */
+.diagram {
+  margin: 1.35rem 0 1.5rem;
+  padding: 1rem 0.9rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.diagram-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.8rem;
 }
 
 .arch-diagram {
@@ -318,76 +331,12 @@ a:focus-visible {
 
 .arch-diagram .arch-rail .diagram-node {
   flex: 1 1 6.5rem;
-  min-width: 6.25rem;
-}
-
-@media (max-width: 640px) {
-  .arch-rail .diagram-arrow {
-    display: none;
-  }
-
-  .arch-rail {
-    flex-direction: column;
-  }
-}
-
-.role ul {
-  margin-top: 0.5rem;
-}
-
-/* —— Skills table —— */
-.skills-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 16px;
-}
-
-.skills-table th,
-.skills-table td {
-  text-align: left;
-  vertical-align: top;
-  padding: 0.45rem 0.75rem 0.45rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.skills-table th {
-  font-weight: 500;
-  width: 9.5rem;
-  color: var(--fg);
-}
-
-.skills-table td {
-  color: var(--fg);
-}
-
-/* —— Diagram (craft piece) —— */
-.diagram {
-  margin: 1.75rem 0 2rem;
-  padding: 1.1rem 1rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.diagram-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.85rem;
-}
-
-.diagram-flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 0.5rem;
+  min-width: 0;
 }
 
 .diagram-node {
-  flex: 1 1 7.5rem;
-  min-width: 7rem;
+  display: block;
+  width: 100%;
   margin: 0;
   padding: 0.7rem 0.75rem;
   background: var(--bg);
@@ -399,13 +348,12 @@ a:focus-visible {
   color: inherit;
   appearance: none;
   -webkit-appearance: none;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease;
 }
 
 .diagram-node:hover,
 .diagram-node.is-active {
   border-color: var(--fg);
-  background: var(--bg);
 }
 
 .diagram-node:focus-visible {
@@ -441,21 +389,8 @@ a:focus-visible {
   margin: 0.85rem 0 0;
   font-size: 14px;
   color: var(--muted);
-  min-height: 1.35em;
-}
-
-@media (max-width: 560px) {
-  .diagram-arrow {
-    display: none;
-  }
-
-  .diagram-flow {
-    flex-direction: column;
-  }
-
-  .diagram-node {
-    flex: 1 1 auto;
-  }
+  min-height: 2.7em;
+  line-height: 1.4;
 }
 
 /* —— Code aside —— */
@@ -463,17 +398,119 @@ a:focus-visible {
   margin: 1.25rem 0;
   padding: 0.9rem 1rem;
   background: var(--code-bg);
-  color: #c0caf5;
+  color: var(--code-fg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.55;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .code-block .kw { color: #bb9af7; }
 .code-block .str { color: #9ece6a; }
 .code-block .cm { color: #565f89; }
+
+/* —— Mobile —— */
+@media (max-width: 720px) {
+  :root {
+    --page-pad: 1.25rem;
+    --page-pad-top: 2.75rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .page {
+    padding-bottom: 3.5rem;
+  }
+
+  .page h1 {
+    font-size: 22px;
+    margin-bottom: 1rem;
+  }
+
+  .page h2,
+  .role-title {
+    font-size: 17px;
+  }
+
+  .role-head {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .role-dates {
+    white-space: normal;
+  }
+
+  .skills-table,
+  .skills-table tbody,
+  .skills-table tr,
+  .skills-table th,
+  .skills-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .skills-table tr {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skills-table th,
+  .skills-table td {
+    border-bottom: none;
+    padding: 0;
+  }
+
+  .skills-table th {
+    width: auto;
+    margin-bottom: 0.2rem;
+    font-size: 14px;
+  }
+
+  .skills-table td {
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .arch-rail {
+    flex-direction: column;
+  }
+
+  .arch-rail .diagram-arrow {
+    display: none;
+  }
+
+  .arch-diagram .arch-rail .diagram-node {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .diagram {
+    padding: 0.85rem 0.75rem;
+  }
+
+  .diagram-caption {
+    min-height: 0;
+  }
+
+  .code-block {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --page-pad: 1rem;
+    --page-pad-top: 2.25rem;
+  }
+}
 
 /* —— View transitions —— */
 @view-transition {
