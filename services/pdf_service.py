@@ -218,8 +218,9 @@ class CVPDFGenerator:
             "I specialize in designing and scaling data-intensive systems, from distributed "
             "pipelines to multi-tenant AI platforms. Co-founded <b>Valerdat</b> as founding "
             "engineer, built the core platform from the ground up, and transitioned into the "
-            "CTO role — including re-architecture for <b>10TB+/day</b> (Spark) and demand "
-            "forecasting at &lt;5% MAPE. Previously at <b>Inditex</b> and <b>IBM</b>."
+            "CTO role — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of supply-chain "
+            "data (Spark), with demand forecasting at &lt;5% MAPE. Previously at "
+            "<b>Inditex</b> and <b>IBM</b>."
         )
         press = (
             'Featured in <a href="https://www.viaempresa.cat/es/empresa/'
@@ -259,7 +260,7 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
-                    "Re-architected the platform end to end to process 10TB+/day with Spark and serve near-instant responses; demand forecasting at &lt;5% MAPE.",
+                    "Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, near-instant responses, and demand forecasting at &lt;5% MAPE.",
                     "Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infra, observability &amp; security.",
                     "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
                     "Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on.",
@@ -296,7 +297,7 @@ class CVPDFGenerator:
             ("Languages", "Python, C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
             ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
-            ("AI, ML &amp; Architecture", "Forecasting (Prophet, ARIMA, XGBoost, NHITS, TFT), LLM integration, distributed systems, multi-tenant SaaS, ERP integrations"),
+            ("AI, ML &amp; Architecture", "Forecasting (Prophet, XGBoost, TFT, and 13 other models), LLM integration, distributed systems, multi-tenant SaaS, ERP integrations"),
             ("Leadership", "Architecture &amp; design reviews, technical direction, mentoring"),
         ]
         data = []
@@ -335,10 +336,10 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Procurement Platform",
-                "AI-powered MRP: demand forecasting (Prophet, XGBoost, TFT) at &lt;5% MAPE, optimization and LLMs."),
+                "AI-powered MRP: demand forecasting (Prophet, XGBoost, TFT, and 13 other models) at &lt;5% MAPE, optimization and LLMs."),
             self._project_cell(
                 "Distributed ETL Engine",
-                "Databricks/Spark pipelines processing 10TB+ of data daily."),
+                "Databricks/Spark pipelines across 500k+ SKUs and 10TB+ of supply-chain data."),
             self._project_cell(
                 "Multi-ERP Connector Layer",
                 "Integrations with Sage 200, Dynamics 365 Business Central and others (API/SFTP). Sage Marketplace."),
