@@ -281,6 +281,54 @@ a:focus-visible {
   margin-bottom: 0.5rem;
 }
 
+.arch-list {
+  margin: 0 0 1.15rem;
+  padding-left: 1.2rem;
+}
+
+.arch-list li {
+  margin-bottom: 0.75rem;
+}
+
+.arch-list strong {
+  font-weight: 500;
+}
+
+.arch-diagram {
+  margin: 1.35rem 0 1.5rem;
+}
+
+.arch-rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.45rem;
+}
+
+.arch-diagram .diagram-node {
+  flex: 1 1 6.5rem;
+  min-width: 6.25rem;
+}
+
+.diagram-node-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .arch-rail .diagram-arrow {
+    display: none;
+  }
+
+  .arch-rail {
+    flex-direction: column;
+  }
+}
+
 .role ul {
   margin-top: 0.5rem;
 }

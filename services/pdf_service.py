@@ -261,7 +261,8 @@ class CVPDFGenerator:
                 "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
                     "Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, near-instant responses, and demand forecasting at &lt;5% MAPE.",
-                    "Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infra, observability &amp; security.",
+                    "Designed the demand-prediction architecture: SAP/BC/Sage → S3 → Databricks (ACL, quality, preprocessing) → grid search across 13 models per SKU/warehouse (MLflow) → purchase optimization on Unity Catalog → messaging into PostgreSQL + Angular serving.",
+                    "Owned the full stack: distributed ETL (Databricks/Spark), multi-tenant backend, AWS infra, observability &amp; security.",
                     "Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.",
                     "Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on.",
                 ],

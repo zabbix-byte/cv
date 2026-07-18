@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Experience — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/experience/{% endblock %}
@@ -20,6 +21,93 @@
       <li>Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the Sage Marketplace.</li>
       <li>Founding engineer turned CTO: ownership of architecture, platform, and technical direction while remaining hands-on across the stack.</li>
     </ul>
+
+    <h3>Architecture</h3>
+    <p>
+      The demand-prediction platform I designed and built at Valerdat — from ERP ingestion through model selection to serving.
+    </p>
+
+    <div
+      class="diagram arch-diagram"
+      data-interactive-diagram
+      role="group"
+      aria-label="Valerdat demand prediction architecture"
+    >
+      <p class="diagram-label">Demand prediction · end to end</p>
+
+      <div class="arch-rail">
+        <button
+          type="button"
+          class="diagram-node"
+          data-diagram-node
+          data-detail="SAP, Dynamics 365 Business Central, and Sage connectors land raw data in S3 with ACL. A trigger starts pooled Databricks job clusters for cost and cold-start — about 1.5 hours per client through quality, personalization, and AI preprocessing."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">Ingest</span>
+          <span class="diagram-node-desc">SAP · BC · Sage → S3</span>
+          <span class="diagram-node-meta">Databricks · quality · ACL</span>
+        </button>
+        <span class="diagram-arrow" aria-hidden="true">→</span>
+        <button
+          type="button"
+          class="diagram-node"
+          data-diagram-node
+          data-detail="Grid search and hyperparameter tuning across 13 models. The optimal model is selected dynamically per SKU and warehouse, with every run tracked in MLflow."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">ML engine</span>
+          <span class="diagram-node-desc">13 models · per SKU</span>
+          <span class="diagram-node-meta">Grid search · MLflow</span>
+        </button>
+        <span class="diagram-arrow" aria-hidden="true">→</span>
+        <button
+          type="button"
+          class="diagram-node"
+          data-diagram-node
+          data-detail="KPI module and purchase optimizer aligned to each customer’s business objectives. Data and features governed in Unity Catalog."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">Optimize</span>
+          <span class="diagram-node-desc">KPIs · purchasing</span>
+          <span class="diagram-node-meta">Unity Catalog</span>
+        </button>
+        <span class="diagram-arrow" aria-hidden="true">→</span>
+        <button
+          type="button"
+          class="diagram-node"
+          data-diagram-node
+          data-detail="Messaging syncs predictions into load-balanced PostgreSQL, serving the Angular frontend. An agentic AI layer sits on top for real-time interaction."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">Serve</span>
+          <span class="diagram-node-desc">Postgres · Angular</span>
+          <span class="diagram-node-meta">Messaging · agents</span>
+        </button>
+      </div>
+
+      <p class="diagram-caption" data-diagram-caption data-default="Hover a stage to walk the pipeline.">
+        Hover a stage to walk the pipeline.
+      </p>
+    </div>
+
+    <ol class="arch-list">
+      <li>
+        <strong>Ingestion &amp; quality.</strong>
+        Connectors from SAP, Dynamics 365 Business Central, and Sage land in S3. A trigger starts a Databricks job cluster (pools for cost and cold-start), running ACL and data-quality layers before personalization and AI preprocessing — about 1.5 hours per client.
+      </li>
+      <li>
+        <strong>ML engine.</strong>
+        Preprocessing, then grid search and hyperparameter tuning across 13 models. We pick the best model dynamically per SKU and warehouse, with everything tracked in MLflow.
+      </li>
+      <li>
+        <strong>Optimization.</strong>
+        KPI module and a purchase optimizer driven by each customer’s business objectives, with data governed in Unity Catalog.
+      </li>
+      <li>
+        <strong>Serving.</strong>
+        Messaging syncs into our transactional PostgreSQL (load-balanced), which powers the Angular frontend — plus an agentic AI layer for real-time interaction on top.
+      </li>
+    </ol>
   </section>
 
   <section class="role">
@@ -58,4 +146,8 @@
     </ul>
   </section>
 </article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/systems-diagram.js' %}"></script>
 {% endblock %}
