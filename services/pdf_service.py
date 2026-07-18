@@ -217,6 +217,7 @@ class CVPDFGenerator:
         text = (
             "Software engineer and technical lead specializing in designing and scaling "
             "data-intensive systems — from distributed pipelines to multi-tenant AI platforms. "
+            "Coding for over 13 years — seven of them professionally. "
             "Founding engineer at <b>Valerdat</b>, built the core platform from the ground up "
             "before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
             "supply-chain data, with demand forecasting at &lt;5% MAPE. Hands-on daily. "
@@ -379,7 +380,7 @@ class CVPDFGenerator:
             "Languages: Romanian (native) · Spanish (fluent, C2) · English (professional, C1)",
             self.styles["EduMeta"]))
         flow.append(Paragraph(
-            "Coursework: AWS Cloud (Practical) · FastAPI — Backend APIs",
+            "Coursework: Platzi (platzi.com/p/zabbix) — Python, C++, AWS, FastAPI, Git, and more.",
             self.styles["EduMeta"]))
         return flow
 
