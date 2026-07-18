@@ -46,7 +46,7 @@
   --code-cm: #a3a3a3;
   --selection: #e5e5e5;
   /* Content column — a bit wider than classic ~65ch measure */
-  --measure: 78ch;
+  --measure: 84ch;
   --page-pad: clamp(1.25rem, 5vw, 2.5rem);
   --page-pad-top: clamp(3rem, 10vh, 6rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
