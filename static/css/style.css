@@ -32,8 +32,8 @@
   --surface: #fafafa;
   --ring: #a1a1a1;
   --code-bg: #1a1b26;
-  --measure: 36rem;
-  --page-pad: clamp(1.25rem, 5vw, 2.5rem);
+  --measure: 42rem;
+  --page-pad: clamp(1.5rem, 6vw, 3rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
@@ -142,7 +142,7 @@ a:focus-visible {
   max-width: var(--measure);
   margin-left: auto;
   margin-right: auto;
-  padding: 4.5rem var(--page-pad) 5rem;
+  padding: clamp(5.5rem, 14vh, 8.5rem) var(--page-pad) 6rem;
   box-sizing: border-box;
 }
 

@@ -8,6 +8,8 @@ from .views import (
     education,
     github_data_api,
     download_cv_pdf,
+    robots_txt,
+    sitemap_xml,
 )
 
 urlpatterns = [
@@ -19,4 +21,6 @@ urlpatterns = [
     path("education/", education, name="education"),
     path("api/github-data/", github_data_api, name="github_data_api"),
     path("download-cv/", download_cv_pdf, name="download_cv_pdf"),
+    path("robots.txt", robots_txt, name="robots_txt"),
+    path("sitemap.xml", sitemap_xml, name="sitemap_xml"),
 ]

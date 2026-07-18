@@ -1,10 +1,28 @@
+from pathlib import Path
+
+from django.conf import settings
+from django.http import FileResponse, Http404, JsonResponse
 from django.shortcuts import render
-from django.http import JsonResponse
 from services.github_service import GitHubService
 from services.pdf_service import generate_cv_pdf_response
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def _static_file_response(name, content_type):
+    path = Path(settings.BASE_DIR) / "static" / name
+    if not path.exists():
+        raise Http404
+    return FileResponse(path.open("rb"), content_type=content_type)
+
+
+def robots_txt(request):
+    return _static_file_response("robots.txt", "text/plain")
+
+
+def sitemap_xml(request):
+    return _static_file_response("sitemap.xml", "application/xml")
 
 
 def home(request):
