@@ -220,7 +220,7 @@ class CVPDFGenerator:
             "Coding for over 13 years — seven of them professionally."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>, built the core platform from the ground up "
+            "Founding engineer at <b>Valerdat</b>, designed and developed the core platform together with the team "
             "before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
             "supply-chain data, with demand forecasting at &lt;5% MAPE. Hands-on daily. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
