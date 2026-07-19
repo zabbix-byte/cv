@@ -363,15 +363,26 @@ class CVPDFGenerator:
         return self._section_header("Featured Projects") + [grid]
 
     def _research_block(self):
-        text = (
-            "Security &amp; systems internals (personal): Windows kernel and user-mode work — "
-            "drivers and user/kernel IOCTL paths, memory access, DLL injection, and real-time overlays. "
-            "How I started programming 12–13 years ago and still a hobby — it sharpens how I reason "
+        intro = (
+            "Security &amp; systems internals (personal). Windows kernel and user-mode work — "
+            "how I started programming 12–13 years ago and still a hobby that sharpens how I reason "
             "about boundaries, failure modes, and performance in production."
         )
-        return self._section_header("Research") + [
-            Paragraph(text, self.styles["Summary"]),
+        items = [
+            ('<b><a href="https://github.com/zabbix-byte/ztdriver" color="#171717"><u>Windows Kernel Drivers</u></a></b> — '
+             "kernel-mode driver experiments in C++ exploring user/kernel communication and IOCTL paths."),
+            ('<b><a href="https://github.com/zabbix-byte/ztui" color="#171717"><u>Overlay cheat base</u></a></b> — '
+             "end-to-end overlay cheat base: kernel driver + user-mode client for memory access, DLL loading, and real-time DX11 overlays."),
+            ('<b><a href="https://github.com/zabbix-byte/zt_cs_cheat" color="#171717"><u>End-to-end game cheat</u></a></b> (archived) — '
+             "a separate full cheat: process attachment, DLL injection, and memory layout — the same surfaces anti-cheat systems watch."),
         ]
+        flow = self._section_header("Research") + [
+            Paragraph(intro, self.styles["Summary"]),
+            Spacer(1, 2),
+        ]
+        for it in items:
+            flow.append(Paragraph(it, self.styles["ExpBullet"], bulletText="•"))
+        return flow
 
     def _edu_block(self):
         edu = Table(
