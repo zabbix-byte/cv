@@ -270,16 +270,27 @@ a:focus-visible {
 }
 
 /* —— Sidenotes (margin notes; stack under the line on mobile) —— */
-.li-sidenote {
+.li-sidenote,
+.text-sidenote {
   display: flex;
   flex-direction: column;
 }
 
-.li-sidenote .li-main {
+.text-sidenote {
+  margin: 0 0 1.1rem;
+}
+
+.text-sidenote .text-main {
+  margin: 0;
+}
+
+.li-sidenote .li-main,
+.text-sidenote .text-main {
   order: 1;
 }
 
-.li-sidenote .sidenote {
+.li-sidenote .sidenote,
+.text-sidenote .sidenote {
   order: 2;
 }
 
@@ -339,13 +350,23 @@ a:focus-visible {
     order: unset;
   }
 
-  .notes-flow > .li-sidenote .sidenote {
+  .notes-flow > .li-sidenote .sidenote,
+  .text-sidenote .sidenote {
     float: right;
     clear: right;
     width: 12.75rem;
     margin: 0.1rem -14.5rem 0.85rem 1.25rem;
     padding: 0;
     border-left: 0;
+    order: unset;
+  }
+
+  .text-sidenote {
+    display: block;
+    overflow: visible;
+  }
+
+  .text-sidenote .text-main {
     order: unset;
   }
 }

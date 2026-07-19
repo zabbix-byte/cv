@@ -9,9 +9,16 @@
   {% include 'partials/byline.html' %}
   <p class="meta">Personal work on OS internals and low-level systems — the other side of how I think about reliability.</p>
 
-  <p>
-    Outside product work I spend time on Windows kernel and user-mode internals: drivers, memory access, and how privileged code talks to the rest of the system. That curiosity feeds how I reason about boundaries, failure modes, and performance in production platforms.
-  </p>
+  <div class="text-sidenote">
+    <aside class="sidenote">
+      <span class="sidenote-num">1</span>
+      This isn’t a one-off. For 12–13 years I’ve wanted to understand how software works on the inside — and I grew up on PC games, so the two met naturally. I started with ChatEngine-era game exploits for fun, then kept going as modern protections got harder. Along the way I built this toolkit and several others (many unpublished) for my own experiments. It’s a hobby first: curiosity about internals, not a product line.
+    </aside>
+    <p class="text-main">
+      Outside product work I spend time on Windows kernel and user-mode internals: drivers, memory access, and how privileged code talks to the rest of the system.<span class="sidenote-mark" aria-hidden="true">1</span>
+      That curiosity feeds how I reason about boundaries, failure modes, and performance in production platforms.
+    </p>
+  </div>
 
   <section class="role">
     <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztdriver" target="_blank" rel="noopener">Windows Kernel Drivers</a></h2>
