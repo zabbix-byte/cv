@@ -23,7 +23,7 @@
 
     <h3 id="architecture">Architecture</h3>
     <p>
-      How the platform goes from ERP data to purchase proposals: the system analyzes forecasting models as the base for planning, a purchase optimizer turns that into buy proposals, and the platform layer is where planners run S&amp;OP — and where each client builds their own system on top of our base. Agents on top converse and automate, not only answer questions.
+      How the platform goes from ERP data to purchase proposals: the system analyzes forecasting models as the base for planning, a purchase optimizer turns that into buy proposals, and the platform is the base system each client builds on. Agents on top converse and automate, not only answer questions.
       The whole path is wrapped in each client’s business logic: their rules and constraints shape ingest, models, the purchase optimizer, the platform, and what agents are allowed to do.
     </p>
 
@@ -64,7 +64,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="The system evaluates 13 forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer and before S&OP in the platform."
+            data-detail="The system evaluates 13 forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer."
             tabindex="0"
           >
             <span class="diagram-node-title">Forecast</span>
@@ -86,7 +86,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Results sync into PostgreSQL and surface in the Angular platform — where planners run S&OP, review proposals, and confirm. The platform is also the base system: each client can build their own system on top of ours — workflows, rules, and surfaces shaped to how they operate."
+            data-detail="Results sync into PostgreSQL and surface in the Angular platform. It is also the base system: each client can build their own system on top of ours — workflows, rules, and surfaces shaped to how they operate."
             tabindex="0"
           >
             <span class="diagram-node-title">Platform</span>
@@ -119,7 +119,7 @@
       </li>
       <li>
         <strong>Platform.</strong>
-        Results land in PostgreSQL and surface in the Angular app — S&amp;OP and planner review live here. It is also our base system: clients build their own system on top of it.
+        Results land in PostgreSQL and surface in the Angular app. It is also our base system: clients build their own system on top of it.
       </li>
       <li>
         <strong>Agents.</strong>
