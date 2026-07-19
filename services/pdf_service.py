@@ -220,8 +220,8 @@ class CVPDFGenerator:
             "Coding for over 13 years — seven of them professionally."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>, designed and developed the core platform together with the team "
-            "before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
+            "Founding engineer at <b>Valerdat</b>, led and designed the software hands-on and developed it "
+            "together with the team before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
             "supply-chain data, with demand forecasting at &lt;5% MAPE. Hands-on daily. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
@@ -265,8 +265,8 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
-                    "Joined as founding engineer, grew into tech lead, then CTO — continuous ownership from first platform layers to company technical direction.",
-                    "As CTO: architecture, data and application platform, cloud and security posture, and technical hiring — while staying hands-on on the hard paths.",
+                    "Joined as founding engineer, grew into tech lead, then CTO — led and designed the software hands-on; developed it with the team.",
+                    "As CTO: architecture, data and application platform, cloud and security posture, and technical hiring — while staying in the code on the hard paths.",
                     "Day to day: design reviews, platform ownership, and close work with product so forecasting and procurement stay tied to real supply-chain workflows.",
                 ],
             ),
