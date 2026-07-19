@@ -73,7 +73,7 @@ def download_cv_pdf(request):
     try:
         context = {
             "name": "Vasile Ovidiu Ichim",
-            "title": "Staff Engineer &amp; Technical Lead · Software Architect",
+            "title": "Co-founder &amp; CTO · Valerdat",
             "location": "Barcelona, Spain",
             "email": "zabbix@ztrunk.space",
             "github_url": "https://github.com/zabbix-byte",

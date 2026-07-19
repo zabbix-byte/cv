@@ -174,7 +174,7 @@ class CVPDFGenerator:
         canvas.setFillColor(MUTED)
         canvas.drawString(
             self.MARGIN, y,
-            "Vasile Ovidiu Ichim · Staff Engineer & Technical Lead",
+            "Vasile Ovidiu Ichim · Co-founder & CTO · Valerdat",
         )
         canvas.drawRightString(
             self.PAGE_SIZE[0] - self.MARGIN, y,
@@ -184,7 +184,7 @@ class CVPDFGenerator:
 
     def _header(self, ctx):
         name = ctx.get("name", "Vasile Ovidiu Ichim")
-        title = ctx.get("title", "Staff Engineer &amp; Technical Lead · Software Architect")
+        title = ctx.get("title", "Co-founder &amp; CTO · Valerdat")
         location = ctx.get("location", "Barcelona, Spain")
         email = ctx.get("email", "zabbix@ztrunk.space")
 
