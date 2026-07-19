@@ -24,7 +24,7 @@
         — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.
         <aside class="sidenote">
           <span class="sidenote-num">1</span>
-          Replaced the early stack with the current system: ingest → forecast → purchase optimizer → platform, under each client’s business logic — not a patch on top of the old design.
+          The first system took over six hours even for a small client, was unstable and unpredictable, and blocked scaling operations, rollouts, and active development — with tight coupling between the early modules. The rewrite removed that coupling and cut the pipeline from a ~6h average to ~1.5h, with run stability around 99% (previously under 51%).
         </aside>
       </li>
       <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
@@ -63,7 +63,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply that client’s business rules, and prepare it for forecasting — roughly 1.5 hours per client, on cluster pools."
+            data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply that client’s business rules, and prepare it for forecasting — about 1.5 hours per client on average (down from ~6h), on cluster pools."
             tabindex="0"
           >
             <span class="diagram-node-title">Ingest</span>
