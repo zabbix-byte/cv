@@ -222,7 +222,7 @@ class CVPDFGenerator:
         text2 = (
             "Founding engineer at <b>Valerdat</b>, led and designed the software hands-on and developed it "
             "together with the team before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
-            "supply-chain data, with demand forecasting at &lt;5% MAPE. Hands-on daily. "
+            "supply-chain data, with demand forecasting at &lt;7% MAPE. Hands-on daily. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
         press = (
@@ -340,7 +340,7 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Planning &amp; Procurement Platform · Valerdat",
-                "Planning and procurement platform end to end (demand planning, purchasing, replenishment): 500k+ SKUs / 10TB+ data; model analysis as base for planning (&lt;5% MAPE, best of 13+ models), purchase optimizer, platform as the base system clients build on (S&amp;OP + review); multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agents that converse and automate — all wrapped in each client’s business logic. Path: ingest → forecast → purchase optimizer → platform."),
+                "Planning and procurement platform end to end (demand planning, purchasing, replenishment): 500k+ SKUs / 10TB+ data; model analysis as base for planning (&lt;7% MAPE, best of 13+ models), purchase optimizer, platform as the base system clients build on (S&amp;OP + review); multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agents that converse and automate — all wrapped in each client’s business logic. Path: ingest → forecast → purchase optimizer → platform."),
             self._project_cell(
                 "Strategic Planning · Inditex",
                 "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
