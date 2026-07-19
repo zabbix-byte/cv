@@ -362,6 +362,17 @@ class CVPDFGenerator:
         ]))
         return self._section_header("Featured Projects") + [grid]
 
+    def _research_block(self):
+        text = (
+            "Security &amp; systems internals (personal): Windows kernel and user-mode work — "
+            "drivers and user/kernel IOCTL paths, memory access, DLL injection, and real-time overlays. "
+            "How I started programming 12–13 years ago and still a hobby — it sharpens how I reason "
+            "about boundaries, failure modes, and performance in production."
+        )
+        return self._section_header("Research") + [
+            Paragraph(text, self.styles["Summary"]),
+        ]
+
     def _edu_block(self):
         edu = Table(
             [[Paragraph("B.Sc. Computer Science — The Open University",
@@ -393,6 +404,8 @@ class CVPDFGenerator:
         flow += self._skills_block()
         flow.append(Spacer(1, 4))
         flow += self._projects_block()
+        flow.append(Spacer(1, 4))
+        flow += self._research_block()
         flow.append(Spacer(1, 4))
         flow.append(KeepTogether(self._edu_block()))
         return flow
