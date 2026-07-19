@@ -382,6 +382,14 @@ class CVPDFGenerator:
         ]
         for it in items:
             flow.append(Paragraph(it, self.styles["ExpBullet"], bulletText="•"))
+        flow.append(Spacer(1, 2))
+        flow.append(Paragraph(
+            "Open-source &amp; side projects: "
+            '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a> (Chromium desktop apps in Python), '
+            '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a> (CEF bindings for Python 3.10–3.13), '
+            '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a> (Interstellar TARS robot — embedded AI agent), and more on '
+            '<a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
+            self.styles["EduMeta"]))
         return flow
 
     def _edu_block(self):
