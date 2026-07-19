@@ -18,12 +18,27 @@
     <p>
       The planning and procurement platform I led and designed hands-on, and developed together with the Valerdat team — demand planning, purchasing, and replenishment: ERP supply-chain data in, forecasts and purchase proposals out. On top, agents don’t just chat: they automate work — querying demand, inspecting proposals, and taking actions in the platform.
     </p>
-    <ul>
-      <li>Re-architected the platform end to end — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.</li>
+    <ul class="notes-flow">
+      <li class="li-sidenote">
+        <aside class="sidenote">
+          <span class="sidenote-num">1</span>
+          The first system took over six hours even for a small client, was unstable and unpredictable, and blocked scaling operations, rollouts, and active development — with tight coupling between the early modules. The rewrite removed that coupling and cut the pipeline from a ~6h average to ~1.5h, with run stability around 99% (previously under 51%).
+        </aside>
+        <span class="li-main">
+          Re-architected the platform end to end<span class="sidenote-mark" aria-hidden="true">1</span>
+          — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.
+        </span>
+      </li>
       <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
-      <li>
-        Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the
-        <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Sage Marketplace</a>.
+      <li class="li-sidenote">
+        <aside class="sidenote">
+          <span class="sidenote-num">2</span>
+          Built to cut implementation friction — a hard limit on business scalability.
+        </aside>
+        <span class="li-main">
+          Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the
+          <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Sage Marketplace</a>.<span class="sidenote-mark" aria-hidden="true">2</span>
+        </span>
       </li>
     </ul>
 
