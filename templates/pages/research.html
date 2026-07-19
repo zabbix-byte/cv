@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Research — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/research/{% endblock %}
@@ -23,6 +24,14 @@
   <section class="role">
     <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztdriver" target="_blank" rel="noopener">Windows Kernel Drivers</a></h2>
     <p>Kernel-mode driver experiments in C++ exploring user/kernel communication and IOCTL paths.</p>
+    <pre class="code-block" aria-label="Illustrative driver IOCTL sketch"><span class="cm">// illustrative — user ↔ kernel boundary</span>
+<span class="kw">NTSTATUS</span> DeviceControl(
+  PDEVICE_OBJECT DeviceObject,
+  PIRP Irp
+) {
+  <span class="cm">/* validate buffer, dispatch IOCTL */</span>
+  <span class="kw">return</span> STATUS_SUCCESS;
+}</pre>
   </section>
 
   <section class="role">
@@ -30,6 +39,79 @@
     <p>
       An end-to-end game overlay cheat base: a kernel driver paired with a user-mode client for memory access, DLL loading, and real-time DX11 overlay rendering — mapping process space and drawing without owning the host UI.
     </p>
+
+    <div
+      class="diagram arch-diagram"
+      data-interactive-diagram
+      role="group"
+      aria-label="Overlay cheat base architecture"
+    >
+      <p class="diagram-label">How the overlay base works</p>
+      <p class="diagram-sublabel">Privileged reads from the kernel, drawing from user-mode</p>
+
+      <div class="arch-business" role="group" aria-label="User-mode client">
+        <button
+          type="button"
+          class="diagram-node arch-agentic"
+          data-diagram-node
+          data-detail="An ImGui menu (DX11) drives everything from user-mode: toggles, themes, and test options — the operator surface that sits on top of the read/draw loop."
+          tabindex="0"
+        >
+          <span class="diagram-node-title">ImGui menu (user-mode)</span>
+          <span class="diagram-node-desc">Toggles, themes, controls</span>
+        </button>
+
+        <div class="arch-rail">
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="A kernel-mode driver (ztdriver) exposes privileged memory read/write over IOCTL — the boundary user-mode code cannot cross on its own."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Kernel driver</span>
+            <span class="diagram-node-desc">Privileged R/W via IOCTL</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="The user-mode client sends IOCTL requests to the driver to read and write the target process — without opening a handle from user-mode itself."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">User-mode client</span>
+            <span class="diagram-node-desc">Requests reads over IOCTL</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="Reads map the game’s memory layout — entities, positions, and state — the same surfaces anti-cheat systems watch."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">Read game memory</span>
+            <span class="diagram-node-desc">Entities, positions, state</span>
+          </button>
+          <span class="diagram-arrow" aria-hidden="true">→</span>
+          <button
+            type="button"
+            class="diagram-node"
+            data-diagram-node
+            data-detail="A DX11 overlay draws on top of the game (ESP, menu) without owning the host UI — rendering from the mapped state each frame."
+            tabindex="0"
+          >
+            <span class="diagram-node-title">DX11 overlay</span>
+            <span class="diagram-node-desc">Draw on top, don’t own the UI</span>
+          </button>
+        </div>
+      </div>
+
+      <p class="diagram-caption" data-diagram-caption data-default="Select a stage to follow the read-and-draw loop.">
+        Select a stage to follow the read-and-draw loop.
+      </p>
+    </div>
   </section>
 
   <section class="role">
@@ -67,14 +149,9 @@
       <li>…and many more on <a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">GitHub</a>.</li>
     </ul>
   </section>
-
-  <pre class="code-block" aria-label="Illustrative driver IOCTL sketch"><span class="cm">// illustrative — user ↔ kernel boundary</span>
-<span class="kw">NTSTATUS</span> DeviceControl(
-  PDEVICE_OBJECT DeviceObject,
-  PIRP Irp
-) {
-  <span class="cm">/* validate buffer, dispatch IOCTL */</span>
-  <span class="kw">return</span> STATUS_SUCCESS;
-}</pre>
 </article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/systems-diagram.js' %}"></script>
 {% endblock %}
