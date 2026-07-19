@@ -269,6 +269,58 @@ a:focus-visible {
   margin-top: 0.25rem;
 }
 
+/* —— Sidenotes (margin notes; stack under the line on mobile) —— */
+.sidenote-mark {
+  font-size: 0.68em;
+  font-weight: 500;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--muted);
+  margin-left: 0.1em;
+}
+
+.sidenote {
+  display: block;
+  box-sizing: border-box;
+  margin: 0.55rem 0 0.15rem;
+  padding: 0.35rem 0 0.35rem 0.75rem;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.sidenote-num {
+  font-weight: 500;
+  margin-right: 0.3em;
+  color: var(--muted);
+}
+
+.sidenote-num::after {
+  content: ":";
+}
+
+@media (min-width: 1100px) {
+  .page {
+    overflow: visible;
+  }
+
+  .li-sidenote {
+    position: relative;
+  }
+
+  .li-sidenote .sidenote {
+    position: absolute;
+    top: 0.1rem;
+    left: calc(100% + 1.65rem);
+    width: 12.75rem;
+    margin: 0;
+    padding: 0;
+    border-left: 0;
+  }
+}
+
 .arch-list {
   margin: 0 0 1.15rem;
   padding-left: 1.15rem;
