@@ -270,6 +270,19 @@ a:focus-visible {
 }
 
 /* —— Sidenotes (margin notes; stack under the line on mobile) —— */
+.li-sidenote {
+  display: flex;
+  flex-direction: column;
+}
+
+.li-sidenote .li-main {
+  order: 1;
+}
+
+.li-sidenote .sidenote {
+  order: 2;
+}
+
 .sidenote-mark {
   font-size: 0.68em;
   font-weight: 500;
@@ -301,23 +314,39 @@ a:focus-visible {
   content: ":";
 }
 
+/* Desktop: float into the margin; clear so notes never overlap */
 @media (min-width: 1100px) {
   .page {
     overflow: visible;
   }
 
-  .li-sidenote {
-    position: relative;
+  .notes-flow {
+    padding-left: 0;
   }
 
-  .li-sidenote .sidenote {
-    position: absolute;
-    top: 0.1rem;
-    left: calc(100% + 1.65rem);
+  .notes-flow > li:not(.li-sidenote) {
+    margin-left: 1.15rem;
+  }
+
+  .notes-flow > .li-sidenote {
+    display: contents;
+  }
+
+  .notes-flow > .li-sidenote .li-main {
+    display: list-item;
+    list-style: disc;
+    margin-left: 1.15rem;
+    order: unset;
+  }
+
+  .notes-flow > .li-sidenote .sidenote {
+    float: right;
+    clear: right;
     width: 12.75rem;
-    margin: 0;
+    margin: 0.1rem -14.5rem 0.85rem 1.25rem;
     padding: 0;
     border-left: 0;
+    order: unset;
   }
 }
 
