@@ -340,9 +340,13 @@ a:focus-visible {
 
 .arch-agentic {
   width: 100%;
-  margin-bottom: 1.25rem;
   text-align: center;
   border-style: dashed;
+}
+
+/* Must beat .diagram-node { margin: 0 } — same specificity otherwise kills the gap */
+.diagram-node.arch-agentic {
+  margin: 0 0 1.5rem;
 }
 
 .arch-agentic .diagram-node-desc {
@@ -354,6 +358,7 @@ a:focus-visible {
   flex-wrap: wrap;
   align-items: stretch;
   gap: 0.4rem;
+  margin-top: 0.25rem;
 }
 
 .arch-diagram .arch-rail .diagram-node {
