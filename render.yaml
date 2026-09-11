@@ -12,8 +12,8 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: ".onrender.com"
+        value: ".onrender.com,ztrunk.space,www.ztrunk.space"
       - key: CSRF_TRUSTED_ORIGINS
-        value: "https://*.onrender.com"
+        value: "https://*.onrender.com,https://ztrunk.space,https://www.ztrunk.space"
       - key: PYTHONUNBUFFERED
         value: "1"
