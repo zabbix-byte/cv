@@ -8,4 +8,5 @@ django-allauth
 django-sslserver
 python-dotenv
 reportlab==4.0.7
-weasyprint==60.2
+gunicorn==22.0.0
+whitenoise==6.7.0
