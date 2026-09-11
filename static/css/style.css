@@ -51,13 +51,14 @@
   --page-pad-top: clamp(3rem, 10vh, 6rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
-  --blob-core: rgba(232, 246, 255, 0.18);
-  --blob-mid: rgba(86, 178, 255, 0.42);
-  --blob-rim: rgba(38, 142, 245, 0.72);
-  --blob-edge: rgba(18, 96, 210, 0.88);
-  --blob-stroke: rgba(16, 32, 64, 0.55);
-  --blob-spec: rgba(255, 255, 255, 0.55);
-  --blob-blend: multiply;
+  --blob-core: rgba(250, 249, 246, 0.14);
+  --blob-mid: rgba(168, 176, 186, 0.16);
+  --blob-rim: rgba(122, 132, 144, 0.26);
+  --blob-edge: rgba(88, 96, 108, 0.32);
+  --blob-stroke: rgba(62, 68, 78, 0.28);
+  --blob-spec: rgba(255, 255, 255, 0.18);
+  --blob-grain: rgba(48, 50, 54, 0.22);
+  --blob-blend: normal;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,13 +78,14 @@
     --code-str: #86efac;
     --code-cm: #8a8a8a;
     --selection: #2e2e2e;
-    --blob-core: rgba(40, 90, 140, 0.12);
-    --blob-mid: rgba(56, 150, 255, 0.38);
-    --blob-rim: rgba(70, 170, 255, 0.62);
-    --blob-edge: rgba(120, 200, 255, 0.78);
-    --blob-stroke: rgba(180, 220, 255, 0.28);
-    --blob-spec: rgba(255, 255, 255, 0.22);
-    --blob-blend: screen;
+    --blob-core: rgba(42, 42, 44, 0.2);
+    --blob-mid: rgba(120, 126, 134, 0.16);
+    --blob-rim: rgba(156, 162, 170, 0.22);
+    --blob-edge: rgba(188, 192, 198, 0.26);
+    --blob-stroke: rgba(210, 214, 218, 0.22);
+    --blob-spec: rgba(255, 255, 255, 0.08);
+    --blob-grain: rgba(230, 230, 232, 0.18);
+    --blob-blend: normal;
   }
 }
 
