@@ -18,8 +18,8 @@
   let dpr = 1;
   let raf = 0;
   let start = performance.now();
-  let onHome = false;
-  let homeStart = 0;
+  let introStart = 0;
+  let pageKey = "";
   const grainFine = makeGrain(GRAIN, 1);
   const grainCoarse = makeGrain(64, 2.2);
 
@@ -75,8 +75,8 @@
   }
 
   function dropIn(t, blob) {
-    if (reduced || !onHome) return 1;
-    const local = t - homeStart - blob.delay;
+    if (reduced) return 1;
+    const local = t - introStart - blob.delay;
     if (local <= 0) return 0;
     const x = Math.min(1, local / 0.8);
     const overshoot = 1.12;
@@ -211,9 +211,11 @@
 
   function draw(now) {
     const t = (now - start) / 1000;
-    const nowHome = !!document.querySelector(".page-home");
-    if (nowHome && !onHome) homeStart = t;
-    onHome = nowHome;
+    const key = location.pathname;
+    if (key !== pageKey) {
+      pageKey = key;
+      introStart = t;
+    }
     const colors = palette();
     ctx.clearRect(0, 0, width, height);
     blobs.forEach((blob) => drawBlob(t, blob, colors));

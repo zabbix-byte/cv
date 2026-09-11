@@ -583,11 +583,11 @@ a:focus-visible {
   padding-left: var(--page-pad);
 }
 
-.page-home article > h1 {
+.page article > h1 {
   animation: home-name 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.page-home article > h1::after {
+.page article > h1::after {
   content: "";
   display: block;
   width: 2.75rem;
@@ -600,14 +600,25 @@ a:focus-visible {
   animation: home-rule 0.55s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.page-home article > p,
-.page-home .section-list li {
+.page article > p,
+.page article > section,
+.page article > table,
+.page article > ul > li {
   animation: home-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.page-home article > p:nth-of-type(1) { animation-delay: 0.18s; }
-.page-home article > p:nth-of-type(2) { animation-delay: 0.3s; }
-.page-home article > p:nth-of-type(3) { animation-delay: 0.4s; }
+.page article > p:nth-of-type(1) { animation-delay: 0.18s; }
+.page article > p:nth-of-type(2) { animation-delay: 0.28s; }
+.page article > p:nth-of-type(3) { animation-delay: 0.36s; }
+.page article > p:nth-of-type(n+4) { animation-delay: 0.42s; }
+
+.page article > section:nth-of-type(1) { animation-delay: 0.32s; }
+.page article > section:nth-of-type(2) { animation-delay: 0.4s; }
+.page article > section:nth-of-type(3) { animation-delay: 0.48s; }
+.page article > section:nth-of-type(n+4) { animation-delay: 0.54s; }
+
+.page article > table { animation-delay: 0.34s; }
+
 .page-home .section-list li:nth-child(1) { animation-delay: 0.46s; }
 .page-home .section-list li:nth-child(2) { animation-delay: 0.52s; }
 .page-home .section-list li:nth-child(3) { animation-delay: 0.58s; }
