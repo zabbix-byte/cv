@@ -812,8 +812,80 @@ a:focus-visible {
   navigation: auto;
 }
 
+::view-transition {
+  background: var(--bg);
+  perspective: 1800px;
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.62s;
+  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 0.22s;
-  animation-timing-function: ease;
+  mix-blend-mode: normal;
+  animation-duration: 0.62s;
+  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+::view-transition-old(root) {
+  z-index: 2;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  box-shadow: 12px 0 32px rgba(0, 0, 0, 0.12);
+  animation-name: book-flip-forward;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+  animation-name: book-under;
+}
+
+html:active-view-transition-type(book-back) ::view-transition-old(root) {
+  transform-origin: right center;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12);
+  animation-name: book-flip-back;
+}
+
+@keyframes book-flip-forward {
+  from {
+    transform: rotateY(0deg);
+    filter: brightness(1);
+  }
+  to {
+    transform: rotateY(-108deg);
+    filter: brightness(0.7);
+  }
+}
+
+@keyframes book-flip-back {
+  from {
+    transform: rotateY(0deg);
+    filter: brightness(1);
+  }
+  to {
+    transform: rotateY(108deg);
+    filter: brightness(0.7);
+  }
+}
+
+@keyframes book-under {
+  from {
+    transform: scale(0.985);
+    filter: brightness(0.94);
+  }
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms;
+    animation-name: none;
+  }
 }
