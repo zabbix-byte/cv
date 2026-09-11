@@ -818,71 +818,48 @@ a:focus-visible {
 }
 
 ::view-transition-group(page-sheet) {
-  animation-duration: 0.7s;
+  animation: none;
+}
+
+::view-transition-image-pair(page-sheet) {
+  isolation: isolate;
 }
 
 ::view-transition-old(page-sheet),
 ::view-transition-new(page-sheet) {
   mix-blend-mode: normal;
-  height: 100%;
-  overflow: hidden;
+  animation-duration: 0.48s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
 }
 
 ::view-transition-old(page-sheet) {
   z-index: 2;
-  transform-origin: left center;
-  box-shadow: 18px 0 40px rgba(0, 0, 0, 0.14);
-  animation: book-flip-forward 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
+  transform-origin: 0 100%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  animation-name: sheet-out;
 }
 
 ::view-transition-new(page-sheet) {
   z-index: 1;
-  transform-origin: left center;
-  animation: book-under 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
+  animation: none;
 }
 
 html.book-back ::view-transition-old(page-sheet),
 html:active-view-transition-type(book-back) ::view-transition-old(page-sheet) {
-  transform-origin: right center;
-  box-shadow: -18px 0 40px rgba(0, 0, 0, 0.14);
-  animation: book-flip-back 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
+  transform-origin: 100% 100%;
+  animation-name: sheet-out-back;
 }
 
-html.book-back ::view-transition-new(page-sheet),
-html:active-view-transition-type(book-back) ::view-transition-new(page-sheet) {
-  transform-origin: right center;
-}
-
-@keyframes book-flip-forward {
-  from {
-    transform: perspective(1400px) rotateY(0deg);
-    opacity: 1;
-  }
+@keyframes sheet-out {
   to {
-    transform: perspective(1400px) rotateY(-92deg);
-    opacity: 0.2;
+    transform: translateX(-110%) rotate(-5deg);
   }
 }
 
-@keyframes book-flip-back {
-  from {
-    transform: perspective(1400px) rotateY(0deg);
-    opacity: 1;
-  }
+@keyframes sheet-out-back {
   to {
-    transform: perspective(1400px) rotateY(92deg);
-    opacity: 0.2;
-  }
-}
-
-@keyframes book-under {
-  from {
-    transform: scale(0.985);
-    filter: brightness(0.94);
-  }
-  to {
-    transform: none;
-    filter: none;
+    transform: translateX(110%) rotate(5deg);
   }
 }
 
