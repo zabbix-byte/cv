@@ -7,6 +7,7 @@
 
 {% block head %}
 <meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css">
 {% endblock %}
 
 {% block content %}
@@ -29,8 +30,8 @@
     </div>
   </div>
 
-  <div id="stats-map" class="stats-map" role="img" aria-label="Visitor globe"></div>
-  <p class="stats-globe-hint muted">Drag to spin · scroll to zoom</p>
+  <div id="stats-map" class="stats-map" role="img" aria-label="Visitor map"></div>
+  <p class="stats-globe-hint muted">Scroll to zoom into regions · drag to pan · Ctrl+drag to tilt</p>
   {{ map_points|json_script:"stats-map-data" }}
 
   <div class="stats-cols">
@@ -111,6 +112,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.1"></script>
-<script src="{% static 'js/stats-map.js' %}?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="{% static 'js/stats-map.js' %}?v=4"></script>
 {% endblock %}

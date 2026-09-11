@@ -121,6 +121,103 @@ def _json_body(request):
         return {}
 
 
+def _clip(value, n):
+    if value is None:
+        return ""
+    return str(value)[:n]
+
+
+def _parse_ua(ua):
+    raw = ua or ""
+    low = raw.lower()
+    device = "Desktop"
+    if "ipad" in low or "tablet" in low:
+        device = "Tablet"
+    elif "mobi" in low or "iphone" in low or ("android" in low and "mobile" in low):
+        device = "Mobile"
+
+    os_name = "Unknown"
+    if "windows" in low:
+        os_name = "Windows"
+    elif "iphone" in low or "ipad" in low:
+        os_name = "iOS"
+    elif "mac os" in low or "macintosh" in low:
+        os_name = "macOS"
+    elif "android" in low:
+        os_name = "Android"
+    elif "linux" in low:
+        os_name = "Linux"
+
+    browser = "Unknown"
+    if "edg/" in low:
+        browser = "Edge"
+    elif "opr/" in low or "opera" in low:
+        browser = "Opera"
+    elif "chrome" in low and "chromium" not in low and "edg/" not in low:
+        browser = "Chrome"
+    elif "safari" in low and "chrome" not in low:
+        browser = "Safari"
+    elif "firefox" in low:
+        browser = "Firefox"
+    return browser, os_name, device
+
+
+def _num(value):
+    try:
+        if value is None or value == "":
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _apply_session_fields(session, request, payload, geo, created):
+    ua = request.META.get("HTTP_USER_AGENT", "")[:800]
+    browser, os_name, device = _parse_ua(ua)
+    lang_header = (request.META.get("HTTP_ACCEPT_LANGUAGE") or "").split(",")[0]
+    updates = {
+        "ip": _client_ip(request) or session.ip,
+        "user_agent": ua or session.user_agent,
+        "browser": browser if browser != "Unknown" else session.browser,
+        "os": os_name if os_name != "Unknown" else session.os,
+        "device": device,
+        "language": _clip(payload.get("language") or lang_header, 40) or session.language,
+        "timezone_client": _clip(payload.get("tz"), 64) or session.timezone_client,
+        "screen": _clip(payload.get("screen"), 24) or session.screen,
+        "viewport": _clip(payload.get("viewport"), 24) or session.viewport,
+        "platform": _clip(payload.get("platform"), 80) or session.platform,
+        "color_scheme": _clip(payload.get("color_scheme"), 12) or session.color_scheme,
+        "connection_effective": _clip(payload.get("conn"), 20) or session.connection_effective,
+        "utm_source": _clip(payload.get("utm_source"), 80) or session.utm_source,
+        "utm_medium": _clip(payload.get("utm_medium"), 80) or session.utm_medium,
+        "utm_campaign": _clip(payload.get("utm_campaign"), 80) or session.utm_campaign,
+    }
+    if payload.get("dpr") is not None:
+        updates["pixel_ratio"] = _num(payload.get("dpr"))
+    if payload.get("cores") is not None:
+        try:
+            updates["cores"] = min(int(payload.get("cores")), 256)
+        except (TypeError, ValueError):
+            pass
+    if payload.get("memory") is not None:
+        updates["memory_gb"] = _num(payload.get("memory"))
+    if payload.get("downlink") is not None:
+        updates["downlink"] = _num(payload.get("downlink"))
+    if "touch" in payload:
+        updates["touch"] = bool(payload.get("touch"))
+    if created and not session.landing_path:
+        updates["landing_path"] = _clip(payload.get("path") or payload.get("landing"), 255)
+    if created or not session.referrer:
+        updates["referrer"] = _clip(payload.get("referrer"), 500) or session.referrer
+    for key, value in geo.items():
+        if value in (None, ""):
+            continue
+        updates[key] = value
+    for key, value in updates.items():
+        setattr(session, key, value)
+    session.save()
+
+
 @csrf_exempt
 @require_POST
 def track_visit(request):
@@ -135,26 +232,16 @@ def track_visit(request):
         return JsonResponse({"ok": False}, status=400)
 
     ip = _client_ip(request)
-    ua = request.META.get("HTTP_USER_AGENT", "")[:500]
     geo = lookup_ip(ip)
     session, created = VisitSession.objects.get_or_create(
         sid=sid,
         defaults={
             "ip": ip or "0.0.0.0",
-            "user_agent": ua,
-            **geo,
+            "user_agent": request.META.get("HTTP_USER_AGENT", "")[:800],
+            **{k: v for k, v in geo.items() if v not in (None, "")},
         },
     )
-    if not created:
-        session.ip = ip or session.ip
-        session.user_agent = ua or session.user_agent
-        if geo.get("lat") is not None or geo.get("country"):
-            session.country = geo["country"] or session.country
-            session.city = geo["city"] or session.city
-            session.region = geo["region"] or session.region
-            session.lat = geo["lat"] if geo.get("lat") is not None else session.lat
-            session.lon = geo["lon"] if geo.get("lon") is not None else session.lon
-        session.save()
+    _apply_session_fields(session, request, payload, geo, created)
 
     if action == "ping":
         view_id = payload.get("id")
@@ -165,7 +252,6 @@ def track_visit(request):
         updated = PageView.objects.filter(id=view_id, session=session).update(
             seconds=seconds
         )
-        session.save(update_fields=["last_seen"])
         return JsonResponse({"ok": True, "updated": bool(updated)})
 
     view = PageView.objects.create(
@@ -215,6 +301,15 @@ def statistics(request):
     return render(request, "pages/statistics.html", _stats_context())
 
 
+def _top(qs, field, limit=8):
+    return list(
+        qs.exclude(**{field: ""})
+        .values(field)
+        .annotate(n=Count("id"))
+        .order_by("-n")[:limit]
+    )
+
+
 def _stats_context():
     sessions = VisitSession.objects.annotate(
         view_count=Count("views"),
@@ -222,6 +317,8 @@ def _stats_context():
     )
     views = PageView.objects.select_related("session")
     total_seconds = views.aggregate(s=Sum("seconds"))["s"] or 0
+    total_sessions = sessions.count() or 1
+    bounced = sessions.filter(view_count=1).count()
     pages = [
         {
             "path": row["path"],
@@ -232,24 +329,52 @@ def _stats_context():
         .annotate(hits=Count("id"), dwell=Sum("seconds"))
         .order_by("-hits")[:12]
     ]
-    countries = list(
-        sessions.exclude(country="")
-        .values("country")
-        .annotate(n=Count("id"))
-        .order_by("-n")[:8]
-    )
     recent = []
-    for view in views[:40]:
+    for view in views[:50]:
+        s = view.session
         place = ", ".join(
-            p for p in (view.session.city, view.session.country) if p
+            p for p in (s.city, s.region, s.country) if p
         ) or "Unknown"
         recent.append(
             {
                 "path": view.path,
-                "ip": view.session.ip,
+                "ip": s.ip,
                 "place": place,
+                "isp": s.isp,
+                "browser": s.browser,
+                "os": s.os,
+                "device": s.device,
+                "screen": s.screen,
+                "language": s.language,
                 "time": _fmt_duration(view.seconds),
                 "when": timezone.localtime(view.started_at).strftime("%d %b %H:%M"),
+            }
+        )
+    visitors = []
+    for s in sessions[:40]:
+        place = ", ".join(p for p in (s.city, s.region, s.country) if p) or "Unknown"
+        visitors.append(
+            {
+                "when": timezone.localtime(s.last_seen).strftime("%d %b %H:%M"),
+                "ip": s.ip,
+                "place": place,
+                "postal": s.postal,
+                "isp": s.isp or s.org,
+                "tz": s.timezone_client or s.timezone_ip,
+                "browser": s.browser,
+                "os": s.os,
+                "device": s.device,
+                "lang": s.language,
+                "screen": s.screen,
+                "viewport": s.viewport,
+                "net": s.connection_effective or s.connection_type,
+                "cores": s.cores,
+                "memory": s.memory_gb,
+                "landing": s.landing_path,
+                "referrer": s.referrer,
+                "utm": " / ".join(p for p in (s.utm_source, s.utm_medium, s.utm_campaign) if p),
+                "pages": s.view_count,
+                "time": _fmt_duration(s.dwell),
             }
         )
     grouped = {}
@@ -276,8 +401,18 @@ def _stats_context():
         "total_sessions": sessions.count(),
         "total_views": views.count(),
         "total_time": _fmt_duration(total_seconds),
+        "avg_time": _fmt_duration(total_seconds / max(sessions.count(), 1)),
+        "bounce": f"{round(100 * bounced / total_sessions)}%",
+        "mobile": sessions.filter(device="Mobile").count(),
         "pages": pages,
-        "countries": countries,
+        "countries": _top(sessions, "country"),
+        "browsers": _top(sessions, "browser"),
+        "systems": _top(sessions, "os"),
+        "devices": _top(sessions, "device"),
+        "isps": _top(sessions, "isp"),
+        "languages": _top(sessions, "language"),
+        "referrers": _top(sessions, "referrer", 6),
         "recent": recent,
+        "visitors": visitors,
         "map_points": map_points,
     }
