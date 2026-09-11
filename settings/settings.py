@@ -18,15 +18,28 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-me")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "True").lower() in ("1", "true", "yes")
 
+_default_hosts = "localhost,127.0.0.1,.onrender.com,ztrunk.space,www.ztrunk.space"
 ALLOWED_HOSTS = [
-    h.strip() for h in os.getenv("ALLOWED_HOSTS", "*").split(",") if h.strip()
+    h.strip()
+    for h in os.getenv("ALLOWED_HOSTS", _default_hosts).split(",")
+    if h.strip()
 ]
+# Ensure custom domain works even if env is stale
+for _host in ("ztrunk.space", "www.ztrunk.space", ".onrender.com"):
+    if _host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_host)
 
 CSRF_TRUSTED_ORIGINS = [
     o.strip()
-    for o in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    for o in os.getenv(
+        "CSRF_TRUSTED_ORIGINS",
+        "https://ztrunk.space,https://www.ztrunk.space,https://*.onrender.com",
+    ).split(",")
     if o.strip()
 ]
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Application definition
@@ -126,8 +139,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # Default primary key field type
