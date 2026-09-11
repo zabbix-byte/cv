@@ -1,48 +1,53 @@
 (function () {
   const el = document.getElementById("stats-map");
   const dataNode = document.getElementById("stats-map-data");
-  if (!el || !dataNode || typeof L === "undefined") return;
+  if (!el || !dataNode || typeof Globe !== "function") return;
 
-  const points = JSON.parse(dataNode.textContent || "[]");
-  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const tiles = dark
-    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-    : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+  const points = JSON.parse(dataNode.textContent || "[]").filter(
+    (p) => Number.isFinite(p.lat) && Number.isFinite(p.lon)
+  );
 
-  const map = L.map(el, {
-    scrollWheelZoom: false,
-    zoomControl: true,
-    attributionControl: true,
+  const globe = Globe()(el)
+    .width(el.clientWidth)
+    .height(el.clientHeight)
+    .backgroundColor("rgba(0,0,0,0)")
+    .globeImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg")
+    .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
+    .atmosphereColor("#9ec9ff")
+    .atmosphereAltitude(0.18)
+    .pointsData(points)
+    .pointLat("lat")
+    .pointLng("lon")
+    .pointAltitude((d) => 0.04 + Math.min(0.18, (d.visitors || 1) * 0.03))
+    .pointRadius((d) => 0.28 + Math.min(0.7, (d.visitors || 1) * 0.1))
+    .pointColor(() => "#e8f4ff")
+    .pointLabel((d) => {
+      const place = [d.city, d.country].filter(Boolean).join(", ") || "Unknown";
+      const n = d.visitors || 1;
+      return `<div class="globe-tip"><strong>${place}</strong><br>${n} visitor${n === 1 ? "" : "s"} · ${d.time}</div>`;
+    })
+    .ringsData(points)
+    .ringLat("lat")
+    .ringLng("lon")
+    .ringColor(() => (t) => `rgba(186, 220, 255, ${0.7 * (1 - t)})`)
+    .ringMaxRadius(3.2)
+    .ringPropagationSpeed(2.2)
+    .ringRepeatPeriod(1600);
+
+  const focus = points[0] || { lat: 41.39, lon: 2.17 };
+  globe.pointOfView({ lat: focus.lat, lng: focus.lon, altitude: 2.15 }, 900);
+
+  const controls = globe.controls();
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.45;
+  controls.enableDamping = true;
+  el.addEventListener("pointerdown", () => {
+    controls.autoRotate = false;
   });
 
-  L.tileLayer(tiles, {
-    attribution: "&copy; OpenStreetMap &copy; CARTO",
-    subdomains: "abcd",
-    maxZoom: 18,
-  }).addTo(map);
-
-  const ink = dark ? "#e8e8e8" : "#171717";
-  const fill = dark ? "#7dd3fc" : "#334155";
-
-  const markers = points.map((point) => {
-    const marker = L.circleMarker([point.lat, point.lon], {
-      radius: Math.min(16, 6 + point.visitors * 1.6),
-      color: ink,
-      weight: 1,
-      fillColor: fill,
-      fillOpacity: 0.55,
-    });
-    const place = [point.city, point.country].filter(Boolean).join(", ") || "Unknown";
-    marker.bindPopup(
-      `<strong>${place}</strong><br>${point.visitors} visitor${point.visitors === 1 ? "" : "s"} · ${point.time}`
-    );
-    return marker;
-  });
-
-  if (markers.length) {
-    const group = L.featureGroup(markers).addTo(map);
-    map.fitBounds(group.getBounds().pad(0.35), { maxZoom: 5 });
-  } else {
-    map.setView([20, 0], 2);
-  }
+  const resize = () => {
+    globe.width(el.clientWidth);
+    globe.height(el.clientHeight);
+  };
+  window.addEventListener("resize", resize);
 })();

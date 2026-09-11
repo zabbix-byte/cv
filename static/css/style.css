@@ -978,17 +978,29 @@ html:active-view-transition-type(book-back) ::view-transition-old(page-sheet) {
 
 .stats-map {
   width: 100%;
-  height: min(52vh, 460px);
-  margin: 0 0 1.75rem;
+  height: min(68vh, 580px);
+  margin: 0 0 0.4rem;
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  background: var(--surface);
+  background:
+    radial-gradient(circle at 50% 42%, #1a1d24 0%, #07080a 72%);
 }
 
-.stats-map .leaflet-container {
+.stats-map canvas {
+  display: block;
+  cursor: grab;
+}
+
+.stats-globe-hint {
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+}
+
+.globe-tip {
   font-family: var(--font);
-  background: var(--surface);
+  font-size: 0.9rem;
+  line-height: 1.35;
 }
 
 .stats-cols {
@@ -1064,6 +1076,6 @@ html:active-view-transition-type(book-back) ::view-transition-old(page-sheet) {
   }
 
   .stats-map {
-    height: 280px;
+    height: 360px;
   }
 }

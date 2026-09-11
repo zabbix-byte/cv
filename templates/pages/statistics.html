@@ -7,7 +7,6 @@
 
 {% block head %}
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
 {% endblock %}
 
 {% block content %}
@@ -30,7 +29,8 @@
     </div>
   </div>
 
-  <div id="stats-map" class="stats-map" role="img" aria-label="Visitor map"></div>
+  <div id="stats-map" class="stats-map" role="img" aria-label="Visitor globe"></div>
+  <p class="stats-globe-hint muted">Drag to spin · scroll to zoom</p>
   {{ map_points|json_script:"stats-map-data" }}
 
   <div class="stats-cols">
@@ -111,6 +111,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin></script>
-<script src="{% static 'js/stats-map.js' %}?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.1"></script>
+<script src="{% static 'js/stats-map.js' %}?v=2"></script>
 {% endblock %}
