@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Statistics — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/statistics/{% endblock %}
+{% block page_class %} page-stats{% endblock %}
+
+{% block head %}
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin>
+{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Statistics</h1>
+  <p class="meta">Visitors, time on page, and where they come from.</p>
+
+  <div class="stats-kpis">
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ total_sessions }}</span>
+      <span class="stats-kpi-label">Visitors</span>
+    </div>
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ total_views }}</span>
+      <span class="stats-kpi-label">Page views</span>
+    </div>
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ total_time }}</span>
+      <span class="stats-kpi-label">Time on site</span>
+    </div>
+  </div>
+
+  <div id="stats-map" class="stats-map" role="img" aria-label="Visitor map"></div>
+  {{ map_points|json_script:"stats-map-data" }}
+
+  <div class="stats-cols">
+    <section>
+      <h2>Pages</h2>
+      {% if pages %}
+      <table class="stats-table">
+        <thead>
+          <tr><th>Path</th><th>Views</th><th>Time</th></tr>
+        </thead>
+        <tbody>
+          {% for row in pages %}
+          <tr>
+            <td>{{ row.path }}</td>
+            <td>{{ row.hits }}</td>
+            <td>{{ row.time }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No page views yet.</p>
+      {% endif %}
+    </section>
+
+    <section>
+      <h2>Countries</h2>
+      {% if countries %}
+      <table class="stats-table">
+        <thead>
+          <tr><th>Country</th><th>Visitors</th></tr>
+        </thead>
+        <tbody>
+          {% for row in countries %}
+          <tr>
+            <td>{{ row.country }}</td>
+            <td>{{ row.n }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No locations yet.</p>
+      {% endif %}
+    </section>
+  </div>
+
+  <section>
+    <h2>Recent</h2>
+    {% if recent %}
+    <table class="stats-table stats-table-wide">
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Page</th>
+          <th>IP</th>
+          <th>Location</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in recent %}
+        <tr>
+          <td>{{ row.when }}</td>
+          <td>{{ row.path }}</td>
+          <td class="stats-mono">{{ row.ip }}</td>
+          <td>{{ row.place }}</td>
+          <td>{{ row.time }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="muted">Waiting for the first visit.</p>
+    {% endif %}
+  </section>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin></script>
+<script src="{% static 'js/stats-map.js' %}?v=1"></script>
+{% endblock %}

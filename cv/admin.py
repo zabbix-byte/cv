@@ -1,3 +1,4 @@
-from django.contrib import admin
+from cv.models import PageView, VisitSession
 
-# Register your models here.
+admin.site.register(VisitSession)
+admin.site.register(PageView)

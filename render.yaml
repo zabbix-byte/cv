@@ -17,3 +17,5 @@ services:
         value: "https://*.onrender.com,https://ztrunk.space,https://www.ztrunk.space"
       - key: PYTHONUNBUFFERED
         value: "1"
+      - key: STATS_TOKEN
+        generateValue: true

@@ -161,6 +161,7 @@
 
   function drawBlob(t, blob, colors) {
     const { cx, cy } = blobCenter(blob);
+    const r = unitRadius() * blob.scale * Math.max(dropIn(t, blob), 0.001);
     const inside = isInside(blob, t);
     const fillPath = buildPath(t, cx, cy, blob, "fill", inside);
     const strokePath = buildPath(

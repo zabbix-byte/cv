@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Statistics — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/statistics/{% endblock %}
+{% block page_class %} page-stats{% endblock %}
+
+{% block head %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Statistics</h1>
+  <p class="meta">Private metrics. Enter the access token from Render → Environment → <code>STATS_TOKEN</code>.</p>
+  {% if error %}
+  <p class="muted">That token didn’t match.</p>
+  {% endif %}
+  <form class="stats-gate" method="post">
+    {% csrf_token %}
+    <label for="token">Token</label>
+    <input id="token" name="token" type="password" autocomplete="current-password" required>
+    <button type="submit">Open</button>
+  </form>
+</article>
+{% endblock %}

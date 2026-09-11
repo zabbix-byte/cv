@@ -31,6 +31,8 @@
   function isInternal(url) {
     return url.origin === location.origin
       && pathOf(url.href) !== "/download-cv"
+      && pathOf(url.href) !== "/statistics"
+      && !url.pathname.startsWith("/api/")
       && !url.pathname.endsWith(".pdf");
   }
 
@@ -55,6 +57,7 @@
     if (typeof window.initSystemsDiagrams === "function") {
       window.initSystemsDiagrams();
     }
+    window.dispatchEvent(new CustomEvent("page-turn"));
   }
 
   function startTurn(run, dir) {

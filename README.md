@@ -16,6 +16,12 @@ Optional custom domain: Render dashboard → your service → **Settings** → *
 - `SECRET_KEY` is auto-generated; set `ALLOWED_HOSTS` / `CSRF_TRUSTED_ORIGINS` to your real domain after you attach it.
 - Local scrape/Chrome image is the older `dockerfile`; production uses the slim `Dockerfile`.
 
+### Statistics (private)
+
+`/statistics/` stores visitor IP, city/country, pages, and time on page. The dashboard is locked with `STATS_TOKEN` (Render → Environment).
+
+Render’s disk is wiped on every deploy, so SQLite is only for local use. For data that lasts, create a free [Neon](https://neon.tech) Postgres database and set `DATABASE_URL` on the Render service (Neon’s connection string). Then redeploy.
+
 ### Local
 
 ```bash

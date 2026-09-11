@@ -90,12 +90,36 @@ WSGI_APPLICATION = "settings.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+def _database():
+    url = os.getenv("DATABASE_URL", "").strip()
+    if not url:
+        return {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    from urllib.parse import unquote, urlparse
+
+    parsed = urlparse(url)
+    scheme = (parsed.scheme or "").replace("postgresql", "postgres")
+    if not scheme.startswith("postgres"):
+        return {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    return {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": unquote((parsed.path or "/").lstrip("/") or "postgres"),
+        "USER": unquote(parsed.username or ""),
+        "PASSWORD": unquote(parsed.password or ""),
+        "HOST": parsed.hostname or "",
+        "PORT": str(parsed.port or 5432),
+        "OPTIONS": {"sslmode": "require"},
     }
-}
+
+
+DATABASES = {"default": _database()}
+
+STATS_TOKEN = os.getenv("STATS_TOKEN", "")
 
 
 # Password validation
