@@ -20,7 +20,9 @@ Optional custom domain: Render dashboard → your service → **Settings** → *
 
 `/statistics/` stores visitor IP, city/country, pages, and time on page. The dashboard is locked with `STATS_TOKEN` (Render → Environment).
 
-Render’s disk is wiped on every deploy, so SQLite is only for local use. For data that lasts, create a free [Neon](https://neon.tech) Postgres database and set `DATABASE_URL` on the Render service (Neon’s connection string). Then redeploy.
+This repo is linked to Neon project `autumn-frost-04902495` (branch `production`). Locally, `npx neon link` writes `DATABASE_URL` to `.env.local` (gitignored).
+
+On Render, add the same `DATABASE_URL` (Neon → Connection string, pooled is fine) so metrics survive deploys. Then redeploy; `bin/start.sh` runs `migrate`.
 
 ### Local
 

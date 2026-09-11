@@ -92,7 +92,7 @@ WSGI_APPLICATION = "settings.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 def _database():
-    url = os.getenv("DATABASE_URL", "").strip()
+    url = os.getenv("DATABASE_URL", "").strip().strip('"').strip("'")
     if not url:
         return {
             "ENGINE": "django.db.backends.sqlite3",
@@ -107,13 +107,15 @@ def _database():
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
+    name = unquote((parsed.path or "/").lstrip("/").split("?")[0] or "neondb")
     return {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": unquote((parsed.path or "/").lstrip("/") or "postgres"),
+        "NAME": name,
         "USER": unquote(parsed.username or ""),
         "PASSWORD": unquote(parsed.password or ""),
         "HOST": parsed.hostname or "",
         "PORT": str(parsed.port or 5432),
+        "CONN_MAX_AGE": 60,
         "OPTIONS": {"sslmode": "require"},
     }
 
