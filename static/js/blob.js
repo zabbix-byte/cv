@@ -12,6 +12,7 @@
     { x: 0.93, y: 0.88, scale: 0.74, phase: 4.4, pulse: 1.62, delay: 0.3 },
   ];
   const mouse = { x: 0, y: 0, has: false };
+  const motion = { ax: 0, ay: 0, energy: 0, gx: 0, gy: 0, gz: 0 };
 
   let width = 0;
   let height = 0;
@@ -103,13 +104,27 @@
       bulge = 0.2 * Math.pow(facing, 2.4);
     }
 
-    return unitRadius() * blob.scale * dropIn(t, blob) * pulse * (1 + morph + bulge + extra);
+    const agit = motion.energy * (
+      0.16 * Math.sin(8 * theta + t * 22 + blob.phase) +
+      0.1 * Math.cos(5 * theta - t * 17)
+    );
+
+    return unitRadius() * blob.scale * dropIn(t, blob) * pulse * (1 + morph + bulge + extra + agit);
+  }
+
+  function blobCenter(blob, t) {
+    const jolt = motion.energy;
+    const wobbleX = Math.sin(t * 26 + blob.phase) * jolt * 22;
+    const wobbleY = Math.cos(t * 21 + blob.phase * 1.7) * jolt * 18;
+    return {
+      cx: blob.x * width + motion.ax * jolt * 2.4 + wobbleX,
+      cy: blob.y * height - motion.ay * jolt * 2.4 + wobbleY,
+    };
   }
 
   function isInside(blob, t) {
     if (!mouse.has) return false;
-    const cx = blob.x * width;
-    const cy = blob.y * height;
+    const { cx, cy } = blobCenter(blob, t);
     const dx = mouse.x - cx;
     const dy = mouse.y - cy;
     const dist = Math.hypot(dx, dy);
@@ -146,8 +161,7 @@
   }
 
   function drawBlob(t, blob, colors) {
-    const cx = blob.x * width;
-    const cy = blob.y * height;
+    const { cx, cy } = blobCenter(blob, t);
     const r = unitRadius() * blob.scale * dropIn(t, blob);
     const inside = isInside(blob, t);
     const fillPath = buildPath(t, cx, cy, blob, "fill", inside);
@@ -209,8 +223,57 @@
     ctx.stroke(strokePath);
   }
 
+  function onDeviceMotion(event) {
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    const acc = event.acceleration;
+    if (acc && acc.x != null) {
+      x = acc.x;
+      y = acc.y;
+      z = acc.z || 0;
+    } else if (event.accelerationIncludingGravity) {
+      const g = event.accelerationIncludingGravity;
+      motion.gx = motion.gx * 0.88 + (g.x || 0) * 0.12;
+      motion.gy = motion.gy * 0.88 + (g.y || 0) * 0.12;
+      motion.gz = motion.gz * 0.88 + (g.z || 0) * 0.12;
+      x = (g.x || 0) - motion.gx;
+      y = (g.y || 0) - motion.gy;
+      z = (g.z || 0) - motion.gz;
+    } else {
+      return;
+    }
+    motion.ax += ((x || 0) - motion.ax) * 0.45;
+    motion.ay += ((y || 0) - motion.ay) * 0.45;
+    const mag = Math.hypot(x || 0, y || 0, z || 0);
+    const spike = Math.max(0, mag - 1.2);
+    motion.energy = Math.min(1.35, motion.energy * 0.78 + spike * 0.12);
+  }
+
+  let motionBound = false;
+
+  function bindMotion() {
+    if (motionBound) return;
+    motionBound = true;
+    window.addEventListener("devicemotion", onDeviceMotion, { passive: true });
+  }
+
+  async function enableMotion() {
+    if (reduced) return;
+    try {
+      if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+        const result = await DeviceMotionEvent.requestPermission();
+        if (result !== "granted") return;
+      }
+    } catch {
+      return;
+    }
+    bindMotion();
+  }
+
   function draw(now) {
     const t = (now - start) / 1000;
+    motion.energy *= 0.92;
     const key = location.pathname;
     if (key !== pageKey) {
       pageKey = key;
@@ -224,6 +287,14 @@
 
   resize();
   draw(performance.now());
+
+  if (!reduced) {
+    if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+      document.addEventListener("touchend", enableMotion, { once: true, passive: true });
+    } else {
+      bindMotion();
+    }
+  }
 
   window.addEventListener("pointermove", (event) => {
     mouse.x = event.clientX;
