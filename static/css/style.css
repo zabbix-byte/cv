@@ -51,6 +51,13 @@
   --page-pad-top: clamp(3rem, 10vh, 6rem);
   --font: "STIX Two Text", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Menlo, Consolas, monospace;
+  --blob-core: rgba(232, 246, 255, 0.18);
+  --blob-mid: rgba(86, 178, 255, 0.42);
+  --blob-rim: rgba(38, 142, 245, 0.72);
+  --blob-edge: rgba(18, 96, 210, 0.88);
+  --blob-stroke: rgba(16, 32, 64, 0.55);
+  --blob-spec: rgba(255, 255, 255, 0.55);
+  --blob-blend: multiply;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -70,6 +77,13 @@
     --code-str: #86efac;
     --code-cm: #8a8a8a;
     --selection: #2e2e2e;
+    --blob-core: rgba(40, 90, 140, 0.12);
+    --blob-mid: rgba(56, 150, 255, 0.38);
+    --blob-rim: rgba(70, 170, 255, 0.62);
+    --blob-edge: rgba(120, 200, 255, 0.78);
+    --blob-stroke: rgba(180, 220, 255, 0.28);
+    --blob-spec: rgba(255, 255, 255, 0.22);
+    --blob-blend: screen;
   }
 }
 
@@ -91,6 +105,25 @@ html {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.ambient-blob {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: var(--blob-blend);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--page-pad-top) var(--page-pad) 4.5rem;
 }
 
 body {
@@ -132,13 +165,6 @@ a:focus-visible {
 }
 
 /* —— Page —— */
-.page {
-  width: 100%;
-  max-width: var(--measure);
-  margin: 0 auto;
-  padding: var(--page-pad-top) var(--page-pad) 4.5rem;
-}
-
 .page h1 {
   margin: 0 0 1.15rem;
   font-size: 26px;
