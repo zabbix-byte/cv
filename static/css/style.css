@@ -97,7 +97,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
   background: var(--bg);
 }
 
@@ -301,7 +301,7 @@ a:focus-visible {
 /* —— Sidenotes (margin notes; stack under the line on mobile) —— */
 .li-sidenote,
 .text-sidenote {
-  display: flex;
+    display: flex;
   flex-direction: column;
 }
 
@@ -540,8 +540,8 @@ a:focus-visible {
 }
 
 .diagram-arrow {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
   color: var(--muted);
   font-size: 0.9rem;
   padding: 0 0.05rem;
@@ -563,7 +563,7 @@ a:focus-visible {
   background: var(--code-bg);
   color: var(--code-fg);
   border: 1px solid var(--code-border);
-  border-radius: 8px;
+    border-radius: 8px;
   font-family: var(--mono);
   font-size: 0.8rem;
   line-height: 1.55;
@@ -940,5 +940,5 @@ html:active-view-transition-type(book-back) ::view-transition-old(page-sheet) {
 @media (prefers-reduced-motion: reduce) {
   .page {
     view-transition-name: none;
-  }
+}
 }

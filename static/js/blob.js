@@ -12,7 +12,7 @@
     { x: 0.93, y: 0.88, scale: 0.74, phase: 4.4, pulse: 1.62, delay: 0.3 },
   ];
   const mouse = { x: 0, y: 0, has: false };
-  const motion = { ax: 0, ay: 0, energy: 0, gx: 0, gy: 0, gz: 0 };
+  const tilt = { x: 0, y: 0, restG: null, restB: null };
 
   let width = 0;
   let height = 0;
@@ -97,34 +97,33 @@
 
     let bulge = 0;
     if (inside && !reduced) {
-      const cx = blob.x * width;
-      const cy = blob.y * height;
+      const { cx, cy } = blobCenter(blob);
       const angle = Math.atan2(mouse.y - cy, mouse.x - cx);
       const facing = Math.max(0, Math.cos(theta - angle));
       bulge = 0.2 * Math.pow(facing, 2.4);
     }
 
-    const agit = motion.energy * (
-      0.16 * Math.sin(8 * theta + t * 22 + blob.phase) +
-      0.1 * Math.cos(5 * theta - t * 17)
-    );
+    const leanMag = Math.hypot(tilt.x, tilt.y);
+    if (leanMag > 0.02) {
+      const leanAng = Math.atan2(tilt.y, tilt.x);
+      const facing = Math.max(0, Math.cos(theta - leanAng));
+      bulge += 0.055 * leanMag * Math.pow(facing, 2);
+    }
 
-    return unitRadius() * blob.scale * dropIn(t, blob) * pulse * (1 + morph + bulge + extra + agit);
+    return unitRadius() * blob.scale * dropIn(t, blob) * pulse * (1 + morph + bulge + extra);
   }
 
-  function blobCenter(blob, t) {
-    const jolt = motion.energy;
-    const wobbleX = Math.sin(t * 26 + blob.phase) * jolt * 22;
-    const wobbleY = Math.cos(t * 21 + blob.phase * 1.7) * jolt * 18;
+  function blobCenter(blob) {
+    const range = Math.min(width, height) * 0.028;
     return {
-      cx: blob.x * width + motion.ax * jolt * 2.4 + wobbleX,
-      cy: blob.y * height - motion.ay * jolt * 2.4 + wobbleY,
+      cx: blob.x * width + tilt.x * range,
+      cy: blob.y * height + tilt.y * range,
     };
   }
 
   function isInside(blob, t) {
     if (!mouse.has) return false;
-    const { cx, cy } = blobCenter(blob, t);
+    const { cx, cy } = blobCenter(blob);
     const dx = mouse.x - cx;
     const dy = mouse.y - cy;
     const dist = Math.hypot(dx, dy);
@@ -161,8 +160,7 @@
   }
 
   function drawBlob(t, blob, colors) {
-    const { cx, cy } = blobCenter(blob, t);
-    const r = unitRadius() * blob.scale * dropIn(t, blob);
+    const { cx, cy } = blobCenter(blob);
     const inside = isInside(blob, t);
     const fillPath = buildPath(t, cx, cy, blob, "fill", inside);
     const strokePath = buildPath(
@@ -223,31 +221,20 @@
     ctx.stroke(strokePath);
   }
 
-  function onDeviceMotion(event) {
-    let x = 0;
-    let y = 0;
-    let z = 0;
-    const acc = event.acceleration;
-    if (acc && acc.x != null) {
-      x = acc.x;
-      y = acc.y;
-      z = acc.z || 0;
-    } else if (event.accelerationIncludingGravity) {
-      const g = event.accelerationIncludingGravity;
-      motion.gx = motion.gx * 0.88 + (g.x || 0) * 0.12;
-      motion.gy = motion.gy * 0.88 + (g.y || 0) * 0.12;
-      motion.gz = motion.gz * 0.88 + (g.z || 0) * 0.12;
-      x = (g.x || 0) - motion.gx;
-      y = (g.y || 0) - motion.gy;
-      z = (g.z || 0) - motion.gz;
-    } else {
-      return;
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function onDeviceOrientation(event) {
+    if (event.gamma == null || event.beta == null) return;
+    if (tilt.restG == null) {
+      tilt.restG = event.gamma;
+      tilt.restB = event.beta;
     }
-    motion.ax += ((x || 0) - motion.ax) * 0.45;
-    motion.ay += ((y || 0) - motion.ay) * 0.45;
-    const mag = Math.hypot(x || 0, y || 0, z || 0);
-    const spike = Math.max(0, mag - 1.2);
-    motion.energy = Math.min(1.35, motion.energy * 0.78 + spike * 0.12);
+    const targetX = clamp((event.gamma - tilt.restG) / 32, -1, 1);
+    const targetY = clamp((event.beta - tilt.restB) / 32, -1, 1);
+    tilt.x += (targetX - tilt.x) * 0.12;
+    tilt.y += (targetY - tilt.y) * 0.12;
   }
 
   let motionBound = false;
@@ -255,14 +242,18 @@
   function bindMotion() {
     if (motionBound) return;
     motionBound = true;
-    window.addEventListener("devicemotion", onDeviceMotion, { passive: true });
+    window.addEventListener("deviceorientation", onDeviceOrientation, { passive: true });
+    window.addEventListener("orientationchange", () => {
+      tilt.restG = null;
+      tilt.restB = null;
+    });
   }
 
   async function enableMotion() {
     if (reduced) return;
     try {
-      if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
-        const result = await DeviceMotionEvent.requestPermission();
+      if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+        const result = await DeviceOrientationEvent.requestPermission();
         if (result !== "granted") return;
       }
     } catch {
@@ -273,7 +264,6 @@
 
   function draw(now) {
     const t = (now - start) / 1000;
-    motion.energy *= 0.92;
     const key = location.pathname;
     if (key !== pageKey) {
       pageKey = key;
@@ -289,7 +279,7 @@
   draw(performance.now());
 
   if (!reduced) {
-    if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+    if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
       document.addEventListener("touchend", enableMotion, { once: true, passive: true });
     } else {
       bindMotion();
