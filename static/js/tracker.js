@@ -23,6 +23,39 @@
     return SKIP.some((prefix) => path.startsWith(prefix));
   }
 
+  function utm() {
+    const query = new URLSearchParams(location.search);
+    return {
+      utm_source: query.get("utm_source") || "",
+      utm_medium: query.get("utm_medium") || "",
+      utm_campaign: query.get("utm_campaign") || "",
+    };
+  }
+
+  function hints() {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+    let tz = "";
+    try {
+      tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    } catch {}
+    const uaData = navigator.userAgentData;
+    return {
+      language: navigator.language || "",
+      tz,
+      screen: screen.width && screen.height ? `${screen.width}x${screen.height}` : "",
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+      dpr: window.devicePixelRatio || 1,
+      cores: navigator.hardwareConcurrency || null,
+      memory: navigator.deviceMemory || null,
+      platform: (uaData && uaData.platform) || navigator.platform || "",
+      color_scheme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+      conn: conn.effectiveType || "",
+      downlink: conn.downlink || null,
+      touch: navigator.maxTouchPoints > 0,
+      ...utm(),
+    };
+  }
+
   function post(body) {
     const payload = JSON.stringify(body);
     if (navigator.sendBeacon && body.action === "ping") {
@@ -63,6 +96,7 @@
       path,
       title: document.title,
       referrer: document.referrer || "",
+      ...hints(),
     }).then((data) => {
       if (data && data.id) viewId = data.id;
     });

@@ -1,3 +1,4 @@
+from collections import Counter
 from pathlib import Path
 import json
 import logging
@@ -286,6 +287,30 @@ def _fmt_duration(seconds):
     return f"{hours}h {minutes}m"
 
 
+def _dash(value):
+    if value is None or value == "":
+        return "—"
+    return value
+
+
+def _session_info(session):
+    browser, os_name, device = _parse_ua(session.user_agent)
+    return {
+        "browser": session.browser or (browser if browser != "Unknown" else ""),
+        "os": session.os or (os_name if os_name != "Unknown" else ""),
+        "device": session.device or device,
+        "isp": session.isp or session.org,
+        "tz": session.timezone_client or session.timezone_ip,
+        "net": session.connection_effective or session.connection_type,
+        "memory": f"{session.memory_gb:g} GB" if session.memory_gb else "",
+        "dpr": f"{session.pixel_ratio:g}x" if session.pixel_ratio else "",
+        "touch": "Yes" if session.touch else ("No" if session.touch is False else ""),
+        "utm": " / ".join(
+            p for p in (session.utm_source, session.utm_medium, session.utm_campaign) if p
+        ),
+    }
+
+
 def statistics(request):
     token = getattr(settings, "STATS_TOKEN", "") or ""
     if request.method == "POST":
@@ -332,49 +357,63 @@ def _stats_context():
     recent = []
     for view in views[:50]:
         s = view.session
-        place = ", ".join(
-            p for p in (s.city, s.region, s.country) if p
-        ) or "Unknown"
+        info = _session_info(s)
+        place = ", ".join(p for p in (s.city, s.region, s.country) if p) or "Unknown"
         recent.append(
             {
-                "path": view.path,
+                "when": timezone.localtime(view.started_at).strftime("%d %b %H:%M"),
+                "path": view.path or "/",
+                "time": _fmt_duration(view.seconds),
                 "ip": s.ip,
                 "place": place,
-                "isp": s.isp,
-                "browser": s.browser,
-                "os": s.os,
-                "device": s.device,
-                "screen": s.screen,
-                "language": s.language,
-                "time": _fmt_duration(view.seconds),
-                "when": timezone.localtime(view.started_at).strftime("%d %b %H:%M"),
+                "postal": _dash(s.postal),
+                "isp": _dash(info["isp"]),
+                "browser": _dash(info["browser"]),
+                "os": _dash(info["os"]),
+                "device": _dash(info["device"]),
+                "lang": _dash(s.language),
+                "screen": _dash(s.screen),
+                "viewport": _dash(s.viewport),
+                "tz": _dash(info["tz"]),
+                "net": _dash(info["net"]),
+                "platform": _dash(s.platform),
+                "referrer": _dash(view.referrer or s.referrer),
+                "ua": s.user_agent,
             }
         )
     visitors = []
     for s in sessions[:40]:
+        info = _session_info(s)
         place = ", ".join(p for p in (s.city, s.region, s.country) if p) or "Unknown"
         visitors.append(
             {
                 "when": timezone.localtime(s.last_seen).strftime("%d %b %H:%M"),
                 "ip": s.ip,
                 "place": place,
-                "postal": s.postal,
-                "isp": s.isp or s.org,
-                "tz": s.timezone_client or s.timezone_ip,
-                "browser": s.browser,
-                "os": s.os,
-                "device": s.device,
-                "lang": s.language,
-                "screen": s.screen,
-                "viewport": s.viewport,
-                "net": s.connection_effective or s.connection_type,
-                "cores": s.cores,
-                "memory": s.memory_gb,
-                "landing": s.landing_path,
-                "referrer": s.referrer,
-                "utm": " / ".join(p for p in (s.utm_source, s.utm_medium, s.utm_campaign) if p),
+                "postal": _dash(s.postal),
+                "continent": _dash(s.continent),
+                "isp": _dash(info["isp"]),
+                "org": _dash(s.org),
+                "tz": _dash(info["tz"]),
+                "browser": _dash(info["browser"]),
+                "os": _dash(info["os"]),
+                "device": _dash(info["device"]),
+                "lang": _dash(s.language),
+                "screen": _dash(s.screen),
+                "viewport": _dash(s.viewport),
+                "dpr": _dash(info["dpr"]),
+                "net": _dash(info["net"]),
+                "cores": _dash(s.cores),
+                "memory": _dash(info["memory"]),
+                "touch": _dash(info["touch"]),
+                "theme": _dash(s.color_scheme),
+                "platform": _dash(s.platform),
+                "landing": _dash(s.landing_path),
+                "referrer": _dash(s.referrer),
+                "utm": _dash(info["utm"]),
                 "pages": s.view_count,
                 "time": _fmt_duration(s.dwell),
+                "ua": s.user_agent,
             }
         )
     grouped = {}
@@ -397,18 +436,30 @@ def _stats_context():
         {**point, "time": _fmt_duration(point.pop("seconds"))}
         for point in grouped.values()
     ]
+    browsers_c, systems_c, devices_c = Counter(), Counter(), Counter()
+    mobile = 0
+    for session in sessions:
+        info = _session_info(session)
+        if info["browser"]:
+            browsers_c[info["browser"]] += 1
+        if info["os"]:
+            systems_c[info["os"]] += 1
+        if info["device"]:
+            devices_c[info["device"]] += 1
+        if info["device"] == "Mobile":
+            mobile += 1
     return {
         "total_sessions": sessions.count(),
         "total_views": views.count(),
         "total_time": _fmt_duration(total_seconds),
         "avg_time": _fmt_duration(total_seconds / max(sessions.count(), 1)),
         "bounce": f"{round(100 * bounced / total_sessions)}%",
-        "mobile": sessions.filter(device="Mobile").count(),
+        "mobile": mobile,
         "pages": pages,
         "countries": _top(sessions, "country"),
-        "browsers": _top(sessions, "browser"),
-        "systems": _top(sessions, "os"),
-        "devices": _top(sessions, "device"),
+        "browsers": [{"browser": name, "n": n} for name, n in browsers_c.most_common(8)],
+        "systems": [{"os": name, "n": n} for name, n in systems_c.most_common(8)],
+        "devices": [{"device": name, "n": n} for name, n in devices_c.most_common(8)],
         "isps": _top(sessions, "isp"),
         "languages": _top(sessions, "language"),
         "referrers": _top(sessions, "referrer", 6),

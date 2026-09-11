@@ -28,6 +28,18 @@
       <span class="stats-kpi-value">{{ total_time }}</span>
       <span class="stats-kpi-label">Time on site</span>
     </div>
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ avg_time }}</span>
+      <span class="stats-kpi-label">Avg. visit</span>
+    </div>
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ bounce }}</span>
+      <span class="stats-kpi-label">Bounce</span>
+    </div>
+    <div class="stats-kpi">
+      <span class="stats-kpi-value">{{ mobile }}</span>
+      <span class="stats-kpi-label">Mobile</span>
+    </div>
   </div>
 
   <div id="stats-map" class="stats-map" role="img" aria-label="Visitor map"></div>
@@ -38,20 +50,22 @@
     <section>
       <h2>Pages</h2>
       {% if pages %}
-      <table class="stats-table">
-        <thead>
-          <tr><th>Path</th><th>Views</th><th>Time</th></tr>
-        </thead>
-        <tbody>
-          {% for row in pages %}
-          <tr>
-            <td>{{ row.path }}</td>
-            <td>{{ row.hits }}</td>
-            <td>{{ row.time }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="stats-scroll">
+        <table class="stats-table">
+          <thead>
+            <tr><th>Path</th><th>Views</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            {% for row in pages %}
+            <tr>
+              <td>{{ row.path }}</td>
+              <td>{{ row.hits }}</td>
+              <td>{{ row.time }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
       {% else %}
       <p class="muted">No page views yet.</p>
       {% endif %}
@@ -60,21 +74,125 @@
     <section>
       <h2>Countries</h2>
       {% if countries %}
+      <div class="stats-scroll">
+        <table class="stats-table">
+          <thead>
+            <tr><th>Country</th><th>Visitors</th></tr>
+          </thead>
+          <tbody>
+            {% for row in countries %}
+            <tr>
+              <td>{{ row.country }}</td>
+              <td>{{ row.n }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="muted">No locations yet.</p>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="stats-cols">
+    <section>
+      <h2>Browsers</h2>
+      {% if browsers %}
       <table class="stats-table">
-        <thead>
-          <tr><th>Country</th><th>Visitors</th></tr>
-        </thead>
+        <thead><tr><th>Browser</th><th>Visitors</th></tr></thead>
         <tbody>
-          {% for row in countries %}
+          {% for row in browsers %}
+          <tr><td>{{ row.browser }}</td><td>{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No browsers yet.</p>
+      {% endif %}
+    </section>
+    <section>
+      <h2>Systems</h2>
+      {% if systems %}
+      <table class="stats-table">
+        <thead><tr><th>OS</th><th>Visitors</th></tr></thead>
+        <tbody>
+          {% for row in systems %}
+          <tr><td>{{ row.os }}</td><td>{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No systems yet.</p>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="stats-cols">
+    <section>
+      <h2>Devices</h2>
+      {% if devices %}
+      <table class="stats-table">
+        <thead><tr><th>Device</th><th>Visitors</th></tr></thead>
+        <tbody>
+          {% for row in devices %}
+          <tr><td>{{ row.device }}</td><td>{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No devices yet.</p>
+      {% endif %}
+    </section>
+    <section>
+      <h2>Languages</h2>
+      {% if languages %}
+      <table class="stats-table">
+        <thead><tr><th>Language</th><th>Visitors</th></tr></thead>
+        <tbody>
+          {% for row in languages %}
+          <tr><td>{{ row.language }}</td><td>{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No languages yet.</p>
+      {% endif %}
+    </section>
+  </div>
+
+  <div class="stats-cols">
+    <section>
+      <h2>ISPs</h2>
+      {% if isps %}
+      <table class="stats-table">
+        <thead><tr><th>ISP</th><th>Visitors</th></tr></thead>
+        <tbody>
+          {% for row in isps %}
+          <tr><td>{{ row.isp }}</td><td>{{ row.n }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="muted">No ISPs yet.</p>
+      {% endif %}
+    </section>
+    <section>
+      <h2>Referrers</h2>
+      {% if referrers %}
+      <table class="stats-table">
+        <thead><tr><th>Referrer</th><th>Visitors</th></tr></thead>
+        <tbody>
+          {% for row in referrers %}
           <tr>
-            <td>{{ row.country }}</td>
+            <td class="stats-clip" title="{{ row.referrer }}">{{ row.referrer }}</td>
             <td>{{ row.n }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
       {% else %}
-      <p class="muted">No locations yet.</p>
+      <p class="muted">No referrers yet.</p>
       {% endif %}
     </section>
   </div>
@@ -82,30 +200,128 @@
   <section>
     <h2>Recent</h2>
     {% if recent %}
-    <table class="stats-table stats-table-wide">
-      <thead>
-        <tr>
-          <th>When</th>
-          <th>Page</th>
-          <th>IP</th>
-          <th>Location</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for row in recent %}
-        <tr>
-          <td>{{ row.when }}</td>
-          <td>{{ row.path }}</td>
-          <td class="stats-mono">{{ row.ip }}</td>
-          <td>{{ row.place }}</td>
-          <td>{{ row.time }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="stats-scroll">
+      <table class="stats-table stats-table-wide">
+        <thead>
+          <tr>
+            <th>When</th>
+            <th>Page</th>
+            <th>Time</th>
+            <th>IP</th>
+            <th>Location</th>
+            <th>Postal</th>
+            <th>ISP</th>
+            <th>Browser</th>
+            <th>OS</th>
+            <th>Device</th>
+            <th>Lang</th>
+            <th>Screen</th>
+            <th>Viewport</th>
+            <th>Timezone</th>
+            <th>Network</th>
+            <th>Referrer</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in recent %}
+          <tr>
+            <td>{{ row.when }}</td>
+            <td>{{ row.path }}</td>
+            <td>{{ row.time }}</td>
+            <td class="stats-mono">{{ row.ip }}</td>
+            <td>{{ row.place }}</td>
+            <td>{{ row.postal }}</td>
+            <td>{{ row.isp }}</td>
+            <td title="{{ row.ua }}">{{ row.browser }}</td>
+            <td>{{ row.os }}</td>
+            <td>{{ row.device }}</td>
+            <td>{{ row.lang }}</td>
+            <td class="stats-mono">{{ row.screen }}</td>
+            <td class="stats-mono">{{ row.viewport }}</td>
+            <td>{{ row.tz }}</td>
+            <td>{{ row.net }}</td>
+            <td class="stats-clip" title="{{ row.referrer }}">{{ row.referrer }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     {% else %}
     <p class="muted">Waiting for the first visit.</p>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2>Sessions</h2>
+    {% if visitors %}
+    <div class="stats-scroll">
+      <table class="stats-table stats-table-wide">
+        <thead>
+          <tr>
+            <th>Last seen</th>
+            <th>IP</th>
+            <th>Location</th>
+            <th>Continent</th>
+            <th>Postal</th>
+            <th>ISP</th>
+            <th>Org</th>
+            <th>Timezone</th>
+            <th>Browser</th>
+            <th>OS</th>
+            <th>Device</th>
+            <th>Lang</th>
+            <th>Screen</th>
+            <th>Viewport</th>
+            <th>DPR</th>
+            <th>Network</th>
+            <th>Cores</th>
+            <th>Memory</th>
+            <th>Touch</th>
+            <th>Theme</th>
+            <th>Platform</th>
+            <th>Landing</th>
+            <th>Referrer</th>
+            <th>UTM</th>
+            <th>Pages</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in visitors %}
+          <tr>
+            <td>{{ row.when }}</td>
+            <td class="stats-mono">{{ row.ip }}</td>
+            <td>{{ row.place }}</td>
+            <td>{{ row.continent }}</td>
+            <td>{{ row.postal }}</td>
+            <td>{{ row.isp }}</td>
+            <td>{{ row.org }}</td>
+            <td>{{ row.tz }}</td>
+            <td title="{{ row.ua }}">{{ row.browser }}</td>
+            <td>{{ row.os }}</td>
+            <td>{{ row.device }}</td>
+            <td>{{ row.lang }}</td>
+            <td class="stats-mono">{{ row.screen }}</td>
+            <td class="stats-mono">{{ row.viewport }}</td>
+            <td>{{ row.dpr }}</td>
+            <td>{{ row.net }}</td>
+            <td>{{ row.cores }}</td>
+            <td>{{ row.memory }}</td>
+            <td>{{ row.touch }}</td>
+            <td>{{ row.theme }}</td>
+            <td>{{ row.platform }}</td>
+            <td>{{ row.landing }}</td>
+            <td class="stats-clip" title="{{ row.referrer }}">{{ row.referrer }}</td>
+            <td>{{ row.utm }}</td>
+            <td>{{ row.pages }}</td>
+            <td>{{ row.time }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="muted">No sessions yet.</p>
     {% endif %}
   </section>
 </article>
