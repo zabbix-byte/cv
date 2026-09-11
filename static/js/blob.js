@@ -7,9 +7,9 @@
   const STEPS = 128;
   const GRAIN = 192;
   const blobs = [
-    { x: 0.92, y: 0.1, scale: 1, phase: 0, pulse: 1.45 },
-    { x: 0.08, y: 0.9, scale: 0.86, phase: 2.1, pulse: 1.18 },
-    { x: 0.93, y: 0.88, scale: 0.74, phase: 4.4, pulse: 1.62 },
+    { x: 0.92, y: 0.1, scale: 1, phase: 0, pulse: 1.45, delay: 0.05 },
+    { x: 0.08, y: 0.9, scale: 0.86, phase: 2.1, pulse: 1.18, delay: 0.18 },
+    { x: 0.93, y: 0.88, scale: 0.74, phase: 4.4, pulse: 1.62, delay: 0.3 },
   ];
   const mouse = { x: 0, y: 0, has: false };
 
@@ -18,6 +18,8 @@
   let dpr = 1;
   let raf = 0;
   let start = performance.now();
+  let onHome = false;
+  let homeStart = 0;
   const grainFine = makeGrain(GRAIN, 1);
   const grainCoarse = makeGrain(64, 2.2);
 
@@ -72,6 +74,15 @@
     return Math.min(width, height) * (width < 720 ? 0.16 : 0.18);
   }
 
+  function dropIn(t, blob) {
+    if (reduced || !onHome) return 1;
+    const local = t - homeStart - blob.delay;
+    if (local <= 0) return 0;
+    const x = Math.min(1, local / 0.8);
+    const overshoot = 1.12;
+    return 1 + overshoot * Math.pow(x - 1, 3) + overshoot * Math.pow(x - 1, 2);
+  }
+
   function radiusAt(theta, t, blob, variant, inside) {
     const pulse = reduced ? 1 : 1 + 0.045 * Math.sin(t * blob.pulse + blob.phase);
     const p = t + blob.phase;
@@ -92,7 +103,7 @@
       bulge = 0.2 * Math.pow(facing, 2.4);
     }
 
-    return unitRadius() * blob.scale * pulse * (1 + morph + bulge + extra);
+    return unitRadius() * blob.scale * dropIn(t, blob) * pulse * (1 + morph + bulge + extra);
   }
 
   function isInside(blob, t) {
@@ -137,7 +148,7 @@
   function drawBlob(t, blob, colors) {
     const cx = blob.x * width;
     const cy = blob.y * height;
-    const r = unitRadius() * blob.scale;
+    const r = unitRadius() * blob.scale * dropIn(t, blob);
     const inside = isInside(blob, t);
     const fillPath = buildPath(t, cx, cy, blob, "fill", inside);
     const strokePath = buildPath(
@@ -200,6 +211,9 @@
 
   function draw(now) {
     const t = (now - start) / 1000;
+    const nowHome = !!document.querySelector(".page-home");
+    if (nowHome && !onHome) homeStart = t;
+    onHome = nowHome;
     const colors = palette();
     ctx.clearRect(0, 0, width, height);
     blobs.forEach((blob) => drawBlob(t, blob, colors));
