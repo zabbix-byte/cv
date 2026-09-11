@@ -126,6 +126,7 @@ html {
   max-width: var(--measure);
   margin: 0 auto;
   padding: var(--page-pad-top) var(--page-pad) 4.5rem;
+  view-transition-name: page-sheet;
 }
 
 body {
@@ -809,65 +810,68 @@ a:focus-visible {
 }
 
 @view-transition {
-  navigation: auto;
+  navigation: none;
 }
 
 ::view-transition {
   background: var(--bg);
-  perspective: 1800px;
 }
 
-::view-transition-group(root) {
-  animation-duration: 0.62s;
-  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
-  transform-style: preserve-3d;
+::view-transition-group(page-sheet) {
+  animation-duration: 0.7s;
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
+::view-transition-old(page-sheet),
+::view-transition-new(page-sheet) {
   mix-blend-mode: normal;
-  animation-duration: 0.62s;
-  animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+  height: 100%;
+  overflow: hidden;
 }
 
-::view-transition-old(root) {
+::view-transition-old(page-sheet) {
   z-index: 2;
   transform-origin: left center;
-  backface-visibility: hidden;
-  box-shadow: 12px 0 32px rgba(0, 0, 0, 0.12);
-  animation-name: book-flip-forward;
+  box-shadow: 18px 0 40px rgba(0, 0, 0, 0.14);
+  animation: book-flip-forward 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
 }
 
-::view-transition-new(root) {
+::view-transition-new(page-sheet) {
   z-index: 1;
-  animation-name: book-under;
+  transform-origin: left center;
+  animation: book-under 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
 }
 
-html:active-view-transition-type(book-back) ::view-transition-old(root) {
+html.book-back ::view-transition-old(page-sheet),
+html:active-view-transition-type(book-back) ::view-transition-old(page-sheet) {
   transform-origin: right center;
-  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12);
-  animation-name: book-flip-back;
+  box-shadow: -18px 0 40px rgba(0, 0, 0, 0.14);
+  animation: book-flip-back 0.7s cubic-bezier(0.65, 0.05, 0.36, 1) both;
+}
+
+html.book-back ::view-transition-new(page-sheet),
+html:active-view-transition-type(book-back) ::view-transition-new(page-sheet) {
+  transform-origin: right center;
 }
 
 @keyframes book-flip-forward {
   from {
-    transform: rotateY(0deg);
-    filter: brightness(1);
+    transform: perspective(1400px) rotateY(0deg);
+    opacity: 1;
   }
   to {
-    transform: rotateY(-108deg);
-    filter: brightness(0.7);
+    transform: perspective(1400px) rotateY(-92deg);
+    opacity: 0.2;
   }
 }
 
 @keyframes book-flip-back {
   from {
-    transform: rotateY(0deg);
-    filter: brightness(1);
+    transform: perspective(1400px) rotateY(0deg);
+    opacity: 1;
   }
   to {
-    transform: rotateY(108deg);
-    filter: brightness(0.7);
+    transform: perspective(1400px) rotateY(92deg);
+    opacity: 0.2;
   }
 }
 
@@ -883,9 +887,7 @@ html:active-view-transition-type(book-back) ::view-transition-old(root) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.01ms;
-    animation-name: none;
+  .page {
+    view-transition-name: none;
   }
 }
