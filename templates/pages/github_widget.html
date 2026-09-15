@@ -5,19 +5,19 @@
 {% block canonical %}https://ztrunk.space/github/{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=4">
 {% endblock %}
 
 {% block content %}
 <article>
   <h1>GitHub profile</h1>
-  <p class="meta">CV intro from this site for the GitHub profile README — not a copy of GitHub’s own heatmap, pins, or stats.</p>
+  <p class="meta">The ztrunk.space clouds, plus totals GitHub’s profile doesn’t show — not a copy of the heatmap, pins, or follower counts.</p>
 
   <p>
-    <img class="gh-preview" src="{% url 'github_card_svg' %}?theme=light" alt="GitHub profile, light" width="880">
+    <img class="gh-preview" src="{% url 'github_card_svg' %}?theme=light&v=3" alt="GitHub profile, light" width="880">
   </p>
   <p>
-    <img class="gh-preview gh-preview-dark" src="{% url 'github_card_svg' %}?theme=dark" alt="GitHub profile, dark" width="880">
+    <img class="gh-preview gh-preview-dark" src="{% url 'github_card_svg' %}?theme=dark&v=3" alt="GitHub profile, dark" width="880">
   </p>
 
   <h2>Paste this in README.md</h2>

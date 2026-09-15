@@ -255,6 +255,38 @@ class GitHubService:
             },
         }
 
+    def get_card_metrics(self):
+        """Totals GitHub's profile UI does not surface (stars/forks across work)."""
+        cache_key = f"github_card_metrics_v1_{self.username}"
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+
+        profile = self.get_user_profile() or {}
+        repos = self.get_repositories(per_page=100) or []
+        own = [repo for repo in repos if not repo.get("fork")]
+        lang_counts = {}
+        for repo in own:
+            lang = repo.get("language")
+            if lang:
+                lang_counts[lang] = lang_counts.get(lang, 0) + 1
+        langs = [name for name, _ in sorted(lang_counts.items(), key=lambda item: -item[1])[:4]]
+
+        github_year = None
+        created = profile.get("created_at") or ""
+        if len(created) >= 4 and created[:4].isdigit():
+            github_year = int(created[:4])
+
+        payload = {
+            "stars": sum(repo.get("stargazers_count") or 0 for repo in own),
+            "forks": sum(repo.get("forks_count") or 0 for repo in own),
+            "langs": langs,
+            "github_year": github_year,
+            "years_coding": 13,
+        }
+        cache.set(cache_key, payload, self.CACHE_TIMEOUT)
+        return payload
+
     def _format_activity(self, event):
         """Format activity event into readable text"""
         event_type = event.get("type")

@@ -83,9 +83,14 @@ def github_card_svg(request):
     theme = request.GET.get("theme", "light")
     if theme not in ("light", "dark"):
         theme = "light"
-    svg = render_github_card(theme)
+    try:
+        metrics = GitHubService(username="zabbix-byte").get_card_metrics()
+    except Exception as exc:
+        logger.error("GitHub card metrics failed: %s", exc)
+        metrics = {"years_coding": 13}
+    svg = render_github_card(theme, metrics)
     response = HttpResponse(svg, content_type="image/svg+xml; charset=utf-8")
-    response["Cache-Control"] = "public, max-age=3600"
+    response["Cache-Control"] = "public, max-age=300"
     return response
 
 
@@ -95,9 +100,9 @@ def github_widget(request):
         '<a href="https://ztrunk.space/">\n'
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
-        'srcset="https://ztrunk.space/github.svg?theme=dark">\n'
+        'srcset="https://ztrunk.space/github.svg?theme=dark&v=3">\n'
         '    <img alt="Vasile Ovidiu Ichim — GitHub profile" '
-        'src="https://ztrunk.space/github.svg?theme=light" width="880">\n'
+        'src="https://ztrunk.space/github.svg?theme=light&v=3" width="880">\n'
         "  </picture>\n"
         "</a>\n"
         "</div>"

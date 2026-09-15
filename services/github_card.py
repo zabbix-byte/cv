@@ -1,5 +1,6 @@
-"""GitHub README graphic — CV copy from ztrunk.space, not GitHub chrome."""
+"""GitHub README graphic — ztrunk.space clouds + stats GitHub's profile hides."""
 
+import math
 from xml.sax.saxutils import escape
 
 
@@ -8,24 +9,33 @@ THEMES = {
         "bg": "#ffffff",
         "fg": "#171717",
         "muted": "#737373",
-        "border": "#e5e5e5",
         "rule": "#171717",
-        "blob": "#8a93a0",
+        "core": "#faf9f6",
+        "mid": "#a8b0ba",
+        "rim": "#7a8490",
+        "edge": "#58606c",
+        "stroke": "#3e444e",
+        "spec": "#ffffff",
     },
     "dark": {
         "bg": "#1a1a1a",
         "fg": "#e8e8e8",
         "muted": "#9a9a9a",
-        "border": "#333333",
         "rule": "#e8e8e8",
-        "blob": "#c5c8ce",
+        "core": "#2a2a2c",
+        "mid": "#787e86",
+        "rim": "#9ca2aa",
+        "edge": "#bcc0c6",
+        "stroke": "#d2d6da",
+        "spec": "#ffffff",
     },
 }
 
 FONT = "Georgia, 'Times New Roman', Times, serif"
 WIDTH = 880
 PAD = 48
-
+TEXT_CHARS = 54
+YEARS_CODING = 13
 
 INTRO = (
     "I'm a software engineer and technical lead specializing in designing and "
@@ -41,7 +51,7 @@ STORY = (
 )
 
 WORK = (
-    "From founding engineer to CTO — Valerdat, Inditex, IBM",
+    "Founding engineer to CTO at Valerdat — previously Inditex and IBM",
     "Planning & procurement platform — ERP data to purchase proposals",
     "Kernel drivers, injection, and game-security internals",
     "Press coverage and customer case studies",
@@ -76,76 +86,169 @@ def _wrap(text, width):
     return lines or [""]
 
 
-def render_github_card(theme="light"):
-    theme = THEMES.get(theme, THEMES["light"])
-    y = 0
+def _fmt_n(value):
+    try:
+        number = int(value)
+    except (TypeError, ValueError):
+        return None
+    if number <= 0:
+        return None
+    if number >= 10000:
+        return f"{number / 1000:.0f}k"
+    if number >= 1000:
+        return f"{number / 1000:.1f}".rstrip("0").rstrip(".") + "k"
+    return str(number)
+
+
+def _blob_d(cx, cy, scale, phase, unit=152, steps=72):
     parts = []
-
-    def text(x, yy, content, size=16, fill=None, weight="400", italic=False):
-        fill = fill or theme["fg"]
-        style = ' font-style="italic"' if italic else ""
-        parts.append(
-            f'<text x="{x}" y="{yy}" fill="{fill}" font-family="{FONT}" '
-            f'font-size="{size}" font-weight="{weight}"{style}>{_t(content)}</text>'
+    for i in range(steps + 1):
+        theta = (i / steps) * math.tau
+        morph = (
+            0.13 * math.sin(2 * theta + phase * 0.62)
+            + 0.09 * math.sin(3 * theta - phase * 0.41)
+            + 0.055 * math.sin(4 * theta + phase * 0.88)
+            + 0.04 * math.sin(5 * theta + phase * 0.27)
+            + 0.03 * math.cos(7 * theta - phase * 0.53)
         )
+        radius = unit * scale * (1 + morph)
+        x = round(cx + math.cos(theta) * radius, 1)
+        y = round(cy + math.sin(theta) * radius, 1)
+        parts.append(f"{'M' if i == 0 else 'L'}{x} {y}")
+    return " ".join(parts) + " Z"
 
-    def paragraph(content, size, fill, chars, line_h):
-        nonlocal y
-        for line in _wrap(content, chars):
-            text(PAD, y, line, size, fill)
-            y += line_h
 
-    parts.append(
-        f'<rect x="0" y="0" width="{WIDTH}" height="HEIGHT_PLACE" fill="{theme["bg"]}"/>'
+def _text(x, y, content, size, fill, weight="400", anchor="start"):
+    extra = f' text-anchor="{anchor}"' if anchor != "start" else ""
+    return (
+        f'<text x="{x}" y="{y}" fill="{fill}" font-family="{FONT}" '
+        f'font-size="{size}" font-weight="{weight}"{extra}>{_t(content)}</text>'
     )
-    parts.append(
-        "<defs>"
-        f'<radialGradient id="blob-a" cx="10%" cy="0%" r="46%">'
-        f'<stop offset="0%" stop-color="{theme["blob"]}" stop-opacity="0.2"/>'
-        f'<stop offset="100%" stop-color="{theme["blob"]}" stop-opacity="0"/>'
-        "</radialGradient>"
-        f'<radialGradient id="blob-b" cx="100%" cy="80%" r="40%">'
-        f'<stop offset="0%" stop-color="{theme["blob"]}" stop-opacity="0.12"/>'
-        f'<stop offset="100%" stop-color="{theme["blob"]}" stop-opacity="0"/>'
-        "</radialGradient>"
-        "</defs>"
-    )
-    parts.append(f'<ellipse cx="60" cy="0" rx="280" ry="200" fill="url(#blob-a)"/>')
-    parts.append(f'<ellipse cx="860" cy="620" rx="240" ry="180" fill="url(#blob-b)"/>')
 
-    y = 44
-    text(PAD, y, "ztrunk.space", 13, theme["muted"])
+
+def _cloud(theme, idx, cx, cy, scale, phase, dur):
+    fill_id = f"blob-fill-{idx}"
+    d0 = _blob_d(cx, cy, scale, phase)
+    d1 = _blob_d(cx, cy, scale, phase + 1.15)
+    gx = round(cx - 152 * scale * 0.18, 1)
+    gy = round(cy - 152 * scale * 0.22, 1)
+    gradient = (
+        f'<radialGradient id="{fill_id}" cx="{gx}" cy="{gy}" r="{round(152 * scale * 1.08, 1)}" '
+        f'gradientUnits="userSpaceOnUse">'
+        f'<stop offset="0%" stop-color="{theme["core"]}" stop-opacity="0.22"/>'
+        f'<stop offset="38%" stop-color="{theme["mid"]}" stop-opacity="0.18"/>'
+        f'<stop offset="78%" stop-color="{theme["rim"]}" stop-opacity="0.28"/>'
+        f'<stop offset="100%" stop-color="{theme["edge"]}" stop-opacity="0.34"/>'
+        "</radialGradient>"
+    )
+    animate = (
+        f'<animate attributeName="d" values="{d0};{d1};{d0}" dur="{dur}s" '
+        'repeatCount="indefinite"/>'
+    )
+    body = (
+        f'<path fill="url(#{fill_id})" d="{d0}">{animate}</path>'
+        f'<path fill="none" stroke="{theme["stroke"]}" stroke-opacity="0.38" '
+        f'stroke-width="1.15" stroke-linejoin="round" d="{d0}">{animate}</path>'
+    )
+    return gradient, body
+
+
+def render_github_card(theme="light", metrics=None):
+    theme = THEMES.get(theme, THEMES["light"])
+    metrics = metrics or {}
+    stars = _fmt_n(metrics.get("stars"))
+    forks = _fmt_n(metrics.get("forks"))
+    langs = [name for name in (metrics.get("langs") or []) if name][:4]
+    github_year = metrics.get("github_year")
+    years_coding = metrics.get("years_coding") or YEARS_CODING
+
+    y = 46
+    content = [_text(PAD, y, "ztrunk.space", 13, theme["muted"])]
     y += 40
-    text(PAD, y, "Vasile Ovidiu Ichim", 34, weight="500")
+    content.append(_text(PAD, y, "Vasile Ovidiu Ichim", 34, theme["fg"], "500"))
     y += 14
-    parts.append(
+    content.append(
         f'<rect x="{PAD}" y="{y}" width="44" height="1" fill="{theme["rule"]}" opacity="0.28"/>'
     )
     y += 28
-    text(PAD, y, "Co-founder & CTO · Valerdat", 16, theme["muted"])
-    y += 36
-    paragraph(INTRO, 16, theme["fg"], 78, 24)
-    y += 16
-    paragraph(STORY, 16, theme["fg"], 78, 24)
-    y += 28
-    text(PAD, y, "Some of my work", 13, theme["muted"])
+    content.append(_text(PAD, y, "Co-founder & CTO · Valerdat", 16, theme["muted"]))
+    y += 40
+    figures = [
+        (stars, "stars across public work"),
+        (forks, "forks of my repos"),
+        (str(years_coding), "years coding"),
+        (str(github_year) if github_year else None, "on GitHub"),
+    ]
+    figures = [(value, label) for value, label in figures if value]
+    if figures:
+        col = 188
+        for i, (value, label) in enumerate(figures):
+            x = PAD + i * col
+            content.append(_text(x, y, value, 26, theme["fg"], "500"))
+            content.append(_text(x, y + 18, label, 11, theme["muted"]))
+        y += 48
+    y += 12
+    for line in _wrap(INTRO, TEXT_CHARS):
+        content.append(_text(PAD, y, line, 16, theme["fg"]))
+        y += 24
+    y += 14
+    for line in _wrap(STORY, TEXT_CHARS):
+        content.append(_text(PAD, y, line, 16, theme["fg"]))
+        y += 24
+    y += 26
+    content.append(_text(PAD, y, "Some of my work", 13, theme["muted"]))
     y += 26
     for item in WORK:
-        parts.append(
+        lines = _wrap(item, TEXT_CHARS - 2)
+        content.append(
             f'<circle cx="{PAD + 4}" cy="{y - 5}" r="2.2" fill="{theme["fg"]}"/>'
         )
-        text(PAD + 18, y, item, 15)
-        y += 26
+        for i, line in enumerate(lines):
+            content.append(_text(PAD + 18, y, line, 15, theme["fg"]))
+            y += 22 if i < len(lines) - 1 else 26
+    if langs:
+        y += 10
+        content.append(
+            _text(PAD, y, "Public work in " + ", ".join(langs), 13, theme["muted"])
+        )
+        y += 8
     y += 18
-    paragraph(CLOSING, 15, theme["muted"], 78, 22)
-    y += 20
-    text(PAD, y, "ztrunk.space  ·  valerdat.com  ·  linkedin.com/in/zabbix-byte", 13, theme["muted"])
-    height = y + 40
+    for line in _wrap(CLOSING, TEXT_CHARS):
+        content.append(_text(PAD, y, line, 15, theme["muted"]))
+        y += 22
+    y += 18
+    content.append(
+        _text(
+            PAD,
+            y,
+            "ztrunk.space  ·  valerdat.com  ·  linkedin.com/in/zabbix-byte",
+            13,
+            theme["muted"],
+        )
+    )
+    height = y + 64
+
+    clouds = [
+        (0, round(WIDTH * 0.92, 1), round(height * 0.1, 1), 1.0, 0.0, 9.5),
+        (1, round(WIDTH * 0.08, 1), round(height * 0.9, 1), 0.86, 2.1, 11.0),
+        (2, round(WIDTH * 0.93, 1), round(height * 0.88, 1), 0.74, 4.4, 8.2),
+    ]
+    gradients = []
+    cloud_markup = []
+    for spec in clouds:
+        gradient, markup = _cloud(theme, *spec)
+        gradients.append(gradient)
+        cloud_markup.append(markup)
+
+    defs = "<defs>" + "".join(gradients) + "</defs>"
 
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
         f'viewBox="0 0 {WIDTH} {height}" role="img" '
         f'aria-label="Vasile Ovidiu Ichim — Co-founder &amp; CTO, Valerdat">'
-        + "".join(parts).replace("HEIGHT_PLACE", str(height))
+        f'<rect x="0" y="0" width="{WIDTH}" height="{height}" fill="{theme["bg"]}"/>'
+        + defs
+        + "".join(cloud_markup)
+        + "".join(content)
         + "</svg>"
     )
