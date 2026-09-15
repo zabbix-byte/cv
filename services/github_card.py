@@ -1,4 +1,4 @@
-"""SVG profile card for GitHub README (iframes are stripped there)."""
+"""GitHub README graphic — CV copy from ztrunk.space, not GitHub chrome."""
 
 from xml.sax.saxutils import escape
 
@@ -9,22 +9,48 @@ THEMES = {
         "fg": "#171717",
         "muted": "#737373",
         "border": "#e5e5e5",
-        "surface": "#fafafa",
-        "heat": ("#ececec", "#c8c8c8", "#9a9a9a", "#5c5c5c", "#171717"),
+        "rule": "#171717",
+        "blob": "#8a93a0",
     },
     "dark": {
         "bg": "#1a1a1a",
         "fg": "#e8e8e8",
         "muted": "#9a9a9a",
         "border": "#333333",
-        "surface": "#242424",
-        "heat": ("#2a2a2a", "#4a4a4a", "#7a7a7a", "#b5b5b5", "#e8e8e8"),
+        "rule": "#e8e8e8",
+        "blob": "#c5c8ce",
     },
 }
 
 FONT = "Georgia, 'Times New Roman', Times, serif"
-MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-WIDTH = 840
+WIDTH = 880
+PAD = 48
+
+
+INTRO = (
+    "I'm a software engineer and technical lead specializing in designing and "
+    "scaling data-intensive systems — from distributed pipelines to multi-tenant "
+    "AI platforms. I've been coding for over 13 years — seven of them professionally."
+)
+
+STORY = (
+    "As a founding engineer at Valerdat, I led and designed the software hands-on, "
+    "developed it together with the team, and grew into the CTO role. Previously, "
+    "I worked at Inditex and IBM. Today my work sits at the intersection of "
+    "technology and product, remaining hands-on in daily software development."
+)
+
+WORK = (
+    "From founding engineer to CTO — Valerdat, Inditex, IBM",
+    "Planning & procurement platform — ERP data to purchase proposals",
+    "Kernel drivers, injection, and game-security internals",
+    "Press coverage and customer case studies",
+)
+
+CLOSING = (
+    "We're hiring ML Engineers and Full Stack Developers. "
+    "I'm always open to talking about architecture, performance, and data at scale."
+)
 
 
 def _t(value, limit=None):
@@ -34,135 +60,92 @@ def _t(value, limit=None):
     return escape(text)
 
 
-def _heat_fill(theme, level):
-    colors = theme["heat"]
-    try:
-        return colors[max(0, min(int(level), 4))]
-    except (TypeError, ValueError):
-        return colors[0]
+def _wrap(text, width):
+    words = (text or "").split()
+    lines, current = [], ""
+    for word in words:
+        trial = f"{current} {word}".strip()
+        if len(trial) <= width:
+            current = trial
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines or [""]
 
 
-def render_github_card(payload, theme="light"):
+def render_github_card(theme="light"):
     theme = THEMES.get(theme, THEMES["light"])
-    profile = payload.get("profile") or {}
-    stats = payload.get("stats") or {}
-    pinned = (payload.get("pinned") or [])[:6]
-    weeks = payload.get("weeks") or []
-    avatar = payload.get("avatar_data") or ""
-    contrib = payload.get("contrib_total") or 0
-    name = profile.get("name") or "Vasile Ovidiu Ichim"
-    login = profile.get("login") or "zabbix-byte"
-    bio = profile.get("bio") or "Supply software by day, cracking games by night"
-    place = " · ".join(
-        p for p in (profile.get("company"), profile.get("location")) if p
-    )
-
-    repos = stats.get("total_repos") or profile.get("public_repos") or 0
-    stars = stats.get("total_stars") or 0
-    followers = stats.get("followers") or profile.get("followers") or 0
-
-    y = 28
+    y = 0
     parts = []
 
-    def text(x, yy, content, size=15, fill=None, weight="400", family=FONT, anchor="start", limit=None):
+    def text(x, yy, content, size=16, fill=None, weight="400", italic=False):
         fill = fill or theme["fg"]
+        style = ' font-style="italic"' if italic else ""
         parts.append(
-            f'<text x="{x}" y="{yy}" fill="{fill}" font-family="{family}" '
-            f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">'
-            f"{_t(content, limit)}</text>"
+            f'<text x="{x}" y="{yy}" fill="{fill}" font-family="{FONT}" '
+            f'font-size="{size}" font-weight="{weight}"{style}>{_t(content)}</text>'
         )
+
+    def paragraph(content, size, fill, chars, line_h):
+        nonlocal y
+        for line in _wrap(content, chars):
+            text(PAD, y, line, size, fill)
+            y += line_h
 
     parts.append(
-        f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="HEIGHT_PLACE" rx="18" '
-        f'fill="{theme["bg"]}" stroke="{theme["border"]}"/>'
+        f'<rect x="0" y="0" width="{WIDTH}" height="HEIGHT_PLACE" fill="{theme["bg"]}"/>'
     )
+    parts.append(
+        "<defs>"
+        f'<radialGradient id="blob-a" cx="10%" cy="0%" r="46%">'
+        f'<stop offset="0%" stop-color="{theme["blob"]}" stop-opacity="0.2"/>'
+        f'<stop offset="100%" stop-color="{theme["blob"]}" stop-opacity="0"/>'
+        "</radialGradient>"
+        f'<radialGradient id="blob-b" cx="100%" cy="80%" r="40%">'
+        f'<stop offset="0%" stop-color="{theme["blob"]}" stop-opacity="0.12"/>'
+        f'<stop offset="100%" stop-color="{theme["blob"]}" stop-opacity="0"/>'
+        "</radialGradient>"
+        "</defs>"
+    )
+    parts.append(f'<ellipse cx="60" cy="0" rx="280" ry="200" fill="url(#blob-a)"/>')
+    parts.append(f'<ellipse cx="860" cy="620" rx="240" ry="180" fill="url(#blob-b)"/>')
 
-    text(28, y + 14, "ztrunk.space", 12, theme["muted"])
-    text(WIDTH - 28, y + 14, "GitHub", 12, theme["muted"], anchor="end")
+    y = 44
+    text(PAD, y, "ztrunk.space", 13, theme["muted"])
+    y += 40
+    text(PAD, y, "Vasile Ovidiu Ichim", 34, weight="500")
+    y += 14
+    parts.append(
+        f'<rect x="{PAD}" y="{y}" width="44" height="1" fill="{theme["rule"]}" opacity="0.28"/>'
+    )
+    y += 28
+    text(PAD, y, "Co-founder & CTO · Valerdat", 16, theme["muted"])
     y += 36
-
-    if avatar:
-        parts.append('<defs><clipPath id="av"><circle cx="60" cy="CY" r="32"/></clipPath></defs>')
-        cy = y + 32
-        parts[-1] = parts[-1].replace("CY", str(cy))
+    paragraph(INTRO, 16, theme["fg"], 78, 24)
+    y += 16
+    paragraph(STORY, 16, theme["fg"], 78, 24)
+    y += 28
+    text(PAD, y, "Some of my work", 13, theme["muted"])
+    y += 26
+    for item in WORK:
         parts.append(
-            f'<image href="{avatar}" x="28" y="{y}" width="64" height="64" '
-            f'clip-path="url(#av)" preserveAspectRatio="xMidYMid slice"/>'
+            f'<circle cx="{PAD + 4}" cy="{y - 5}" r="2.2" fill="{theme["fg"]}"/>'
         )
-        parts.append(
-            f'<circle cx="60" cy="{cy}" r="32.5" fill="none" stroke="{theme["border"]}"/>'
-        )
-        text_x = 108
-    else:
-        text_x = 28
+        text(PAD + 18, y, item, 15)
+        y += 26
+    y += 18
+    paragraph(CLOSING, 15, theme["muted"], 78, 22)
+    y += 20
+    text(PAD, y, "ztrunk.space  ·  valerdat.com  ·  linkedin.com/in/zabbix-byte", 13, theme["muted"])
+    height = y + 40
 
-    text(text_x, y + 22, name, 22, weight="500", limit=42)
-    text(text_x, y + 44, f"@{login}", 14, theme["muted"], limit=34)
-    text(text_x, y + 66, bio, 13, theme["fg"], limit=72)
-    if place:
-        text(text_x, y + 86, place, 12, theme["muted"], limit=60)
-    y += 108
-
-    metrics = (
-        (str(repos), "repos"),
-        (str(stars), "stars"),
-        (str(followers), "followers"),
-        (str(contrib), "contrib"),
-    )
-    for i, (value, label) in enumerate(metrics):
-        x = 28 + i * 200
-        text(x, y, value, 20, weight="500")
-        text(x, y + 18, label, 12, theme["muted"])
-    y += 44
-
-    if weeks:
-        text(28, y, f"{contrib} contributions in the last year", 12, theme["muted"])
-        y += 10
-        cell, gap = 10, 3
-        heat_w = len(weeks) * (cell + gap) - gap
-        x0 = max(28, WIDTH - 28 - heat_w)
-        for wi, week in enumerate(weeks):
-            for di, day in enumerate(week):
-                x = x0 + wi * (cell + gap)
-                yy = y + di * (cell + gap)
-                fill = _heat_fill(theme, day.get("level") or 0)
-                title = _t(f"{day.get('date', '')} · {day.get('count', 0)}")
-                parts.append(
-                    f'<rect x="{x}" y="{yy}" width="{cell}" height="{cell}" rx="2" '
-                    f'fill="{fill}"><title>{title}</title></rect>'
-                )
-        y += 7 * (cell + gap) + 18
-
-    if pinned:
-        text(28, y, "Pinned", 12, theme["muted"])
-        y += 12
-        col_w = 252
-        row_h = 78
-        for i, repo in enumerate(pinned):
-            col = i % 3
-            row = i // 3
-            x = 28 + col * (col_w + 14)
-            yy = y + row * (row_h + 10)
-            parts.append(
-                f'<rect x="{x}" y="{yy}" width="{col_w}" height="{row_h}" rx="12" '
-                f'fill="{theme["surface"]}" stroke="{theme["border"]}"/>'
-            )
-            text(x + 14, yy + 24, repo.get("name"), 14, weight="500", limit=26)
-            text(x + 14, yy + 44, repo.get("description") or "", 12, theme["muted"], limit=34)
-            lang = repo.get("language") or ""
-            stars_n = repo.get("stargazers_count") or 0
-            meta = " · ".join(p for p in (lang, f"★ {stars_n}") if p)
-            text(x + 14, yy + 64, meta, 11, theme["muted"], limit=32)
-        rows = (len(pinned) + 2) // 3
-        y += rows * (row_h + 10) + 8
-
-    text(28, y + 8, "Co-founder & CTO · Valerdat", 12, theme["muted"])
-    height = y + 28
-    svg = (
+    return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
         f'viewBox="0 0 {WIDTH} {height}" role="img" '
-        f'aria-label="{_t(name)} on GitHub">'
-        + "".join(parts).replace("HEIGHT_PLACE", str(height - 1))
+        f'aria-label="Vasile Ovidiu Ichim — Co-founder &amp; CTO, Valerdat">'
+        + "".join(parts).replace("HEIGHT_PLACE", str(height))
         + "</svg>"
     )
-    return svg

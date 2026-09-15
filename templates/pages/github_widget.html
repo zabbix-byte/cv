@@ -5,19 +5,19 @@
 {% block canonical %}https://ztrunk.space/github/{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
 <article>
-  <h1>GitHub card</h1>
-  <p class="meta">For the profile README at <a href="https://github.com/zabbix-byte/zabbix-byte" target="_blank" rel="noopener">zabbix-byte/zabbix-byte</a>. GitHub strips iframes, so this is an SVG image.</p>
+  <h1>GitHub profile</h1>
+  <p class="meta">CV intro from this site for the GitHub profile README — not a copy of GitHub’s own heatmap, pins, or stats.</p>
 
   <p>
-    <img class="gh-preview" src="{% url 'github_card_svg' %}?theme=light" alt="GitHub card, light" width="840">
+    <img class="gh-preview" src="{% url 'github_card_svg' %}?theme=light" alt="GitHub profile, light" width="880">
   </p>
   <p>
-    <img class="gh-preview gh-preview-dark" src="{% url 'github_card_svg' %}?theme=dark" alt="GitHub card, dark" width="840">
+    <img class="gh-preview gh-preview-dark" src="{% url 'github_card_svg' %}?theme=dark" alt="GitHub profile, dark" width="880">
   </p>
 
   <h2>Paste this in README.md</h2>

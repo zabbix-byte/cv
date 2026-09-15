@@ -78,44 +78,29 @@ def github_data_api(request):
     return JsonResponse({"error": "Method not allowed"}, status=405)
 
 
-def _github_payload():
-    try:
-        return GitHubService(username="zabbix-byte").get_widget_payload()
-    except Exception as exc:
-        logger.error("GitHub widget failed: %s", exc)
-        service = GitHubService(username="zabbix-byte")
-        return {
-            "profile": service._get_fallback_profile(),
-            "stats": {},
-            "pinned": [],
-            "languages": [],
-            "contrib_total": 0,
-            "weeks": [],
-            "avatar_data": "",
-        }
-
-
 @require_GET
 def github_card_svg(request):
     theme = request.GET.get("theme", "light")
     if theme not in ("light", "dark"):
         theme = "light"
-    svg = render_github_card(_github_payload(), theme)
+    svg = render_github_card(theme)
     response = HttpResponse(svg, content_type="image/svg+xml; charset=utf-8")
-    response["Cache-Control"] = "public, max-age=1800"
+    response["Cache-Control"] = "public, max-age=3600"
     return response
 
 
 def github_widget(request):
     markdown = (
+        '<div align="center">\n'
         '<a href="https://ztrunk.space/">\n'
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
         'srcset="https://ztrunk.space/github.svg?theme=dark">\n'
-        '    <img alt="zabbix-byte · ztrunk.space" '
-        'src="https://ztrunk.space/github.svg?theme=light" width="840">\n'
+        '    <img alt="Vasile Ovidiu Ichim — GitHub profile" '
+        'src="https://ztrunk.space/github.svg?theme=light" width="880">\n'
         "  </picture>\n"
-        "</a>"
+        "</a>\n"
+        "</div>"
     )
     return render(
         request,
