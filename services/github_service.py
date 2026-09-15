@@ -1,9 +1,11 @@
-import requests
-import logging
-from django.core.cache import cache
-from django.conf import settings
-from datetime import datetime, timedelta
+import base64
 import json
+import logging
+from datetime import datetime, timedelta
+
+import requests
+from django.conf import settings
+from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
@@ -280,12 +282,191 @@ class GitHubService:
 
         return None
 
+    PINNED_REPOS = (
+        "PyPulse",
+        "ztdriver",
+        "DiscordEasyCloner",
+        "ztui",
+        "zt_cs_cheat",
+        "NFT-Generator",
+    )
+
+    def get_pinned_repos(self):
+        cache_key = f"github_pinned_{self.username}"
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        pinned = []
+        token = getattr(settings, "GITHUB_TOKEN", None)
+        if token:
+            query = """
+            query ($login: String!) {
+              user(login: $login) {
+                pinnedItems(first: 6, types: REPOSITORY) {
+                  nodes {
+                    ... on Repository {
+                      name
+                      description
+                      url
+                      stargazerCount
+                      forkCount
+                      isArchived
+                      primaryLanguage { name }
+                    }
+                  }
+                }
+              }
+            }
+            """
+            try:
+                response = requests.post(
+                    "https://api.github.com/graphql",
+                    json={"query": query, "variables": {"login": self.username}},
+                    headers={
+                        "Authorization": f"bearer {token}",
+                        "User-Agent": "CV-Django-App",
+                    },
+                    timeout=10,
+                )
+                payload = response.json()
+                nodes = (
+                    ((payload.get("data") or {}).get("user") or {})
+                    .get("pinnedItems", {})
+                    .get("nodes")
+                    or []
+                )
+                for node in nodes:
+                    if not node or not node.get("name"):
+                        continue
+                    pinned.append(
+                        {
+                            "name": node["name"],
+                            "description": node.get("description") or "",
+                            "html_url": node.get("url"),
+                            "language": (node.get("primaryLanguage") or {}).get("name") or "",
+                            "stargazers_count": node.get("stargazerCount", 0),
+                            "forks_count": node.get("forkCount", 0),
+                            "archived": node.get("isArchived", False),
+                        }
+                    )
+            except Exception:
+                logger.warning("GitHub GraphQL pinned repos failed", exc_info=True)
+
+        if not pinned:
+            repos = {repo["name"]: repo for repo in self.get_repositories()}
+            for name in self.PINNED_REPOS:
+                if name in repos:
+                    pinned.append(repos[name])
+
+        cache.set(cache_key, pinned, self.CACHE_TIMEOUT)
+        return pinned
+
+    def get_contributions(self):
+        cache_key = f"github_contrib_v1_{self.username}"
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        empty = {"total": 0, "weeks": []}
+        try:
+            response = requests.get(
+                f"https://github-contributions-api.jogruber.de/v4/{self.username}?y=last",
+                timeout=8,
+            )
+            payload = response.json()
+        except Exception:
+            cache.set(cache_key, empty, 60 * 15)
+            return empty
+
+        contribs = payload.get("contributions") or []
+        totals = payload.get("total") or {}
+        total = sum(totals.values()) if isinstance(totals, dict) else 0
+        by_date = {}
+        for row in contribs:
+            day = row.get("date")
+            if not day:
+                continue
+            by_date[day] = {
+                "date": day,
+                "count": int(row.get("count") or 0),
+                "level": int(row.get("level") or 0),
+            }
+
+        today = datetime.utcnow().date()
+        days_since_sunday = (today.weekday() + 1) % 7
+        this_sunday = today - timedelta(days=days_since_sunday)
+        start = this_sunday - timedelta(weeks=52)
+        weeks = []
+        for week_i in range(53):
+            week = []
+            for day_i in range(7):
+                day = start + timedelta(days=week_i * 7 + day_i)
+                info = by_date.get(
+                    day.isoformat(),
+                    {"date": day.isoformat(), "count": 0, "level": 0},
+                )
+                week.append(info)
+            weeks.append(week)
+
+        data = {"total": total, "weeks": weeks}
+        cache.set(cache_key, data, self.CACHE_TIMEOUT)
+        return data
+
+    def get_avatar_data_uri(self, url):
+        if not url:
+            return ""
+        cache_key = f"github_avatar_{self.username}"
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+        uri = ""
+        try:
+            response = requests.get(
+                url, timeout=6, headers={"User-Agent": "CV-Django-App"}
+            )
+            if response.status_code == 200 and response.content:
+                mime = (response.headers.get("content-type") or "image/jpeg").split(";")[0]
+                if mime not in ("image/jpeg", "image/png", "image/webp", "image/gif"):
+                    mime = "image/jpeg"
+                uri = "data:{};base64,{}".format(
+                    mime, base64.b64encode(response.content).decode("ascii")
+                )
+        except Exception:
+            uri = ""
+        cache.set(cache_key, uri, 60 * 60 * 12)
+        return uri
+
+    def get_widget_payload(self):
+        stats = self.get_comprehensive_stats()
+        contrib = self.get_contributions()
+        pinned = self.get_pinned_repos()
+        languages = (stats.get("languages") or [])[:5]
+        lang_total = sum(count for _, count in languages) or 1
+        profile = stats.get("profile") or self._get_fallback_profile()
+        return {
+            "profile": profile,
+            "stats": stats.get("stats") or {},
+            "pinned": pinned[:6],
+            "languages": [
+                {
+                    "name": name,
+                    "count": count,
+                    "pct": round(100 * count / lang_total),
+                }
+                for name, count in languages
+            ],
+            "contrib_total": contrib.get("total") or 0,
+            "weeks": contrib.get("weeks") or [],
+            "avatar_data": self.get_avatar_data_uri(profile.get("avatar_url")),
+        }
+
     def _get_fallback_profile(self):
         """Return fallback data when API is unavailable"""
         return {
             "login": self.username,
             "name": "Vasile Ovidiu Ichim",
-            "bio": "Staff Engineer & Technical Lead · Software Architect building AI-powered supply-chain platforms",
+            "bio": "Supply software by day, cracking games by night",
             "location": "Barcelona, Spain",
             "public_repos": 0,
             "followers": 0,

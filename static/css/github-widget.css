@@ -1,0 +1,32 @@
+.gh-preview {
+  display: block;
+  width: 100%;
+  max-width: 840px;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+}
+
+.gh-markdown {
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0 0.6rem;
+  padding: 0.75rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--fg);
+  font: 0.82rem/1.45 var(--mono);
+  resize: vertical;
+}
+
+.gh-copy {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--fg);
+  border-radius: 8px;
+  background: var(--fg);
+  color: var(--bg);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}

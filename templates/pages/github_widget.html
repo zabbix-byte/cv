@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GitHub card — Vasile Ovidiu Ichim{% endblock %}
+{% block canonical %}https://ztrunk.space/github/{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=2">
+{% endblock %}
+
+{% block content %}
+<article>
+  <h1>GitHub card</h1>
+  <p class="meta">For the profile README at <a href="https://github.com/zabbix-byte/zabbix-byte" target="_blank" rel="noopener">zabbix-byte/zabbix-byte</a>. GitHub strips iframes, so this is an SVG image.</p>
+
+  <p>
+    <img class="gh-preview" src="{% url 'github_card_svg' %}?theme=light" alt="GitHub card, light" width="840">
+  </p>
+  <p>
+    <img class="gh-preview gh-preview-dark" src="{% url 'github_card_svg' %}?theme=dark" alt="GitHub card, dark" width="840">
+  </p>
+
+  <h2>Paste this in README.md</h2>
+  <p class="muted">Create a public repo named <code>zabbix-byte</code> if it does not exist yet. The README of that repo is what GitHub shows on your profile.</p>
+  <textarea id="embed-code" class="gh-markdown" readonly rows="10">{{ embed_code }}</textarea>
+  <p><button type="button" id="embed-copy" class="gh-copy">Copy markdown</button></p>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/github-widget.js' %}?v=2"></script>
+{% endblock %}

@@ -1,5 +1,5 @@
 (function () {
-  const SKIP = ["/statistics", "/api/track", "/download-cv"];
+  const SKIP = ["/statistics", "/github", "/api/track", "/download-cv"];
   const KEY = "ztrunk-sid";
 
   function sid() {

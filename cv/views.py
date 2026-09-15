@@ -5,14 +5,15 @@ import logging
 
 from django.conf import settings
 from django.db.models import Sum, Count
-from django.http import FileResponse, Http404, JsonResponse
+from django.http import FileResponse, Http404, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
 
 from cv.models import PageView, VisitSession
 from services.geo import lookup_ip
+from services.github_card import render_github_card
 from services.github_service import GitHubService
 from services.pdf_service import generate_cv_pdf_response
 
@@ -77,6 +78,52 @@ def github_data_api(request):
     return JsonResponse({"error": "Method not allowed"}, status=405)
 
 
+def _github_payload():
+    try:
+        return GitHubService(username="zabbix-byte").get_widget_payload()
+    except Exception as exc:
+        logger.error("GitHub widget failed: %s", exc)
+        service = GitHubService(username="zabbix-byte")
+        return {
+            "profile": service._get_fallback_profile(),
+            "stats": {},
+            "pinned": [],
+            "languages": [],
+            "contrib_total": 0,
+            "weeks": [],
+            "avatar_data": "",
+        }
+
+
+@require_GET
+def github_card_svg(request):
+    theme = request.GET.get("theme", "light")
+    if theme not in ("light", "dark"):
+        theme = "light"
+    svg = render_github_card(_github_payload(), theme)
+    response = HttpResponse(svg, content_type="image/svg+xml; charset=utf-8")
+    response["Cache-Control"] = "public, max-age=1800"
+    return response
+
+
+def github_widget(request):
+    markdown = (
+        '<a href="https://ztrunk.space/">\n'
+        "  <picture>\n"
+        '    <source media="(prefers-color-scheme: dark)" '
+        'srcset="https://ztrunk.space/github.svg?theme=dark">\n'
+        '    <img alt="zabbix-byte · ztrunk.space" '
+        'src="https://ztrunk.space/github.svg?theme=light" width="840">\n'
+        "  </picture>\n"
+        "</a>"
+    )
+    return render(
+        request,
+        "pages/github_widget.html",
+        {"embed_code": markdown},
+    )
+
+
 def download_cv_pdf(request):
     """Generate and download CV as PDF"""
     try:
@@ -101,6 +148,7 @@ def download_cv_pdf(request):
 
 SKIP_TRACK_PREFIXES = (
     "/statistics",
+    "/github",
     "/api/track",
     "/download-cv",
     "/robots.txt",
