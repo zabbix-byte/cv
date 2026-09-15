@@ -7,6 +7,10 @@
   border-radius: 18px;
 }
 
+.gh-preview-dark {
+  background: #0d1117;
+}
+
 .gh-markdown {
   display: block;
   width: 100%;

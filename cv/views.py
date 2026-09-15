@@ -100,9 +100,9 @@ def github_widget(request):
         '<a href="https://ztrunk.space/">\n'
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
-        'srcset="https://ztrunk.space/github.svg?theme=dark&v=4">\n'
+        'srcset="https://ztrunk.space/github.svg?theme=dark&v=5">\n'
         '    <img alt="Vasile Ovidiu Ichim — GitHub profile" '
-        'src="https://ztrunk.space/github.svg?theme=light&v=4" width="880">\n'
+        'src="https://ztrunk.space/github.svg?theme=light&v=5" width="880">\n'
         "  </picture>\n"
         "</a>\n"
         "</div>"

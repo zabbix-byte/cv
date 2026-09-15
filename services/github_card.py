@@ -18,7 +18,7 @@ THEMES = {
         "spec": "#ffffff",
     },
     "dark": {
-        "bg": "#0d1117",
+        "bg": "transparent",
         "fg": "#f0f6fc",
         "muted": "#f0f6fc",
         "rule": "#f0f6fc",
@@ -241,12 +241,19 @@ def render_github_card(theme="light", metrics=None):
         cloud_markup.append(markup)
 
     defs = "<defs>" + "".join(gradients) + "</defs>"
+    bg = theme["bg"]
+    backdrop = (
+        ""
+        if bg in ("none", "transparent")
+        else f'<rect x="0" y="0" width="{WIDTH}" height="{height}" fill="{bg}"/>'
+    )
 
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
         f'viewBox="0 0 {WIDTH} {height}" role="img" '
+        f'style="background:transparent" '
         f'aria-label="Vasile Ovidiu Ichim — Co-founder &amp; CTO, Valerdat">'
-        f'<rect x="0" y="0" width="{WIDTH}" height="{height}" fill="{theme["bg"]}"/>'
+        + backdrop
         + defs
         + "".join(cloud_markup)
         + "".join(content)
