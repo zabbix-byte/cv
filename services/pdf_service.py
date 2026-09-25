@@ -84,7 +84,7 @@ class CVPDFGenerator:
         ))
         add(ParagraphStyle(
             name="Section", fontName=_FONT_BOLD, fontSize=10,
-            textColor=INK, leading=12, spaceBefore=5, spaceAfter=1,
+            textColor=INK, leading=12, spaceBefore=3, spaceAfter=0,
         ))
         add(ParagraphStyle(
             name="Summary", fontName=_FONT, fontSize=9.4,
@@ -95,13 +95,22 @@ class CVPDFGenerator:
             textColor=INK, leading=12,
         ))
         add(ParagraphStyle(
+            name="Stage", fontName=_FONT_BOLD, fontSize=9.2,
+            textColor=INK, leading=12,
+        ))
+        add(ParagraphStyle(
             name="Date", fontName=_FONT, fontSize=9,
             textColor=MUTED, leading=12, alignment=TA_RIGHT,
         ))
         add(ParagraphStyle(
             name="ExpBullet", fontName=_FONT, fontSize=9,
             textColor=INK, leading=11.8,
-            leftIndent=10, bulletIndent=0, spaceAfter=1,
+            leftIndent=10, bulletIndent=0, spaceAfter=0,
+        ))
+        add(ParagraphStyle(
+            name="StageBullet", fontName=_FONT, fontSize=9,
+            textColor=INK, leading=11.8,
+            leftIndent=18, bulletIndent=8, spaceAfter=0,
         ))
         add(ParagraphStyle(
             name="SkillCat", fontName=_FONT_BOLD, fontSize=9,
@@ -210,7 +219,7 @@ class CVPDFGenerator:
         return [
             Paragraph(text, self.styles["Section"]),
             HRFlowable(width="100%", thickness=0.5, color=LINE,
-                       spaceBefore=0, spaceAfter=3, lineCap="round"),
+                       spaceBefore=0, spaceAfter=2, lineCap="round"),
         ]
 
     def _summary(self):
@@ -241,37 +250,69 @@ class CVPDFGenerator:
             Spacer(1, 2),
         ]
 
-    def _exp_entry(self, role, company, dates, bullets):
+    def _dated_row(self, left, dates, style="Role", indent=0):
         head = Table(
-            [[Paragraph(f"{role} · {company}", self.styles["Role"]),
+            [[Paragraph(left, self.styles[style]),
               Paragraph(dates, self.styles["Date"])]],
-            colWidths=[self.content_width * 0.74, self.content_width * 0.26],
+            colWidths=[self.content_width * 0.70, self.content_width * 0.30],
         )
         head.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 0),
+            ("LEFTPADDING", (0, 0), (0, 0), indent),
+            ("LEFTPADDING", (1, 0), (1, 0), 0),
             ("RIGHTPADDING", (0, 0), (-1, -1), 0),
             ("TOPPADDING", (0, 0), (-1, -1), 0),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
         ]))
-        flow = [head]
+        return head
+
+    def _exp_entry(self, role, company, dates, bullets):
+        flow = [self._dated_row(f"{role} · {company}", dates)]
         for b in bullets:
             flow.append(Paragraph(b, self.styles["ExpBullet"], bulletText="•"))
         flow.append(Spacer(1, 2))
         return KeepTogether(flow)
 
+    def _valerdat(self):
+        flow = [
+            self._dated_row("Co-founder &amp; CTO · Valerdat", ""),
+            Paragraph(
+                "Architecture and hands-on development of a high-availability AI platform "
+                "supporting 50+ Enterprise B2B clients and processing critical supply-chain "
+                "data at scale (&gt;&#8364;1M ARR).",
+                self.styles["ExpBullet"],
+                bulletText="•",
+            ),
+            Spacer(1, 1),
+            self._dated_row("CTO (Full-time)", "Sep 2024 – Present", "Stage", 8),
+            self._dated_row(
+                "Tech Lead &amp; Advisor (Part-time)",
+                "Oct 2023 – Sep 2024",
+                "Stage",
+                8,
+            ),
+            Paragraph(
+                "Transitioned to a part-time advisory role to guarantee infrastructure "
+                "stability and mentor junior developers while engaged at Inditex, ensuring "
+                "business continuity.",
+                self.styles["StageBullet"],
+                bulletText="•",
+            ),
+            self._dated_row(
+                "Founding Engineer (Full-time)",
+                "2021 – Oct 2023",
+                "Stage",
+                8,
+            ),
+            Spacer(1, 2),
+        ]
+        return KeepTogether(flow)
+
     def _experience(self):
         entries = [
+            self._valerdat(),
             self._exp_entry(
-                "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
-                [
-                    "Founding engineer, then technical lead, then CTO. Architecture and daily development of the planning and procurement platform.",
-                    "Multi-tenant application and data platform: forecasting, purchase proposals, ERP integrations, and the workflows product ships on top.",
-                    "Technical hiring, design reviews, and close work with product.",
-                ],
-            ),
-            self._exp_entry(
-                "Python Software Engineer (concurrent)", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
+                "Python Software Engineer", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
                 [
                     "Built the strategic planning platform for Inditex's Security Department (Django, React, AWS).",
                     "Designed REST APIs and microservices, improving scalability of internal supply-chain operations.",
@@ -391,35 +432,23 @@ class CVPDFGenerator:
         return flow
 
     def _edu_block(self):
-        edu = Table(
-            [[Paragraph("B.Sc. Computer Science — The Open University",
-                        self.styles["EduTitle"]),
-              Paragraph("2023 – 2027", self.styles["Date"])]],
-            colWidths=[self.content_width * 0.74, self.content_width * 0.26],
-        )
-        edu.setStyle(TableStyle([
-            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 0),
-            ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-            ("TOPPADDING", (0, 0), (-1, -1), 0),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
-        ]))
         flow = self._section_header("Education")
-        flow.append(edu)
         flow.append(Paragraph(
-            "In progress. Romanian (native) · Spanish (C2) · English (C1). "
-            "Coursework: Python, C++, AWS, FastAPI.",
-            self.styles["EduMeta"]))
+            "B.Sc. Computer Science Coursework – The Open University (Self-paced)",
+            self.styles["EduTitle"],
+        ))
+        flow.append(Paragraph(
+            "Romanian (native) · Spanish (C2) · English (C1). "
+            "Platzi — Python, C++, AWS, FastAPI.",
+            self.styles["EduMeta"],
+        ))
         return flow
 
     def _bottom(self):
         flow = [Spacer(1, 2)]
         flow += self._skills_block()
-        flow.append(Spacer(1, 2))
         flow += self._projects_block()
-        flow.append(Spacer(1, 2))
         flow += self._research_block()
-        flow.append(Spacer(1, 2))
         flow.append(KeepTogether(self._edu_block()))
         return flow
 
