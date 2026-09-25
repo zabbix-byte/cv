@@ -84,7 +84,7 @@ class CVPDFGenerator:
         ))
         add(ParagraphStyle(
             name="Section", fontName=_FONT_BOLD, fontSize=10,
-            textColor=INK, leading=12, spaceBefore=8, spaceAfter=2,
+            textColor=INK, leading=12, spaceBefore=5, spaceAfter=1,
         ))
         add(ParagraphStyle(
             name="Summary", fontName=_FONT, fontSize=9.4,
@@ -210,19 +210,19 @@ class CVPDFGenerator:
         return [
             Paragraph(text, self.styles["Section"]),
             HRFlowable(width="100%", thickness=0.5, color=LINE,
-                       spaceBefore=0, spaceAfter=5, lineCap="round"),
+                       spaceBefore=0, spaceAfter=3, lineCap="round"),
         ]
 
     def _summary(self):
         text = (
-            "Software engineer and technical lead specializing in designing and scaling "
-            "data-intensive systems — from distributed pipelines to multi-tenant AI platforms. "
-            "Coding for over 13 years — seven of them professionally."
+            "Software engineer and technical lead. I design data-intensive systems — "
+            "distributed pipelines and multi-tenant platforms for demand planning and procurement. "
+            "Coding for over 13 years, seven of them professionally."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>, led and designed the software hands-on and developed it "
-            "together with the team before becoming CTO — operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
-            "supply-chain data, with demand forecasting at &lt;7% MAPE. Hands-on daily. "
+            "Founding engineer at <b>Valerdat</b>. Designed the software hands-on and built it with the team, "
+            "then took the CTO role. The product is demand planning and procurement: forecasting, "
+            "purchase proposals, and the platform clients run day to day. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
         press = (
@@ -257,7 +257,7 @@ class CVPDFGenerator:
         flow = [head]
         for b in bullets:
             flow.append(Paragraph(b, self.styles["ExpBullet"], bulletText="•"))
-        flow.append(Spacer(1, 4))
+        flow.append(Spacer(1, 2))
         return KeepTogether(flow)
 
     def _experience(self):
@@ -265,9 +265,9 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Co-founder &amp; CTO", "Valerdat", "2021 – Present",
                 [
-                    "Joined as founding engineer, grew into tech lead, then CTO — led and designed the software hands-on; developed it with the team.",
-                    "As CTO: architecture, data and application platform, cloud and security posture, and technical hiring — while staying in the code on the hard paths.",
-                    "Day to day: design reviews, platform ownership, and close work with product so forecasting and procurement stay tied to real supply-chain workflows.",
+                    "Founding engineer, then technical lead, then CTO. Architecture and daily development of the planning and procurement platform.",
+                    "Multi-tenant application and data platform: forecasting, purchase proposals, ERP integrations, and the workflows product ships on top.",
+                    "Technical hiring, design reviews, and close work with product.",
                 ],
             ),
             self._exp_entry(
@@ -301,7 +301,7 @@ class CVPDFGenerator:
             ("Languages", "Python, C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
             ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
-            ("AI, ML &amp; Architecture", "Forecasting (Prophet, XGBoost, TFT, and 13 other models), LLM integration, distributed systems, multi-tenant SaaS, ERP integrations"),
+            ("AI &amp; Architecture", "Time-series forecasting, LLM agents, distributed systems, multi-tenant SaaS, ERP integrations"),
             ("Leadership", "Architecture &amp; design reviews, technical direction, mentoring"),
         ]
         data = []
@@ -340,7 +340,7 @@ class CVPDFGenerator:
         p = [
             self._project_cell(
                 "AI Planning &amp; Procurement Platform · Valerdat",
-                "Planning and procurement platform end to end (demand planning, purchasing, replenishment): 500k+ SKUs / 10TB+ data; model analysis as base for planning (&lt;7% MAPE, best of 13+ models), purchase optimizer, platform as the base system clients build on; multi-tenant Django + Databricks/Spark, ERP connectors (Sage/BC/SAP — Sage Marketplace), agents that converse and automate — all wrapped in each client’s business logic. Path: ingest → forecast → purchase optimizer → platform."),
+                "Demand planning and procurement: forecasting, purchase proposals, replenishment. Multi-tenant Django, Databricks and Spark, ERP connectors for Sage, Business Central, and SAP."),
             self._project_cell(
                 "Strategic Planning · Inditex",
                 "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
@@ -364,17 +364,16 @@ class CVPDFGenerator:
 
     def _research_block(self):
         intro = (
-            "Security &amp; systems internals (personal). Windows kernel and user-mode work — "
-            "how I started programming 12–13 years ago and still a hobby that sharpens how I reason "
-            "about boundaries, failure modes, and performance in production."
+            "Security and systems internals, personal. Kernel and user-mode work — "
+            "how I think about boundaries and performance."
         )
         items = [
             ('<b><a href="https://github.com/zabbix-byte/ztdriver" color="#171717"><u>Windows Kernel Drivers</u></a></b> — '
-             "kernel-mode driver experiments in C++ exploring user/kernel communication and IOCTL paths."),
+             "user/kernel communication and IOCTL paths, in C++."),
             ('<b><a href="https://github.com/zabbix-byte/ztui" color="#171717"><u>Overlay cheat base</u></a></b> — '
-             "end-to-end overlay cheat base: kernel driver + user-mode client for memory access, DLL loading, and real-time DX11 overlays."),
+             "kernel driver, user-mode client, and a DX11 overlay."),
             ('<b><a href="https://github.com/zabbix-byte/zt_cs_cheat" color="#171717"><u>End-to-end game cheat</u></a></b> (archived) — '
-             "a separate full cheat: process attachment, DLL injection, and memory layout — the same surfaces anti-cheat systems watch."),
+             "process attachment, DLL injection, and memory layout."),
         ]
         flow = self._section_header("Research") + [
             Paragraph(intro, self.styles["Summary"]),
@@ -382,13 +381,12 @@ class CVPDFGenerator:
         ]
         for it in items:
             flow.append(Paragraph(it, self.styles["ExpBullet"], bulletText="•"))
-        flow.append(Spacer(1, 2))
         flow.append(Paragraph(
-            "Open-source &amp; side projects: "
-            '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a> (Chromium desktop apps in Python), '
-            '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a> (CEF bindings for Python 3.10–3.13), '
-            '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a> (Interstellar TARS robot — embedded AI agent), and more on '
-            '<a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
+            "Also "
+            '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a>, '
+            '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a>, '
+            '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a>, '
+            'and more on <a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
             self.styles["EduMeta"]))
         return flow
 
@@ -408,24 +406,20 @@ class CVPDFGenerator:
         ]))
         flow = self._section_header("Education")
         flow.append(edu)
-        flow.append(Paragraph("In progress.", self.styles["EduMeta"]))
-        flow.append(Spacer(1, 3))
         flow.append(Paragraph(
-            "Languages: Romanian (native) · Spanish (fluent, C2) · English (professional, C1)",
-            self.styles["EduMeta"]))
-        flow.append(Paragraph(
-            "Coursework: Platzi (platzi.com/p/zabbix) — Python, C++, AWS, FastAPI, Git, and more.",
+            "In progress. Romanian (native) · Spanish (C2) · English (C1). "
+            "Coursework: Python, C++, AWS, FastAPI.",
             self.styles["EduMeta"]))
         return flow
 
     def _bottom(self):
         flow = [Spacer(1, 2)]
         flow += self._skills_block()
-        flow.append(Spacer(1, 4))
+        flow.append(Spacer(1, 2))
         flow += self._projects_block()
-        flow.append(Spacer(1, 4))
+        flow.append(Spacer(1, 2))
         flow += self._research_block()
-        flow.append(Spacer(1, 4))
+        flow.append(Spacer(1, 2))
         flow.append(KeepTogether(self._edu_block()))
         return flow
 

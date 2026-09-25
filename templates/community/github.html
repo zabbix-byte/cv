@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GitHub card generator — ztrunk.space{% endblock %}
+{% block canonical %}https://ztrunk.space/lab/github/{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/github-widget.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'css/community.css' %}?v=1">
+{% endblock %}
+
+{% block content %}
+<article>
+  <p class="meta"><a href="{% url 'lab_home' %}">Lab</a></p>
+  <h1>GitHub profile card</h1>
+  <p class="meta">Enter a GitHub username. Paste the markdown into that account’s profile README.</p>
+
+  <form class="lab-form" method="get" action="{% url 'lab_github' %}">
+    <label class="lab-label" for="user">GitHub username</label>
+    <div class="lab-row">
+      <input id="user" name="user" type="text" value="{{ query }}" placeholder="octocat" autocomplete="username" spellcheck="false">
+      <button type="submit" class="gh-copy">Preview</button>
+    </div>
+  </form>
+
+  {% if invalid %}
+  <p>That doesn’t look like a GitHub username.</p>
+  {% elif missing %}
+  <p>No GitHub user named <code>{{ username }}</code>.</p>
+  {% endif %}
+
+  {% if username and not missing and not invalid %}
+  <p>
+    <img class="gh-preview" src="{% url 'lab_github_svg' %}?user={{ username }}&theme=light&v=1" alt="{{ username }} GitHub profile, light" width="880">
+  </p>
+  <p>
+    <img class="gh-preview gh-preview-dark" src="{% url 'lab_github_svg' %}?user={{ username }}&theme=dark&v=1" alt="{{ username }} GitHub profile, dark" width="880">
+  </p>
+
+  <h2>Paste this in README.md</h2>
+  <textarea id="embed-code" class="gh-markdown" readonly rows="12">{{ embed_code }}</textarea>
+  <p><button type="button" id="embed-copy" class="gh-copy">Copy markdown</button></p>
+  {% endif %}
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/github-widget.js' %}?v=2"></script>
+{% endblock %}

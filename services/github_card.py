@@ -227,7 +227,85 @@ def render_github_card(theme="light", metrics=None):
         )
     )
     height = y + 64
+    return _assemble_svg(
+        theme,
+        height,
+        content,
+        "Vasile Ovidiu Ichim — Co-founder & CTO, Valerdat",
+    )
 
+
+def render_user_github_card(theme="light", metrics=None):
+    theme = THEMES.get(theme, THEMES["light"])
+    metrics = metrics or {}
+    login = metrics.get("login") or "github"
+    name = metrics.get("name") or login
+    bio = metrics.get("bio") or ""
+    company = (metrics.get("company") or "").lstrip("@")
+    location = metrics.get("location") or ""
+    stars = _fmt_n(metrics.get("stars"))
+    forks = _fmt_n(metrics.get("forks"))
+    langs = [item for item in (metrics.get("langs") or []) if item][:4]
+    github_year = metrics.get("github_year")
+    years_on = metrics.get("years_on_github")
+
+    role_bits = [bit for bit in (company, location) if bit]
+    role = " · ".join(role_bits) if role_bits else f"@{login}"
+
+    y = 46
+    content = [_text(PAD, y, f"github.com/{login}", 13, theme["muted"])]
+    y += 40
+    content.append(_text(PAD, y, name, 34, theme["fg"], "500"))
+    y += 14
+    content.append(
+        f'<rect x="{PAD}" y="{y}" width="44" height="1" fill="{theme["rule"]}" opacity="0.28"/>'
+    )
+    y += 28
+    content.append(_text(PAD, y, role, 16, theme["muted"]))
+    y += 40
+    figures = [
+        (stars, "stars across public work"),
+        (forks, "forks of my repos"),
+        (str(years_on) if years_on else None, "years on GitHub"),
+        (str(github_year) if github_year else None, "on GitHub"),
+    ]
+    figures = [(value, label) for value, label in figures if value]
+    if figures:
+        col = 188
+        for i, (value, label) in enumerate(figures):
+            x = PAD + i * col
+            content.append(_text(x, y, value, 26, theme["fg"], "500"))
+            content.append(_text(x, y + 18, label, 11, theme["muted"]))
+        y += 48
+    y += 12
+    if bio:
+        for line in _wrap(bio, TEXT_CHARS):
+            content.append(_text(PAD, y, line, 16, theme["fg"]))
+            y += 24
+        y += 14
+    if langs:
+        content.append(
+            _text(PAD, y, "Public work in " + ", ".join(langs), 13, theme["muted"])
+        )
+        y += 26
+    content.append(
+        _text(PAD, y, f"github.com/{login}  ·  ztrunk.space/lab", 13, theme["muted"])
+    )
+    height = y + 64
+    return _assemble_svg(theme, height, content, f"{name} on GitHub")
+
+
+def render_error_card(theme="light", message="GitHub user not found"):
+    theme = THEMES.get(theme, THEMES["light"])
+    content = [
+        _text(PAD, 80, "ztrunk.space/lab", 13, theme["muted"]),
+        _text(PAD, 130, message, 22, theme["fg"], "500"),
+        _text(PAD, 168, "Check the username and try again.", 16, theme["muted"]),
+    ]
+    return _assemble_svg(theme, 220, content, message)
+
+
+def _assemble_svg(theme, height, content, aria):
     clouds = [
         (0, round(WIDTH * 0.92, 1), round(height * 0.1, 1), 1.0, 0.0, 9.5),
         (1, round(WIDTH * 0.08, 1), round(height * 0.9, 1), 0.86, 2.1, 11.0),
@@ -247,12 +325,11 @@ def render_github_card(theme="light", metrics=None):
         if bg in ("none", "transparent")
         else f'<rect x="0" y="0" width="{WIDTH}" height="{height}" fill="{bg}"/>'
     )
-
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" '
         f'viewBox="0 0 {WIDTH} {height}" role="img" '
         f'style="background:transparent" '
-        f'aria-label="Vasile Ovidiu Ichim — Co-founder &amp; CTO, Valerdat">'
+        f'aria-label="{_t(aria)}">'
         + backdrop
         + defs
         + "".join(cloud_markup)

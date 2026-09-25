@@ -1,7 +1,7 @@
 import base64
 import json
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import requests
 from django.conf import settings
@@ -28,40 +28,41 @@ class GitHubService:
         if github_token:
             self.headers["Authorization"] = f"token {github_token}"
 
-    def _make_request(self, endpoint):
-        """Make a request to GitHub API with error handling"""
+    def _request(self, endpoint):
         try:
             url = f"{self.BASE_URL}/{endpoint}"
             response = requests.get(url, headers=self.headers, timeout=10)
-
             if response.status_code == 200:
-                return response.json()
-            elif response.status_code == 403:
+                return response.json(), 200
+            if response.status_code == 403:
                 logger.warning(f"GitHub API rate limit exceeded for {endpoint}")
-                return None
             elif response.status_code == 404:
                 logger.warning(f"GitHub resource not found: {endpoint}")
-                return None
             else:
                 logger.error(f"GitHub API error {response.status_code} for {endpoint}")
-                return None
-
+            return None, response.status_code
         except requests.RequestException as e:
             logger.error(f"Request error when fetching {endpoint}: {str(e)}")
-            return None
+            return None, 0
 
-    def get_user_profile(self):
+    def _make_request(self, endpoint):
+        """Make a request to GitHub API with error handling"""
+        data, _status = self._request(endpoint)
+        return data
+
+    def get_user_profile(self, fallback=True):
         """Fetch user profile information"""
         cache_key = f"github_profile_{self.username}"
         cached_data = cache.get(cache_key)
 
-        if cached_data:
+        if cached_data is not None:
+            if cached_data.get("_missing"):
+                return self._get_fallback_profile() if fallback else None
             return cached_data
 
-        profile_data = self._make_request(f"users/{self.username}")
+        profile_data, status = self._request(f"users/{self.username}")
 
         if profile_data:
-            # Extract relevant information
             processed_data = {
                 "login": profile_data.get("login"),
                 "name": profile_data.get("name"),
@@ -79,12 +80,12 @@ class GitHubService:
                 "email": profile_data.get("email"),
                 "hireable": profile_data.get("hireable"),
             }
-
-            # Cache the processed data
             cache.set(cache_key, processed_data, self.CACHE_TIMEOUT)
             return processed_data
 
-        return self._get_fallback_profile()
+        if status == 404:
+            cache.set(cache_key, {"_missing": True}, 600)
+        return self._get_fallback_profile() if fallback else None
 
     def get_repositories(self, per_page=30, sort="updated"):
         """Fetch user repositories"""
@@ -257,7 +258,7 @@ class GitHubService:
 
     def get_card_metrics(self):
         """Totals GitHub's profile UI does not surface (stars/forks across work)."""
-        cache_key = f"github_card_metrics_v1_{self.username}"
+        cache_key = f"github_card_metrics_v2_{self.username}"
         cached = cache.get(cache_key)
         if cached:
             return cached
@@ -277,12 +278,21 @@ class GitHubService:
         if len(created) >= 4 and created[:4].isdigit():
             github_year = int(created[:4])
 
+        years_on_github = None
+        if github_year:
+            years_on_github = max(0, datetime.now(timezone.utc).year - github_year)
         payload = {
             "stars": sum(repo.get("stargazers_count") or 0 for repo in own),
             "forks": sum(repo.get("forks_count") or 0 for repo in own),
             "langs": langs,
             "github_year": github_year,
+            "years_on_github": years_on_github,
             "years_coding": 13,
+            "name": profile.get("name") or profile.get("login") or self.username,
+            "login": profile.get("login") or self.username,
+            "bio": (profile.get("bio") or "").strip(),
+            "company": (profile.get("company") or "").strip(),
+            "location": (profile.get("location") or "").strip(),
         }
         cache.set(cache_key, payload, self.CACHE_TIMEOUT)
         return payload

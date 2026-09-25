@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Lab — ztrunk.space{% endblock %}
+{% block canonical %}https://ztrunk.space/lab/{% endblock %}
+
+{% block content %}
+<article>
+  <h1>Lab</h1>
+  <p class="meta">Mini apps on this same site — one Render service, no extra servers. Built for the community; more tools can land here later.</p>
+
+  <h2>GitHub profile card</h2>
+  <p>A README graphic with the ztrunk.space clouds and totals GitHub’s profile page doesn’t show: stars across public work, forks of your repos, years on GitHub, language mix.</p>
+  <p><a href="{% url 'lab_github' %}">Generate your card</a></p>
+</article>
+{% endblock %}

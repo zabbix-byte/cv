@@ -1,0 +1,38 @@
+.lab-form {
+  margin: 1.1rem 0 1.4rem;
+}
+
+.lab-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.lab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.lab-row input {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+}
+
+.lab-row input:focus {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.lab-row .gh-copy {
+  background: transparent;
+  color: var(--fg);
+}

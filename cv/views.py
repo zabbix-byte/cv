@@ -139,6 +139,7 @@ def download_cv_pdf(request):
 SKIP_TRACK_PREFIXES = (
     "/statistics",
     "/github",
+    "/lab",
     "/api/track",
     "/download-cv",
     "/robots.txt",

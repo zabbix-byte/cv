@@ -32,7 +32,7 @@
     return url.origin === location.origin
       && pathOf(url.href) !== "/download-cv"
       && pathOf(url.href) !== "/statistics"
-      && pathOf(url.href) !== "/github"
+      && !url.pathname.startsWith("/lab")
       && !url.pathname.startsWith("/api/")
       && !url.pathname.endsWith(".pdf");
   }
