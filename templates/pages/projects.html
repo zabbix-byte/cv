@@ -22,11 +22,11 @@
       <li class="li-sidenote">
         <aside class="sidenote">
           <span class="sidenote-num">1</span>
-          The first system took over six hours even for a small client, was unstable and unpredictable, and blocked scaling operations, rollouts, and active development — with tight coupling between the early modules. The rewrite removed that coupling and cut the pipeline from a ~6h average to ~1.5h, with run stability around 99% (previously under 51%) — and an immeasurable improvement in software quality overall.
+          The first system was slow and unstable even for a small client. Tight coupling between the early modules blocked rollouts and further development. The rewrite separated those modules.
         </aside>
         <span class="li-main">
           Re-architected the platform end to end<span class="sidenote-mark" aria-hidden="true">1</span>
-          — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.
+          — Spark pipelines and demand forecasting for planning and procurement.
         </span>
       </li>
       <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
@@ -85,7 +85,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="The system evaluates 13 forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer."
+            data-detail="The system compares forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer."
             tabindex="0"
           >
             <span class="diagram-node-title">Forecast</span>
@@ -132,7 +132,7 @@
       </li>
       <li>
         <strong>Forecast.</strong>
-        The system analyzes the models — thirteen compete; we keep the best fit per SKU and warehouse. That signal is the base for planning.
+        The system compares forecasting models and keeps the best fit per SKU and warehouse. That signal is the base for planning.
       </li>
       <li>
         <strong>Purchase optimizer.</strong>
