@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 
-{% block title %}Vasile Ovidiu Ichim{% endblock %}
+{% block title %}Vasile Ovidiu Ichim — Software engineer &amp; technical leader{% endblock %}
 {% block canonical %}https://ztrunk.space/{% endblock %}
 {% block page_class %} page-home{% endblock %}
+{% block footer %}{% endblock %}
 
 {% block content %}
 <article>
   <h1>Vasile Ovidiu Ichim</h1>
+  <p class="meta home-role">Software engineer &amp; technical leader · data-intensive and AI platforms</p>
 
   <p>
-    I’m a software engineer and technical lead specializing in designing and scaling data-intensive systems — from distributed pipelines to multi-tenant AI platforms. I’ve been coding for over 13 years — seven of them professionally.
+    I’m a software engineer and technical lead specializing in designing and scaling data-intensive systems — from distributed pipelines to multi-tenant AI platforms. I’ve been coding for over 13 years — eight of them professionally.
   </p>
 
   <p>
-    As a founding engineer at <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a>, I led and designed the software hands-on, developed it together with the team, and grew into the CTO role. Previously, I worked at Inditex and IBM. Today, my work sits at the intersection of technology and product, remaining hands-on in daily software development.
+    As a founding engineer at <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a>, I led and designed the software hands-on, developed it together with the team, and grew into the CTO role. Previously, I worked at Inditex and IBM. My work sits at the intersection of technology and product — leading the team while staying hands-on in the code every day.
   </p>
 
   <p>Some of my work includes:</p>
   <ul class="section-list">
     <li><a href="{% url 'experience' %}">From founding engineer to CTO — and the companies I’ve worked with</a></li>
-    <li><a href="{% url 'projects' %}">Valerdat’s planning and procurement platform — from ERP data to purchase proposals, and my other professional software projects</a></li>
-    <li><a href="{% url 'research' %}">Kernel drivers, injection, game-security internals, and side projects</a></li>
+    <li><a href="{% url 'projects' %}">A planning and procurement platform — from ERP data to purchase proposals, and my other professional software projects</a></li>
+    <li><a href="{% url 'research' %}">Windows kernel drivers, systems internals, and side projects</a></li>
     <li><a href="{% url 'press' %}">Press coverage and customer case studies</a></li>
     <li><a href="{% url 'skills' %}">The tools and domains I work in every day</a></li>
     <li><a href="{% url 'education' %}">Education, languages, and coursework</a></li>
-    <li><a href="{% url 'download_cv_pdf' %}">A one-page CV you can download as PDF</a></li>
   </ul>
 
   <p>
-    We’re currently hiring ML Engineers and Full Stack Developers. If you're interested, please reach out at
-    <a href="mailto:vasile.ovidiu@valerdat.com">vasile.ovidiu@valerdat.com</a>.
-    You can also find me on
+    I’m always open to talking about architecture, performance, and data at scale — and about what you’re building. Reach me at
+    <a href="mailto:zabbix@ztrunk.space">zabbix@ztrunk.space</a>,
+    or on
     <a href="https://www.linkedin.com/in/zabbix-byte/" target="_blank" rel="noopener">LinkedIn</a>
     and
     <a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">GitHub</a>.
-    I’m always open to talking about architecture, performance, and data at scale.
+    There’s also a <a href="{% url 'download_cv_pdf' %}">one-page CV (PDF)</a>.
   </p>
+
+  <p class="meta home-facts">Remote · based in Barcelona, open to relocation · Romanian (native), Spanish (C2), English (B2)</p>
 </article>
 {% endblock %}

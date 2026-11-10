@@ -508,7 +508,7 @@ class GitHubService:
         return {
             "login": self.username,
             "name": "Vasile Ovidiu Ichim",
-            "bio": "Supply software by day, cracking games by night",
+            "bio": "Software engineer and technical leader — data-intensive and AI platforms",
             "location": "Barcelona, Spain",
             "public_repos": 0,
             "followers": 0,

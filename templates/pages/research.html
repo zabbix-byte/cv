@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block title %}Research — Vasile Ovidiu Ichim{% endblock %}
+{% block og_title %}Research — Vasile Ovidiu Ichim{% endblock %}
+{% block twitter_title %}Research — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/research/{% endblock %}
 
 {% block content %}
@@ -13,7 +15,7 @@
   <div class="text-sidenote">
     <aside class="sidenote">
       <span class="sidenote-num">1</span>
-      This is actually how I started programming. For 12–13 years I’ve wanted to understand how software works on the inside — and I grew up on PC games, so the two met naturally. I began with ChatEngine-era game exploits for fun, then kept going as modern protections got harder. Along the way I built this toolkit and several others (many unpublished) for my own experiments. Still a hobby first: curiosity about internals, not a product line.
+      This is actually how I started programming. For 13 years I’ve wanted to understand how software works on the inside — and I grew up on PC games, so the two met naturally. I began by poking at game memory with Cheat Engine for fun, then kept going as modern protections got harder. Along the way I built this toolkit and several others (many unpublished) for my own experiments. Still a hobby first: curiosity about internals, not a product line.
     </aside>
     <p class="text-main">
       Outside product work I spend time on Windows kernel and user-mode internals: drivers, memory access, and how privileged code talks to the rest of the system.<span class="sidenote-mark" aria-hidden="true">1</span>
@@ -35,18 +37,18 @@
   </section>
 
   <section class="role">
-    <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztui" target="_blank" rel="noopener">Overlay cheat base — kernel + user-mode</a></h2>
+    <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztui" target="_blank" rel="noopener">Kernel + user-mode overlay</a></h2>
     <p>
-      An end-to-end game overlay cheat base: a kernel driver paired with a user-mode client for memory access, DLL loading, and real-time DX11 overlay rendering — mapping process space and drawing without owning the host UI.
+      An end-to-end overlay toolkit: a kernel driver paired with a user-mode client for memory access, DLL loading, and real-time DX11 overlay rendering — mapping process space and drawing without owning the host UI.
     </p>
 
     <div
       class="diagram arch-diagram"
       data-interactive-diagram
       role="group"
-      aria-label="Overlay cheat base architecture"
+      aria-label="Overlay toolkit architecture"
     >
-      <p class="diagram-label">How the overlay base works</p>
+      <p class="diagram-label">How the overlay works</p>
       <p class="diagram-sublabel">Privileged reads from the kernel, drawing from user-mode</p>
 
       <div class="arch-business" role="group" aria-label="User-mode client">
@@ -88,10 +90,10 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Reads map the game’s memory layout — entities, positions, and state — the same surfaces anti-cheat systems watch."
+            data-detail="Reads map the target process’s memory layout — entities, positions, and state — the same surfaces protection systems watch."
             tabindex="0"
           >
-            <span class="diagram-node-title">Read game memory</span>
+            <span class="diagram-node-title">Read process memory</span>
             <span class="diagram-node-desc">Entities, positions, state</span>
           </button>
           <span class="diagram-arrow" aria-hidden="true">→</span>
@@ -99,7 +101,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="A DX11 overlay draws on top of the game (ESP, menu) without owning the host UI — rendering from the mapped state each frame."
+            data-detail="A DX11 overlay draws on top of the host window without owning its UI — rendering from the mapped state each frame."
             tabindex="0"
           >
             <span class="diagram-node-title">DX11 overlay</span>
@@ -115,9 +117,9 @@
   </section>
 
   <section class="role">
-    <h2 class="role-title"><a href="https://github.com/zabbix-byte/zt_cs_cheat" target="_blank" rel="noopener">End-to-end game cheat (archived)</a></h2>
+    <h2 class="role-title"><a href="https://github.com/zabbix-byte/zt_cs_cheat" target="_blank" rel="noopener">Process attachment and memory layout (archived)</a></h2>
     <p>
-      A separate, full end-to-end cheat for a live game client: process attachment, DLL injection, memory layout, and overlay rendering — the same surfaces anti-cheat systems watch.
+      An earlier, separate study of a live game client: process attachment, module loading, memory layout, and overlay rendering — the same surfaces protection systems watch.
       Built as a Python tool with a custom loader; archived since 2023. Useful for understanding how untrusted code reaches another process’s address space.
     </p>
   </section>

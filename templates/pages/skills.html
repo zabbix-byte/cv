@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}Skills — Vasile Ovidiu Ichim{% endblock %}
+{% block og_title %}Skills — Vasile Ovidiu Ichim{% endblock %}
+{% block twitter_title %}Skills — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/skills/{% endblock %}
 
 {% block content %}
 <article>
   <h1>Skills</h1>
   {% include 'partials/byline.html' %}
-  <p class="meta">Tools and domains I use day to day — demonstrated in the work above, not self-rated.</p>
+  <p class="meta">Tools and domains I use day to day — demonstrated in the work, not self-rated.</p>
 
   <table class="skills-table">
     <tbody>
@@ -20,16 +22,24 @@
         <td>Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL</td>
       </tr>
       <tr>
+        <th scope="row">Frontend</th>
+        <td>React, Angular</td>
+      </tr>
+      <tr>
         <th scope="row">Cloud &amp; DevOps</th>
         <td>AWS, Docker, Kubernetes, Terraform, CI/CD, Linux</td>
       </tr>
       <tr>
         <th scope="row">AI &amp; ML</th>
-        <td>Forecasting (Prophet, XGBoost, TFT, and 13 other models), LLM integration, evaluation</td>
+        <td>Time-series forecasting (Prophet, XGBoost, TFT, among 13+ models), LLM agents, evaluation</td>
       </tr>
       <tr>
         <th scope="row">Architecture</th>
-        <td>Distributed systems, multi-tenant SaaS, ERP integrations, design reviews, technical direction</td>
+        <td>Distributed systems, multi-tenant SaaS, ERP integrations</td>
+      </tr>
+      <tr>
+        <th scope="row">Leadership</th>
+        <td>Architecture and design reviews, technical direction, hiring, mentoring</td>
       </tr>
     </tbody>
   </table>

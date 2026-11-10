@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block title %}Projects — Vasile Ovidiu Ichim{% endblock %}
+{% block og_title %}Projects — Vasile Ovidiu Ichim{% endblock %}
+{% block twitter_title %}Projects — Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/projects/{% endblock %}
 
 {% block content %}
@@ -22,11 +24,11 @@
       <li class="li-sidenote">
         <aside class="sidenote">
           <span class="sidenote-num">1</span>
-          The first system was slow and unstable even for a small client. Tight coupling between the early modules blocked rollouts and further development. The rewrite separated those modules.
+          The first system took over six hours even for a small client and was unstable; tight coupling between the early modules blocked rollouts and further development. The rewrite separated those modules and cut the pipeline from a ~6h average to ~1.5h, with run stability around 99% (previously under 51%).
         </aside>
         <span class="li-main">
           Re-architected the platform end to end<span class="sidenote-mark" aria-hidden="true">1</span>
-          — Spark pipelines and demand forecasting for planning and procurement.
+          — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.
         </span>
       </li>
       <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
@@ -36,7 +38,7 @@
           Built to cut implementation friction — a hard limit on business scalability.
         </aside>
         <span class="li-main">
-          Delivered multi-ERP connectors — Sage 200, Microsoft Dynamics 365 Business Central — via API/SFTP, listed on the
+          Delivered multi-ERP connectors — Sage, Microsoft Dynamics 365 Business Central, and SAP — via API/SFTP, listed on the
           <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Sage Marketplace</a>.<span class="sidenote-mark" aria-hidden="true">2</span>
         </span>
       </li>

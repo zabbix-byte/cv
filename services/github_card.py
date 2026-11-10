@@ -40,26 +40,26 @@ YEARS_CODING = 13
 INTRO = (
     "I'm a software engineer and technical lead specializing in designing and "
     "scaling data-intensive systems — from distributed pipelines to multi-tenant "
-    "AI platforms. I've been coding for over 13 years — seven of them professionally."
+    "AI platforms. I've been coding for over 13 years — eight of them professionally."
 )
 
 STORY = (
     "As a founding engineer at Valerdat, I led and designed the software hands-on, "
     "developed it together with the team, and grew into the CTO role. Previously, "
-    "I worked at Inditex and IBM. Today my work sits at the intersection of "
-    "technology and product, remaining hands-on in daily software development."
+    "I worked at Inditex and IBM. My work sits at the intersection of technology "
+    "and product — leading the team while staying hands-on in the code every day."
 )
 
 WORK = (
     "Founding engineer to CTO at Valerdat — previously Inditex and IBM",
     "Planning & procurement platform — ERP data to purchase proposals",
-    "Kernel drivers, injection, and game-security internals",
+    "Windows kernel drivers and systems internals",
     "Press coverage and customer case studies",
 )
 
 CLOSING = (
-    "We're hiring ML Engineers and Full Stack Developers. "
-    "I'm always open to talking about architecture, performance, and data at scale."
+    "I'm always open to talking about architecture, performance, and data at "
+    "scale — and about what you're building."
 )
 
 
@@ -171,7 +171,7 @@ def render_github_card(theme="light", metrics=None):
         f'<rect x="{PAD}" y="{y}" width="44" height="1" fill="{theme["rule"]}" opacity="0.28"/>'
     )
     y += 28
-    content.append(_text(PAD, y, "Co-founder & CTO · Valerdat", 16, theme["muted"]))
+    content.append(_text(PAD, y, "Software engineer & technical leader · data and AI platforms", 16, theme["muted"]))
     y += 40
     figures = [
         (stars, "stars across public work"),
@@ -221,7 +221,7 @@ def render_github_card(theme="light", metrics=None):
         _text(
             PAD,
             y,
-            "ztrunk.space  ·  valerdat.com  ·  linkedin.com/in/zabbix-byte",
+            "ztrunk.space  ·  linkedin.com/in/zabbix-byte  ·  zabbix@ztrunk.space",
             13,
             theme["muted"],
         )
@@ -231,7 +231,7 @@ def render_github_card(theme="light", metrics=None):
         theme,
         height,
         content,
-        "Vasile Ovidiu Ichim — Co-founder & CTO, Valerdat",
+        "Vasile Ovidiu Ichim — Software engineer & technical leader",
     )
 
 

@@ -100,9 +100,9 @@ def github_widget(request):
         '<a href="https://ztrunk.space/">\n'
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
-        'srcset="https://ztrunk.space/github.svg?theme=dark&v=5">\n'
+        'srcset="https://ztrunk.space/github.svg?theme=dark&v=6">\n'
         '    <img alt="Vasile Ovidiu Ichim — GitHub profile" '
-        'src="https://ztrunk.space/github.svg?theme=light&v=5" width="880">\n'
+        'src="https://ztrunk.space/github.svg?theme=light&v=6" width="880">\n'
         "  </picture>\n"
         "</a>\n"
         "</div>"
@@ -119,11 +119,11 @@ def download_cv_pdf(request):
     try:
         context = {
             "name": "Vasile Ovidiu Ichim",
-            "title": "Co-founder &amp; CTO · Valerdat",
-            "location": "Barcelona, Spain",
+            "title": "Software engineer &amp; technical leader · data-intensive and AI platforms",
+            "location": "Remote · Barcelona, Spain · open to relocation",
             "email": "zabbix@ztrunk.space",
             "github_url": "https://github.com/zabbix-byte",
-            "linkedin_url": "https://linkedin.com/in/zabbix-byte",
+            "linkedin_url": "https://www.linkedin.com/in/zabbix-byte/",
         }
 
         logger.info("Generating CV PDF for download")

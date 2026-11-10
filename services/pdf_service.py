@@ -1,7 +1,7 @@
 """
 PDF generation service for CV.
 
-Editorial, monocrome layout — same spirit as the site (serif, quiet hierarchy).
+Editorial, monochrome layout — same spirit as the site (serif, quiet hierarchy).
 """
 
 import io
@@ -56,7 +56,7 @@ def _register_fonts():
 
 
 class CVPDFGenerator:
-    """Quiet, recruiter-focused editorial CV."""
+    """Quiet, editorial one-page CV."""
 
     PAGE_SIZE = A4
     MARGIN = 16 * mm
@@ -183,7 +183,7 @@ class CVPDFGenerator:
         canvas.setFillColor(MUTED)
         canvas.drawString(
             self.MARGIN, y,
-            "Vasile Ovidiu Ichim · Co-founder & CTO · Valerdat",
+            "Vasile Ovidiu Ichim · Software engineer & technical leader",
         )
         canvas.drawRightString(
             self.PAGE_SIZE[0] - self.MARGIN, y,
@@ -193,8 +193,8 @@ class CVPDFGenerator:
 
     def _header(self, ctx):
         name = ctx.get("name", "Vasile Ovidiu Ichim")
-        title = ctx.get("title", "Co-founder &amp; CTO · Valerdat")
-        location = ctx.get("location", "Barcelona, Spain")
+        title = ctx.get("title", "Software engineer &amp; technical leader · data-intensive and AI platforms")
+        location = ctx.get("location", "Remote · Barcelona, Spain · open to relocation")
         email = ctx.get("email", "zabbix@ztrunk.space")
 
         def link(url, label):
@@ -204,7 +204,7 @@ class CVPDFGenerator:
             location,
             link("https://www.linkedin.com/in/zabbix-byte/", "linkedin.com/in/zabbix-byte"),
             link(f"mailto:{email}", email),
-            link("https://github.com/zabbix-byte", "github.com/zabbix-byte"),
+            link("https://ztrunk.space/", "ztrunk.space"),
         ])
 
         return [
@@ -224,14 +224,14 @@ class CVPDFGenerator:
 
     def _summary(self):
         text = (
-            "Software engineer and technical lead. I design data-intensive systems — "
-            "distributed pipelines and multi-tenant platforms for demand planning and procurement. "
-            "Coding for over 13 years, seven of them professionally."
+            "Software engineer and technical leader, hands-on. I design and scale data-intensive "
+            "systems — distributed pipelines and multi-tenant AI platforms for demand planning and "
+            "procurement. Coding for over 13 years, eight of them professionally."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>. Designed the software hands-on and built it with the team, "
-            "then took the CTO role. The product is demand planning and procurement: forecasting, "
-            "purchase proposals, and the platform clients run day to day. "
+            "Founding engineer at <b>Valerdat</b>: designed the software hands-on, built it with the team, "
+            "and grew into the CTO role — a platform operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
+            "supply-chain data, with demand forecasting at &lt;7% MAPE. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
         press = (
@@ -285,6 +285,12 @@ class CVPDFGenerator:
             ),
             Spacer(1, 1),
             self._dated_row("CTO (Full-time)", "Sep 2024 – Present", "Stage", 8),
+            Paragraph(
+                "Architecture, data and application platform, cloud and security posture, "
+                "and technical hiring — while staying in the code on the hard paths.",
+                self.styles["StageBullet"],
+                bulletText="•",
+            ),
             self._dated_row(
                 "Tech Lead &amp; Advisor (Part-time)",
                 "Oct 2023 – Sep 2024",
@@ -292,17 +298,29 @@ class CVPDFGenerator:
                 8,
             ),
             Paragraph(
-                "Transitioned to a part-time advisory role to guarantee infrastructure "
-                "stability and mentor junior developers while engaged at Inditex, ensuring "
-                "business continuity.",
+                "Stayed on part-time while working at Inditex: kept the infrastructure stable, "
+                "reviewed architecture decisions, and mentored the junior developers.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
             self._dated_row(
-                "Founding Engineer (Full-time)",
+                "Founding Engineer",
                 "2021 – Oct 2023",
                 "Stage",
                 8,
+            ),
+            Paragraph(
+                "Re-architected the platform end to end: cut the pipeline from a ~6h average "
+                "to ~1.5h and raised run stability from under 51% to around 99%.",
+                self.styles["StageBullet"],
+                bulletText="•",
+            ),
+            Paragraph(
+                "Built the distributed ETL (Databricks/Spark), the multi-tenant Django backend "
+                "and the AWS infrastructure; delivered ERP connectors for Sage, Business Central "
+                "and SAP, listed on the Sage Marketplace.",
+                self.styles["StageBullet"],
+                bulletText="•",
             ),
             Spacer(1, 2),
         ]
@@ -315,7 +333,7 @@ class CVPDFGenerator:
                 "Python Software Engineer", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
                 [
                     "Built the strategic planning platform for Inditex's Security Department (Django, React, AWS).",
-                    "Designed REST APIs and microservices, improving scalability of internal supply-chain operations.",
+                    "Designed the REST APIs and microservices behind it, built to scale with the department's internal operations.",
                     "Optimized PostgreSQL analytics queries and shipped via Docker and CI/CD pipelines.",
                 ],
             ),
@@ -331,7 +349,7 @@ class CVPDFGenerator:
                 "Software &amp; Systems Engineer", "Dataxip SL", "Feb 2018 – Feb 2021",
                 [
                     "Built and operated physical servers, networking &amp; security (MikroTik), Linux services (Apache/Nginx) and Python web apps.",
-                    "Developed Sage 50 ERP extensions and custom reports — early foundation for the ERP integration work I lead today.",
+                    "Developed Sage 50 ERP extensions and custom reports — the foundation for my later ERP integration work.",
                 ],
             ),
         ]
@@ -341,9 +359,9 @@ class CVPDFGenerator:
         rows = [
             ("Languages", "Python, C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
-            ("Cloud &amp; DevOps", "AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
-            ("AI &amp; Architecture", "Time-series forecasting, LLM agents, distributed systems, multi-tenant SaaS, ERP integrations"),
-            ("Leadership", "Architecture &amp; design reviews, technical direction, mentoring"),
+            ("Frontend &amp; Cloud", "React, Angular · AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
+            ("AI &amp; Architecture", "Time-series forecasting (13+ models), LLM agents, distributed systems, multi-tenant SaaS, ERP integrations"),
+            ("Leadership", "Architecture &amp; design reviews, technical direction, hiring, mentoring"),
         ]
         data = []
         for cat, val in rows:
@@ -403,33 +421,18 @@ class CVPDFGenerator:
         ]))
         return self._section_header("Featured Projects") + [grid]
 
-    def _research_block(self):
-        intro = (
-            "Security and systems internals, personal. Kernel and user-mode work — "
-            "how I think about boundaries and performance."
-        )
-        items = [
-            ('<b><a href="https://github.com/zabbix-byte/ztdriver" color="#171717"><u>Windows Kernel Drivers</u></a></b> — '
-             "user/kernel communication and IOCTL paths, in C++."),
-            ('<b><a href="https://github.com/zabbix-byte/ztui" color="#171717"><u>Overlay cheat base</u></a></b> — '
-             "kernel driver, user-mode client, and a DX11 overlay."),
-            ('<b><a href="https://github.com/zabbix-byte/zt_cs_cheat" color="#171717"><u>End-to-end game cheat</u></a></b> (archived) — '
-             "process attachment, DLL injection, and memory layout."),
+    def _open_source_block(self):
+        return self._section_header("Systems &amp; Open Source") + [
+            Paragraph(
+                '<a href="https://github.com/zabbix-byte/ztdriver" color="#171717"><u>Windows kernel drivers</u></a> '
+                "in C++ (user/kernel communication, IOCTL paths) and open-source projects: "
+                '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a>, '
+                '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a>, '
+                '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a> — '
+                'more on <a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
+                self.styles["ProjectDesc"],
+            ),
         ]
-        flow = self._section_header("Research") + [
-            Paragraph(intro, self.styles["Summary"]),
-            Spacer(1, 2),
-        ]
-        for it in items:
-            flow.append(Paragraph(it, self.styles["ExpBullet"], bulletText="•"))
-        flow.append(Paragraph(
-            "Also "
-            '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a>, '
-            '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a>, '
-            '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a>, '
-            'and more on <a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
-            self.styles["EduMeta"]))
-        return flow
 
     def _edu_block(self):
         flow = self._section_header("Education")
@@ -438,7 +441,7 @@ class CVPDFGenerator:
             self.styles["EduTitle"],
         ))
         flow.append(Paragraph(
-            "Romanian (native) · Spanish (C2) · English (C1). "
+            "Romanian (native) · Spanish (C2) · English (B2). "
             "Platzi — Python, C++, AWS, FastAPI.",
             self.styles["EduMeta"],
         ))
@@ -448,7 +451,7 @@ class CVPDFGenerator:
         flow = [Spacer(1, 2)]
         flow += self._skills_block()
         flow += self._projects_block()
-        flow += self._research_block()
+        flow += self._open_source_block()
         flow.append(KeepTogether(self._edu_block()))
         return flow
 

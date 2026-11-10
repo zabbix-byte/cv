@@ -249,6 +249,29 @@ a:focus-visible {
   line-height: 1.5;
 }
 
+.home-role {
+  margin-bottom: 1.1rem;
+}
+
+.home-facts {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.55rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+.site-footer a:hover {
+  color: var(--fg);
+}
+
 .section-list {
   list-style: disc;
   padding-left: 1.15rem;
@@ -626,7 +649,7 @@ a:focus-visible {
 .page-home .section-list li:nth-child(5) { animation-delay: 0.7s; }
 .page-home .section-list li:nth-child(6) { animation-delay: 0.76s; }
 .page-home .section-list li:nth-child(7) { animation-delay: 0.82s; }
-.page-home article > p:nth-of-type(4) { animation-delay: 0.9s; }
+.page-home article > p:nth-of-type(n+5) { animation-delay: 0.9s; }
 
 @keyframes home-name {
   from {
@@ -708,7 +731,8 @@ a:focus-visible {
   .page-home {
     height: 100svh;
     max-height: 100svh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
