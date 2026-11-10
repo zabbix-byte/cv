@@ -275,20 +275,19 @@ class CVPDFGenerator:
 
     def _valerdat(self):
         flow = [
-            self._dated_row("CTO · Valerdat", ""),
+            self._dated_row("Valerdat", "Nov 2021 – Present"),
+            self._dated_row("Chief Technology Officer", "Oct 2025 – Present", "Stage", 8),
             Paragraph(
                 "I've led the platform since my first day as technical lead, taking it from 2 companies "
-                "using it to more than 50 enterprise B2B clients (&gt;&#8364;1M ARR).",
-                self.styles["ExpBullet"],
+                "using it to more than 50 enterprise B2B clients.",
+                self.styles["StageBullet"],
                 bulletText="•",
             ),
             Paragraph(
                 "Raised uptime from about 50% to 99% and cut running costs almost fivefold.",
-                self.styles["ExpBullet"],
+                self.styles["StageBullet"],
                 bulletText="•",
             ),
-            Spacer(1, 1),
-            self._dated_row("CTO", "2025 – Present", "Stage", 8),
             Paragraph(
                 "I own the architecture, the data and application platform, cloud, security and "
                 "technical hiring, and still write code on the hardest parts.",
@@ -297,31 +296,33 @@ class CVPDFGenerator:
             ),
             self._dated_row(
                 "Technical Lead",
-                "Oct 2023 – 2025",
+                "Oct 2023 – Oct 2025",
                 "Stage",
                 8,
             ),
             Paragraph(
-                "Led the technical direction of the platform: architecture decisions, code reviews "
-                "and mentoring the developers, while keeping the Databricks pipelines and infrastructure stable.",
+                "Re-architected the platform end to end when I took over as technical lead, migrating the "
+                "data pipelines to Databricks and Spark: the average run went from ~6h to ~1.5h. That rewrite "
+                "is what made the platform stable and let us take on many more clients.",
+                self.styles["StageBullet"],
+                bulletText="•",
+            ),
+            Paragraph(
+                "Led the technical direction: architecture decisions, code reviews and mentoring developers, "
+                "and kept the Databricks pipelines and infrastructure stable.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
             self._dated_row(
                 "Founding Engineer",
-                "2021 – Oct 2023",
+                "Nov 2021 – Oct 2023",
                 "Stage",
                 8,
             ),
             Paragraph(
-                "Re-architected the platform end to end: the average pipeline run went from ~6h to ~1.5h.",
-                self.styles["StageBullet"],
-                bulletText="•",
-            ),
-            Paragraph(
-                "Built the Django backend, the Databricks/Spark pipelines, the ML forecasting models, the "
-                "purchase optimization algorithms and the AWS infrastructure, plus ERP connectors for "
-                "Sage, Business Central and SAP (listed on the Sage Marketplace).",
+                "Built the platform from the ground up: the Django backend, the Angular frontend, the "
+                "forecasting models and purchase optimization algorithms, and the systems and AWS infrastructure, "
+                "plus ERP connectors for Sage, Business Central and SAP (listed on the Sage Marketplace).",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -333,11 +334,10 @@ class CVPDFGenerator:
         entries = [
             self._valerdat(),
             self._exp_entry(
-                "Python Software Engineer", "Knowmad Mood (Inditex)", "Oct 2023 – Sep 2024",
+                "Python Software Engineer", "Inditex", "Oct 2023 – Sep 2024",
                 [
-                    "Built the strategic planning platform for Inditex's Security Department (Django, React, AWS).",
+                    "Built Inditex's strategic planning platform (Django, React, Azure).",
                     "Designed the REST APIs and microservices behind it, built to scale with the department's internal operations.",
-                    "Optimized PostgreSQL analytics queries and shipped via Docker and CI/CD pipelines.",
                 ],
             ),
             self._exp_entry(
@@ -352,7 +352,7 @@ class CVPDFGenerator:
                 "Software &amp; Systems Engineer", "Dataxip SL", "Feb 2018 – Feb 2021",
                 [
                     "Built and operated physical servers, networking &amp; security (MikroTik), Linux services (Apache/Nginx) and Python web apps.",
-                    "Developed Sage 50 ERP extensions and custom reports, which became the base for my later ERP integration work.",
+                    "Developed Sage 50 and 200 ERP extensions and custom reports, which became the base for my later ERP integration work.",
                 ],
             ),
         ]
@@ -362,7 +362,7 @@ class CVPDFGenerator:
         rows = [
             ("Languages", "Python, C/C++, JavaScript/TypeScript, SQL, Bash"),
             ("Backend &amp; Data", "Django, FastAPI, REST, Celery, Redis, PostgreSQL, Databricks, Spark, ETL"),
-            ("Frontend &amp; Cloud", "React, Angular · AWS, Docker, Kubernetes, Terraform, CI/CD, Linux"),
+            ("Frontend &amp; Cloud", "React, Angular · AWS, Azure, Docker, Kubernetes, Terraform, CI/CD, Linux"),
             ("AI &amp; Architecture", "Time-series forecasting (13+ models), LLM agents, distributed systems, multi-tenant SaaS, ERP integrations"),
             ("Leadership", "Architecture &amp; design reviews, technical direction, hiring, mentoring"),
         ]
@@ -405,7 +405,7 @@ class CVPDFGenerator:
                 "Demand planning and procurement: forecasting, purchase proposals, replenishment. Multi-tenant Django, Databricks and Spark, ERP connectors for Sage, Business Central, and SAP."),
             self._project_cell(
                 "Strategic Planning · Inditex",
-                "Planning platform for Inditex’s Security Department, built with Django, React, and AWS."),
+                "Internal strategic planning platform, built with Django, React, and Azure."),
         ]
         gutter = 8 * mm
         col_w = (self.content_width - gutter) / 2.0
