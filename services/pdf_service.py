@@ -224,15 +224,15 @@ class CVPDFGenerator:
 
     def _summary(self):
         text = (
-            "Hands-on software engineer and technical leader. I design and scale data-intensive "
-            "systems: distributed pipelines and multi-tenant AI platforms for demand planning and "
-            "procurement. I've been coding for over 13 years, eight of them professionally."
+            "I'm a software engineer who leads teams and still writes code every day. "
+            "I joined <b>Valerdat</b> as its founding engineer and became CTO, and along the way I've "
+            "worked on a bit of everything: the backend, the data pipelines, the ML forecasting models "
+            "and the purchase optimization algorithms. Before that I worked at <b>Inditex</b> and <b>IBM</b>."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>: I designed the software hands-on, built it with the team, "
-            "and grew into the CTO role. Today the platform runs across <b>500k+ SKUs</b> and <b>10TB+</b> of "
-            "supply-chain data, with demand forecasting at &lt;7% MAPE. "
-            "Previously at <b>Inditex</b> and <b>IBM</b>."
+            "The product helps companies decide what to buy and when: it reads their ERP data, "
+            "forecasts demand and proposes purchase orders for more than 500,000 SKUs. "
+            "I've been coding for over 13 years, eight of them professionally."
         )
         press = (
             'Featured in <a href="https://www.viaempresa.cat/es/empresa/'
@@ -277,16 +277,16 @@ class CVPDFGenerator:
         flow = [
             self._dated_row("Co-founder &amp; CTO · Valerdat", ""),
             Paragraph(
-                "Designed and built, hands-on, a high-availability AI platform that 50+ enterprise "
-                "B2B clients use to process critical supply-chain data (&gt;&#8364;1M ARR).",
+                "Designed and built a high-availability AI platform that 50+ enterprise B2B clients "
+                "use to plan their purchasing (&gt;&#8364;1M ARR).",
                 self.styles["ExpBullet"],
                 bulletText="•",
             ),
             Spacer(1, 1),
             self._dated_row("CTO (Full-time)", "Sep 2024 – Present", "Stage", 8),
             Paragraph(
-                "I own the architecture, the data and application platform, cloud and security, "
-                "and technical hiring, and I still write code on the hardest parts.",
+                "I own the architecture, the data and application platform, cloud, security and "
+                "technical hiring, and still write code on the hardest parts.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -297,8 +297,8 @@ class CVPDFGenerator:
                 8,
             ),
             Paragraph(
-                "Stayed on part-time while working at Inditex: kept the infrastructure stable, "
-                "reviewed architecture decisions, and mentored the junior developers.",
+                "Stayed on part-time while at Inditex: kept the infrastructure stable, "
+                "reviewed architecture decisions and mentored junior developers.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -309,15 +309,15 @@ class CVPDFGenerator:
                 8,
             ),
             Paragraph(
-                "Re-architected the platform end to end: cut the pipeline from a ~6h average "
-                "to ~1.5h and raised run stability from under 51% to around 99%.",
+                "Re-architected the platform end to end: the average pipeline run went from ~6h "
+                "to ~1.5h, and run stability from under 51% to ~99%.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
             Paragraph(
-                "Built the distributed ETL (Databricks/Spark), the multi-tenant Django backend "
-                "and the AWS infrastructure; delivered ERP connectors for Sage, Business Central "
-                "and SAP, listed on the Sage Marketplace.",
+                "Built the Django backend, the Spark data pipelines, the ML forecasting models, the "
+                "purchase optimization algorithms and the AWS infrastructure, plus ERP connectors for "
+                "Sage, Business Central and SAP (listed on the Sage Marketplace).",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -339,9 +339,9 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Middleware &amp; Application Operations", "IBM", "Feb 2021 – Mar 2022",
                 [
-                    "Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services (tax, agriculture and others).",
+                    "Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services (tax, agriculture, etc.).",
                     "Administered application and web servers: IBM WebSphere, Oracle WebLogic, Apache Tomcat, Apache HTTP Server and Nginx.",
-                    "Operated across RedHat Linux and Windows Server environments, ensuring reliable release rollouts.",
+                    "Operated across Red Hat Linux and Windows Server environments, ensuring reliable release rollouts.",
                 ],
             ),
             self._exp_entry(
