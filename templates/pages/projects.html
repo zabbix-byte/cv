@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Projects — Vasile Ovidiu Ichim{% endblock %}
-{% block og_title %}Projects — Vasile Ovidiu Ichim{% endblock %}
-{% block twitter_title %}Projects — Vasile Ovidiu Ichim{% endblock %}
+{% block title %}Projects · Vasile Ovidiu Ichim{% endblock %}
+{% block og_title %}Projects · Vasile Ovidiu Ichim{% endblock %}
+{% block twitter_title %}Projects · Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/projects/{% endblock %}
 
 {% block content %}
 <article>
   <h1>Projects</h1>
   {% include 'partials/byline.html' %}
-  <p class="meta">Products I’ve built end to end — not a checklist of subsystems.</p>
+  <p class="meta">Products I’ve built end to end, not a checklist of subsystems.</p>
 
   <section class="role" id="valerdat">
     <h2 class="role-title">AI Planning &amp; Procurement Platform · <a href="https://valerdat.com" target="_blank" rel="noopener">Valerdat</a></h2>
@@ -18,7 +18,7 @@
       <a href="https://valerdat.com/casosdeexito" target="_blank" rel="noopener">Customer case studies</a>
     </p>
     <p>
-      The planning and procurement platform I led and designed hands-on, and developed together with the Valerdat team — demand planning, purchasing, and replenishment: ERP supply-chain data in, forecasts and purchase proposals out. On top, agents don’t just chat: they automate work — querying demand, inspecting proposals, and taking actions in the platform.
+      The planning and procurement platform I led and designed hands-on, and built together with the Valerdat team. It covers demand planning, purchasing, and replenishment: ERP supply-chain data goes in, forecasts and purchase proposals come out. On top, agents do more than chat: they query demand, inspect proposals, and take actions in the platform.
     </p>
     <ul class="notes-flow">
       <li class="li-sidenote">
@@ -28,17 +28,17 @@
         </aside>
         <span class="li-main">
           Re-architected the platform end to end<span class="sidenote-mark" aria-hidden="true">1</span>
-          — today operating across 500k+ SKUs and 10TB+ of supply-chain data with Spark, and demand forecasting at &lt;7% MAPE.
+          so it now runs across 500k+ SKUs and 10TB+ of supply-chain data on Spark, with demand forecasting at &lt;7% MAPE.
         </span>
       </li>
       <li>Owned the full stack: distributed ETL (Databricks/Spark), a multi-tenant Django backend, and AWS infrastructure, observability, and security.</li>
       <li class="li-sidenote">
         <aside class="sidenote">
           <span class="sidenote-num">2</span>
-          Built to cut implementation friction — a hard limit on business scalability.
+          Built to cut implementation friction, which was a hard limit on how fast the business could scale.
         </aside>
         <span class="li-main">
-          Delivered multi-ERP connectors — Sage, Microsoft Dynamics 365 Business Central, and SAP — via API/SFTP, listed on the
+          Delivered connectors for several ERPs (Sage, Microsoft Dynamics 365 Business Central, and SAP) via API/SFTP, listed on the
           <a href="https://marketplacepartners.sage.com/soluciones/valerdat/" target="_blank" rel="noopener">Sage Marketplace</a>.<span class="sidenote-mark" aria-hidden="true">2</span>
         </span>
       </li>
@@ -64,7 +64,7 @@
           type="button"
           class="diagram-node arch-agentic"
           data-diagram-node
-          data-detail="On top of the pipeline — still inside the client’s business rules — agents talk in plain language and do the work: query demand, inspect proposals, trigger automations, and act in the platform — not only answer questions."
+          data-detail="On top of the pipeline, and still inside the client’s business rules, agents talk in plain language and do the work: query demand, inspect proposals, trigger automations, and act in the platform. They don’t just answer questions."
           tabindex="0"
         >
           <span class="diagram-node-title">Agents</span>
@@ -76,7 +76,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply that client’s business rules, and prepare it for forecasting — on cluster pools."
+            data-detail="Data arrives from SAP, Business Central, and Sage into S3. Databricks jobs clean it, apply that client’s business rules, and prepare it for forecasting, all on cluster pools."
             tabindex="0"
           >
             <span class="diagram-node-title">Ingest</span>
@@ -87,18 +87,18 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="The system compares forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning — technical signal before the purchase optimizer."
+            data-detail="The system compares forecasting models and keeps the best fit per SKU and warehouse. That model analysis is the base for planning: the signal the purchase optimizer starts from."
             tabindex="0"
           >
             <span class="diagram-node-title">Forecast</span>
-            <span class="diagram-node-desc">Model analysis — base for planning</span>
+            <span class="diagram-node-desc">Model analysis, the base for planning</span>
           </button>
           <span class="diagram-arrow" aria-hidden="true">→</span>
           <button
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="A purchase optimizer turns the forecast into purchase proposals under each customer’s buying rules and constraints — the technical step that encodes how they actually purchase."
+            data-detail="A purchase optimizer turns the forecast into purchase proposals under each customer’s buying rules and constraints. This is the step that encodes how they actually purchase."
             tabindex="0"
           >
             <span class="diagram-node-title">Purchase optimizer</span>
@@ -109,7 +109,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Results sync into PostgreSQL and surface in the Angular platform. It is also the base system: each client can build their own system on top of ours — workflows, rules, and surfaces shaped to how they operate."
+            data-detail="Results sync into PostgreSQL and surface in the Angular platform. It is also the base system: each client can build their own system on top of ours, with workflows, rules, and surfaces shaped to how they operate."
             tabindex="0"
           >
             <span class="diagram-node-title">Platform</span>
@@ -118,8 +118,8 @@
         </div>
       </div>
 
-      <p class="diagram-caption" data-diagram-caption data-default="Select a stage — every step runs inside the client’s business logic.">
-        Select a stage — every step runs inside the client’s business logic.
+      <p class="diagram-caption" data-diagram-caption data-default="Select a stage. Every step runs inside the client’s business logic.">
+        Select a stage. Every step runs inside the client’s business logic.
       </p>
     </div>
 
@@ -138,7 +138,7 @@
       </li>
       <li>
         <strong>Purchase optimizer.</strong>
-        Turns the forecast into purchase proposals under each customer’s business constraints — the technical optimization step.
+        Turns the forecast into purchase proposals under each customer’s business constraints. This is the technical optimization step.
       </li>
       <li>
         <strong>Platform.</strong>
@@ -146,7 +146,7 @@
       </li>
       <li>
         <strong>Agents.</strong>
-        A layer on top of the whole stack: natural-language conversation plus automations — query demand, inspect proposals, and take actions in the platform, always within that client’s business logic.
+        A layer on top of the whole stack that combines natural-language conversation with automations: query demand, inspect proposals, and take actions in the platform, always within that client’s business logic.
       </li>
     </ol>
   </section>
@@ -154,12 +154,12 @@
   <section class="role">
     <h2 class="role-title">Strategic Planning Platform · Inditex</h2>
     <p>
-      Internal planning product for Inditex’s Security Department — Django services and a React UI on AWS, with APIs and data paths shaped for how that team actually plans and operates.
+      Internal planning product for Inditex’s Security Department: Django services and a React UI on AWS, with APIs and data paths shaped around how that team actually plans and operates.
     </p>
   </section>
 
   <p class="footnote">
-    Open-source and side projects — PyPulse, cefpythonX, real-tars, and more — live under
+    Open-source and side projects (PyPulse, cefpythonX, real-tars, and more) live under
     <a href="{% url 'research' %}">Research</a>.
   </p>
 </article>

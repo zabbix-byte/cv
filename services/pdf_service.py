@@ -1,7 +1,7 @@
 """
 PDF generation service for CV.
 
-Editorial, monochrome layout — same spirit as the site (serif, quiet hierarchy).
+Editorial, monochrome layout, in the same spirit as the site (serif, quiet hierarchy).
 """
 
 import io
@@ -151,7 +151,7 @@ class CVPDFGenerator:
             rightMargin=self.MARGIN,
             topMargin=self.MARGIN,
             bottomMargin=12 * mm,
-            title="Vasile Ovidiu Ichim — CV",
+            title="Vasile Ovidiu Ichim · CV",
             author="Vasile Ovidiu Ichim",
         )
         frame = Frame(
@@ -224,13 +224,13 @@ class CVPDFGenerator:
 
     def _summary(self):
         text = (
-            "Software engineer and technical leader, hands-on. I design and scale data-intensive "
-            "systems — distributed pipelines and multi-tenant AI platforms for demand planning and "
-            "procurement. Coding for over 13 years, eight of them professionally."
+            "Hands-on software engineer and technical leader. I design and scale data-intensive "
+            "systems: distributed pipelines and multi-tenant AI platforms for demand planning and "
+            "procurement. I've been coding for over 13 years, eight of them professionally."
         )
         text2 = (
-            "Founding engineer at <b>Valerdat</b>: designed the software hands-on, built it with the team, "
-            "and grew into the CTO role — a platform operating across <b>500k+ SKUs</b> and <b>10TB+</b> of "
+            "Founding engineer at <b>Valerdat</b>: I designed the software hands-on, built it with the team, "
+            "and grew into the CTO role. Today the platform runs across <b>500k+ SKUs</b> and <b>10TB+</b> of "
             "supply-chain data, with demand forecasting at &lt;7% MAPE. "
             "Previously at <b>Inditex</b> and <b>IBM</b>."
         )
@@ -277,17 +277,16 @@ class CVPDFGenerator:
         flow = [
             self._dated_row("Co-founder &amp; CTO · Valerdat", ""),
             Paragraph(
-                "Architecture and hands-on development of a high-availability AI platform "
-                "supporting 50+ Enterprise B2B clients and processing critical supply-chain "
-                "data at scale (&gt;&#8364;1M ARR).",
+                "Designed and built, hands-on, a high-availability AI platform that 50+ enterprise "
+                "B2B clients use to process critical supply-chain data (&gt;&#8364;1M ARR).",
                 self.styles["ExpBullet"],
                 bulletText="•",
             ),
             Spacer(1, 1),
             self._dated_row("CTO (Full-time)", "Sep 2024 – Present", "Stage", 8),
             Paragraph(
-                "Architecture, data and application platform, cloud and security posture, "
-                "and technical hiring — while staying in the code on the hard paths.",
+                "I own the architecture, the data and application platform, cloud and security, "
+                "and technical hiring, and I still write code on the hardest parts.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -340,7 +339,7 @@ class CVPDFGenerator:
             self._exp_entry(
                 "Middleware &amp; Application Operations", "IBM", "Feb 2021 – Mar 2022",
                 [
-                    "Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services — tax, agriculture and others.",
+                    "Coordinated and executed application deployments and updates for CTTI (Generalitat de Catalunya) public services (tax, agriculture and others).",
                     "Administered application and web servers: IBM WebSphere, Oracle WebLogic, Apache Tomcat, Apache HTTP Server and Nginx.",
                     "Operated across RedHat Linux and Windows Server environments, ensuring reliable release rollouts.",
                 ],
@@ -349,7 +348,7 @@ class CVPDFGenerator:
                 "Software &amp; Systems Engineer", "Dataxip SL", "Feb 2018 – Feb 2021",
                 [
                     "Built and operated physical servers, networking &amp; security (MikroTik), Linux services (Apache/Nginx) and Python web apps.",
-                    "Developed Sage 50 ERP extensions and custom reports — the foundation for my later ERP integration work.",
+                    "Developed Sage 50 ERP extensions and custom reports, which became the base for my later ERP integration work.",
                 ],
             ),
         ]
@@ -402,7 +401,7 @@ class CVPDFGenerator:
                 "Demand planning and procurement: forecasting, purchase proposals, replenishment. Multi-tenant Django, Databricks and Spark, ERP connectors for Sage, Business Central, and SAP."),
             self._project_cell(
                 "Strategic Planning · Inditex",
-                "Planning platform for Inditex’s Security Department — Django, React, and AWS."),
+                "Planning platform for Inditex’s Security Department, built with Django, React, and AWS."),
         ]
         gutter = 8 * mm
         col_w = (self.content_width - gutter) / 2.0
@@ -428,8 +427,8 @@ class CVPDFGenerator:
                 "in C++ (user/kernel communication, IOCTL paths) and open-source projects: "
                 '<a href="https://github.com/zabbix-byte/PyPulse" color="#171717"><u>PyPulse</u></a>, '
                 '<a href="https://github.com/zabbix-byte/cefpythonX" color="#171717"><u>cefpythonX</u></a>, '
-                '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a> — '
-                'more on <a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
+                '<a href="https://github.com/zabbix-byte/real-tars" color="#171717"><u>real-tars</u></a>. '
+                'More on <a href="https://github.com/zabbix-byte" color="#171717"><u>GitHub</u></a>.',
                 self.styles["ProjectDesc"],
             ),
         ]
@@ -437,12 +436,12 @@ class CVPDFGenerator:
     def _edu_block(self):
         flow = self._section_header("Education")
         flow.append(Paragraph(
-            "B.Sc. Computer Science Coursework – The Open University (Self-paced)",
+            "B.Sc. Computer Science coursework, The Open University (self-paced)",
             self.styles["EduTitle"],
         ))
         flow.append(Paragraph(
             "Romanian (native) · Spanish (C2) · English (B2). "
-            "Platzi — Python, C++, AWS, FastAPI.",
+            "Platzi courses: Python, C++, AWS, FastAPI.",
             self.styles["EduMeta"],
         ))
         return flow

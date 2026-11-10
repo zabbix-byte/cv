@@ -1,4 +1,4 @@
-"""GitHub README graphic — ztrunk.space clouds + stats GitHub's profile hides."""
+"""GitHub README graphic: ztrunk.space clouds + stats GitHub's profile hides."""
 
 import math
 from xml.sax.saxutils import escape
@@ -38,28 +38,28 @@ TEXT_CHARS = 54
 YEARS_CODING = 13
 
 INTRO = (
-    "I'm a software engineer and technical lead specializing in designing and "
-    "scaling data-intensive systems — from distributed pipelines to multi-tenant "
-    "AI platforms. I've been coding for over 13 years — eight of them professionally."
+    "I'm a software engineer and technical lead. I design and scale data-heavy "
+    "systems, from distributed pipelines to multi-tenant AI platforms. I've been "
+    "coding for over 13 years, eight of them professionally."
 )
 
 STORY = (
     "As a founding engineer at Valerdat, I led and designed the software hands-on, "
-    "developed it together with the team, and grew into the CTO role. Previously, "
-    "I worked at Inditex and IBM. My work sits at the intersection of technology "
-    "and product — leading the team while staying hands-on in the code every day."
+    "developed it together with the team, and grew into the CTO role. Before that "
+    "I worked at Inditex and IBM. My work sits between technology and product: "
+    "I lead the team and still write code every day."
 )
 
 WORK = (
-    "Founding engineer to CTO at Valerdat — previously Inditex and IBM",
-    "Planning & procurement platform — ERP data to purchase proposals",
+    "Founding engineer to CTO at Valerdat, previously Inditex and IBM",
+    "Planning & procurement platform: ERP data to purchase proposals",
     "Windows kernel drivers and systems internals",
     "Press coverage and customer case studies",
 )
 
 CLOSING = (
-    "I'm always open to talking about architecture, performance, and data at "
-    "scale — and about what you're building."
+    "I'm always happy to talk about architecture, performance, data at scale, "
+    "or whatever you're building."
 )
 
 
@@ -231,7 +231,7 @@ def render_github_card(theme="light", metrics=None):
         theme,
         height,
         content,
-        "Vasile Ovidiu Ichim — Software engineer & technical leader",
+        "Vasile Ovidiu Ichim · Software engineer & technical leader",
     )
 
 

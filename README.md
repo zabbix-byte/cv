@@ -1,15 +1,15 @@
 # ztrunk.space
 
-Source of [ztrunk.space](https://ztrunk.space/) — the personal site of Vasile Ovidiu Ichim, software engineer and technical leader working on data-intensive and AI platforms.
+Source of [ztrunk.space](https://ztrunk.space/), the personal site of Vasile Ovidiu Ichim, software engineer and technical leader working on data-intensive and AI platforms.
 
 A small Django project with no front-end build step: server-rendered templates, hand-written CSS, and a few vanilla JS modules.
 
 ## What's inside
 
-- **Site** — experience, projects, research, skills, education, and press, as plain text-first pages with interactive architecture diagrams.
-- **One-page CV** — generated on request as a PDF with ReportLab ([services/pdf_service.py](services/pdf_service.py)), served at `/download-cv/`.
-- **GitHub profile card** — an animated SVG for a profile README, with totals GitHub's profile page doesn't show ([services/github_card.py](services/github_card.py)). Anyone can generate one for their own username at [ztrunk.space/lab](https://ztrunk.space/lab/).
-- **First-party statistics** — a private, token-gated dashboard at `/statistics/`; no third-party analytics.
+- **Site**: experience, projects, research, skills, education, and press, as plain text-first pages with interactive architecture diagrams.
+- **One-page CV**: generated on request as a PDF with ReportLab ([services/pdf_service.py](services/pdf_service.py)), served at `/download-cv/`.
+- **GitHub profile card**: an animated SVG for a profile README, with totals GitHub's profile page doesn't show ([services/github_card.py](services/github_card.py)). Anyone can generate one for their own username at [ztrunk.space/lab](https://ztrunk.space/lab/).
+- **First-party statistics**: a private, token-gated dashboard at `/statistics/`; no third-party analytics.
 
 ## Stack
 
@@ -36,4 +36,4 @@ Without `DATABASE_URL` the project uses a local SQLite file.
 
 ## License
 
-GPL-3.0 — see [LICENSE](LICENSE).
+GPL-3.0. See [LICENSE](LICENSE).

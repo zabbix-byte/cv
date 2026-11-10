@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Research — Vasile Ovidiu Ichim{% endblock %}
-{% block og_title %}Research — Vasile Ovidiu Ichim{% endblock %}
-{% block twitter_title %}Research — Vasile Ovidiu Ichim{% endblock %}
+{% block title %}Research · Vasile Ovidiu Ichim{% endblock %}
+{% block og_title %}Research · Vasile Ovidiu Ichim{% endblock %}
+{% block twitter_title %}Research · Vasile Ovidiu Ichim{% endblock %}
 {% block canonical %}https://ztrunk.space/research/{% endblock %}
 
 {% block content %}
 <article>
   <h1>Research</h1>
   {% include 'partials/byline.html' %}
-  <p class="meta">Personal work on OS internals and low-level systems — the other side of how I think about reliability.</p>
+  <p class="meta">Personal work on OS internals and low-level systems. It’s the other side of how I think about reliability.</p>
 
   <div class="text-sidenote">
     <aside class="sidenote">
       <span class="sidenote-num">1</span>
-      This is actually how I started programming. For 13 years I’ve wanted to understand how software works on the inside — and I grew up on PC games, so the two met naturally. I began by poking at game memory with Cheat Engine for fun, then kept going as modern protections got harder. Along the way I built this toolkit and several others (many unpublished) for my own experiments. Still a hobby first: curiosity about internals, not a product line.
+      This is actually how I started programming. For 13 years I’ve wanted to understand how software works on the inside, and since I grew up on PC games, the two met naturally. I began by poking at game memory with Cheat Engine for fun, then kept going as modern protections got harder. Along the way I built this toolkit and several others (many unpublished) for my own experiments. Still a hobby first: curiosity about internals, not a product line.
     </aside>
     <p class="text-main">
       Outside product work I spend time on Windows kernel and user-mode internals: drivers, memory access, and how privileged code talks to the rest of the system.<span class="sidenote-mark" aria-hidden="true">1</span>
@@ -26,7 +26,7 @@
   <section class="role">
     <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztdriver" target="_blank" rel="noopener">Windows Kernel Drivers</a></h2>
     <p>Kernel-mode driver experiments in C++ exploring user/kernel communication and IOCTL paths.</p>
-    <pre class="code-block" aria-label="Illustrative driver IOCTL sketch"><span class="cm">// illustrative — user ↔ kernel boundary</span>
+    <pre class="code-block" aria-label="Illustrative driver IOCTL sketch"><span class="cm">// illustrative: user ↔ kernel boundary</span>
 <span class="kw">NTSTATUS</span> DeviceControl(
   PDEVICE_OBJECT DeviceObject,
   PIRP Irp
@@ -39,7 +39,7 @@
   <section class="role">
     <h2 class="role-title"><a href="https://github.com/zabbix-byte/ztui" target="_blank" rel="noopener">Kernel + user-mode overlay</a></h2>
     <p>
-      An end-to-end overlay toolkit: a kernel driver paired with a user-mode client for memory access, DLL loading, and real-time DX11 overlay rendering — mapping process space and drawing without owning the host UI.
+      An end-to-end overlay toolkit: a kernel driver paired with a user-mode client for memory access, DLL loading, and real-time DX11 overlay rendering. It maps process space and draws without owning the host UI.
     </p>
 
     <div
@@ -56,7 +56,7 @@
           type="button"
           class="diagram-node arch-agentic"
           data-diagram-node
-          data-detail="An ImGui menu (DX11) drives everything from user-mode: toggles, themes, and test options — the operator surface that sits on top of the read/draw loop."
+          data-detail="An ImGui menu (DX11) drives everything from user-mode: toggles, themes, and test options. It’s the operator surface that sits on top of the read/draw loop."
           tabindex="0"
         >
           <span class="diagram-node-title">ImGui menu (user-mode)</span>
@@ -68,7 +68,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="A kernel-mode driver (ztdriver) exposes privileged memory read/write over IOCTL — the boundary user-mode code cannot cross on its own."
+            data-detail="A kernel-mode driver (ztdriver) exposes privileged memory read/write over IOCTL, the boundary user-mode code cannot cross on its own."
             tabindex="0"
           >
             <span class="diagram-node-title">Kernel driver</span>
@@ -79,7 +79,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="The user-mode client sends IOCTL requests to the driver to read and write the target process — without opening a handle from user-mode itself."
+            data-detail="The user-mode client sends IOCTL requests to the driver to read and write the target process, without opening a handle from user-mode itself."
             tabindex="0"
           >
             <span class="diagram-node-title">User-mode client</span>
@@ -90,7 +90,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="Reads map the target process’s memory layout — entities, positions, and state — the same surfaces protection systems watch."
+            data-detail="Reads map the target process’s memory layout (entities, positions, and state), the same surfaces protection systems watch."
             tabindex="0"
           >
             <span class="diagram-node-title">Read process memory</span>
@@ -101,7 +101,7 @@
             type="button"
             class="diagram-node"
             data-diagram-node
-            data-detail="A DX11 overlay draws on top of the host window without owning its UI — rendering from the mapped state each frame."
+            data-detail="A DX11 overlay draws on top of the host window without owning its UI, rendering from the mapped state each frame."
             tabindex="0"
           >
             <span class="diagram-node-title">DX11 overlay</span>
@@ -119,34 +119,29 @@
   <section class="role">
     <h2 class="role-title"><a href="https://github.com/zabbix-byte/zt_cs_cheat" target="_blank" rel="noopener">Process attachment and memory layout (archived)</a></h2>
     <p>
-      An earlier, separate study of a live game client: process attachment, module loading, memory layout, and overlay rendering — the same surfaces protection systems watch.
+      An earlier, separate study of a live game client: process attachment, module loading, memory layout, and overlay rendering, the same surfaces protection systems watch.
       Built as a Python tool with a custom loader; archived since 2023. Useful for understanding how untrusted code reaches another process’s address space.
     </p>
   </section>
 
   <section class="role">
     <h2 class="role-title">Side projects (for fun)</h2>
-    <p>A few open-source things I’ve built outside work — tools, frameworks, and hardware:</p>
+    <p>A few open-source tools, frameworks, and hardware projects I’ve built outside work:</p>
     <ul>
       <li>
-        <a href="https://github.com/zabbix-byte/PyPulse" target="_blank" rel="noopener">PyPulse</a>
-        — open-source framework for building Chromium-based desktop apps with a Python backend (on PyPI).
+        <a href="https://github.com/zabbix-byte/PyPulse" target="_blank" rel="noopener">PyPulse</a>: open-source framework for building Chromium-based desktop apps with a Python backend (on PyPI).
       </li>
       <li>
-        <a href="https://github.com/zabbix-byte/cefpythonX" target="_blank" rel="noopener">cefpythonX</a>
-        — modern fork of cefpython: Python bindings for the Chromium Embedded Framework, extended to run on Python 3.10–3.13.
+        <a href="https://github.com/zabbix-byte/cefpythonX" target="_blank" rel="noopener">cefpythonX</a>: a modern fork of cefpython, the Python bindings for the Chromium Embedded Framework, extended to run on Python 3.10–3.13.
       </li>
       <li>
-        <a href="https://github.com/zabbix-byte/real-tars" target="_blank" rel="noopener">real-tars</a>
-        — a real-life TARS robot (Interstellar): embedded agent on ESP32-S3 + Radxa, streaming voice/vision LLM, sensors, and a walking gait.
+        <a href="https://github.com/zabbix-byte/real-tars" target="_blank" rel="noopener">real-tars</a>: a real-life TARS robot (from Interstellar) with an embedded agent on ESP32-S3 + Radxa, a streaming voice/vision LLM, sensors, and a walking gait.
       </li>
       <li>
-        <a href="https://github.com/zabbix-byte/DiscordEasyCloner" target="_blank" rel="noopener">DiscordEasyCloner</a>
-        — desktop app to duplicate Discord servers, built on PyPulse.
+        <a href="https://github.com/zabbix-byte/DiscordEasyCloner" target="_blank" rel="noopener">DiscordEasyCloner</a>: desktop app to duplicate Discord servers, built on PyPulse.
       </li>
       <li>
-        <a href="https://github.com/zabbix-byte/Talk-with-Cletus-Spuckler" target="_blank" rel="noopener">Talk with Cletus Spuckler</a>
-        — a small GPT desktop app built to exercise PyPulse.
+        <a href="https://github.com/zabbix-byte/Talk-with-Cletus-Spuckler" target="_blank" rel="noopener">Talk with Cletus Spuckler</a>: a small GPT desktop app built to exercise PyPulse.
       </li>
       <li>…and many more on <a href="https://github.com/zabbix-byte" target="_blank" rel="noopener">GitHub</a>.</li>
     </ul>

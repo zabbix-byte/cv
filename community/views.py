@@ -41,7 +41,7 @@ def _embed(username):
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
         f'srcset="https://ztrunk.space/lab/github.svg?user={user}&theme=dark&v=1">\n'
-        f'    <img alt="{user} — GitHub profile" '
+        f'    <img alt="{user} · GitHub profile" '
         f'src="https://ztrunk.space/lab/github.svg?user={user}&theme=light&v=1" width="880">\n'
         "  </picture>\n"
         "</a>\n"

@@ -1,4 +1,4 @@
-/* Editorial design — inspired by leerob.com */
+/* Editorial design - inspired by leerob.com */
 
 @font-face {
   font-family: "STIX Two Text";
@@ -45,7 +45,7 @@
   --code-str: #86efac;
   --code-cm: #a3a3a3;
   --selection: #e5e5e5;
-  /* Content column — a bit wider than classic ~65ch measure */
+  /* Content column - a bit wider than classic ~65ch measure */
   --measure: 84ch;
   --page-pad: clamp(1.25rem, 5vw, 2.5rem);
   --page-pad-top: clamp(3rem, 10vh, 6rem);
@@ -64,7 +64,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    /* Soft charcoal — not pure black */
+    /* Soft charcoal - not pure black */
     --bg: #1a1a1a;
     --fg: #e8e8e8;
     --muted: #9a9a9a;
@@ -167,7 +167,7 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-/* —— Page —— */
+/* -- Page -- */
 .page h1 {
   margin: 0 0 1.15rem;
   font-size: 26px;
@@ -282,7 +282,7 @@ a:focus-visible {
   margin: 0 0 0.5rem;
 }
 
-/* —— Experience / roles —— */
+/* -- Experience / roles -- */
 .role {
   margin-bottom: 1.85rem;
 }
@@ -321,7 +321,7 @@ a:focus-visible {
   margin-top: 0.25rem;
 }
 
-/* —— Sidenotes (margin notes; stack under the line on mobile) —— */
+/* -- Sidenotes (margin notes; stack under the line on mobile) -- */
 .li-sidenote,
 .text-sidenote {
     display: flex;
@@ -436,7 +436,7 @@ a:focus-visible {
   font-weight: 500;
 }
 
-/* —— Skills table —— */
+/* -- Skills table -- */
 .skills-table {
   width: 100%;
   border-collapse: collapse;
@@ -460,7 +460,7 @@ a:focus-visible {
   word-break: break-word;
 }
 
-/* —— Diagram —— */
+/* -- Diagram -- */
 .diagram,
 .arch-diagram {
   margin: 1.25rem 0 1.4rem;
@@ -498,7 +498,7 @@ a:focus-visible {
   border-style: dashed;
 }
 
-/* Must beat .diagram-node { margin: 0 } — same specificity otherwise kills the gap */
+/* Must beat .diagram-node { margin: 0 } - same specificity otherwise kills the gap */
 .diagram-node.arch-agentic {
   margin: 0 0 1.5rem;
 }
@@ -579,7 +579,7 @@ a:focus-visible {
   line-height: 1.45;
 }
 
-/* —— Code —— */
+/* -- Code -- */
 .code-block {
   margin: 1.25rem 0;
   padding: 1rem 1.05rem;
@@ -598,7 +598,7 @@ a:focus-visible {
 .code-block .str { color: var(--code-str); }
 .code-block .cm { color: var(--code-cm); }
 
-/* —— Home desktop: leerob air —— */
+/* -- Home desktop: leerob air -- */
 .page-home {
   padding-top: clamp(3.5rem, 12vh, 7rem);
   padding-right: var(--page-pad);
@@ -680,7 +680,7 @@ a:focus-visible {
   to { transform: scaleX(1); }
 }
 
-/* —— Mobile —— */
+/* -- Mobile -- */
 @media (max-width: 720px) {
   :root {
     --page-pad: 1.25rem;
@@ -699,14 +699,14 @@ a:focus-visible {
     max-width: none;
     width: 100%;
     box-sizing: border-box;
-    /* Clear browser chrome + notch — safe-area alone is not enough for the URL bar */
+    /* Clear browser chrome + notch - safe-area alone is not enough for the URL bar */
     padding-top: max(3.25rem, env(safe-area-inset-top, 0px) + 2.75rem);
     padding-right: 1.25rem;
     padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
     padding-left: 1.25rem;
   }
 
-  /* Inner pages: normal scroll and type — never lock to the viewport */
+  /* Inner pages: normal scroll and type - never lock to the viewport */
   .page:not(.page-home) {
     height: auto;
     max-height: none;
@@ -719,7 +719,7 @@ a:focus-visible {
     margin-bottom: 1rem;
   }
 
-  /* Home ONLY: one screen, no scroll — type/spacing scale with viewport; margins on all sides */
+  /* Home ONLY: one screen, no scroll - type/spacing scale with viewport; margins on all sides */
   body:has(.page-home) {
     height: 100svh;
     max-height: 100svh;

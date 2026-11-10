@@ -100,9 +100,9 @@ def github_widget(request):
         '<a href="https://ztrunk.space/">\n'
         "  <picture>\n"
         '    <source media="(prefers-color-scheme: dark)" '
-        'srcset="https://ztrunk.space/github.svg?theme=dark&v=6">\n'
-        '    <img alt="Vasile Ovidiu Ichim — GitHub profile" '
-        'src="https://ztrunk.space/github.svg?theme=light&v=6" width="880">\n'
+        'srcset="https://ztrunk.space/github.svg?theme=dark&v=7">\n'
+        '    <img alt="Vasile Ovidiu Ichim · GitHub profile" '
+        'src="https://ztrunk.space/github.svg?theme=light&v=7" width="880">\n'
         "  </picture>\n"
         "</a>\n"
         "</div>"
@@ -328,7 +328,7 @@ def _fmt_duration(seconds):
 
 def _dash(value):
     if value is None or value == "":
-        return "—"
+        return "-"
     return value
 
 
