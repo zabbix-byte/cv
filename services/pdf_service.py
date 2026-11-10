@@ -275,7 +275,7 @@ class CVPDFGenerator:
 
     def _valerdat(self):
         flow = [
-            self._dated_row("Co-founder &amp; CTO · Valerdat", ""),
+            self._dated_row("CTO · Valerdat", ""),
             Paragraph(
                 "I've led the platform since my first day as technical lead, taking it from 2 companies "
                 "using it to more than 50 enterprise B2B clients (&gt;&#8364;1M ARR).",
