@@ -277,13 +277,18 @@ class CVPDFGenerator:
         flow = [
             self._dated_row("Co-founder &amp; CTO · Valerdat", ""),
             Paragraph(
-                "Designed and built a high-availability AI platform that 50+ enterprise B2B clients "
-                "use to plan their purchasing (&gt;&#8364;1M ARR).",
+                "I've led the platform since my first day as technical lead, taking it from 2 companies "
+                "using it to more than 50 enterprise B2B clients (&gt;&#8364;1M ARR).",
+                self.styles["ExpBullet"],
+                bulletText="•",
+            ),
+            Paragraph(
+                "Raised uptime from about 50% to 99% and cut running costs almost fivefold.",
                 self.styles["ExpBullet"],
                 bulletText="•",
             ),
             Spacer(1, 1),
-            self._dated_row("CTO (Full-time)", "Sep 2024 – Present", "Stage", 8),
+            self._dated_row("CTO", "2025 – Present", "Stage", 8),
             Paragraph(
                 "I own the architecture, the data and application platform, cloud, security and "
                 "technical hiring, and still write code on the hardest parts.",
@@ -291,14 +296,14 @@ class CVPDFGenerator:
                 bulletText="•",
             ),
             self._dated_row(
-                "Tech Lead &amp; Advisor (Part-time)",
-                "Oct 2023 – Sep 2024",
+                "Technical Lead",
+                "Oct 2023 – 2025",
                 "Stage",
                 8,
             ),
             Paragraph(
-                "Stayed on part-time while at Inditex: kept the infrastructure stable, "
-                "reviewed architecture decisions and mentored junior developers.",
+                "Led the technical direction of the platform: architecture decisions, code reviews "
+                "and mentoring the developers, while keeping the Databricks pipelines and infrastructure stable.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
@@ -309,13 +314,12 @@ class CVPDFGenerator:
                 8,
             ),
             Paragraph(
-                "Re-architected the platform end to end: the average pipeline run went from ~6h "
-                "to ~1.5h, and run stability from under 51% to ~99%.",
+                "Re-architected the platform end to end: the average pipeline run went from ~6h to ~1.5h.",
                 self.styles["StageBullet"],
                 bulletText="•",
             ),
             Paragraph(
-                "Built the Django backend, the Spark data pipelines, the ML forecasting models, the "
+                "Built the Django backend, the Databricks/Spark pipelines, the ML forecasting models, the "
                 "purchase optimization algorithms and the AWS infrastructure, plus ERP connectors for "
                 "Sage, Business Central and SAP (listed on the Sage Marketplace).",
                 self.styles["StageBullet"],
